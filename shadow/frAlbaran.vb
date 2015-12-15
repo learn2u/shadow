@@ -8,6 +8,8 @@ Public Class frAlbaran
     Public Shared lineas As Int16
     Public Shared pos As Integer
     Public Shared flagEdit As String = "N"
+    Public Shared lineasEdit As New List(Of lineasEditadas)
+
     Private Sub frAlbaran_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
 
@@ -384,6 +386,7 @@ Public Class frAlbaran
             Dim guardo_linimporte As String
             Dim lintotal As String
             Dim guardo_lintotal As String
+            Dim arti As String
 
             For Each row In dgLineasPres1.Rows
 
@@ -412,11 +415,13 @@ Public Class frAlbaran
                 lintotal = row.Cells(10).Value.ToString
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
+                arti = row.Cells(2).Value
+
                 cmdLinea.Connection = conexionmy
                 cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
 
                 cmdLinea.ExecuteNonQuery()
-
+                descontarStock(arti, lincant)
 
             Next
 
@@ -665,6 +670,43 @@ Public Class frAlbaran
             actualizarLinea()
         Next
         recalcularTotales()
+
+    End Sub
+    Public Sub descontarStock(codArti As String, unidades As Decimal)
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+
+        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+        reader.Read()
+
+        Dim stock As String = (reader.GetString(1) - unidades).ToString
+        reader.Close()
+
+        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
+        cmdActualizo.ExecuteNonQuery()
+
+        conexionmy.Close()
+
+    End Sub
+    Public Sub aumentarStock(codArti As String, unidades As Decimal)
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+
+        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+        reader.Read()
+
+        Dim stock As String = (reader.GetString(1) + unidades).ToString
+        reader.Close()
+
+        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
+        cmdActualizo.ExecuteNonQuery()
+
+        conexionmy.Close()
+
+    End Sub
+    Public Sub consultarStock()
 
     End Sub
 End Class

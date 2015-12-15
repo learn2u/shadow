@@ -147,28 +147,55 @@ Public Class frVerArticulos
     End Sub
 
     Private Sub dgArticulos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgArticulos.CellClick
-        If frPresupuestos.flagEdit = "N" Then
-            frPresupuestos.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("referen").Value
-            frPresupuestos.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
-            frPresupuestos.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
-            frPresupuestos.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
-            frPresupuestos.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
-            frPresupuestos.dgLineasPres1.CurrentCell = frPresupuestos.dgLineasPres1.CurrentRow.Cells(4)
-            frPresupuestos.dgLineasPres1.BeginEdit(True)
+        If formArti = "P" Then
+            If frPresupuestos.flagEdit = "N" Then
+                frPresupuestos.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("referen").Value
+                frPresupuestos.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                frPresupuestos.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
+                frPresupuestos.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
+                frPresupuestos.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
+                frPresupuestos.dgLineasPres1.CurrentCell = frPresupuestos.dgLineasPres1.CurrentRow.Cells(4)
+                frPresupuestos.dgLineasPres1.BeginEdit(True)
 
-            Me.Hide()
-        Else
-            frPresupuestos.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("referen").Value
-            frPresupuestos.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
-            frPresupuestos.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
-            frPresupuestos.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
-            frPresupuestos.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
-            frPresupuestos.dgLineasPres2.CurrentCell = frPresupuestos.dgLineasPres2.CurrentRow.Cells(4)
-            frPresupuestos.dgLineasPres2.BeginEdit(True)
-            frPresupuestos.actualizarLinea()
-            frPresupuestos.recalcularTotales()
+                Me.Hide()
+            Else
+                frPresupuestos.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("referen").Value
+                frPresupuestos.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                frPresupuestos.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
+                frPresupuestos.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
+                frPresupuestos.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
+                frPresupuestos.dgLineasPres2.CurrentCell = frPresupuestos.dgLineasPres2.CurrentRow.Cells(4)
+                frPresupuestos.dgLineasPres2.BeginEdit(True)
+                frPresupuestos.actualizarLinea()
+                frPresupuestos.recalcularTotales()
 
-            Me.Hide()
+                Me.Hide()
+            End If
+        End If
+        If formArti = "A" Then
+            If frAlbaran.flagEdit = "N" Then
+                frAlbaran.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("referen").Value
+                frAlbaran.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                frAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
+                frAlbaran.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
+                frAlbaran.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
+                frAlbaran.dgLineasPres1.CurrentCell = frAlbaran.dgLineasPres1.CurrentRow.Cells(4)
+                frAlbaran.dgLineasPres1.BeginEdit(True)
+
+                Me.Hide()
+            Else
+                frAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("referen").Value
+                frAlbaran.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                frAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
+                frAlbaran.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
+                frAlbaran.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
+                frAlbaran.dgLineasPres2.CurrentCell = frAlbaran.dgLineasPres2.CurrentRow.Cells(4)
+                frAlbaran.dgLineasPres2.BeginEdit(True)
+                frAlbaran.actualizarLinea()
+                frAlbaran.recalcularTotales()
+
+                Me.Hide()
+            End If
         End If
 
 

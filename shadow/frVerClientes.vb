@@ -77,12 +77,23 @@ Public Class frVerClientes
     End Sub
 
     Private Sub dgClientes_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgClientes.CellClick
-        frPresupuestos.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
-        frPresupuestos.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
-        frPresupuestos.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
-        frPresupuestos.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
-        Me.Hide()
-        frPresupuestos.recalcularDescuentos()
+        If formCli = "P" Then
+            frPresupuestos.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+            frPresupuestos.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+            frPresupuestos.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+            frPresupuestos.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+            Me.Hide()
+            frPresupuestos.recalcularDescuentos()
+        End If
+        If formCli = "A" Then
+            frAlbaran.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+            frAlbaran.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+            frAlbaran.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+            frAlbaran.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+            Me.Hide()
+            frAlbaran.recalcularDescuentos()
+        End If
+
 
 
     End Sub
