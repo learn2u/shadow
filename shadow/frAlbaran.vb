@@ -9,6 +9,9 @@ Public Class frAlbaran
     Public Shared pos As Integer
     Public Shared flagEdit As String = "N"
     Public Shared lineasEdit As New List(Of lineasEditadas)
+    Public Shared artiEdit As String
+    Public Shared cantIni As Decimal
+    Public Shared cantFin As Decimal
 
     Private Sub frAlbaran_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
@@ -311,6 +314,12 @@ Public Class frAlbaran
             renumerar()
             recalcularTotales()
         Else
+            'Cargo los datos de la linea para el control de stocks
+            artiEdit = dgLineasPres2.CurrentRow.Cells(2).Value
+            cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
+            cantFin = 0
+            lineasEdit.Add(New lineasEditadas() With {.codigoArt = artiEdit, .cantAntes = cantIni, .cantDespues = cantFin})
+
             dgLineasPres2.Rows.RemoveAt(dgLineasPres2.CurrentRow.Index)
             renumerar()
             recalcularTotales()
@@ -450,7 +459,7 @@ Public Class frAlbaran
 
             'Guardo cabecera y actualizo número de presupuesto
 
-            Dim cmd As New MySqlCommand("UPDATE albaran_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = '" + txNumcli.Text + "', agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalalbaran = '" + guardo_imptot + "' WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
+            Dim cmd As New MySqlCommand("UPDATE albaran_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalalbaran = '" + guardo_imptot + "' WHERE num_albaran = " + txtNumpres.Text + "", conexionmy)
             cmd.ExecuteNonQuery()
 
 
@@ -516,13 +525,22 @@ Public Class frAlbaran
 
             conexionmy.Close()
 
+            If lineasEdit.Count > 0 Then
+                For Each itemlineas As lineasEditadas In lineasEdit
+                    aumentarStock(itemlineas.codigoArt, itemlineas.cantAntes)
+                    descontarStock(itemlineas.codigoArt, itemlineas.cantDespues)
+                Next
+            End If
+            lineasEdit.Clear()
+
+
             deshabilitarBotones()
-            limpiarFormulario()
-            cmdNuevo.Enabled = True
-            cargoTodosAlbaranes()
-            tabPresupuestos.SelectTab(0)
-            flagEdit = "N"
-        End If
+                limpiarFormulario()
+                cmdNuevo.Enabled = True
+                cargoTodosAlbaranes()
+                tabPresupuestos.SelectTab(0)
+                flagEdit = "N"
+            End If
     End Sub
     Public Sub cargoNumero()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -578,6 +596,7 @@ Public Class frAlbaran
         rdrCab.Read()
         txFecha.Text = rdrCab("fecha")
         txNumcli.Text = rdrCab("clienteID")
+        txAgente.Text = rdrCab("agenteID")
         txReferenciapres.Text = rdrCab("referencia")
         txObserva.Text = rdrCab("observaciones")
 
@@ -661,7 +680,13 @@ Public Class frAlbaran
         If (e.ColumnIndex = 4 Or e.ColumnIndex = 7 Or e.ColumnIndex = 8) Then
             actualizarLinea()
             recalcularTotales()
-
+        End If
+        If (e.ColumnIndex = 4) Then
+            cantFin = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
+            lineasEdit.Add(New lineasEditadas() With {.codigoArt = artiEdit, .cantAntes = cantIni, .cantDespues = cantFin})
+            'MsgBox(artiEdit)
+            'MsgBox(cantIni)
+            'MsgBox(cantFin)
         End If
     End Sub
     Public Sub recalcularDescuentos()
@@ -706,7 +731,10 @@ Public Class frAlbaran
         conexionmy.Close()
 
     End Sub
-    Public Sub consultarStock()
-
+    Private Sub dgLineasPres2_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellEnter
+        If (e.ColumnIndex = 4) Then
+            artiEdit = dgLineasPres2.CurrentRow.Cells(2).Value
+            cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
+        End If
     End Sub
 End Class
