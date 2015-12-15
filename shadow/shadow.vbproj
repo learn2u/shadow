@@ -88,6 +88,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frAlbaran.Designer.vb">
+      <DependentUpon>frAlbaran.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frAlbaran.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frPresupuesto.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,12 @@
       <DependentUpon>frVerClientes.vb</DependentUpon>
     </Compile>
     <Compile Include="frVerClientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="launcher.Designer.vb">
+      <DependentUpon>launcher.vb</DependentUpon>
+    </Compile>
+    <Compile Include="launcher.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -125,6 +137,9 @@
     <Compile Include="variables.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frAlbaran.resx">
+      <DependentUpon>frAlbaran.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frPresupuesto.resx">
       <DependentUpon>frPresupuesto.vb</DependentUpon>
     </EmbeddedResource>
@@ -133,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frVerClientes.resx">
       <DependentUpon>frVerClientes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="launcher.resx">
+      <DependentUpon>launcher.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

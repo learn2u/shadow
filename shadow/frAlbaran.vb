@@ -4,14 +4,11 @@ Imports MySql.Data.MySqlClient
 Imports System.Globalization
 Imports System.ComponentModel
 Imports System.Xml
-
-Public Class frPresupuestos
+Public Class frAlbaran
     Public Shared lineas As Int16
     Public Shared pos As Integer
     Public Shared flagEdit As String = "N"
-
-    Private Sub frPresupuestos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+    Private Sub frAlbaran_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
 
         lineas = 0
@@ -24,13 +21,112 @@ Public Class frPresupuestos
             dgLineasPres2.Visible = True
         End If
 
-        cargoTodosPresupuestos()
+        cargoTodosAlbaranes()
+    End Sub
+    Public Sub deshabilitarBotones()
+        cmdGuardar.Enabled = False
+        cmdCancelar.Enabled = False
+        cmdImprimir.Enabled = False
+        cmdPDF.Enabled = False
+        cmdMail.Enabled = False
+        cmdPedido.Enabled = False
+        cmdAlbaran.Enabled = False
+        cmdToldos.Enabled = False
+        cmdCliente.Enabled = False
+        cmdRentabilidad.Enabled = False
+        cmdLineas.Enabled = False
+    End Sub
+    Public Sub cargoTodosAlbaranes()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+        conexionmy.Open()
+        Dim consultamy As New MySqlCommand("SELECT albaran_cab.num_albaran, 
+                                                    albaran_cab.referencia,
+                                                    albaran_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    albaran_cab.totalbruto, 
+                                                    albaran_cab.totalalbaran, 
+                                                    albaran_cab.clienteID, 
+                                                    clientes.clienteID,
+                                                    clientes.codigo 
+                                            FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.codigo ORDER BY albaran_cab.num_albaran DESC", conexionmy)
 
+        Dim readermy As MySqlDataReader
+        Dim dtable As New DataTable
+        Dim bind As New BindingSource()
+
+
+        readermy = consultamy.ExecuteReader
+        dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+        bind.DataSource = dtable
+
+        dgAlbaranes.DataSource = bind
+        dgAlbaranes.EnableHeadersVisualStyles = False
+        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+        styCabeceras.BackColor = Color.Beige
+        styCabeceras.ForeColor = Color.Black
+        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+        dgAlbaranes.ColumnHeadersDefaultCellStyle = styCabeceras
+
+        dgAlbaranes.Columns(0).HeaderText = "NUMERO"
+        dgAlbaranes.Columns(0).Name = "Column1"
+        dgAlbaranes.Columns(0).FillWeight = 90
+        dgAlbaranes.Columns(0).MinimumWidth = 90
+        dgAlbaranes.Columns(1).HeaderText = "REFERENCIA"
+        dgAlbaranes.Columns(1).Name = "Column2"
+        dgAlbaranes.Columns(1).FillWeight = 190
+        dgAlbaranes.Columns(1).MinimumWidth = 190
+        dgAlbaranes.Columns(2).HeaderText = "FECHA"
+        dgAlbaranes.Columns(2).Name = "Column3"
+        dgAlbaranes.Columns(2).FillWeight = 90
+        dgAlbaranes.Columns(2).MinimumWidth = 90
+        dgAlbaranes.Columns(3).HeaderText = "CLIENTE"
+        dgAlbaranes.Columns(3).Name = "Column4"
+        dgAlbaranes.Columns(3).FillWeight = 300
+        dgAlbaranes.Columns(3).MinimumWidth = 300
+        dgAlbaranes.Columns(4).HeaderText = "IMPORTE"
+        dgAlbaranes.Columns(4).Name = "Column5"
+        dgAlbaranes.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        dgAlbaranes.Columns(4).FillWeight = 90
+        dgAlbaranes.Columns(4).MinimumWidth = 90
+        dgAlbaranes.Columns(5).HeaderText = "TOTAL"
+        dgAlbaranes.Columns(5).Name = "Column6"
+        dgAlbaranes.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        dgAlbaranes.Columns(5).FillWeight = 90
+        dgAlbaranes.Columns(5).MinimumWidth = 90
+        dgAlbaranes.Columns(6).Visible = False
+        dgAlbaranes.Columns(7).Visible = False
+        dgAlbaranes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgAlbaranes.Visible = True
+
+        conexionmy.Close()
+    End Sub
+    Public Sub limpiarFormulario()
+        txtNumpres.Text = ""
+        txFecha.Text = ""
+        txReferenciapres.Text = ""
+        txNumcli.Text = ""
+        txClientepres.Text = ""
+        txAgente.Text = ""
+        txDtocli.Text = ""
+        txIva.Text = ""
+        cbEstado.Text = ""
+        cbEnvio.Text = ""
+        txObserva.Text = ""
+        txImpBruto.Text = 0
+        txImpDto.Text = 0
+        txImponible.Text = 0
+        txImpIva.Text = 0
+        txImpRecargo.Text = 0
+        txTotalAlbaran.Text = 0
+        tsBotones.Focus()
+        cmdNuevo.Select()
+        dgLineasPres1.Rows.Clear()
     End Sub
 
-    Private Sub ToolStripSplitButton1_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
+    Private Sub cmdLineas_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
         If txNumcli.Text = "" Then
-            MsgBox("Antes de añadir líneas al presupuesto es necesario seleccionar un cliente")
+            MsgBox("Antes de añadir líneas al albarán es necesario seleccionar un cliente")
             frVerClientes.Show()
         Else
             If flagEdit = "N" Then
@@ -58,11 +154,9 @@ Public Class frPresupuestos
             End If
 
         End If
-
     End Sub
 
     Private Sub INSERTARToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles INSERTARToolStripMenuItem.Click
-
         If flagEdit = "N" Then
             dgLineasPres1.Rows.Insert(dgLineasPres1.CurrentRow.Index)
             renumerar()
@@ -92,8 +186,6 @@ Public Class frPresupuestos
             dgLineasPres2.CurrentRow.Cells(9).Value = 0
             dgLineasPres2.CurrentRow.Cells(10).Value = 0
         End If
-
-
     End Sub
     Public Sub renumerar()
         lineas = 1
@@ -190,16 +282,14 @@ Public Class frPresupuestos
     End Sub
 
     Private Sub dgLineasPres1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellEndEdit
-
         If (e.ColumnIndex = 4 Or e.ColumnIndex = 7 Or e.ColumnIndex = 8) Then
             actualizarLinea()
             recalcularTotales()
 
         End If
-
     End Sub
 
-    Private Sub cmdCliente_Click(sender As Object, e As EventArgs) Handles cmdCliente.Click
+    Private Sub cmdCliente_ButtonClick(sender As Object, e As EventArgs) Handles cmdCliente.ButtonClick
         frVerClientes.Show()
     End Sub
 
@@ -208,7 +298,6 @@ Public Class frPresupuestos
             frVerArticulos.Show()
         End If
         pos = dgLineasPres1.CurrentRow.Index
-
     End Sub
 
     Private Sub ELIMINARToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ELIMINARToolStripMenuItem.Click
@@ -221,20 +310,6 @@ Public Class frPresupuestos
             renumerar()
             recalcularTotales()
         End If
-
-    End Sub
-    Public Sub deshabilitarBotones()
-        cmdGuardar.Enabled = False
-        cmdCancelar.Enabled = False
-        cmdImprimir.Enabled = False
-        cmdPDF.Enabled = False
-        cmdMail.Enabled = False
-        cmdPedido.Enabled = False
-        cmdAlbaran.Enabled = False
-        cmdToldos.Enabled = False
-        cmdCliente.Enabled = False
-        cmdRentabilidad.Enabled = False
-        cmdLineas.Enabled = False
     End Sub
 
     Private Sub cmdNuevo_Click(sender As Object, e As EventArgs) Handles cmdNuevo.Click
@@ -250,8 +325,6 @@ Public Class frPresupuestos
 
         txFecha.Text = Format(Today, "ddMMyyyy")
         txReferenciapres.Focus()
-
-
     End Sub
 
     Private Sub cmdCancelar_Click(sender As Object, e As EventArgs) Handles cmdCancelar.Click
@@ -262,28 +335,6 @@ Public Class frPresupuestos
             flagEdit = "N"
         End If
         tabPresupuestos.SelectTab(0)
-    End Sub
-    Public Sub limpiarFormulario()
-        txtNumpres.Text = ""
-        txFecha.Text = ""
-        txReferenciapres.Text = ""
-        txNumcli.Text = ""
-        txClientepres.Text = ""
-        txAgente.Text = ""
-        txDtocli.Text = ""
-        txIva.Text = ""
-        cbEstado.Text = ""
-        cbEnvio.Text = ""
-        txObserva.Text = ""
-        txImpBruto.Text = 0
-        txImpDto.Text = 0
-        txImponible.Text = 0
-        txImpIva.Text = 0
-        txImpRecargo.Text = 0
-        txTotalAlbaran.Text = 0
-        tsBotones.Focus()
-        cmdNuevo.Select()
-        dgLineasPres1.Rows.Clear()
     End Sub
 
     Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
@@ -464,9 +515,6 @@ Public Class frPresupuestos
             tabPresupuestos.SelectTab(0)
             flagEdit = "N"
         End If
-
-
-
     End Sub
     Public Sub cargoNumero()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -482,82 +530,15 @@ Public Class frPresupuestos
         conexionmy.Close()
 
     End Sub
-    Public Sub cargoTodosPresupuestos()
 
-        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
-        conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT presupuesto_cab.num_presupuesto, 
-                                                    presupuesto_cab.referencia,
-                                                    presupuesto_cab.fecha, 
-                                                    clientes.nombre, 
-                                                    presupuesto_cab.totalbruto, 
-                                                    presupuesto_cab.totalpresupuesto, 
-                                                    presupuesto_cab.clienteID, 
-                                                    clientes.clienteID,
-                                                    clientes.codigo 
-                                            FROM presupuesto_cab INNER JOIN clientes ON presupuesto_cab.clienteID=clientes.codigo ORDER BY presupuesto_cab.num_presupuesto DESC", conexionmy)
-
-        Dim readermy As MySqlDataReader
-        Dim dtable As New DataTable
-        Dim bind As New BindingSource()
-
-
-        readermy = consultamy.ExecuteReader
-        dtable.Load(readermy, LoadOption.OverwriteChanges)
-
-        bind.DataSource = dtable
-
-        dgPresupuestos.DataSource = bind
-        dgPresupuestos.EnableHeadersVisualStyles = False
-        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
-        styCabeceras.BackColor = Color.Beige
-        styCabeceras.ForeColor = Color.Black
-        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
-        dgPresupuestos.ColumnHeadersDefaultCellStyle = styCabeceras
-
-        dgPresupuestos.Columns(0).HeaderText = "NUMERO"
-        dgPresupuestos.Columns(0).Name = "Column1"
-        dgPresupuestos.Columns(0).FillWeight = 90
-        dgPresupuestos.Columns(0).MinimumWidth = 90
-        dgPresupuestos.Columns(1).HeaderText = "REFERENCIA"
-        dgPresupuestos.Columns(1).Name = "Column2"
-        dgPresupuestos.Columns(1).FillWeight = 190
-        dgPresupuestos.Columns(1).MinimumWidth = 190
-        dgPresupuestos.Columns(2).HeaderText = "FECHA"
-        dgPresupuestos.Columns(2).Name = "Column3"
-        dgPresupuestos.Columns(2).FillWeight = 90
-        dgPresupuestos.Columns(2).MinimumWidth = 90
-        dgPresupuestos.Columns(3).HeaderText = "CLIENTE"
-        dgPresupuestos.Columns(3).Name = "Column4"
-        dgPresupuestos.Columns(3).FillWeight = 300
-        dgPresupuestos.Columns(3).MinimumWidth = 300
-        dgPresupuestos.Columns(4).HeaderText = "IMPORTE"
-        dgPresupuestos.Columns(4).Name = "Column5"
-        dgPresupuestos.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        dgPresupuestos.Columns(4).FillWeight = 90
-        dgPresupuestos.Columns(4).MinimumWidth = 90
-        dgPresupuestos.Columns(5).HeaderText = "TOTAL"
-        dgPresupuestos.Columns(5).Name = "Column6"
-        dgPresupuestos.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        dgPresupuestos.Columns(5).FillWeight = 90
-        dgPresupuestos.Columns(5).MinimumWidth = 90
-        dgPresupuestos.Columns(6).Visible = False
-        dgPresupuestos.Columns(7).Visible = False
-        dgPresupuestos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        dgPresupuestos.Visible = True
-
-        conexionmy.Close()
-    End Sub
-
-    Private Sub dgPresupuestos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgPresupuestos.CellClick
-
+    Private Sub dgAlbaranes_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgAlbaranes.CellClick
         limpiarFormulario()
         cmdLineas.Enabled = True
         cmdGuardar.Enabled = True
         cmdCancelar.Enabled = True
         cmdCliente.Enabled = True
 
-        txtNumpres.Text = dgPresupuestos.CurrentRow.Cells("Column1").Value.ToString
+        txtNumpres.Text = dgAlbaranes.CurrentRow.Cells("Column1").Value.ToString
         tabPresupuestos.SelectTab(1)
         flagEdit = "S"
         dgLineasPres1.Visible = False
@@ -565,13 +546,11 @@ Public Class frPresupuestos
         dgLineasPres2.Rows.Clear()
 
 
-        cargoPresupuesto()
+        cargoAlbaran()
         cargoLineas()
         recalcularTotales()
-
-
     End Sub
-    Public Sub cargoPresupuesto()
+    Public Sub cargoAlbaran()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
         Dim cmdCab As New MySqlCommand
@@ -611,7 +590,6 @@ Public Class frPresupuestos
         rdrCli.Close()
 
         conexionmy.Close()
-
     End Sub
     Public Sub cargoLineas()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -661,8 +639,6 @@ Public Class frPresupuestos
         conexionmy.Close()
 
         recalcularTotales()
-
-
     End Sub
 
     Private Sub dgLineasPres2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellClick
@@ -687,5 +663,4 @@ Public Class frPresupuestos
         recalcularTotales()
 
     End Sub
-
 End Class
