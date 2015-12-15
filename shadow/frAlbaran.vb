@@ -127,6 +127,7 @@ Public Class frAlbaran
     Private Sub cmdLineas_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
         If txNumcli.Text = "" Then
             MsgBox("Antes de añadir líneas al albarán es necesario seleccionar un cliente")
+            formCli = "A"
             frVerClientes.Show()
         Else
             If flagEdit = "N" Then
@@ -290,11 +291,13 @@ Public Class frAlbaran
     End Sub
 
     Private Sub cmdCliente_ButtonClick(sender As Object, e As EventArgs) Handles cmdCliente.ButtonClick
+        formCli = "A"
         frVerClientes.Show()
     End Sub
 
     Private Sub dgLineasPres1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellClick
         If (e.ColumnIndex = 1) Then
+            formArti = "A"
             frVerArticulos.Show()
         End If
         pos = dgLineasPres1.CurrentRow.Index
@@ -355,9 +358,9 @@ Public Class frAlbaran
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO presupuesto_cab (num_presupuesto, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalpresupuesto, aceptado, pedido) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N', 'N')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
             cmd.ExecuteNonQuery()
-            Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
+            Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran = '" + txtNumpres.Text + "'", conexionmy)
             cmdActualizar.ExecuteNonQuery()
 
             'Guardo líneas del presupuesto
@@ -410,7 +413,7 @@ Public Class frAlbaran
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
 
                 cmdLinea.ExecuteNonQuery()
 
@@ -422,7 +425,7 @@ Public Class frAlbaran
             deshabilitarBotones()
             limpiarFormulario()
             cmdNuevo.Enabled = True
-            cargoTodosPresupuestos()
+            cargoTodosAlbaranes()
             tabPresupuestos.SelectTab(0)
         Else
 
@@ -442,13 +445,13 @@ Public Class frAlbaran
 
             'Guardo cabecera y actualizo número de presupuesto
 
-            Dim cmd As New MySqlCommand("UPDATE presupuesto_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = '" + txNumcli.Text + "', agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalpresupuesto = '" + guardo_imptot + "' WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
+            Dim cmd As New MySqlCommand("UPDATE albaran_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = '" + txNumcli.Text + "', agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalalbaran = '" + guardo_imptot + "' WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
             cmd.ExecuteNonQuery()
 
 
             'Guardo líneas del presupuesto
 
-            Dim cmdEliminar As New MySqlCommand("DELETE FROM presupuesto_linea WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
+            Dim cmdEliminar As New MySqlCommand("DELETE FROM albaran_linea WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
             cmdEliminar.ExecuteNonQuery()
 
             Dim cmdLinea As New MySqlCommand
@@ -499,7 +502,7 @@ Public Class frAlbaran
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
 
                 cmdLinea.ExecuteNonQuery()
 
@@ -511,7 +514,7 @@ Public Class frAlbaran
             deshabilitarBotones()
             limpiarFormulario()
             cmdNuevo.Enabled = True
-            cargoTodosPresupuestos()
+            cargoTodosAlbaranes()
             tabPresupuestos.SelectTab(0)
             flagEdit = "N"
         End If
@@ -520,7 +523,7 @@ Public Class frAlbaran
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT num_presupuesto FROM configuracion  ", conexionmy)
+        Dim cmdLastId As New MySqlCommand("SELECT num_albaran FROM configuracion  ", conexionmy)
         Dim numid As Int32
 
         numid = cmdLastId.ExecuteScalar()
@@ -562,7 +565,7 @@ Public Class frAlbaran
         Dim rdrCli As MySqlDataReader
 
 
-        cmdCab = New MySqlCommand("SELECT * FROM presupuesto_cab WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
+        cmdCab = New MySqlCommand("SELECT * FROM albaran_cab WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
 
         cmdCab.CommandType = CommandType.Text
         cmdCab.Connection = conexionmy
@@ -596,19 +599,19 @@ Public Class frAlbaran
         conexionmy.Open()
         Dim cmdLinea As New MySqlCommand
 
-        cmdLinea = New MySqlCommand("SELECT presupuesto_linea.linea,
-                                            presupuesto_linea.codigo,
-                                            presupuesto_linea.descripcion,
-                                            presupuesto_linea.cantidad,
-                                            presupuesto_linea.ancho_largo,
-                                            presupuesto_linea.m2_ml,
-                                            presupuesto_linea.precio,
-                                            presupuesto_linea.descuento,
-                                            presupuesto_linea.ivalinea,
-                                            presupuesto_linea.importe,
-                                            presupuesto_linea.totalinea,
-                                            presupuesto_linea.num_presupuesto
-                                            FROM presupuesto_linea WHERE num_presupuesto = '" + txtNumpres.Text + "' ORDER BY presupuesto_linea.linea", conexionmy)
+        cmdLinea = New MySqlCommand("SELECT albaran_linea.linea,
+                                            albaran_linea.codigo,
+                                            albaran_linea.descripcion,
+                                            albaran_linea.cantidad,
+                                            albaran_linea.ancho_largo,
+                                            albaran_linea.m2_ml,
+                                            albaran_linea.precio,
+                                            albaran_linea.descuento,
+                                            albaran_linea.ivalinea,
+                                            albaran_linea.importe,
+                                            albaran_linea.totalinea,
+                                            albaran_linea.num_albaran
+                                            FROM albaran_linea WHERE num_albaran = '" + txtNumpres.Text + "' ORDER BY albaran_linea.linea", conexionmy)
 
         cmdLinea.CommandType = CommandType.Text
         cmdLinea.Connection = conexionmy
@@ -643,6 +646,7 @@ Public Class frAlbaran
 
     Private Sub dgLineasPres2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellClick
         If (e.ColumnIndex = 1) Then
+            formArti = "A"
             frVerArticulos.Show()
         End If
         pos = dgLineasPres2.CurrentRow.Index

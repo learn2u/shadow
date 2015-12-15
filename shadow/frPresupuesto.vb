@@ -31,6 +31,7 @@ Public Class frPresupuestos
     Private Sub ToolStripSplitButton1_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
         If txNumcli.Text = "" Then
             MsgBox("Antes de añadir líneas al presupuesto es necesario seleccionar un cliente")
+            formCli = "P"
             frVerClientes.Show()
         Else
             If flagEdit = "N" Then
@@ -200,11 +201,13 @@ Public Class frPresupuestos
     End Sub
 
     Private Sub cmdCliente_Click(sender As Object, e As EventArgs) Handles cmdCliente.Click
+        formCli = "P"
         frVerClientes.Show()
     End Sub
 
     Private Sub dgLineasPres1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellClick
         If (e.ColumnIndex = 1) Then
+            formArti = "P"
             frVerArticulos.Show()
         End If
         pos = dgLineasPres1.CurrentRow.Index
@@ -667,6 +670,7 @@ Public Class frPresupuestos
 
     Private Sub dgLineasPres2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellClick
         If (e.ColumnIndex = 1) Then
+            formArti = "P"
             frVerArticulos.Show()
         End If
         pos = dgLineasPres2.CurrentRow.Index

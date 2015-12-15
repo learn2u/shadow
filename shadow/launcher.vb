@@ -28,5 +28,7 @@ Public Class launcher
             vPassword = nodo.ChildNodes(2).InnerText
             vBasedatos = nodo.ChildNodes(3).InnerText
         Next
+        formArti = "N"
+        formCli = "N"
     End Sub
 End Class
