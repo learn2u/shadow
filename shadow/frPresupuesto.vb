@@ -250,7 +250,7 @@ Public Class frPresupuestos
         flagEdit = "N"
         dgLineasPres2.Visible = False
         dgLineasPres1.Visible = True
-
+        cbEstado.Text = "PENDIENTE"
         txFecha.Text = Format(Today, "ddMMyyyy")
         txReferenciapres.Focus()
 

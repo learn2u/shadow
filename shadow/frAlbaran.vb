@@ -12,6 +12,7 @@ Public Class frAlbaran
     Public Shared artiEdit As String
     Public Shared cantIni As Decimal
     Public Shared cantFin As Decimal
+    Public Shared serieIni As String
 
     Private Sub frAlbaran_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
@@ -336,7 +337,8 @@ Public Class frAlbaran
         flagEdit = "N"
         dgLineasPres2.Visible = False
         dgLineasPres1.Visible = True
-
+        cbSerie.Text = "S1"
+        cbEstado.Text = "NO FACTURADO"
         txFecha.Text = Format(Today, "ddMMyyyy")
         txReferenciapres.Focus()
     End Sub
@@ -352,6 +354,12 @@ Public Class frAlbaran
     End Sub
 
     Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
+        Dim vSerie As String
+        If cbSerie.Text = "S1" Then
+            vSerie = "1"
+        Else
+            vSerie = "2"
+        End If
         If flagEdit = "N" Then
             cargoNumero()
 
@@ -369,10 +377,16 @@ Public Class frAlbaran
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, serie, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
             cmd.ExecuteNonQuery()
-            Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran = '" + txtNumpres.Text + "'", conexionmy)
-            cmdActualizar.ExecuteNonQuery()
+            If cbSerie.Text = "S1" Then
+                Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran = '" + txtNumpres.Text + "'", conexionmy)
+                cmdActualizar.ExecuteNonQuery()
+            Else
+                Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran_2 = '" + txtNumpres.Text + "'", conexionmy)
+                cmdActualizar.ExecuteNonQuery()
+            End If
+
 
             'Guardo líneas del presupuesto
 
@@ -459,14 +473,32 @@ Public Class frAlbaran
 
             'Guardo cabecera y actualizo número de presupuesto
 
-            Dim cmd As New MySqlCommand("UPDATE albaran_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalalbaran = '" + guardo_imptot + "' WHERE num_albaran = " + txtNumpres.Text + "", conexionmy)
-            cmd.ExecuteNonQuery()
+            If vSerie = serieIni Then
+                Dim cmd As New MySqlCommand("UPDATE albaran_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalalbaran = '" + guardo_imptot + "', serie = '" + vSerie + "' WHERE num_albaran = " + txtNumpres.Text + "", conexionmy)
+                cmd.ExecuteNonQuery()
 
+            Else
+                Dim cmdEliminarLin As New MySqlCommand("DELETE FROM albaran_linea WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
+                cmdEliminarLin.ExecuteNonQuery()
+                Dim cmdEliminarCab As New MySqlCommand("DELETE FROM albaran_cab WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
+                cmdEliminarCab.ExecuteNonQuery()
+                cargoNumero()
+                Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, serie, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
+                cmd.ExecuteNonQuery()
+                If cbSerie.Text = "S1" Then
+                    Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran = '" + txtNumpres.Text + "'", conexionmy)
+                    cmdActualizar.ExecuteNonQuery()
+                Else
+                    Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran_2 = '" + txtNumpres.Text + "'", conexionmy)
+                    cmdActualizar.ExecuteNonQuery()
+                End If
 
-            'Guardo líneas del presupuesto
+            End If
 
             Dim cmdEliminar As New MySqlCommand("DELETE FROM albaran_linea WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
             cmdEliminar.ExecuteNonQuery()
+
+            'Guardo líneas del presupuesto
 
             Dim cmdLinea As New MySqlCommand
             Dim row As New DataGridViewRow
@@ -546,10 +578,15 @@ Public Class frAlbaran
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT num_albaran FROM configuracion  ", conexionmy)
         Dim numid As Int32
 
-        numid = cmdLastId.ExecuteScalar()
+        If cbSerie.Text = "S1" Then
+            Dim cmdLastId As New MySqlCommand("SELECT num_albaran FROM configuracion  ", conexionmy)
+            numid = cmdLastId.ExecuteScalar()
+        Else
+            Dim cmdLastId As New MySqlCommand("SELECT num_albaran_2 FROM configuracion  ", conexionmy)
+            numid = cmdLastId.ExecuteScalar()
+        End If
 
         txtNumpres.Text = numid + 1
 
@@ -599,6 +636,13 @@ Public Class frAlbaran
         txAgente.Text = rdrCab("agenteID")
         txReferenciapres.Text = rdrCab("referencia")
         txObserva.Text = rdrCab("observaciones")
+        If rdrCab("serie") = "1" Then
+            cbSerie.Text = "S1"
+            serieIni = "1"
+        Else
+            cbSerie.Text = "S2"
+            serieIni = "2"
+        End If
 
         rdrCab.Close()
 
@@ -736,5 +780,10 @@ Public Class frAlbaran
             artiEdit = dgLineasPres2.CurrentRow.Cells(2).Value
             cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
         End If
+    End Sub
+
+    Private Sub cbSerie_TextChanged(sender As Object, e As EventArgs) Handles cbSerie.TextChanged
+        'cargoNumero()
+
     End Sub
 End Class
