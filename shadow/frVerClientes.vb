@@ -94,7 +94,14 @@ Public Class frVerClientes
             frAlbaran.recalcularDescuentos()
         End If
 
-
+        If formCli = "D" Then
+            frPedido.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+            frPedido.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+            frPedido.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+            frPedido.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+            Me.Hide()
+            frPedido.recalcularDescuentos()
+        End If
 
     End Sub
 End Class
