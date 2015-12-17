@@ -4,7 +4,7 @@ Imports MySql.Data.MySqlClient
 Imports System.Globalization
 Imports System.ComponentModel
 Imports System.Xml
-Public Class frAlbaran
+Public Class frPedido
     Public Shared lineas As Int16
     Public Shared pos As Integer
     Public Shared flagEdit As String = "N"
@@ -13,8 +13,7 @@ Public Class frAlbaran
     Public Shared cantIni As Decimal
     Public Shared cantFin As Decimal
     Public Shared serieIni As String
-
-    Private Sub frAlbaran_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frPedido_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
 
         lineas = 0
@@ -27,7 +26,7 @@ Public Class frAlbaran
             dgLineasPres2.Visible = True
         End If
 
-        cargoTodosAlbaranes()
+        cargoTodosPedidos()
     End Sub
     Public Sub deshabilitarBotones()
         cmdGuardar.Enabled = False
@@ -42,19 +41,19 @@ Public Class frAlbaran
         cmdRentabilidad.Enabled = False
         cmdLineas.Enabled = False
     End Sub
-    Public Sub cargoTodosAlbaranes()
+    Public Sub cargoTodosPedidos()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT albaran_cab.num_albaran, 
-                                                    albaran_cab.referencia,
-                                                    albaran_cab.fecha, 
+        Dim consultamy As New MySqlCommand("SELECT pedido_cab.num_pedido, 
+                                                    pedido_cab.referencia,
+                                                    pedido_cab.fecha, 
                                                     clientes.nombre, 
-                                                    albaran_cab.totalbruto, 
-                                                    albaran_cab.totalalbaran, 
-                                                    albaran_cab.clienteID, 
+                                                    pedido_cab.totalbruto, 
+                                                    pedido_cab.totalpedido, 
+                                                    pedido_cab.clienteID, 
                                                     clientes.clienteID,
                                                     clientes.codigo 
-                                            FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.codigo ORDER BY albaran_cab.num_albaran DESC", conexionmy)
+                                            FROM pedido_cab INNER JOIN clientes ON pedido_cab.clienteID=clientes.codigo ORDER BY pedido_cab.num_pedido DESC", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -66,44 +65,44 @@ Public Class frAlbaran
 
         bind.DataSource = dtable
 
-        dgAlbaranes.DataSource = bind
-        dgAlbaranes.EnableHeadersVisualStyles = False
+        dgPedidos.DataSource = bind
+        dgPedidos.EnableHeadersVisualStyles = False
         Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
         styCabeceras.BackColor = Color.Beige
         styCabeceras.ForeColor = Color.Black
         styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
-        dgAlbaranes.ColumnHeadersDefaultCellStyle = styCabeceras
+        dgPedidos.ColumnHeadersDefaultCellStyle = styCabeceras
 
-        dgAlbaranes.Columns(0).HeaderText = "NUMERO"
-        dgAlbaranes.Columns(0).Name = "Column1"
-        dgAlbaranes.Columns(0).FillWeight = 90
-        dgAlbaranes.Columns(0).MinimumWidth = 90
-        dgAlbaranes.Columns(1).HeaderText = "REFERENCIA"
-        dgAlbaranes.Columns(1).Name = "Column2"
-        dgAlbaranes.Columns(1).FillWeight = 190
-        dgAlbaranes.Columns(1).MinimumWidth = 190
-        dgAlbaranes.Columns(2).HeaderText = "FECHA"
-        dgAlbaranes.Columns(2).Name = "Column3"
-        dgAlbaranes.Columns(2).FillWeight = 90
-        dgAlbaranes.Columns(2).MinimumWidth = 90
-        dgAlbaranes.Columns(3).HeaderText = "CLIENTE"
-        dgAlbaranes.Columns(3).Name = "Column4"
-        dgAlbaranes.Columns(3).FillWeight = 300
-        dgAlbaranes.Columns(3).MinimumWidth = 300
-        dgAlbaranes.Columns(4).HeaderText = "IMPORTE"
-        dgAlbaranes.Columns(4).Name = "Column5"
-        dgAlbaranes.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        dgAlbaranes.Columns(4).FillWeight = 90
-        dgAlbaranes.Columns(4).MinimumWidth = 90
-        dgAlbaranes.Columns(5).HeaderText = "TOTAL"
-        dgAlbaranes.Columns(5).Name = "Column6"
-        dgAlbaranes.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        dgAlbaranes.Columns(5).FillWeight = 90
-        dgAlbaranes.Columns(5).MinimumWidth = 90
-        dgAlbaranes.Columns(6).Visible = False
-        dgAlbaranes.Columns(7).Visible = False
-        dgAlbaranes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        dgAlbaranes.Visible = True
+        dgPedidos.Columns(0).HeaderText = "NUMERO"
+        dgPedidos.Columns(0).Name = "Column1"
+        dgPedidos.Columns(0).FillWeight = 90
+        dgPedidos.Columns(0).MinimumWidth = 90
+        dgPedidos.Columns(1).HeaderText = "REFERENCIA"
+        dgPedidos.Columns(1).Name = "Column2"
+        dgPedidos.Columns(1).FillWeight = 190
+        dgPedidos.Columns(1).MinimumWidth = 190
+        dgPedidos.Columns(2).HeaderText = "FECHA"
+        dgPedidos.Columns(2).Name = "Column3"
+        dgPedidos.Columns(2).FillWeight = 90
+        dgPedidos.Columns(2).MinimumWidth = 90
+        dgPedidos.Columns(3).HeaderText = "CLIENTE"
+        dgPedidos.Columns(3).Name = "Column4"
+        dgPedidos.Columns(3).FillWeight = 300
+        dgPedidos.Columns(3).MinimumWidth = 300
+        dgPedidos.Columns(4).HeaderText = "IMPORTE"
+        dgPedidos.Columns(4).Name = "Column5"
+        dgPedidos.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        dgPedidos.Columns(4).FillWeight = 90
+        dgPedidos.Columns(4).MinimumWidth = 90
+        dgPedidos.Columns(5).HeaderText = "TOTAL"
+        dgPedidos.Columns(5).Name = "Column6"
+        dgPedidos.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        dgPedidos.Columns(5).FillWeight = 90
+        dgPedidos.Columns(5).MinimumWidth = 90
+        dgPedidos.Columns(6).Visible = False
+        dgPedidos.Columns(7).Visible = False
+        dgPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgPedidos.Visible = True
 
         conexionmy.Close()
     End Sub
@@ -132,8 +131,8 @@ Public Class frAlbaran
 
     Private Sub cmdLineas_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
         If txNumcli.Text = "" Then
-            MsgBox("Antes de añadir líneas al albarán es necesario seleccionar un cliente")
-            formCli = "A"
+            MsgBox("Antes de añadir líneas al pedido es necesario seleccionar un cliente")
+            formCli = "D"
             frVerClientes.Show()
         Else
             If flagEdit = "N" Then
@@ -297,13 +296,13 @@ Public Class frAlbaran
     End Sub
 
     Private Sub cmdCliente_ButtonClick(sender As Object, e As EventArgs) Handles cmdCliente.ButtonClick
-        formCli = "A"
+        formCli = "D"
         frVerClientes.Show()
     End Sub
 
     Private Sub dgLineasPres1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellClick
         If (e.ColumnIndex = 1) Then
-            formArti = "A"
+            formArti = "D"
             frVerArticulos.Show()
         End If
         pos = dgLineasPres1.CurrentRow.Index
@@ -337,8 +336,8 @@ Public Class frAlbaran
         flagEdit = "N"
         dgLineasPres2.Visible = False
         dgLineasPres1.Visible = True
-        cbSerie.Text = "S1"
-        cbEstado.Text = "NO FACTURADO"
+        'cbSerie.Text = "S1"
+        cbEstado.Text = "PENDIENTE"
         txFecha.Text = Format(Today, "ddMMyyyy")
         txReferenciapres.Focus()
     End Sub
@@ -354,12 +353,7 @@ Public Class frAlbaran
     End Sub
 
     Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
-        Dim vSerie As String
-        If cbSerie.Text = "S1" Then
-            vSerie = "1"
-        Else
-            vSerie = "2"
-        End If
+
         If flagEdit = "N" Then
             cargoNumero()
 
@@ -377,15 +371,12 @@ Public Class frAlbaran
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, serie, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO pedido_cab (num_pedido, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalpedido, pendiente, enviado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'S', 'N')", conexionmy)
             cmd.ExecuteNonQuery()
-            If cbSerie.Text = "S1" Then
-                Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran = '" + txtNumpres.Text + "'", conexionmy)
-                cmdActualizar.ExecuteNonQuery()
-            Else
-                Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran_2 = '" + txtNumpres.Text + "'", conexionmy)
-                cmdActualizar.ExecuteNonQuery()
-            End If
+
+            Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_pedido = '" + txtNumpres.Text + "'", conexionmy)
+            cmdActualizar.ExecuteNonQuery()
+
 
 
             'Guardo líneas del presupuesto
@@ -441,7 +432,7 @@ Public Class frAlbaran
                 arti = row.Cells(2).Value
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO pedido_linea (num_pedido, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
 
                 cmdLinea.ExecuteNonQuery()
                 descontarStock(arti, lincant)
@@ -453,7 +444,7 @@ Public Class frAlbaran
             deshabilitarBotones()
             limpiarFormulario()
             cmdNuevo.Enabled = True
-            cargoTodosAlbaranes()
+            cargoTodosPedidos()
             tabPresupuestos.SelectTab(0)
         Else
 
@@ -473,32 +464,15 @@ Public Class frAlbaran
 
             'Guardo cabecera y actualizo número de presupuesto
 
-            If vSerie = serieIni Then
-                Dim cmd As New MySqlCommand("UPDATE albaran_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalalbaran = '" + guardo_imptot + "', serie = '" + vSerie + "' WHERE num_albaran = " + txtNumpres.Text + "", conexionmy)
-                cmd.ExecuteNonQuery()
 
-            Else
-                Dim cmdEliminarLin As New MySqlCommand("DELETE FROM albaran_linea WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
-                cmdEliminarLin.ExecuteNonQuery()
-                Dim cmdEliminarCab As New MySqlCommand("DELETE FROM albaran_cab WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
-                cmdEliminarCab.ExecuteNonQuery()
-                cargoNumero()
-                Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, serie, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
-                cmd.ExecuteNonQuery()
-                If cbSerie.Text = "S1" Then
-                    Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran = '" + txtNumpres.Text + "'", conexionmy)
-                    cmdActualizar.ExecuteNonQuery()
-                Else
-                    Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran_2 = '" + txtNumpres.Text + "'", conexionmy)
-                    cmdActualizar.ExecuteNonQuery()
-                End If
+            Dim cmd As New MySqlCommand("UPDATE pedido_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalpedido = '" + guardo_imptot + "' WHERE num_pedido = " + txtNumpres.Text + "", conexionmy)
+            cmd.ExecuteNonQuery()
 
-            End If
-
-            Dim cmdEliminar As New MySqlCommand("DELETE FROM albaran_linea WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
-            cmdEliminar.ExecuteNonQuery()
 
             'Guardo líneas del presupuesto
+
+            Dim cmdEliminar As New MySqlCommand("DELETE FROM pedido_linea WHERE num_pedido = '" + txtNumpres.Text + "'", conexionmy)
+            cmdEliminar.ExecuteNonQuery()
 
             Dim cmdLinea As New MySqlCommand
             Dim row As New DataGridViewRow
@@ -548,7 +522,7 @@ Public Class frAlbaran
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO pedido_linea (num_pedido, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
 
                 cmdLinea.ExecuteNonQuery()
 
@@ -567,12 +541,12 @@ Public Class frAlbaran
 
 
             deshabilitarBotones()
-                limpiarFormulario()
-                cmdNuevo.Enabled = True
-                cargoTodosAlbaranes()
-                tabPresupuestos.SelectTab(0)
-                flagEdit = "N"
-            End If
+            limpiarFormulario()
+            cmdNuevo.Enabled = True
+            cargoTodosPedidos()
+            tabPresupuestos.SelectTab(0)
+            flagEdit = "N"
+        End If
     End Sub
     Public Sub cargoNumero()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -580,13 +554,10 @@ Public Class frAlbaran
 
         Dim numid As Int32
 
-        If cbSerie.Text = "S1" Then
-            Dim cmdLastId As New MySqlCommand("SELECT num_albaran FROM configuracion  ", conexionmy)
-            numid = cmdLastId.ExecuteScalar()
-        Else
-            Dim cmdLastId As New MySqlCommand("SELECT num_albaran_2 FROM configuracion  ", conexionmy)
-            numid = cmdLastId.ExecuteScalar()
-        End If
+
+        Dim cmdLastId As New MySqlCommand("SELECT num_pedido FROM configuracion  ", conexionmy)
+        numid = cmdLastId.ExecuteScalar()
+
 
         txtNumpres.Text = numid + 1
 
@@ -594,14 +565,14 @@ Public Class frAlbaran
 
     End Sub
 
-    Private Sub dgAlbaranes_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgAlbaranes.CellClick
+    Private Sub dgPedidos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgPedidos.CellClick
         limpiarFormulario()
         cmdLineas.Enabled = True
         cmdGuardar.Enabled = True
         cmdCancelar.Enabled = True
         cmdCliente.Enabled = True
 
-        txtNumpres.Text = dgAlbaranes.CurrentRow.Cells("Column1").Value.ToString
+        txtNumpres.Text = dgPedidos.CurrentRow.Cells("Column1").Value.ToString
         tabPresupuestos.SelectTab(1)
         flagEdit = "S"
         dgLineasPres1.Visible = False
@@ -609,11 +580,11 @@ Public Class frAlbaran
         dgLineasPres2.Rows.Clear()
 
 
-        cargoAlbaran()
+        cargoPedido()
         cargoLineas()
         recalcularTotales()
     End Sub
-    Public Sub cargoAlbaran()
+    Public Sub cargoPedido()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
         Dim cmdCab As New MySqlCommand
@@ -625,7 +596,7 @@ Public Class frAlbaran
         Dim rdrCli As MySqlDataReader
 
 
-        cmdCab = New MySqlCommand("SELECT * FROM albaran_cab WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
+        cmdCab = New MySqlCommand("SELECT * FROM pedido_cab WHERE num_pedido = '" + txtNumpres.Text + "'", conexionmy)
 
         cmdCab.CommandType = CommandType.Text
         cmdCab.Connection = conexionmy
@@ -636,13 +607,6 @@ Public Class frAlbaran
         txAgente.Text = rdrCab("agenteID")
         txReferenciapres.Text = rdrCab("referencia")
         txObserva.Text = rdrCab("observaciones")
-        If rdrCab("serie") = "1" Then
-            cbSerie.Text = "S1"
-            serieIni = "1"
-        Else
-            cbSerie.Text = "S2"
-            serieIni = "2"
-        End If
 
         rdrCab.Close()
 
@@ -667,19 +631,19 @@ Public Class frAlbaran
         conexionmy.Open()
         Dim cmdLinea As New MySqlCommand
 
-        cmdLinea = New MySqlCommand("SELECT albaran_linea.linea,
-                                            albaran_linea.codigo,
-                                            albaran_linea.descripcion,
-                                            albaran_linea.cantidad,
-                                            albaran_linea.ancho_largo,
-                                            albaran_linea.m2_ml,
-                                            albaran_linea.precio,
-                                            albaran_linea.descuento,
-                                            albaran_linea.ivalinea,
-                                            albaran_linea.importe,
-                                            albaran_linea.totalinea,
-                                            albaran_linea.num_albaran
-                                            FROM albaran_linea WHERE num_albaran = '" + txtNumpres.Text + "' ORDER BY albaran_linea.linea", conexionmy)
+        cmdLinea = New MySqlCommand("SELECT pedido_linea.linea,
+                                            pedido_linea.codigo,
+                                            pedido_linea.descripcion,
+                                            pedido_linea.cantidad,
+                                            pedido_linea.ancho_largo,
+                                            pedido_linea.m2_ml,
+                                            pedido_linea.precio,
+                                            pedido_linea.descuento,
+                                            pedido_linea.ivalinea,
+                                            pedido_linea.importe,
+                                            pedido_linea.totalinea,
+                                            pedido_linea.num_pedido
+                                            FROM pedido_linea WHERE num_pedido = '" + txtNumpres.Text + "' ORDER BY pedido_linea.linea", conexionmy)
 
         cmdLinea.CommandType = CommandType.Text
         cmdLinea.Connection = conexionmy
@@ -714,7 +678,7 @@ Public Class frAlbaran
 
     Private Sub dgLineasPres2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellClick
         If (e.ColumnIndex = 1) Then
-            formArti = "A"
+            formArti = "D"
             frVerArticulos.Show()
         End If
         pos = dgLineasPres2.CurrentRow.Index
@@ -745,14 +709,14 @@ Public Class frAlbaran
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock_disponible FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
         Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
         reader.Read()
 
         Dim stock As String = (reader.GetString(1) - unidades).ToString
         reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock_disponible = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
         cmdActualizo.ExecuteNonQuery()
 
         conexionmy.Close()
@@ -762,28 +726,24 @@ Public Class frAlbaran
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock_disponible FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
         Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
         reader.Read()
 
         Dim stock As String = (reader.GetString(1) + unidades).ToString
         reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock_disponible = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
         cmdActualizo.ExecuteNonQuery()
 
         conexionmy.Close()
 
     End Sub
+
     Private Sub dgLineasPres2_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellEnter
         If (e.ColumnIndex = 4) Then
             artiEdit = dgLineasPres2.CurrentRow.Cells(2).Value
             cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
         End If
-    End Sub
-
-    Private Sub cbSerie_TextChanged(sender As Object, e As EventArgs) Handles cbSerie.TextChanged
-        'cargoNumero()
-
     End Sub
 End Class
