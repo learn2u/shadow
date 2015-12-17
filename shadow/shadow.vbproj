@@ -101,6 +101,12 @@
     <Compile Include="frConfiguracion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frFacturaManual.Designer.vb">
+      <DependentUpon>frFacturaManual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frFacturaManual.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frPedido.Designer.vb">
       <DependentUpon>frPedido.vb</DependentUpon>
     </Compile>
@@ -156,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frConfiguracion.resx">
       <DependentUpon>frConfiguracion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frFacturaManual.resx">
+      <DependentUpon>frFacturaManual.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frPedido.resx">
       <DependentUpon>frPedido.vb</DependentUpon>
