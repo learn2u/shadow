@@ -781,9 +781,4 @@ Public Class frAlbaran
             cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
         End If
     End Sub
-
-    Private Sub cbSerie_TextChanged(sender As Object, e As EventArgs) Handles cbSerie.TextChanged
-        'cargoNumero()
-
-    End Sub
 End Class
