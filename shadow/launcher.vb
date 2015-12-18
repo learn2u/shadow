@@ -43,4 +43,8 @@ Public Class launcher
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         frFacturaManual.Show()
     End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        frEmpresa.Show()
+    End Sub
 End Class

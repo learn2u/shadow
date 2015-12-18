@@ -27,6 +27,7 @@ Partial Class launcher
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -74,11 +75,21 @@ Partial Class launcher
         Me.Button5.Text = "Facturación Manual"
         Me.Button5.UseVisualStyleBackColor = True
         '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(198, 253)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(144, 45)
+        Me.Button6.TabIndex = 5
+        Me.Button6.Text = "Configuración Empresas"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
         'launcher
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(686, 386)
+        Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
@@ -96,4 +107,5 @@ Partial Class launcher
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents Button5 As Button
+    Friend WithEvents Button6 As Button
 End Class
