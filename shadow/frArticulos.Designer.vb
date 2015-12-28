@@ -31,101 +31,101 @@ Partial Class frArticulos
         Me.cmdNuevo = New System.Windows.Forms.ToolStripButton()
         Me.cmdGuardar = New System.Windows.Forms.ToolStripButton()
         Me.cmdCancelar = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdDirEnvio = New System.Windows.Forms.ToolStripButton()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.Label25 = New System.Windows.Forms.Label()
-        Me.txEmergente = New System.Windows.Forms.TextBox()
-        Me.Label28 = New System.Windows.Forms.Label()
-        Me.txLibre1 = New System.Windows.Forms.TextBox()
-        Me.Label32 = New System.Windows.Forms.Label()
-        Me.txLibre2 = New System.Windows.Forms.TextBox()
-        Me.Label33 = New System.Windows.Forms.Label()
-        Me.txLibre3 = New System.Windows.Forms.TextBox()
-        Me.txFechaAlta = New System.Windows.Forms.MaskedTextBox()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.txCif = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.txEmail = New System.Windows.Forms.TextBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.txWeb = New System.Windows.Forms.TextBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.txNFiscal = New System.Windows.Forms.TextBox()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.txCodigo = New System.Windows.Forms.TextBox()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.txPais = New System.Windows.Forms.TextBox()
-        Me.cbProvincia = New System.Windows.Forms.ComboBox()
-        Me.Label39 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label40 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label41 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.Label42 = New System.Windows.Forms.Label()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.ComboBox5 = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.ComboBox6 = New System.Windows.Forms.ComboBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.Label43 = New System.Windows.Forms.Label()
-        Me.TextBox11 = New System.Windows.Forms.TextBox()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
-        Me.Label31 = New System.Windows.Forms.Label()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label46 = New System.Windows.Forms.Label()
-        Me.Label45 = New System.Windows.Forms.Label()
-        Me.Label44 = New System.Windows.Forms.Label()
-        Me.TextBox12 = New System.Windows.Forms.TextBox()
-        Me.ComboBox8 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox7 = New System.Windows.Forms.ComboBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
-        Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.TextBox13 = New System.Windows.Forms.TextBox()
-        Me.Label18 = New System.Windows.Forms.Label()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox7 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox8 = New System.Windows.Forms.ComboBox()
+        Me.TextBox12 = New System.Windows.Forms.TextBox()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.Label46 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.TextBox10 = New System.Windows.Forms.TextBox()
+        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.TextBox11 = New System.Windows.Forms.TextBox()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txPais = New System.Windows.Forms.TextBox()
+        Me.txCodigo = New System.Windows.Forms.TextBox()
+        Me.txNFiscal = New System.Windows.Forms.TextBox()
+        Me.txWeb = New System.Windows.Forms.TextBox()
+        Me.txEmail = New System.Windows.Forms.TextBox()
+        Me.txCif = New System.Windows.Forms.TextBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.ComboBox6 = New System.Windows.Forms.ComboBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.ComboBox5 = New System.Windows.Forms.ComboBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.cbProvincia = New System.Windows.Forms.ComboBox()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.btCargarImagen = New System.Windows.Forms.Button()
+        Me.TextBox17 = New System.Windows.Forms.TextBox()
+        Me.Label22 = New System.Windows.Forms.Label()
         Me.TextBox14 = New System.Windows.Forms.TextBox()
         Me.TextBox15 = New System.Windows.Forms.TextBox()
         Me.TextBox16 = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.TextBox17 = New System.Windows.Forms.TextBox()
-        Me.btCargarImagen = New System.Windows.Forms.Button()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.TextBox13 = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.txFechaAlta = New System.Windows.Forms.MaskedTextBox()
+        Me.txLibre3 = New System.Windows.Forms.TextBox()
+        Me.txLibre2 = New System.Windows.Forms.TextBox()
+        Me.txLibre1 = New System.Windows.Forms.TextBox()
+        Me.txEmergente = New System.Windows.Forms.TextBox()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         Me.tsBotones.SuspendLayout()
-        Me.TabPage3.SuspendLayout()
+        Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.TabControl2.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -216,6 +216,24 @@ Partial Class frArticulos
         Me.cmdCancelar.Text = "ToolStripButton1"
         Me.cmdCancelar.ToolTipText = "Cancelar Presupuesto"
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.AutoSize = False
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(33, 30)
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.AutoSize = False
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(33, 30)
+        Me.ToolStripButton1.Text = "ToolStripButton1"
+        Me.ToolStripButton1.ToolTipText = "Imprimir"
+        '
         'ToolStripButton2
         '
         Me.ToolStripButton2.AutoSize = False
@@ -234,123 +252,15 @@ Partial Class frArticulos
         Me.cmdDirEnvio.Text = "ToolStripButton1"
         Me.cmdDirEnvio.ToolTipText = "Imprimir"
         '
-        'TabPage3
+        'TabControl2
         '
-        Me.TabPage3.Controls.Add(Me.btCargarImagen)
-        Me.TabPage3.Controls.Add(Me.TextBox17)
-        Me.TabPage3.Controls.Add(Me.Label22)
-        Me.TabPage3.Controls.Add(Me.TextBox14)
-        Me.TabPage3.Controls.Add(Me.TextBox15)
-        Me.TabPage3.Controls.Add(Me.TextBox16)
-        Me.TabPage3.Controls.Add(Me.Label19)
-        Me.TabPage3.Controls.Add(Me.Label20)
-        Me.TabPage3.Controls.Add(Me.Label21)
-        Me.TabPage3.Controls.Add(Me.TextBox13)
-        Me.TabPage3.Controls.Add(Me.Label18)
-        Me.TabPage3.Controls.Add(Me.MaskedTextBox1)
-        Me.TabPage3.Controls.Add(Me.Label17)
-        Me.TabPage3.Controls.Add(Me.txFechaAlta)
-        Me.TabPage3.Controls.Add(Me.txLibre3)
-        Me.TabPage3.Controls.Add(Me.txLibre2)
-        Me.TabPage3.Controls.Add(Me.txLibre1)
-        Me.TabPage3.Controls.Add(Me.txEmergente)
-        Me.TabPage3.Controls.Add(Me.Label33)
-        Me.TabPage3.Controls.Add(Me.Label32)
-        Me.TabPage3.Controls.Add(Me.Label28)
-        Me.TabPage3.Controls.Add(Me.Label25)
-        Me.TabPage3.Controls.Add(Me.Label26)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(893, 479)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "OTROS DATOS"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(83, 28)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(75, 13)
-        Me.Label26.TabIndex = 56
-        Me.Label26.Text = "FECHA ALTA:"
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(52, 80)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(106, 13)
-        Me.Label25.TabIndex = 58
-        Me.Label25.Text = "MENSAJE VENTAS:"
-        '
-        'txEmergente
-        '
-        Me.txEmergente.Location = New System.Drawing.Point(164, 77)
-        Me.txEmergente.Multiline = True
-        Me.txEmergente.Name = "txEmergente"
-        Me.txEmergente.Size = New System.Drawing.Size(460, 65)
-        Me.txEmergente.TabIndex = 57
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(64, 225)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(94, 13)
-        Me.Label28.TabIndex = 60
-        Me.Label28.Text = "EQUIVALENTE 1:"
-        '
-        'txLibre1
-        '
-        Me.txLibre1.Location = New System.Drawing.Point(164, 218)
-        Me.txLibre1.Name = "txLibre1"
-        Me.txLibre1.Size = New System.Drawing.Size(172, 20)
-        Me.txLibre1.TabIndex = 59
-        '
-        'Label32
-        '
-        Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(64, 251)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(94, 13)
-        Me.Label32.TabIndex = 62
-        Me.Label32.Text = "EQUIVALENTE 2:"
-        '
-        'txLibre2
-        '
-        Me.txLibre2.Location = New System.Drawing.Point(164, 244)
-        Me.txLibre2.Name = "txLibre2"
-        Me.txLibre2.Size = New System.Drawing.Size(172, 20)
-        Me.txLibre2.TabIndex = 61
-        '
-        'Label33
-        '
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(64, 277)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(94, 13)
-        Me.Label33.TabIndex = 64
-        Me.Label33.Text = "EQUIVALENTE 3:"
-        '
-        'txLibre3
-        '
-        Me.txLibre3.Location = New System.Drawing.Point(164, 270)
-        Me.txLibre3.Name = "txLibre3"
-        Me.txLibre3.Size = New System.Drawing.Size(172, 20)
-        Me.txLibre3.TabIndex = 63
-        '
-        'txFechaAlta
-        '
-        Me.txFechaAlta.BackColor = System.Drawing.Color.White
-        Me.txFechaAlta.Location = New System.Drawing.Point(164, 21)
-        Me.txFechaAlta.Mask = "00/00/0000"
-        Me.txFechaAlta.Name = "txFechaAlta"
-        Me.txFechaAlta.Size = New System.Drawing.Size(81, 20)
-        Me.txFechaAlta.TabIndex = 102
-        Me.txFechaAlta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.txFechaAlta.ValidatingType = GetType(Date)
+        Me.TabControl2.Controls.Add(Me.TabPage4)
+        Me.TabControl2.Controls.Add(Me.TabPage3)
+        Me.TabControl2.Location = New System.Drawing.Point(21, 52)
+        Me.TabControl2.Name = "TabControl2"
+        Me.TabControl2.SelectedIndex = 0
+        Me.TabControl2.Size = New System.Drawing.Size(901, 505)
+        Me.TabControl2.TabIndex = 0
         '
         'TabPage4
         '
@@ -412,398 +322,15 @@ Partial Class frArticulos
         Me.TabPage4.Text = "GENERAL"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(61, 209)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(83, 13)
-        Me.Label1.TabIndex = 46
-        Me.Label1.Text = "DESCRIPCION:"
-        '
-        'txCif
-        '
-        Me.txCif.Location = New System.Drawing.Point(581, 18)
-        Me.txCif.Name = "txCif"
-        Me.txCif.Size = New System.Drawing.Size(144, 20)
-        Me.txCif.TabIndex = 0
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(92, 293)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(52, 13)
-        Me.Label2.TabIndex = 49
-        Me.Label2.Text = "MEDIDA:"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(49, 323)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(95, 13)
-        Me.Label3.TabIndex = 53
-        Me.Label3.Text = "INFLUYE TOLDO:"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(88, 351)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(55, 13)
-        Me.Label5.TabIndex = 58
-        Me.Label5.Text = "TIPO IVA:"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(76, 427)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(68, 13)
-        Me.Label9.TabIndex = 62
-        Me.Label9.Text = "MARGEN %:"
-        '
-        'txEmail
-        '
-        Me.txEmail.Location = New System.Drawing.Point(150, 420)
-        Me.txEmail.Name = "txEmail"
-        Me.txEmail.Size = New System.Drawing.Size(73, 20)
-        Me.txEmail.TabIndex = 15
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(384, 427)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(31, 13)
-        Me.Label10.TabIndex = 63
-        Me.Label10.Text = "PVP:"
-        '
-        'txWeb
-        '
-        Me.txWeb.Location = New System.Drawing.Point(425, 420)
-        Me.txWeb.Name = "txWeb"
-        Me.txWeb.Size = New System.Drawing.Size(93, 20)
-        Me.txWeb.TabIndex = 16
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(470, 25)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(105, 13)
-        Me.Label11.TabIndex = 64
-        Me.Label11.Text = "REF. PROVEEDOR:"
-        '
-        'txNFiscal
-        '
-        Me.txNFiscal.Location = New System.Drawing.Point(150, 202)
-        Me.txNFiscal.Name = "txNFiscal"
-        Me.txNFiscal.Size = New System.Drawing.Size(449, 20)
-        Me.txNFiscal.TabIndex = 1
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(66, 25)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(78, 13)
-        Me.Label12.TabIndex = 66
-        Me.Label12.Text = "REFERENCIA:"
-        '
-        'txCodigo
-        '
-        Me.txCodigo.BackColor = System.Drawing.Color.White
-        Me.txCodigo.Enabled = False
-        Me.txCodigo.Location = New System.Drawing.Point(150, 18)
-        Me.txCodigo.Name = "txCodigo"
-        Me.txCodigo.Size = New System.Drawing.Size(144, 20)
-        Me.txCodigo.TabIndex = 65
-        '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(92, 262)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(47, 13)
-        Me.Label29.TabIndex = 70
-        Me.Label29.Text = "COLOR:"
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(74, 401)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(69, 13)
-        Me.Label30.TabIndex = 72
-        Me.Label30.Text = "P. COMPRA:"
-        '
-        'txPais
-        '
-        Me.txPais.Location = New System.Drawing.Point(150, 394)
-        Me.txPais.Name = "txPais"
-        Me.txPais.Size = New System.Drawing.Size(104, 20)
-        Me.txPais.TabIndex = 7
-        '
-        'cbProvincia
-        '
-        Me.cbProvincia.FormattingEnabled = True
-        Me.cbProvincia.Location = New System.Drawing.Point(150, 343)
-        Me.cbProvincia.Name = "cbProvincia"
-        Me.cbProvincia.Size = New System.Drawing.Size(73, 21)
-        Me.cbProvincia.TabIndex = 6
-        '
-        'Label39
-        '
-        Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(300, 25)
-        Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(63, 13)
-        Me.Label39.TabIndex = 84
-        Me.Label39.Text = "ID GRUPO:"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(369, 18)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(85, 20)
-        Me.TextBox1.TabIndex = 85
-        '
-        'Label40
-        '
-        Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(229, 293)
-        Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(66, 13)
-        Me.Label40.TabIndex = 86
-        Me.Label40.Text = "ID MEDIDA:"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(298, 286)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(85, 20)
-        Me.TextBox2.TabIndex = 87
-        '
-        'Label41
-        '
-        Me.Label41.AutoSize = True
-        Me.Label41.Location = New System.Drawing.Point(287, 263)
-        Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(61, 13)
-        Me.Label41.TabIndex = 88
-        Me.Label41.Text = "ID COLOR:"
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Location = New System.Drawing.Point(354, 257)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(85, 20)
-        Me.TextBox3.TabIndex = 89
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(150, 285)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(73, 21)
-        Me.ComboBox1.TabIndex = 90
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(150, 255)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(131, 21)
-        Me.ComboBox2.TabIndex = 91
-        '
-        'Label42
-        '
-        Me.Label42.AutoSize = True
-        Me.Label42.Location = New System.Drawing.Point(88, 235)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(51, 13)
-        Me.Label42.TabIndex = 93
-        Me.Label42.Text = "FAMILIA:"
-        '
-        'ComboBox3
-        '
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(150, 227)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(368, 21)
-        Me.ComboBox3.TabIndex = 92
-        '
-        'ComboBox4
-        '
-        Me.ComboBox4.FormattingEnabled = True
-        Me.ComboBox4.Location = New System.Drawing.Point(150, 316)
-        Me.ComboBox4.Name = "ComboBox4"
-        Me.ComboBox4.Size = New System.Drawing.Size(171, 21)
-        Me.ComboBox4.TabIndex = 94
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(66, 52)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(78, 13)
-        Me.Label6.TabIndex = 96
-        Me.Label6.Text = "PROVEEDOR:"
-        '
-        'ComboBox5
-        '
-        Me.ComboBox5.FormattingEnabled = True
-        Me.ComboBox5.Location = New System.Drawing.Point(150, 44)
-        Me.ComboBox5.Name = "ComboBox5"
-        Me.ComboBox5.Size = New System.Drawing.Size(449, 21)
-        Me.ComboBox5.TabIndex = 95
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(236, 350)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(38, 13)
-        Me.Label4.TabIndex = 97
-        Me.Label4.Text = "% IVA:"
-        '
-        'TextBox4
-        '
-        Me.TextBox4.Location = New System.Drawing.Point(278, 344)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(43, 20)
-        Me.TextBox4.TabIndex = 98
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(397, 293)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(82, 13)
-        Me.Label7.TabIndex = 99
-        Me.Label7.Text = "UND. MEDIDA:"
-        '
-        'ComboBox6
-        '
-        Me.ComboBox6.FormattingEnabled = True
-        Me.ComboBox6.Location = New System.Drawing.Point(480, 285)
-        Me.ComboBox6.Name = "ComboBox6"
-        Me.ComboBox6.Size = New System.Drawing.Size(73, 21)
-        Me.ComboBox6.TabIndex = 100
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(259, 401)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(148, 13)
-        Me.Label8.TabIndex = 102
-        Me.Label8.Text = "DESCUENTO PROVEEDOR:"
-        '
-        'TextBox5
-        '
-        Me.TextBox5.Location = New System.Drawing.Point(413, 394)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(104, 20)
-        Me.TextBox5.TabIndex = 101
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(229, 427)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(66, 13)
-        Me.Label14.TabIndex = 104
-        Me.Label14.Text = "MARGEN €:"
-        '
-        'TextBox6
-        '
-        Me.TextBox6.Location = New System.Drawing.Point(298, 420)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(73, 20)
-        Me.TextBox6.TabIndex = 103
-        '
-        'Label43
-        '
-        Me.Label43.AutoSize = True
-        Me.Label43.Location = New System.Drawing.Point(631, 317)
-        Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(46, 13)
-        Me.Label43.TabIndex = 108
-        Me.Label43.Text = "STOCK:"
-        '
-        'TextBox11
-        '
-        Me.TextBox11.Location = New System.Drawing.Point(684, 336)
-        Me.TextBox11.Name = "TextBox11"
-        Me.TextBox11.Size = New System.Drawing.Size(73, 20)
-        Me.TextBox11.TabIndex = 106
-        '
-        'TextBox9
-        '
-        Me.TextBox9.Location = New System.Drawing.Point(684, 310)
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(73, 20)
-        Me.TextBox9.TabIndex = 105
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(568, 343)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(113, 13)
-        Me.Label13.TabIndex = 114
-        Me.Label13.Text = "STOCK DISPONIBLE:"
-        '
-        'TextBox7
-        '
-        Me.TextBox7.Location = New System.Drawing.Point(684, 362)
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(73, 20)
-        Me.TextBox7.TabIndex = 115
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(588, 369)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(89, 13)
-        Me.Label15.TabIndex = 116
-        Me.Label15.Text = "STOCK MINIMO:"
-        '
-        'TextBox8
-        '
-        Me.TextBox8.Location = New System.Drawing.Point(684, 388)
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(73, 20)
-        Me.TextBox8.TabIndex = 117
-        '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(585, 395)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(92, 13)
-        Me.Label31.TabIndex = 118
-        Me.Label31.Text = "STOCK MAXIMO:"
-        '
-        'TextBox10
-        '
-        Me.TextBox10.Location = New System.Drawing.Point(684, 414)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(73, 20)
-        Me.TextBox10.TabIndex = 119
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(591, 421)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(86, 13)
-        Me.Label16.TabIndex = 120
-        Me.Label16.Text = "STOCK INICIAL:"
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(684, 285)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(188, 17)
+        Me.CheckBox1.TabIndex = 122
+        Me.CheckBox1.Text = "DESACTIVAR CONTROL STOCK"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
@@ -820,23 +347,28 @@ Partial Class frArticulos
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "LONAS"
         '
-        'Label46
+        'ComboBox7
         '
-        Me.Label46.AutoSize = True
-        Me.Label46.Location = New System.Drawing.Point(22, 60)
-        Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(56, 13)
-        Me.Label46.TabIndex = 92
-        Me.Label46.Text = "MODELO:"
+        Me.ComboBox7.FormattingEnabled = True
+        Me.ComboBox7.Location = New System.Drawing.Point(81, 27)
+        Me.ComboBox7.Name = "ComboBox7"
+        Me.ComboBox7.Size = New System.Drawing.Size(352, 21)
+        Me.ComboBox7.TabIndex = 97
         '
-        'Label45
+        'ComboBox8
         '
-        Me.Label45.AutoSize = True
-        Me.Label45.Location = New System.Drawing.Point(6, 33)
-        Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(76, 13)
-        Me.Label45.TabIndex = 93
-        Me.Label45.Text = "TIPO TEJIDO:"
+        Me.ComboBox8.FormattingEnabled = True
+        Me.ComboBox8.Location = New System.Drawing.Point(81, 54)
+        Me.ComboBox8.Name = "ComboBox8"
+        Me.ComboBox8.Size = New System.Drawing.Size(352, 21)
+        Me.ComboBox8.TabIndex = 96
+        '
+        'TextBox12
+        '
+        Me.TextBox12.Location = New System.Drawing.Point(81, 83)
+        Me.TextBox12.Name = "TextBox12"
+        Me.TextBox12.Size = New System.Drawing.Size(194, 20)
+        Me.TextBox12.TabIndex = 95
         '
         'Label44
         '
@@ -847,75 +379,478 @@ Partial Class frArticulos
         Me.Label44.TabIndex = 94
         Me.Label44.Text = "TEJIDO:"
         '
-        'TextBox12
+        'Label45
         '
-        Me.TextBox12.Location = New System.Drawing.Point(81, 83)
-        Me.TextBox12.Name = "TextBox12"
-        Me.TextBox12.Size = New System.Drawing.Size(194, 20)
-        Me.TextBox12.TabIndex = 95
+        Me.Label45.AutoSize = True
+        Me.Label45.Location = New System.Drawing.Point(6, 33)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(76, 13)
+        Me.Label45.TabIndex = 93
+        Me.Label45.Text = "TIPO TEJIDO:"
         '
-        'ComboBox8
+        'Label46
         '
-        Me.ComboBox8.FormattingEnabled = True
-        Me.ComboBox8.Location = New System.Drawing.Point(81, 54)
-        Me.ComboBox8.Name = "ComboBox8"
-        Me.ComboBox8.Size = New System.Drawing.Size(352, 21)
-        Me.ComboBox8.TabIndex = 96
+        Me.Label46.AutoSize = True
+        Me.Label46.Location = New System.Drawing.Point(22, 60)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(56, 13)
+        Me.Label46.TabIndex = 92
+        Me.Label46.Text = "MODELO:"
         '
-        'ComboBox7
+        'Label16
         '
-        Me.ComboBox7.FormattingEnabled = True
-        Me.ComboBox7.Location = New System.Drawing.Point(81, 27)
-        Me.ComboBox7.Name = "ComboBox7"
-        Me.ComboBox7.Size = New System.Drawing.Size(352, 21)
-        Me.ComboBox7.TabIndex = 97
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(591, 421)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(86, 13)
+        Me.Label16.TabIndex = 120
+        Me.Label16.Text = "STOCK INICIAL:"
         '
-        'TabControl2
+        'TextBox10
         '
-        Me.TabControl2.Controls.Add(Me.TabPage4)
-        Me.TabControl2.Controls.Add(Me.TabPage3)
-        Me.TabControl2.Location = New System.Drawing.Point(21, 52)
-        Me.TabControl2.Name = "TabControl2"
-        Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(901, 505)
-        Me.TabControl2.TabIndex = 0
+        Me.TextBox10.Location = New System.Drawing.Point(684, 414)
+        Me.TextBox10.Name = "TextBox10"
+        Me.TextBox10.Size = New System.Drawing.Size(73, 20)
+        Me.TextBox10.TabIndex = 119
         '
-        'MaskedTextBox1
+        'TextBox8
         '
-        Me.MaskedTextBox1.BackColor = System.Drawing.Color.White
-        Me.MaskedTextBox1.Location = New System.Drawing.Point(164, 47)
-        Me.MaskedTextBox1.Mask = "00/00/0000"
-        Me.MaskedTextBox1.Name = "MaskedTextBox1"
-        Me.MaskedTextBox1.Size = New System.Drawing.Size(81, 20)
-        Me.MaskedTextBox1.TabIndex = 104
-        Me.MaskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.MaskedTextBox1.ValidatingType = GetType(Date)
+        Me.TextBox8.Location = New System.Drawing.Point(684, 388)
+        Me.TextBox8.Name = "TextBox8"
+        Me.TextBox8.Size = New System.Drawing.Size(73, 20)
+        Me.TextBox8.TabIndex = 117
         '
-        'Label17
+        'TextBox7
         '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(42, 54)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(116, 13)
-        Me.Label17.TabIndex = 103
-        Me.Label17.Text = "FECHA ULTIMA MOD:"
+        Me.TextBox7.Location = New System.Drawing.Point(684, 362)
+        Me.TextBox7.Name = "TextBox7"
+        Me.TextBox7.Size = New System.Drawing.Size(73, 20)
+        Me.TextBox7.TabIndex = 115
         '
-        'TextBox13
+        'TextBox9
         '
-        Me.TextBox13.Location = New System.Drawing.Point(164, 148)
-        Me.TextBox13.Multiline = True
-        Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.Size = New System.Drawing.Size(460, 65)
-        Me.TextBox13.TabIndex = 105
+        Me.TextBox9.Location = New System.Drawing.Point(684, 310)
+        Me.TextBox9.Name = "TextBox9"
+        Me.TextBox9.Size = New System.Drawing.Size(73, 20)
+        Me.TextBox9.TabIndex = 105
         '
-        'Label18
+        'TextBox11
         '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(42, 151)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(116, 13)
-        Me.Label18.TabIndex = 106
-        Me.Label18.Text = "MENSAJE COMPRAS:"
+        Me.TextBox11.Location = New System.Drawing.Point(684, 336)
+        Me.TextBox11.Name = "TextBox11"
+        Me.TextBox11.Size = New System.Drawing.Size(73, 20)
+        Me.TextBox11.TabIndex = 106
+        '
+        'TextBox6
+        '
+        Me.TextBox6.Location = New System.Drawing.Point(298, 420)
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.Size = New System.Drawing.Size(73, 20)
+        Me.TextBox6.TabIndex = 103
+        '
+        'TextBox5
+        '
+        Me.TextBox5.Location = New System.Drawing.Point(413, 394)
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New System.Drawing.Size(104, 20)
+        Me.TextBox5.TabIndex = 101
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Location = New System.Drawing.Point(278, 344)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(43, 20)
+        Me.TextBox4.TabIndex = 98
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(354, 257)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox3.TabIndex = 89
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(298, 286)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox2.TabIndex = 87
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(369, 18)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox1.TabIndex = 85
+        '
+        'txPais
+        '
+        Me.txPais.Location = New System.Drawing.Point(150, 394)
+        Me.txPais.Name = "txPais"
+        Me.txPais.Size = New System.Drawing.Size(104, 20)
+        Me.txPais.TabIndex = 7
+        '
+        'txCodigo
+        '
+        Me.txCodigo.BackColor = System.Drawing.Color.White
+        Me.txCodigo.Enabled = False
+        Me.txCodigo.Location = New System.Drawing.Point(150, 18)
+        Me.txCodigo.Name = "txCodigo"
+        Me.txCodigo.Size = New System.Drawing.Size(144, 20)
+        Me.txCodigo.TabIndex = 65
+        '
+        'txNFiscal
+        '
+        Me.txNFiscal.Location = New System.Drawing.Point(150, 202)
+        Me.txNFiscal.Name = "txNFiscal"
+        Me.txNFiscal.Size = New System.Drawing.Size(449, 20)
+        Me.txNFiscal.TabIndex = 1
+        '
+        'txWeb
+        '
+        Me.txWeb.Location = New System.Drawing.Point(425, 420)
+        Me.txWeb.Name = "txWeb"
+        Me.txWeb.Size = New System.Drawing.Size(93, 20)
+        Me.txWeb.TabIndex = 16
+        '
+        'txEmail
+        '
+        Me.txEmail.Location = New System.Drawing.Point(150, 420)
+        Me.txEmail.Name = "txEmail"
+        Me.txEmail.Size = New System.Drawing.Size(73, 20)
+        Me.txEmail.TabIndex = 15
+        '
+        'txCif
+        '
+        Me.txCif.Location = New System.Drawing.Point(581, 18)
+        Me.txCif.Name = "txCif"
+        Me.txCif.Size = New System.Drawing.Size(144, 20)
+        Me.txCif.TabIndex = 0
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(585, 395)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(92, 13)
+        Me.Label31.TabIndex = 118
+        Me.Label31.Text = "STOCK MAXIMO:"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(588, 369)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(89, 13)
+        Me.Label15.TabIndex = 116
+        Me.Label15.Text = "STOCK MINIMO:"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(568, 343)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(113, 13)
+        Me.Label13.TabIndex = 114
+        Me.Label13.Text = "STOCK DISPONIBLE:"
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.Location = New System.Drawing.Point(631, 317)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(46, 13)
+        Me.Label43.TabIndex = 108
+        Me.Label43.Text = "STOCK:"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(229, 427)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(66, 13)
+        Me.Label14.TabIndex = 104
+        Me.Label14.Text = "MARGEN €:"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(259, 401)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(148, 13)
+        Me.Label8.TabIndex = 102
+        Me.Label8.Text = "DESCUENTO PROVEEDOR:"
+        '
+        'ComboBox6
+        '
+        Me.ComboBox6.FormattingEnabled = True
+        Me.ComboBox6.Location = New System.Drawing.Point(480, 285)
+        Me.ComboBox6.Name = "ComboBox6"
+        Me.ComboBox6.Size = New System.Drawing.Size(73, 21)
+        Me.ComboBox6.TabIndex = 100
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(397, 293)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(82, 13)
+        Me.Label7.TabIndex = 99
+        Me.Label7.Text = "UND. MEDIDA:"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(236, 350)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(38, 13)
+        Me.Label4.TabIndex = 97
+        Me.Label4.Text = "% IVA:"
+        '
+        'ComboBox5
+        '
+        Me.ComboBox5.FormattingEnabled = True
+        Me.ComboBox5.Location = New System.Drawing.Point(150, 44)
+        Me.ComboBox5.Name = "ComboBox5"
+        Me.ComboBox5.Size = New System.Drawing.Size(449, 21)
+        Me.ComboBox5.TabIndex = 95
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(66, 52)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(78, 13)
+        Me.Label6.TabIndex = 96
+        Me.Label6.Text = "PROVEEDOR:"
+        '
+        'ComboBox4
+        '
+        Me.ComboBox4.FormattingEnabled = True
+        Me.ComboBox4.Location = New System.Drawing.Point(150, 316)
+        Me.ComboBox4.Name = "ComboBox4"
+        Me.ComboBox4.Size = New System.Drawing.Size(171, 21)
+        Me.ComboBox4.TabIndex = 94
+        '
+        'ComboBox3
+        '
+        Me.ComboBox3.FormattingEnabled = True
+        Me.ComboBox3.Location = New System.Drawing.Point(150, 227)
+        Me.ComboBox3.Name = "ComboBox3"
+        Me.ComboBox3.Size = New System.Drawing.Size(368, 21)
+        Me.ComboBox3.TabIndex = 92
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(88, 235)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(51, 13)
+        Me.Label42.TabIndex = 93
+        Me.Label42.Text = "FAMILIA:"
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(150, 255)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(131, 21)
+        Me.ComboBox2.TabIndex = 91
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(150, 285)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(73, 21)
+        Me.ComboBox1.TabIndex = 90
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.Location = New System.Drawing.Point(287, 263)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(61, 13)
+        Me.Label41.TabIndex = 88
+        Me.Label41.Text = "ID COLOR:"
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(229, 293)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(66, 13)
+        Me.Label40.TabIndex = 86
+        Me.Label40.Text = "ID MEDIDA:"
+        '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.Location = New System.Drawing.Point(300, 25)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(63, 13)
+        Me.Label39.TabIndex = 84
+        Me.Label39.Text = "ID GRUPO:"
+        '
+        'cbProvincia
+        '
+        Me.cbProvincia.FormattingEnabled = True
+        Me.cbProvincia.Location = New System.Drawing.Point(150, 343)
+        Me.cbProvincia.Name = "cbProvincia"
+        Me.cbProvincia.Size = New System.Drawing.Size(73, 21)
+        Me.cbProvincia.TabIndex = 6
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(74, 401)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(69, 13)
+        Me.Label30.TabIndex = 72
+        Me.Label30.Text = "P. COMPRA:"
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(92, 262)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(47, 13)
+        Me.Label29.TabIndex = 70
+        Me.Label29.Text = "COLOR:"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(66, 25)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(78, 13)
+        Me.Label12.TabIndex = 66
+        Me.Label12.Text = "REFERENCIA:"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(470, 25)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(105, 13)
+        Me.Label11.TabIndex = 64
+        Me.Label11.Text = "REF. PROVEEDOR:"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(384, 427)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(31, 13)
+        Me.Label10.TabIndex = 63
+        Me.Label10.Text = "PVP:"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(76, 427)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(68, 13)
+        Me.Label9.TabIndex = 62
+        Me.Label9.Text = "MARGEN %:"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(88, 351)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(55, 13)
+        Me.Label5.TabIndex = 58
+        Me.Label5.Text = "TIPO IVA:"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(49, 323)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(95, 13)
+        Me.Label3.TabIndex = 53
+        Me.Label3.Text = "INFLUYE TOLDO:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(92, 293)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(52, 13)
+        Me.Label2.TabIndex = 49
+        Me.Label2.Text = "MEDIDA:"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(61, 209)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(83, 13)
+        Me.Label1.TabIndex = 46
+        Me.Label1.Text = "DESCRIPCION:"
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.btCargarImagen)
+        Me.TabPage3.Controls.Add(Me.TextBox17)
+        Me.TabPage3.Controls.Add(Me.Label22)
+        Me.TabPage3.Controls.Add(Me.TextBox14)
+        Me.TabPage3.Controls.Add(Me.TextBox15)
+        Me.TabPage3.Controls.Add(Me.TextBox16)
+        Me.TabPage3.Controls.Add(Me.Label19)
+        Me.TabPage3.Controls.Add(Me.Label20)
+        Me.TabPage3.Controls.Add(Me.Label21)
+        Me.TabPage3.Controls.Add(Me.TextBox13)
+        Me.TabPage3.Controls.Add(Me.Label18)
+        Me.TabPage3.Controls.Add(Me.MaskedTextBox1)
+        Me.TabPage3.Controls.Add(Me.Label17)
+        Me.TabPage3.Controls.Add(Me.txFechaAlta)
+        Me.TabPage3.Controls.Add(Me.txLibre3)
+        Me.TabPage3.Controls.Add(Me.txLibre2)
+        Me.TabPage3.Controls.Add(Me.txLibre1)
+        Me.TabPage3.Controls.Add(Me.txEmergente)
+        Me.TabPage3.Controls.Add(Me.Label33)
+        Me.TabPage3.Controls.Add(Me.Label32)
+        Me.TabPage3.Controls.Add(Me.Label28)
+        Me.TabPage3.Controls.Add(Me.Label25)
+        Me.TabPage3.Controls.Add(Me.Label26)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(893, 479)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "OTROS DATOS"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'btCargarImagen
+        '
+        Me.btCargarImagen.BackColor = System.Drawing.Color.White
+        Me.btCargarImagen.FlatAppearance.BorderColor = System.Drawing.Color.White
+        Me.btCargarImagen.FlatAppearance.BorderSize = 0
+        Me.btCargarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btCargarImagen.Image = CType(resources.GetObject("btCargarImagen.Image"), System.Drawing.Image)
+        Me.btCargarImagen.Location = New System.Drawing.Point(626, 292)
+        Me.btCargarImagen.Name = "btCargarImagen"
+        Me.btCargarImagen.Size = New System.Drawing.Size(35, 27)
+        Me.btCargarImagen.TabIndex = 115
+        Me.btCargarImagen.UseVisualStyleBackColor = False
+        '
+        'TextBox17
+        '
+        Me.TextBox17.Location = New System.Drawing.Point(164, 296)
+        Me.TextBox17.Name = "TextBox17"
+        Me.TextBox17.Size = New System.Drawing.Size(460, 20)
+        Me.TextBox17.TabIndex = 113
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(106, 303)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(52, 13)
+        Me.Label22.TabIndex = 114
+        Me.Label22.Text = "IMAGEN:"
         '
         'TextBox14
         '
@@ -965,62 +900,127 @@ Partial Class frArticulos
         Me.Label21.TabIndex = 108
         Me.Label21.Text = "EQUIVALENTE 4:"
         '
-        'CheckBox1
+        'TextBox13
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(684, 285)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(188, 17)
-        Me.CheckBox1.TabIndex = 122
-        Me.CheckBox1.Text = "DESACTIVAR CONTROL STOCK"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.TextBox13.Location = New System.Drawing.Point(164, 148)
+        Me.TextBox13.Multiline = True
+        Me.TextBox13.Name = "TextBox13"
+        Me.TextBox13.Size = New System.Drawing.Size(460, 65)
+        Me.TextBox13.TabIndex = 105
         '
-        'Label22
+        'Label18
         '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(106, 303)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(52, 13)
-        Me.Label22.TabIndex = 114
-        Me.Label22.Text = "IMAGEN:"
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(42, 151)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(116, 13)
+        Me.Label18.TabIndex = 106
+        Me.Label18.Text = "MENSAJE COMPRAS:"
         '
-        'TextBox17
+        'MaskedTextBox1
         '
-        Me.TextBox17.Location = New System.Drawing.Point(164, 296)
-        Me.TextBox17.Name = "TextBox17"
-        Me.TextBox17.Size = New System.Drawing.Size(460, 20)
-        Me.TextBox17.TabIndex = 113
+        Me.MaskedTextBox1.BackColor = System.Drawing.Color.White
+        Me.MaskedTextBox1.Location = New System.Drawing.Point(164, 47)
+        Me.MaskedTextBox1.Mask = "00/00/0000"
+        Me.MaskedTextBox1.Name = "MaskedTextBox1"
+        Me.MaskedTextBox1.Size = New System.Drawing.Size(81, 20)
+        Me.MaskedTextBox1.TabIndex = 104
+        Me.MaskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.MaskedTextBox1.ValidatingType = GetType(Date)
         '
-        'btCargarImagen
+        'Label17
         '
-        Me.btCargarImagen.BackColor = System.Drawing.Color.White
-        Me.btCargarImagen.FlatAppearance.BorderColor = System.Drawing.Color.White
-        Me.btCargarImagen.FlatAppearance.BorderSize = 0
-        Me.btCargarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btCargarImagen.Image = CType(resources.GetObject("btCargarImagen.Image"), System.Drawing.Image)
-        Me.btCargarImagen.Location = New System.Drawing.Point(626, 292)
-        Me.btCargarImagen.Name = "btCargarImagen"
-        Me.btCargarImagen.Size = New System.Drawing.Size(35, 27)
-        Me.btCargarImagen.TabIndex = 115
-        Me.btCargarImagen.UseVisualStyleBackColor = False
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(42, 54)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(116, 13)
+        Me.Label17.TabIndex = 103
+        Me.Label17.Text = "FECHA ULTIMA MOD:"
         '
-        'ToolStripButton1
+        'txFechaAlta
         '
-        Me.ToolStripButton1.AutoSize = False
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(33, 30)
-        Me.ToolStripButton1.Text = "ToolStripButton1"
-        Me.ToolStripButton1.ToolTipText = "Imprimir"
+        Me.txFechaAlta.BackColor = System.Drawing.Color.White
+        Me.txFechaAlta.Location = New System.Drawing.Point(164, 21)
+        Me.txFechaAlta.Mask = "00/00/0000"
+        Me.txFechaAlta.Name = "txFechaAlta"
+        Me.txFechaAlta.Size = New System.Drawing.Size(81, 20)
+        Me.txFechaAlta.TabIndex = 102
+        Me.txFechaAlta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txFechaAlta.ValidatingType = GetType(Date)
         '
-        'ToolStripSeparator1
+        'txLibre3
         '
-        Me.ToolStripSeparator1.AutoSize = False
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(33, 30)
+        Me.txLibre3.Location = New System.Drawing.Point(164, 270)
+        Me.txLibre3.Name = "txLibre3"
+        Me.txLibre3.Size = New System.Drawing.Size(172, 20)
+        Me.txLibre3.TabIndex = 63
+        '
+        'txLibre2
+        '
+        Me.txLibre2.Location = New System.Drawing.Point(164, 244)
+        Me.txLibre2.Name = "txLibre2"
+        Me.txLibre2.Size = New System.Drawing.Size(172, 20)
+        Me.txLibre2.TabIndex = 61
+        '
+        'txLibre1
+        '
+        Me.txLibre1.Location = New System.Drawing.Point(164, 218)
+        Me.txLibre1.Name = "txLibre1"
+        Me.txLibre1.Size = New System.Drawing.Size(172, 20)
+        Me.txLibre1.TabIndex = 59
+        '
+        'txEmergente
+        '
+        Me.txEmergente.Location = New System.Drawing.Point(164, 77)
+        Me.txEmergente.Multiline = True
+        Me.txEmergente.Name = "txEmergente"
+        Me.txEmergente.Size = New System.Drawing.Size(460, 65)
+        Me.txEmergente.TabIndex = 57
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(64, 277)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(94, 13)
+        Me.Label33.TabIndex = 64
+        Me.Label33.Text = "EQUIVALENTE 3:"
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(64, 251)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(94, 13)
+        Me.Label32.TabIndex = 62
+        Me.Label32.Text = "EQUIVALENTE 2:"
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(64, 225)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(94, 13)
+        Me.Label28.TabIndex = 60
+        Me.Label28.Text = "EQUIVALENTE 1:"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(52, 80)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(106, 13)
+        Me.Label25.TabIndex = 58
+        Me.Label25.Text = "MENSAJE VENTAS:"
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(83, 28)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(75, 13)
+        Me.Label26.TabIndex = 56
+        Me.Label26.Text = "FECHA ALTA:"
         '
         'frArticulos
         '
@@ -1030,6 +1030,7 @@ Partial Class frArticulos
         Me.ClientSize = New System.Drawing.Size(1012, 606)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "frArticulos"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "ARTICULOS"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
@@ -1037,13 +1038,13 @@ Partial Class frArticulos
         Me.TabPage2.ResumeLayout(False)
         Me.tsBotones.ResumeLayout(False)
         Me.tsBotones.PerformLayout()
-        Me.TabPage3.ResumeLayout(False)
-        Me.TabPage3.PerformLayout()
+        Me.TabControl2.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.TabControl2.ResumeLayout(False)
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

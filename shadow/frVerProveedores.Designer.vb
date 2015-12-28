@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frVerClientes
+Partial Class frVerProveedores
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -22,56 +22,56 @@ Partial Class frVerClientes
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.dgClientes = New System.Windows.Forms.DataGridView()
+        Me.txProveedor = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.txCliente = New System.Windows.Forms.TextBox()
-        CType(Me.dgClientes, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.dgProvedores = New System.Windows.Forms.DataGridView()
+        CType(Me.dgProvedores, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'dgClientes
+        'txProveedor
         '
-        Me.dgClientes.AllowUserToAddRows = False
-        Me.dgClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgClientes.Location = New System.Drawing.Point(12, 101)
-        Me.dgClientes.Name = "dgClientes"
-        Me.dgClientes.Size = New System.Drawing.Size(510, 348)
-        Me.dgClientes.TabIndex = 0
+        Me.txProveedor.Location = New System.Drawing.Point(96, 27)
+        Me.txProveedor.Name = "txProveedor"
+        Me.txProveedor.Size = New System.Drawing.Size(426, 20)
+        Me.txProveedor.TabIndex = 5
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 50)
+        Me.Label1.Location = New System.Drawing.Point(12, 34)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(55, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "CLIENTE:"
+        Me.Label1.Size = New System.Drawing.Size(78, 13)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "PROVEEDOR:"
         '
-        'txCliente
+        'dgProvedores
         '
-        Me.txCliente.Location = New System.Drawing.Point(73, 43)
-        Me.txCliente.Name = "txCliente"
-        Me.txCliente.Size = New System.Drawing.Size(449, 20)
-        Me.txCliente.TabIndex = 2
+        Me.dgProvedores.AllowUserToAddRows = False
+        Me.dgProvedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgProvedores.Location = New System.Drawing.Point(12, 85)
+        Me.dgProvedores.Name = "dgProvedores"
+        Me.dgProvedores.Size = New System.Drawing.Size(510, 348)
+        Me.dgProvedores.TabIndex = 3
         '
-        'frVerClientes
+        'frVerProveedores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(534, 461)
-        Me.Controls.Add(Me.txCliente)
+        Me.Controls.Add(Me.txProveedor)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.dgClientes)
-        Me.Name = "frVerClientes"
+        Me.Controls.Add(Me.dgProvedores)
+        Me.Name = "frVerProveedores"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "SELECCION DE CLIENTES"
-        CType(Me.dgClientes, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Text = "SELECCIÓN DE PROVEEDORES"
+        CType(Me.dgProvedores, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents dgClientes As DataGridView
+    Friend WithEvents txProveedor As TextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents txCliente As TextBox
+    Friend WithEvents dgProvedores As DataGridView
 End Class
