@@ -51,4 +51,8 @@ Public Class launcher
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         frCliente.Show()
     End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        frArticulos.Show()
+    End Sub
 End Class

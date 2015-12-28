@@ -74,6 +74,8 @@ Partial Class frCliente
         Me.txCif = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.cbTipocli = New System.Windows.Forms.ComboBox()
+        Me.Label38 = New System.Windows.Forms.Label()
         Me.grBanco = New System.Windows.Forms.GroupBox()
         Me.txBANCO = New System.Windows.Forms.TextBox()
         Me.Label24 = New System.Windows.Forms.Label()
@@ -99,6 +101,18 @@ Partial Class frCliente
         Me.txAgente = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.txFechaAlta = New System.Windows.Forms.MaskedTextBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btGrabarEnvio = New System.Windows.Forms.Button()
+        Me.btNuevoEnvio = New System.Windows.Forms.Button()
+        Me.cbEnvioProv = New System.Windows.Forms.ComboBox()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.txPostEnvio = New System.Windows.Forms.TextBox()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.txPobEnvio = New System.Windows.Forms.TextBox()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.txDirEnvio = New System.Windows.Forms.TextBox()
         Me.txLibre3 = New System.Windows.Forms.TextBox()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.txLibre2 = New System.Windows.Forms.TextBox()
@@ -110,20 +124,6 @@ Partial Class frCliente
         Me.Label26 = New System.Windows.Forms.Label()
         Me.txHorario = New System.Windows.Forms.TextBox()
         Me.Label27 = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.cbEnvioProv = New System.Windows.Forms.ComboBox()
-        Me.Label34 = New System.Windows.Forms.Label()
-        Me.Label35 = New System.Windows.Forms.Label()
-        Me.txPostEnvio = New System.Windows.Forms.TextBox()
-        Me.Label36 = New System.Windows.Forms.Label()
-        Me.txPobEnvio = New System.Windows.Forms.TextBox()
-        Me.Label37 = New System.Windows.Forms.Label()
-        Me.txDirEnvio = New System.Windows.Forms.TextBox()
-        Me.btNuevoEnvio = New System.Windows.Forms.Button()
-        Me.btGrabarEnvio = New System.Windows.Forms.Button()
-        Me.cbTipocli = New System.Windows.Forms.ComboBox()
-        Me.Label38 = New System.Windows.Forms.Label()
-        Me.txFechaAlta = New System.Windows.Forms.MaskedTextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgClientes, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -639,6 +639,24 @@ Partial Class frCliente
         Me.TabPage5.Text = "DATOS COMERCIALES"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'cbTipocli
+        '
+        Me.cbTipocli.FormattingEnabled = True
+        Me.cbTipocli.Items.AddRange(New Object() {"TIPO CLIENTE 1", "TIPO CLIENTE 2", "TIPO CLIENTE 3"})
+        Me.cbTipocli.Location = New System.Drawing.Point(198, 394)
+        Me.cbTipocli.Name = "cbTipocli"
+        Me.cbTipocli.Size = New System.Drawing.Size(489, 21)
+        Me.cbTipocli.TabIndex = 78
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(109, 402)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(83, 13)
+        Me.Label38.TabIndex = 79
+        Me.Label38.Text = "TIPO CLIENTE:"
+        '
         'grBanco
         '
         Me.grBanco.Controls.Add(Me.txBANCO)
@@ -872,6 +890,119 @@ Partial Class frCliente
         Me.TabPage3.Text = "OTROS DATOS"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'txFechaAlta
+        '
+        Me.txFechaAlta.BackColor = System.Drawing.Color.White
+        Me.txFechaAlta.Location = New System.Drawing.Point(164, 21)
+        Me.txFechaAlta.Mask = "00/00/0000"
+        Me.txFechaAlta.Name = "txFechaAlta"
+        Me.txFechaAlta.Size = New System.Drawing.Size(81, 20)
+        Me.txFechaAlta.TabIndex = 102
+        Me.txFechaAlta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txFechaAlta.ValidatingType = GetType(Date)
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.btGrabarEnvio)
+        Me.GroupBox1.Controls.Add(Me.btNuevoEnvio)
+        Me.GroupBox1.Controls.Add(Me.cbEnvioProv)
+        Me.GroupBox1.Controls.Add(Me.Label34)
+        Me.GroupBox1.Controls.Add(Me.Label35)
+        Me.GroupBox1.Controls.Add(Me.txPostEnvio)
+        Me.GroupBox1.Controls.Add(Me.Label36)
+        Me.GroupBox1.Controls.Add(Me.txPobEnvio)
+        Me.GroupBox1.Controls.Add(Me.Label37)
+        Me.GroupBox1.Controls.Add(Me.txDirEnvio)
+        Me.GroupBox1.Location = New System.Drawing.Point(164, 312)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(658, 156)
+        Me.GroupBox1.TabIndex = 65
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "DATOS DE ENVIO"
+        '
+        'btGrabarEnvio
+        '
+        Me.btGrabarEnvio.Image = CType(resources.GetObject("btGrabarEnvio.Image"), System.Drawing.Image)
+        Me.btGrabarEnvio.Location = New System.Drawing.Point(616, 19)
+        Me.btGrabarEnvio.Name = "btGrabarEnvio"
+        Me.btGrabarEnvio.Size = New System.Drawing.Size(36, 36)
+        Me.btGrabarEnvio.TabIndex = 80
+        Me.btGrabarEnvio.UseVisualStyleBackColor = True
+        '
+        'btNuevoEnvio
+        '
+        Me.btNuevoEnvio.Image = CType(resources.GetObject("btNuevoEnvio.Image"), System.Drawing.Image)
+        Me.btNuevoEnvio.Location = New System.Drawing.Point(574, 19)
+        Me.btNuevoEnvio.Name = "btNuevoEnvio"
+        Me.btNuevoEnvio.Size = New System.Drawing.Size(36, 36)
+        Me.btNuevoEnvio.TabIndex = 79
+        Me.btNuevoEnvio.UseVisualStyleBackColor = True
+        '
+        'cbEnvioProv
+        '
+        Me.cbEnvioProv.FormattingEnabled = True
+        Me.cbEnvioProv.Location = New System.Drawing.Point(96, 123)
+        Me.cbEnvioProv.Name = "cbEnvioProv"
+        Me.cbEnvioProv.Size = New System.Drawing.Size(449, 21)
+        Me.cbEnvioProv.TabIndex = 74
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(25, 53)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(65, 13)
+        Me.Label34.TabIndex = 78
+        Me.Label34.Text = "DOMICILIO:"
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(22, 131)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(68, 13)
+        Me.Label35.TabIndex = 77
+        Me.Label35.Text = "PROVINCIA:"
+        '
+        'txPostEnvio
+        '
+        Me.txPostEnvio.Location = New System.Drawing.Point(96, 98)
+        Me.txPostEnvio.Name = "txPostEnvio"
+        Me.txPostEnvio.Size = New System.Drawing.Size(103, 20)
+        Me.txPostEnvio.TabIndex = 73
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Location = New System.Drawing.Point(12, 105)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(78, 13)
+        Me.Label36.TabIndex = 76
+        Me.Label36.Text = "COD.POSTAL:"
+        '
+        'txPobEnvio
+        '
+        Me.txPobEnvio.Location = New System.Drawing.Point(96, 72)
+        Me.txPobEnvio.Name = "txPobEnvio"
+        Me.txPobEnvio.Size = New System.Drawing.Size(449, 20)
+        Me.txPobEnvio.TabIndex = 72
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(19, 79)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(71, 13)
+        Me.Label37.TabIndex = 75
+        Me.Label37.Text = "POBLACIÓN:"
+        '
+        'txDirEnvio
+        '
+        Me.txDirEnvio.Location = New System.Drawing.Point(96, 46)
+        Me.txDirEnvio.Name = "txDirEnvio"
+        Me.txDirEnvio.Size = New System.Drawing.Size(449, 20)
+        Me.txDirEnvio.TabIndex = 71
+        '
         'txLibre3
         '
         Me.txLibre3.Location = New System.Drawing.Point(164, 280)
@@ -961,137 +1092,6 @@ Partial Class frCliente
         Me.Label27.Size = New System.Drawing.Size(60, 13)
         Me.Label27.TabIndex = 54
         Me.Label27.Text = "HORARIO:"
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.btGrabarEnvio)
-        Me.GroupBox1.Controls.Add(Me.btNuevoEnvio)
-        Me.GroupBox1.Controls.Add(Me.cbEnvioProv)
-        Me.GroupBox1.Controls.Add(Me.Label34)
-        Me.GroupBox1.Controls.Add(Me.Label35)
-        Me.GroupBox1.Controls.Add(Me.txPostEnvio)
-        Me.GroupBox1.Controls.Add(Me.Label36)
-        Me.GroupBox1.Controls.Add(Me.txPobEnvio)
-        Me.GroupBox1.Controls.Add(Me.Label37)
-        Me.GroupBox1.Controls.Add(Me.txDirEnvio)
-        Me.GroupBox1.Location = New System.Drawing.Point(164, 317)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(658, 156)
-        Me.GroupBox1.TabIndex = 65
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "DATOS DE ENVIO"
-        '
-        'cbEnvioProv
-        '
-        Me.cbEnvioProv.FormattingEnabled = True
-        Me.cbEnvioProv.Location = New System.Drawing.Point(96, 123)
-        Me.cbEnvioProv.Name = "cbEnvioProv"
-        Me.cbEnvioProv.Size = New System.Drawing.Size(449, 21)
-        Me.cbEnvioProv.TabIndex = 74
-        '
-        'Label34
-        '
-        Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(25, 53)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(65, 13)
-        Me.Label34.TabIndex = 78
-        Me.Label34.Text = "DOMICILIO:"
-        '
-        'Label35
-        '
-        Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(22, 131)
-        Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(68, 13)
-        Me.Label35.TabIndex = 77
-        Me.Label35.Text = "PROVINCIA:"
-        '
-        'txPostEnvio
-        '
-        Me.txPostEnvio.Location = New System.Drawing.Point(96, 98)
-        Me.txPostEnvio.Name = "txPostEnvio"
-        Me.txPostEnvio.Size = New System.Drawing.Size(103, 20)
-        Me.txPostEnvio.TabIndex = 73
-        '
-        'Label36
-        '
-        Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(12, 105)
-        Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(78, 13)
-        Me.Label36.TabIndex = 76
-        Me.Label36.Text = "COD.POSTAL:"
-        '
-        'txPobEnvio
-        '
-        Me.txPobEnvio.Location = New System.Drawing.Point(96, 72)
-        Me.txPobEnvio.Name = "txPobEnvio"
-        Me.txPobEnvio.Size = New System.Drawing.Size(449, 20)
-        Me.txPobEnvio.TabIndex = 72
-        '
-        'Label37
-        '
-        Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(19, 79)
-        Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(71, 13)
-        Me.Label37.TabIndex = 75
-        Me.Label37.Text = "POBLACIÓN:"
-        '
-        'txDirEnvio
-        '
-        Me.txDirEnvio.Location = New System.Drawing.Point(96, 46)
-        Me.txDirEnvio.Name = "txDirEnvio"
-        Me.txDirEnvio.Size = New System.Drawing.Size(449, 20)
-        Me.txDirEnvio.TabIndex = 71
-        '
-        'btNuevoEnvio
-        '
-        Me.btNuevoEnvio.Image = CType(resources.GetObject("btNuevoEnvio.Image"), System.Drawing.Image)
-        Me.btNuevoEnvio.Location = New System.Drawing.Point(574, 19)
-        Me.btNuevoEnvio.Name = "btNuevoEnvio"
-        Me.btNuevoEnvio.Size = New System.Drawing.Size(36, 36)
-        Me.btNuevoEnvio.TabIndex = 79
-        Me.btNuevoEnvio.UseVisualStyleBackColor = True
-        '
-        'btGrabarEnvio
-        '
-        Me.btGrabarEnvio.Image = CType(resources.GetObject("btGrabarEnvio.Image"), System.Drawing.Image)
-        Me.btGrabarEnvio.Location = New System.Drawing.Point(616, 19)
-        Me.btGrabarEnvio.Name = "btGrabarEnvio"
-        Me.btGrabarEnvio.Size = New System.Drawing.Size(36, 36)
-        Me.btGrabarEnvio.TabIndex = 80
-        Me.btGrabarEnvio.UseVisualStyleBackColor = True
-        '
-        'cbTipocli
-        '
-        Me.cbTipocli.FormattingEnabled = True
-        Me.cbTipocli.Items.AddRange(New Object() {"TIPO CLIENTE 1", "TIPO CLIENTE 2", "TIPO CLIENTE 3"})
-        Me.cbTipocli.Location = New System.Drawing.Point(198, 394)
-        Me.cbTipocli.Name = "cbTipocli"
-        Me.cbTipocli.Size = New System.Drawing.Size(489, 21)
-        Me.cbTipocli.TabIndex = 78
-        '
-        'Label38
-        '
-        Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(109, 402)
-        Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(83, 13)
-        Me.Label38.TabIndex = 79
-        Me.Label38.Text = "TIPO CLIENTE:"
-        '
-        'txFechaAlta
-        '
-        Me.txFechaAlta.BackColor = System.Drawing.Color.White
-        Me.txFechaAlta.Location = New System.Drawing.Point(164, 21)
-        Me.txFechaAlta.Mask = "00/00/0000"
-        Me.txFechaAlta.Name = "txFechaAlta"
-        Me.txFechaAlta.Size = New System.Drawing.Size(81, 20)
-        Me.txFechaAlta.TabIndex = 102
-        Me.txFechaAlta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.txFechaAlta.ValidatingType = GetType(Date)
         '
         'frCliente
         '

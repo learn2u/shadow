@@ -385,4 +385,8 @@ Public Class frCliente
 
         conexionmy.Close()
     End Sub
+
+    Private Sub cmdDirEnvio_Click(sender As Object, e As EventArgs) Handles cmdDirEnvio.Click
+
+    End Sub
 End Class
