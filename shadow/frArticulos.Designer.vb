@@ -37,6 +37,7 @@ Partial Class frArticulos
         Me.cmdDirEnvio = New System.Windows.Forms.ToolStripButton()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.ComboBox7 = New System.Windows.Forms.ComboBox()
@@ -117,7 +118,12 @@ Partial Class frArticulos
         Me.Label28 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TextBox18 = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.ComboBox9 = New System.Windows.Forms.ComboBox()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgClientes, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,7 +180,7 @@ Partial Class frArticulos
         'tsBotones
         '
         Me.tsBotones.AutoSize = False
-        Me.tsBotones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdNuevo, Me.cmdGuardar, Me.cmdCancelar, Me.ToolStripSeparator1, Me.ToolStripButton1, Me.ToolStripButton2, Me.cmdDirEnvio})
+        Me.tsBotones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdNuevo, Me.cmdGuardar, Me.cmdCancelar, Me.ToolStripSeparator1, Me.ToolStripButton1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton2, Me.cmdDirEnvio})
         Me.tsBotones.Location = New System.Drawing.Point(3, 3)
         Me.tsBotones.Name = "tsBotones"
         Me.tsBotones.Size = New System.Drawing.Size(922, 38)
@@ -265,6 +271,8 @@ Partial Class frArticulos
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.ComboBox9)
+        Me.TabPage4.Controls.Add(Me.Label24)
         Me.TabPage4.Controls.Add(Me.Button1)
         Me.TabPage4.Controls.Add(Me.CheckBox1)
         Me.TabPage4.Controls.Add(Me.GroupBox2)
@@ -323,6 +331,15 @@ Partial Class frArticulos
         Me.TabPage4.TabIndex = 0
         Me.TabPage4.Text = "GENERAL"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(460, 16)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(37, 23)
+        Me.Button1.TabIndex = 123
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'CheckBox1
         '
@@ -445,21 +462,21 @@ Partial Class frArticulos
         '
         'TextBox6
         '
-        Me.TextBox6.Location = New System.Drawing.Point(298, 420)
+        Me.TextBox6.Location = New System.Drawing.Point(298, 425)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(73, 20)
         Me.TextBox6.TabIndex = 103
         '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(413, 394)
+        Me.TextBox5.Location = New System.Drawing.Point(413, 399)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(104, 20)
         Me.TextBox5.TabIndex = 101
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(278, 344)
+        Me.TextBox4.Location = New System.Drawing.Point(278, 371)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(43, 20)
         Me.TextBox4.TabIndex = 98
@@ -487,7 +504,7 @@ Partial Class frArticulos
         '
         'txPais
         '
-        Me.txPais.Location = New System.Drawing.Point(150, 394)
+        Me.txPais.Location = New System.Drawing.Point(150, 399)
         Me.txPais.Name = "txPais"
         Me.txPais.Size = New System.Drawing.Size(104, 20)
         Me.txPais.TabIndex = 7
@@ -510,14 +527,14 @@ Partial Class frArticulos
         '
         'txWeb
         '
-        Me.txWeb.Location = New System.Drawing.Point(425, 420)
+        Me.txWeb.Location = New System.Drawing.Point(425, 425)
         Me.txWeb.Name = "txWeb"
         Me.txWeb.Size = New System.Drawing.Size(93, 20)
         Me.txWeb.TabIndex = 16
         '
         'txEmail
         '
-        Me.txEmail.Location = New System.Drawing.Point(150, 420)
+        Me.txEmail.Location = New System.Drawing.Point(150, 425)
         Me.txEmail.Name = "txEmail"
         Me.txEmail.Size = New System.Drawing.Size(73, 20)
         Me.txEmail.TabIndex = 15
@@ -568,7 +585,7 @@ Partial Class frArticulos
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(229, 427)
+        Me.Label14.Location = New System.Drawing.Point(229, 432)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(66, 13)
         Me.Label14.TabIndex = 104
@@ -577,7 +594,7 @@ Partial Class frArticulos
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(259, 401)
+        Me.Label8.Location = New System.Drawing.Point(259, 406)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(148, 13)
         Me.Label8.TabIndex = 102
@@ -603,7 +620,7 @@ Partial Class frArticulos
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(236, 350)
+        Me.Label4.Location = New System.Drawing.Point(236, 377)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(38, 13)
         Me.Label4.TabIndex = 97
@@ -697,7 +714,7 @@ Partial Class frArticulos
         'cbProvincia
         '
         Me.cbProvincia.FormattingEnabled = True
-        Me.cbProvincia.Location = New System.Drawing.Point(150, 343)
+        Me.cbProvincia.Location = New System.Drawing.Point(150, 370)
         Me.cbProvincia.Name = "cbProvincia"
         Me.cbProvincia.Size = New System.Drawing.Size(73, 21)
         Me.cbProvincia.TabIndex = 6
@@ -705,7 +722,7 @@ Partial Class frArticulos
         'Label30
         '
         Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(74, 401)
+        Me.Label30.Location = New System.Drawing.Point(74, 406)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(69, 13)
         Me.Label30.TabIndex = 72
@@ -741,7 +758,7 @@ Partial Class frArticulos
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(384, 427)
+        Me.Label10.Location = New System.Drawing.Point(384, 432)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(31, 13)
         Me.Label10.TabIndex = 63
@@ -750,7 +767,7 @@ Partial Class frArticulos
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(76, 427)
+        Me.Label9.Location = New System.Drawing.Point(76, 432)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(68, 13)
         Me.Label9.TabIndex = 62
@@ -759,7 +776,7 @@ Partial Class frArticulos
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(88, 351)
+        Me.Label5.Location = New System.Drawing.Point(88, 378)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(55, 13)
         Me.Label5.TabIndex = 58
@@ -794,6 +811,8 @@ Partial Class frArticulos
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.TextBox18)
+        Me.TabPage3.Controls.Add(Me.Label23)
         Me.TabPage3.Controls.Add(Me.btCargarImagen)
         Me.TabPage3.Controls.Add(Me.TextBox17)
         Me.TabPage3.Controls.Add(Me.Label22)
@@ -832,7 +851,7 @@ Partial Class frArticulos
         Me.btCargarImagen.FlatAppearance.BorderSize = 0
         Me.btCargarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btCargarImagen.Image = CType(resources.GetObject("btCargarImagen.Image"), System.Drawing.Image)
-        Me.btCargarImagen.Location = New System.Drawing.Point(626, 292)
+        Me.btCargarImagen.Location = New System.Drawing.Point(626, 314)
         Me.btCargarImagen.Name = "btCargarImagen"
         Me.btCargarImagen.Size = New System.Drawing.Size(35, 27)
         Me.btCargarImagen.TabIndex = 115
@@ -840,7 +859,7 @@ Partial Class frArticulos
         '
         'TextBox17
         '
-        Me.TextBox17.Location = New System.Drawing.Point(164, 296)
+        Me.TextBox17.Location = New System.Drawing.Point(164, 318)
         Me.TextBox17.Name = "TextBox17"
         Me.TextBox17.Size = New System.Drawing.Size(460, 20)
         Me.TextBox17.TabIndex = 113
@@ -848,7 +867,7 @@ Partial Class frArticulos
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(106, 303)
+        Me.Label22.Location = New System.Drawing.Point(106, 325)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(52, 13)
         Me.Label22.TabIndex = 114
@@ -856,21 +875,21 @@ Partial Class frArticulos
         '
         'TextBox14
         '
-        Me.TextBox14.Location = New System.Drawing.Point(452, 270)
+        Me.TextBox14.Location = New System.Drawing.Point(452, 292)
         Me.TextBox14.Name = "TextBox14"
         Me.TextBox14.Size = New System.Drawing.Size(172, 20)
         Me.TextBox14.TabIndex = 111
         '
         'TextBox15
         '
-        Me.TextBox15.Location = New System.Drawing.Point(452, 244)
+        Me.TextBox15.Location = New System.Drawing.Point(452, 266)
         Me.TextBox15.Name = "TextBox15"
         Me.TextBox15.Size = New System.Drawing.Size(172, 20)
         Me.TextBox15.TabIndex = 109
         '
         'TextBox16
         '
-        Me.TextBox16.Location = New System.Drawing.Point(452, 218)
+        Me.TextBox16.Location = New System.Drawing.Point(452, 240)
         Me.TextBox16.Name = "TextBox16"
         Me.TextBox16.Size = New System.Drawing.Size(172, 20)
         Me.TextBox16.TabIndex = 107
@@ -878,7 +897,7 @@ Partial Class frArticulos
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(352, 277)
+        Me.Label19.Location = New System.Drawing.Point(352, 299)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(94, 13)
         Me.Label19.TabIndex = 112
@@ -887,7 +906,7 @@ Partial Class frArticulos
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(352, 251)
+        Me.Label20.Location = New System.Drawing.Point(352, 273)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(94, 13)
         Me.Label20.TabIndex = 110
@@ -896,7 +915,7 @@ Partial Class frArticulos
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(352, 225)
+        Me.Label21.Location = New System.Drawing.Point(352, 247)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(94, 13)
         Me.Label21.TabIndex = 108
@@ -904,7 +923,7 @@ Partial Class frArticulos
         '
         'TextBox13
         '
-        Me.TextBox13.Location = New System.Drawing.Point(164, 148)
+        Me.TextBox13.Location = New System.Drawing.Point(164, 170)
         Me.TextBox13.Multiline = True
         Me.TextBox13.Name = "TextBox13"
         Me.TextBox13.Size = New System.Drawing.Size(460, 65)
@@ -913,7 +932,7 @@ Partial Class frArticulos
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(42, 151)
+        Me.Label18.Location = New System.Drawing.Point(42, 173)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(116, 13)
         Me.Label18.TabIndex = 106
@@ -952,28 +971,28 @@ Partial Class frArticulos
         '
         'txLibre3
         '
-        Me.txLibre3.Location = New System.Drawing.Point(164, 270)
+        Me.txLibre3.Location = New System.Drawing.Point(164, 292)
         Me.txLibre3.Name = "txLibre3"
         Me.txLibre3.Size = New System.Drawing.Size(172, 20)
         Me.txLibre3.TabIndex = 63
         '
         'txLibre2
         '
-        Me.txLibre2.Location = New System.Drawing.Point(164, 244)
+        Me.txLibre2.Location = New System.Drawing.Point(164, 266)
         Me.txLibre2.Name = "txLibre2"
         Me.txLibre2.Size = New System.Drawing.Size(172, 20)
         Me.txLibre2.TabIndex = 61
         '
         'txLibre1
         '
-        Me.txLibre1.Location = New System.Drawing.Point(164, 218)
+        Me.txLibre1.Location = New System.Drawing.Point(164, 240)
         Me.txLibre1.Name = "txLibre1"
         Me.txLibre1.Size = New System.Drawing.Size(172, 20)
         Me.txLibre1.TabIndex = 59
         '
         'txEmergente
         '
-        Me.txEmergente.Location = New System.Drawing.Point(164, 77)
+        Me.txEmergente.Location = New System.Drawing.Point(164, 99)
         Me.txEmergente.Multiline = True
         Me.txEmergente.Name = "txEmergente"
         Me.txEmergente.Size = New System.Drawing.Size(460, 65)
@@ -982,7 +1001,7 @@ Partial Class frArticulos
         'Label33
         '
         Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(64, 277)
+        Me.Label33.Location = New System.Drawing.Point(64, 299)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(94, 13)
         Me.Label33.TabIndex = 64
@@ -991,7 +1010,7 @@ Partial Class frArticulos
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(64, 251)
+        Me.Label32.Location = New System.Drawing.Point(64, 273)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(94, 13)
         Me.Label32.TabIndex = 62
@@ -1000,7 +1019,7 @@ Partial Class frArticulos
         'Label28
         '
         Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(64, 225)
+        Me.Label28.Location = New System.Drawing.Point(64, 247)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(94, 13)
         Me.Label28.TabIndex = 60
@@ -1009,7 +1028,7 @@ Partial Class frArticulos
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(52, 80)
+        Me.Label25.Location = New System.Drawing.Point(52, 102)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(106, 13)
         Me.Label25.TabIndex = 58
@@ -1024,14 +1043,56 @@ Partial Class frArticulos
         Me.Label26.TabIndex = 56
         Me.Label26.Text = "FECHA ALTA:"
         '
-        'Button1
+        'TextBox18
         '
-        Me.Button1.Location = New System.Drawing.Point(460, 16)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(37, 23)
-        Me.Button1.TabIndex = 123
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.TextBox18.Location = New System.Drawing.Point(164, 73)
+        Me.TextBox18.Name = "TextBox18"
+        Me.TextBox18.Size = New System.Drawing.Size(172, 20)
+        Me.TextBox18.TabIndex = 116
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(90, 80)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(68, 13)
+        Me.Label23.TabIndex = 117
+        Me.Label23.Text = "UBICACION:"
+        '
+        'ComboBox9
+        '
+        Me.ComboBox9.FormattingEnabled = True
+        Me.ComboBox9.Location = New System.Drawing.Point(150, 343)
+        Me.ComboBox9.Name = "ComboBox9"
+        Me.ComboBox9.Size = New System.Drawing.Size(171, 21)
+        Me.ComboBox9.TabIndex = 125
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(41, 351)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(103, 13)
+        Me.Label24.TabIndex = 124
+        Me.Label24.Text = "TIPO ART. TOLDO:"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.AutoSize = False
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(33, 30)
+        '
+        'ToolStripButton3
+        '
+        Me.ToolStripButton3.AutoSize = False
+        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
+        Me.ToolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        Me.ToolStripButton3.Size = New System.Drawing.Size(33, 30)
+        Me.ToolStripButton3.Text = "ToolStripButton1"
+        Me.ToolStripButton3.ToolTipText = "Imprimir"
         '
         'frArticulos
         '
@@ -1155,4 +1216,10 @@ Partial Class frArticulos
     Friend WithEvents TextBox17 As TextBox
     Friend WithEvents Label22 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents TextBox18 As TextBox
+    Friend WithEvents Label23 As Label
+    Friend WithEvents ComboBox9 As ComboBox
+    Friend WithEvents Label24 As Label
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents ToolStripButton3 As ToolStripButton
 End Class

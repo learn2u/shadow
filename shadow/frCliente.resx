@@ -120,9 +120,6 @@
   <metadata name="tsBotones.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="tsBotones.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cmdNuevo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -160,6 +157,16 @@
         EftcwcIj0UQzm4n5gZWN2kM1yZIoR3SAnnPCxnNyPY4EG7MH9MwCvHAHPS2Cu1EJ8gtyhgvYJUVQLYJW
         qABrBWVDVICqoPxn8N1L4AwVYK2gbIgKUBW+e0TOVII9sZpBzywYRIgnrknikfrG7MsAAAAASUVORK5C
         YII=
+</value>
+  </data>
+  <data name="ToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADXSURBVEhLtZQBDcIwEEUrAQlIwAFIQAISJgEpSMABOAAJ
+        OGAO4P+DNbfmMmh795OXbOnt/+7SXnLQAJ7gIG8BuoLXl5AQHWCGrMGlErZEm5bMQthDq6iXHHIEVoEH
+        7E5owA6EBZyAiClWQQ/ZfNIGMKiFO1g075W+B1Xme7D6PC7qDKrNWcyP+PEvcRPczN+azAl/31XanNzA
+        thEenJlKcw94ykQR5oSXWFKsRQ84SGUgWYse5BZxtFoFveQAyjvkAWRca5Uh7veA0iEhARRDRiCnoF0p
+        vQGyqi7/MmfC0AAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="cmdMostrarAgente.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
