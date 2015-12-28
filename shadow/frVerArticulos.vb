@@ -9,7 +9,7 @@ Public Class frVerArticulos
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT referencia,descripcion,pvp,iva,medida,tipo FROM articulos", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT referencia,descripcion,pvp,iva,medidaID FROM articulos2", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -42,9 +42,9 @@ Public Class frVerArticulos
         dgArticulos.Columns(4).HeaderText = "MEDIDA"
         dgArticulos.Columns(4).Name = "longitud"
         dgArticulos.Columns(4).Visible = False
-        dgArticulos.Columns(5).HeaderText = "TIPO"
-        dgArticulos.Columns(5).Name = "simple"
-        dgArticulos.Columns(5).Visible = False
+        'dgArticulos.Columns(5).HeaderText = "TIPO"
+        'dgArticulos.Columns(5).Name = "simple"
+        'dgArticulos.Columns(5).Visible = False
 
         dgArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
@@ -56,7 +56,7 @@ Public Class frVerArticulos
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT referencia,descripcion,pvp,iva,medida,tipo FROM articulos WHERE referencia LIKE'" & txCodigo.Text & "%'", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT referencia,descripcion,pvp,iva,medidaID FROM articulos2 WHERE referencia LIKE'" & txCodigo.Text & "%'", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -90,9 +90,9 @@ Public Class frVerArticulos
         dgArticulos.Columns(4).HeaderText = "MEDIDA"
         dgArticulos.Columns(4).Name = "longitud"
         dgArticulos.Columns(4).Visible = False
-        dgArticulos.Columns(5).HeaderText = "TIPO"
-        dgArticulos.Columns(5).Name = "simple"
-        dgArticulos.Columns(5).Visible = False
+        'dgArticulos.Columns(5).HeaderText = "TIPO"
+        'dgArticulos.Columns(5).Name = "simple"
+        'dgArticulos.Columns(5).Visible = False
         dgArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
         conexionmy.Close()
@@ -103,7 +103,7 @@ Public Class frVerArticulos
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT referencia,descripcion,pvp,iva,medida,tipo FROM articulos WHERE descripcion LIKE'" & txArticulo.Text & "%'", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT referencia,descripcion,pvp,iva,medidaID FROM articulos2 WHERE descripcion LIKE'" & txArticulo.Text & "%'", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -137,9 +137,9 @@ Public Class frVerArticulos
         dgArticulos.Columns(4).HeaderText = "MEDIDA"
         dgArticulos.Columns(4).Name = "longitud"
         dgArticulos.Columns(4).Visible = False
-        dgArticulos.Columns(5).HeaderText = "TIPO"
-        dgArticulos.Columns(5).Name = "simple"
-        dgArticulos.Columns(5).Visible = False
+        'dgArticulos.Columns(5).HeaderText = "TIPO"
+        'dgArticulos.Columns(5).Name = "simple"
+        'dgArticulos.Columns(5).Visible = False
         dgArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
         conexionmy.Close()
