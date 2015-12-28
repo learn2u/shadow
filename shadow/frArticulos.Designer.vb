@@ -117,6 +117,7 @@ Partial Class frArticulos
         Me.Label28 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgClientes, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -264,6 +265,7 @@ Partial Class frArticulos
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.Button1)
         Me.TabPage4.Controls.Add(Me.CheckBox1)
         Me.TabPage4.Controls.Add(Me.GroupBox2)
         Me.TabPage4.Controls.Add(Me.Label16)
@@ -494,7 +496,7 @@ Partial Class frArticulos
         '
         Me.txCodigo.BackColor = System.Drawing.Color.White
         Me.txCodigo.Enabled = False
-        Me.txCodigo.Location = New System.Drawing.Point(150, 18)
+        Me.txCodigo.Location = New System.Drawing.Point(613, 18)
         Me.txCodigo.Name = "txCodigo"
         Me.txCodigo.Size = New System.Drawing.Size(144, 20)
         Me.txCodigo.TabIndex = 65
@@ -522,7 +524,7 @@ Partial Class frArticulos
         '
         'txCif
         '
-        Me.txCif.Location = New System.Drawing.Point(581, 18)
+        Me.txCif.Location = New System.Drawing.Point(150, 18)
         Me.txCif.Name = "txCif"
         Me.txCif.Size = New System.Drawing.Size(144, 20)
         Me.txCif.TabIndex = 0
@@ -721,7 +723,7 @@ Partial Class frArticulos
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(66, 25)
+        Me.Label12.Location = New System.Drawing.Point(529, 25)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(78, 13)
         Me.Label12.TabIndex = 66
@@ -730,7 +732,7 @@ Partial Class frArticulos
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(470, 25)
+        Me.Label11.Location = New System.Drawing.Point(39, 25)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(105, 13)
         Me.Label11.TabIndex = 64
@@ -1022,6 +1024,15 @@ Partial Class frArticulos
         Me.Label26.TabIndex = 56
         Me.Label26.Text = "FECHA ALTA:"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(460, 16)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(37, 23)
+        Me.Button1.TabIndex = 123
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'frArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1143,4 +1154,5 @@ Partial Class frArticulos
     Friend WithEvents btCargarImagen As Button
     Friend WithEvents TextBox17 As TextBox
     Friend WithEvents Label22 As Label
+    Friend WithEvents Button1 As Button
 End Class
