@@ -45,6 +45,7 @@ Public Class frPresupuestos
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(8).Value = txDtocli.Text
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(9).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(10).Value = 0
+                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(11).Value = ""
             Else
                 lineas = lineas + 1
                 dgLineasPres2.Rows.Add()
@@ -56,6 +57,7 @@ Public Class frPresupuestos
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(8).Value = txDtocli.Text
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(10).Value = 0
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(11).Value = ""
             End If
 
         End If
@@ -78,6 +80,7 @@ Public Class frPresupuestos
             dgLineasPres1.CurrentRow.Cells(8).Value = txDtocli.Text
             dgLineasPres1.CurrentRow.Cells(9).Value = 0
             dgLineasPres1.CurrentRow.Cells(10).Value = 0
+            dgLineasPres1.CurrentRow.Cells(11).Value = ""
         Else
             dgLineasPres2.Rows.Insert(dgLineasPres2.CurrentRow.Index)
             renumerar()
@@ -92,6 +95,7 @@ Public Class frPresupuestos
             dgLineasPres2.CurrentRow.Cells(8).Value = txDtocli.Text
             dgLineasPres2.CurrentRow.Cells(9).Value = 0
             dgLineasPres2.CurrentRow.Cells(10).Value = 0
+            dgLineasPres2.CurrentRow.Cells(11).Value = ""
         End If
 
 
@@ -362,7 +366,7 @@ Public Class frPresupuestos
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
 
                 cmdLinea.ExecuteNonQuery()
 
@@ -451,7 +455,7 @@ Public Class frPresupuestos
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
 
                 cmdLinea.ExecuteNonQuery()
 
@@ -633,6 +637,7 @@ Public Class frPresupuestos
                                             presupuesto_linea.ivalinea,
                                             presupuesto_linea.importe,
                                             presupuesto_linea.totalinea,
+                                            presupuesto_linea.lote,
                                             presupuesto_linea.num_presupuesto
                                             FROM presupuesto_linea WHERE num_presupuesto = '" + txtNumpres.Text + "' ORDER BY presupuesto_linea.linea", conexionmy)
 
@@ -656,6 +661,7 @@ Public Class frPresupuestos
                 'dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = rdrLin("ivalinea")
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = rdrLin("importe")
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(10).Value = rdrLin("totalinea")
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(11).Value = rdrLin("lote")
             Loop
         Else
 

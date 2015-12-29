@@ -147,6 +147,7 @@ Public Class frAlbaran
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(8).Value = txDtocli.Text
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(9).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(10).Value = 0
+                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(11).Value = ""
             Else
                 lineas = lineas + 1
                 dgLineasPres2.Rows.Add()
@@ -158,6 +159,7 @@ Public Class frAlbaran
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(8).Value = txDtocli.Text
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(10).Value = 0
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(11).Value = ""
             End If
 
         End If
@@ -178,6 +180,7 @@ Public Class frAlbaran
             dgLineasPres1.CurrentRow.Cells(8).Value = txDtocli.Text
             dgLineasPres1.CurrentRow.Cells(9).Value = 0
             dgLineasPres1.CurrentRow.Cells(10).Value = 0
+            dgLineasPres1.CurrentRow.Cells(11).Value = ""
         Else
             dgLineasPres2.Rows.Insert(dgLineasPres2.CurrentRow.Index)
             renumerar()
@@ -192,6 +195,7 @@ Public Class frAlbaran
             dgLineasPres2.CurrentRow.Cells(8).Value = txDtocli.Text
             dgLineasPres2.CurrentRow.Cells(9).Value = 0
             dgLineasPres2.CurrentRow.Cells(10).Value = 0
+            dgLineasPres2.CurrentRow.Cells(11).Value = ""
         End If
     End Sub
     Public Sub renumerar()
@@ -441,10 +445,15 @@ Public Class frAlbaran
                 arti = row.Cells(2).Value
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
 
                 cmdLinea.ExecuteNonQuery()
-                descontarStock(arti, lincant)
+                If row.Cells(11).Value = "" Then
+                    'descontarStock(arti, lincant)
+                    MsgBox("no hay lote")
+                Else
+                    MsgBox(row.Cells(11).Value)
+                End If
 
             Next
 
@@ -548,7 +557,7 @@ Public Class frAlbaran
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
 
                 cmdLinea.ExecuteNonQuery()
 
@@ -678,6 +687,7 @@ Public Class frAlbaran
                                             albaran_linea.ivalinea,
                                             albaran_linea.importe,
                                             albaran_linea.totalinea,
+                                            albaran_linea.lote,
                                             albaran_linea.num_albaran
                                             FROM albaran_linea WHERE num_albaran = '" + txtNumpres.Text + "' ORDER BY albaran_linea.linea", conexionmy)
 
@@ -701,6 +711,7 @@ Public Class frAlbaran
                 'dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = rdrLin("ivalinea")
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = rdrLin("importe")
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(10).Value = rdrLin("totalinea")
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(11).Value = rdrLin("lote")
             Loop
         Else
 

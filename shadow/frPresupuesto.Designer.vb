@@ -108,6 +108,15 @@ Partial Class frPresupuestos
         Me.INSERTARToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ELIMINARToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.dgLineasPres1 = New System.Windows.Forms.DataGridView()
+        Me.txFecha = New System.Windows.Forms.MaskedTextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txReferenciapres = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txClientepres = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtNumpres = New System.Windows.Forms.TextBox()
+        Me.dgLineasPres2 = New System.Windows.Forms.DataGridView()
         Me.linea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btArticulo = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -119,15 +128,7 @@ Partial Class frPresupuestos
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.txFecha = New System.Windows.Forms.MaskedTextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.txReferenciapres = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.txClientepres = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.txtNumpres = New System.Windows.Forms.TextBox()
-        Me.dgLineasPres2 = New System.Windows.Forms.DataGridView()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.linedit = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btArtiEdit = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Columna1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -139,6 +140,7 @@ Partial Class frPresupuestos
         Me.Columna7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Columna8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Columna9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tabPresupuestos.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -859,11 +861,94 @@ Partial Class frPresupuestos
         '
         Me.dgLineasPres1.AllowUserToAddRows = False
         Me.dgLineasPres1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgLineasPres1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linea, Me.btArticulo, Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9})
+        Me.dgLineasPres1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linea, Me.btArticulo, Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10})
         Me.dgLineasPres1.Location = New System.Drawing.Point(20, 155)
         Me.dgLineasPres1.Name = "dgLineasPres1"
         Me.dgLineasPres1.Size = New System.Drawing.Size(1173, 200)
         Me.dgLineasPres1.TabIndex = 10
+        '
+        'txFecha
+        '
+        Me.txFecha.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.txFecha.Location = New System.Drawing.Point(288, 59)
+        Me.txFecha.Mask = "00/00/0000"
+        Me.txFecha.Name = "txFecha"
+        Me.txFecha.Size = New System.Drawing.Size(81, 20)
+        Me.txFecha.TabIndex = 101
+        Me.txFecha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txFecha.ValidatingType = GetType(Date)
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(397, 66)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(78, 13)
+        Me.Label4.TabIndex = 7
+        Me.Label4.Text = "REFERENCIA:"
+        '
+        'txReferenciapres
+        '
+        Me.txReferenciapres.Location = New System.Drawing.Point(481, 59)
+        Me.txReferenciapres.Name = "txReferenciapres"
+        Me.txReferenciapres.Size = New System.Drawing.Size(231, 20)
+        Me.txReferenciapres.TabIndex = 0
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(41, 102)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(55, 13)
+        Me.Label3.TabIndex = 5
+        Me.Label3.Text = "CLIENTE:"
+        '
+        'txClientepres
+        '
+        Me.txClientepres.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.txClientepres.Location = New System.Drawing.Point(240, 95)
+        Me.txClientepres.Name = "txClientepres"
+        Me.txClientepres.ReadOnly = True
+        Me.txClientepres.Size = New System.Drawing.Size(472, 20)
+        Me.txClientepres.TabIndex = 103
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(237, 66)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(45, 13)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "FECHA:"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(38, 66)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(58, 13)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "NUMERO:"
+        '
+        'txtNumpres
+        '
+        Me.txtNumpres.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.txtNumpres.Location = New System.Drawing.Point(102, 59)
+        Me.txtNumpres.Name = "txtNumpres"
+        Me.txtNumpres.ReadOnly = True
+        Me.txtNumpres.Size = New System.Drawing.Size(114, 20)
+        Me.txtNumpres.TabIndex = 100
+        '
+        'dgLineasPres2
+        '
+        Me.dgLineasPres2.AllowUserToAddRows = False
+        Me.dgLineasPres2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgLineasPres2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linedit, Me.btArtiEdit, Me.Columna1, Me.Columna2, Me.Columna3, Me.Columna4, Me.Columna5, Me.Columna6, Me.Columna7, Me.Columna8, Me.Columna9, Me.Column11})
+        Me.dgLineasPres2.Location = New System.Drawing.Point(20, 156)
+        Me.dgLineasPres2.Name = "dgLineasPres2"
+        Me.dgLineasPres2.Size = New System.Drawing.Size(1173, 199)
+        Me.dgLineasPres2.TabIndex = 57
+        Me.dgLineasPres2.Visible = False
         '
         'linea
         '
@@ -975,88 +1060,12 @@ Partial Class frPresupuestos
         Me.Column9.ReadOnly = True
         Me.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         '
-        'txFecha
+        'Column10
         '
-        Me.txFecha.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.txFecha.Location = New System.Drawing.Point(288, 59)
-        Me.txFecha.Mask = "00/00/0000"
-        Me.txFecha.Name = "txFecha"
-        Me.txFecha.Size = New System.Drawing.Size(81, 20)
-        Me.txFecha.TabIndex = 101
-        Me.txFecha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.txFecha.ValidatingType = GetType(Date)
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(397, 66)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(78, 13)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "REFERENCIA:"
-        '
-        'txReferenciapres
-        '
-        Me.txReferenciapres.Location = New System.Drawing.Point(481, 59)
-        Me.txReferenciapres.Name = "txReferenciapres"
-        Me.txReferenciapres.Size = New System.Drawing.Size(231, 20)
-        Me.txReferenciapres.TabIndex = 0
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(41, 102)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(55, 13)
-        Me.Label3.TabIndex = 5
-        Me.Label3.Text = "CLIENTE:"
-        '
-        'txClientepres
-        '
-        Me.txClientepres.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.txClientepres.Location = New System.Drawing.Point(240, 95)
-        Me.txClientepres.Name = "txClientepres"
-        Me.txClientepres.ReadOnly = True
-        Me.txClientepres.Size = New System.Drawing.Size(472, 20)
-        Me.txClientepres.TabIndex = 103
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(237, 66)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(45, 13)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "FECHA:"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(38, 66)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(58, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "NUMERO:"
-        '
-        'txtNumpres
-        '
-        Me.txtNumpres.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.txtNumpres.Location = New System.Drawing.Point(102, 59)
-        Me.txtNumpres.Name = "txtNumpres"
-        Me.txtNumpres.ReadOnly = True
-        Me.txtNumpres.Size = New System.Drawing.Size(114, 20)
-        Me.txtNumpres.TabIndex = 100
-        '
-        'dgLineasPres2
-        '
-        Me.dgLineasPres2.AllowUserToAddRows = False
-        Me.dgLineasPres2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgLineasPres2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linedit, Me.btArtiEdit, Me.Columna1, Me.Columna2, Me.Columna3, Me.Columna4, Me.Columna5, Me.Columna6, Me.Columna7, Me.Columna8, Me.Columna9})
-        Me.dgLineasPres2.Location = New System.Drawing.Point(20, 156)
-        Me.dgLineasPres2.Name = "dgLineasPres2"
-        Me.dgLineasPres2.Size = New System.Drawing.Size(1173, 199)
-        Me.dgLineasPres2.TabIndex = 57
-        Me.dgLineasPres2.Visible = False
+        Me.Column10.HeaderText = "LOTE"
+        Me.Column10.Name = "Column10"
+        Me.Column10.Visible = False
+        Me.Column10.Width = 25
         '
         'linedit
         '
@@ -1168,6 +1177,12 @@ Partial Class frPresupuestos
         Me.Columna9.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Columna9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
+        'Column11
+        '
+        Me.Column11.HeaderText = "LOTE"
+        Me.Column11.Name = "Column11"
+        Me.Column11.Visible = False
+        '
         'frPresupuestos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1269,33 +1284,35 @@ Partial Class frPresupuestos
     Friend WithEvents txDtocli As TextBox
     Friend WithEvents txAgente As TextBox
     Friend WithEvents txIva As TextBox
-    Friend WithEvents linea As DataGridViewTextBoxColumn
-    Friend WithEvents btArticulo As DataGridViewButtonColumn
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As DataGridViewTextBoxColumn
-    Friend WithEvents Column6 As DataGridViewTextBoxColumn
-    Friend WithEvents Column7 As DataGridViewTextBoxColumn
-    Friend WithEvents Column8 As DataGridViewTextBoxColumn
-    Friend WithEvents Column9 As DataGridViewTextBoxColumn
     Friend WithEvents txEmpresa As TextBox
     Friend WithEvents txUsuario As TextBox
     Friend WithEvents Label13 As Label
     Friend WithEvents txObserva As TextBox
-    Friend WithEvents linedit As DataGridViewTextBoxColumn
-    Friend WithEvents btArtiEdit As DataGridViewButtonColumn
-    Friend WithEvents Columna1 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna2 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna3 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna4 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna5 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna6 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna7 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna8 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna9 As DataGridViewTextBoxColumn
     Friend WithEvents cmdCliente As ToolStripSplitButton
     Friend WithEvents cmdNuevoCliente As ToolStripMenuItem
     Friend WithEvents cmdEditarCliente As ToolStripMenuItem
+    Friend WithEvents Column10 As DataGridViewTextBoxColumn
+    Friend WithEvents Column9 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents btArticulo As DataGridViewButtonColumn
+    Friend WithEvents linea As DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna9 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna8 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna7 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna6 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna5 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna4 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna3 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna2 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna1 As DataGridViewTextBoxColumn
+    Friend WithEvents btArtiEdit As DataGridViewButtonColumn
+    Friend WithEvents linedit As DataGridViewTextBoxColumn
 End Class
