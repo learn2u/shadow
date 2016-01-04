@@ -13,7 +13,6 @@ Public Class frAlbaran
     Public Shared cantIni As Decimal
     Public Shared cantFin As Decimal
     Public Shared serieIni As String
-
     Private Sub frAlbaran_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
 
@@ -52,9 +51,8 @@ Public Class frAlbaran
                                                     albaran_cab.totalbruto, 
                                                     albaran_cab.totalalbaran, 
                                                     albaran_cab.clienteID, 
-                                                    clientes.clienteID,
-                                                    clientes.codigo 
-                                            FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.codigo ORDER BY albaran_cab.num_albaran DESC", conexionmy)
+                                                    clientes.clienteID
+                                            FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.clienteID ORDER BY albaran_cab.num_albaran DESC", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -111,6 +109,7 @@ Public Class frAlbaran
         txtNumpres.Text = ""
         txFecha.Text = ""
         txReferenciapres.Text = ""
+        txBultos.Text = ""
         txNumcli.Text = ""
         txClientepres.Text = ""
         txAgente.Text = ""
@@ -381,7 +380,7 @@ Public Class frAlbaran
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, serie, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, serie, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, bultos, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txBultos.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
             cmd.ExecuteNonQuery()
             If cbSerie.Text = "S1" Then
                 Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran = '" + txtNumpres.Text + "'", conexionmy)
@@ -492,7 +491,7 @@ Public Class frAlbaran
                 Dim cmdEliminarCab As New MySqlCommand("DELETE FROM albaran_cab WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
                 cmdEliminarCab.ExecuteNonQuery()
                 cargoNumero()
-                Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, serie, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
+                Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, serie, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, bultos, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txBultos.Text + "','" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
                 cmd.ExecuteNonQuery()
                 If cbSerie.Text = "S1" Then
                     Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran = '" + txtNumpres.Text + "'", conexionmy)
@@ -644,6 +643,7 @@ Public Class frAlbaran
         txNumcli.Text = rdrCab("clienteID")
         txAgente.Text = rdrCab("agenteID")
         txReferenciapres.Text = rdrCab("referencia")
+        txBultos.Text = rdrCab("bultos")
         txObserva.Text = rdrCab("observaciones")
         If rdrCab("serie") = "1" Then
             cbSerie.Text = "S1"
@@ -656,7 +656,7 @@ Public Class frAlbaran
         rdrCab.Close()
 
 
-        cmdCli = New MySqlCommand("SELECT * FROM clientes WHERE codigo = '" + txNumcli.Text + "'", conexionmy)
+        cmdCli = New MySqlCommand("SELECT * FROM clientes WHERE clienteID = '" + txNumcli.Text + "'", conexionmy)
 
         cmdCli.CommandType = CommandType.Text
         cmdCli.Connection = conexionmy
@@ -790,6 +790,37 @@ Public Class frAlbaran
         If (e.ColumnIndex = 4) Then
             artiEdit = dgLineasPres2.CurrentRow.Cells(2).Value
             cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
+        End If
+    End Sub
+
+    Private Sub dgLineasPres1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellValueChanged
+        If dgLineasPres1.CurrentCell Is Nothing Then
+            Exit Sub
+        Else
+
+            If Me.dgLineasPres1.Columns("Column3").Index = e.ColumnIndex Then
+                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres1.CurrentCell.Value = cellValue
+
+            End If
+        End If
+
+    End Sub
+
+    Private Sub dgLineasPres1_CellLeave(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellLeave
+        If (e.ColumnIndex = 8) Then
+            tsBotones.Focus()
+            cmdLineas.Select()
+        End If
+    End Sub
+
+    Private Sub dgLineasPres2_CellLeave(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellLeave
+        If (e.ColumnIndex = 8) Then
+            tsBotones.Focus()
+            cmdLineas.Select()
         End If
     End Sub
 End Class

@@ -9,7 +9,7 @@ Public Class frVerClientes
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT nombre, agenteID, descuento, codigo FROM clientes", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT nombre, agenteID, descuento, clienteID FROM clientes", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -45,7 +45,7 @@ Public Class frVerClientes
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT nombre, agenteID, descuento, codigo FROM clientes WHERE nombre LIKE'" & txCliente.Text & "%'", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT nombre, agenteID, descuento, clienteID FROM clientes WHERE nombre LIKE'" & txCliente.Text & "%'", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -77,6 +77,7 @@ Public Class frVerClientes
     End Sub
 
     Private Sub dgClientes_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgClientes.CellClick
+        mostrarEmergente(dgClientes.CurrentRow.Cells("cod").Value)
         If formCli = "P" Then
             frPresupuestos.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
             frPresupuestos.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
@@ -103,5 +104,24 @@ Public Class frVerClientes
             frPedido.recalcularDescuentos()
         End If
 
+    End Sub
+    Public Sub mostrarEmergente(vCodcli As String)
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+        conexionmy.Open()
+        Dim cmdCli As New MySqlCommand
+        Dim rdrCli As MySqlDataReader
+        cmdCli = New MySqlCommand("SELECT clienteID, mensaje FROM clientes WHERE clienteID = '" + vCodcli + "'", conexionmy)
+
+        cmdCli.CommandType = CommandType.Text
+        cmdCli.Connection = conexionmy
+        rdrCli = cmdCli.ExecuteReader
+        rdrCli.Read()
+
+        MsgBox(rdrCli("mensaje"))
+
+        rdrCli.Close()
+
+        conexionmy.Close()
     End Sub
 End Class

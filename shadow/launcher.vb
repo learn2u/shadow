@@ -59,4 +59,9 @@ Public Class launcher
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
         frPedidoProv.Show()
     End Sub
+
+    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+        frFacturaAlbaran.Show()
+
+    End Sub
 End Class

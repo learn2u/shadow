@@ -133,6 +133,12 @@
     <Compile Include="frEmpresa.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frFacturaAlbaran.Designer.vb">
+      <DependentUpon>frFacturaAlbaran.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frFacturaAlbaran.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frFacturaManual.Designer.vb">
       <DependentUpon>frFacturaManual.vb</DependentUpon>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frEmpresa.resx">
       <DependentUpon>frEmpresa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frFacturaAlbaran.resx">
+      <DependentUpon>frFacturaAlbaran.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frFacturaManual.resx">
       <DependentUpon>frFacturaManual.vb</DependentUpon>

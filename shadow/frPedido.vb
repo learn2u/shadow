@@ -51,9 +51,8 @@ Public Class frPedido
                                                     pedido_cab.totalbruto, 
                                                     pedido_cab.totalpedido, 
                                                     pedido_cab.clienteID, 
-                                                    clientes.clienteID,
-                                                    clientes.codigo 
-                                            FROM pedido_cab INNER JOIN clientes ON pedido_cab.clienteID=clientes.codigo ORDER BY pedido_cab.num_pedido DESC", conexionmy)
+                                                    clientes.clienteID 
+                                            FROM pedido_cab INNER JOIN clientes ON pedido_cab.clienteID=clientes.clienteID ORDER BY pedido_cab.num_pedido DESC", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -611,7 +610,7 @@ Public Class frPedido
         rdrCab.Close()
 
 
-        cmdCli = New MySqlCommand("SELECT * FROM clientes WHERE codigo = '" + txNumcli.Text + "'", conexionmy)
+        cmdCli = New MySqlCommand("SELECT * FROM clientes WHERE clienteID = '" + txNumcli.Text + "'", conexionmy)
 
         cmdCli.CommandType = CommandType.Text
         cmdCli.Connection = conexionmy
