@@ -35,6 +35,8 @@ Public Class frEmpresa
         txTel2.Text = rdr("telefono2")
         txMovil.Text = rdr("telefono3")
         txFax.Text = rdr("num_factura")
+        txPorciva.Text = rdr("iva")
+        txPorcrec.Text = rdr("recargo")
         'txNAlbaran.Text = rdr("num_albaran")
         'txNEntrada.Text = rdr("num_entrada")
         'txNPresupuesto.Text = rdr("num_presupuesto")
@@ -62,6 +64,8 @@ Public Class frEmpresa
                                                 poblacion = '" + txPoblacion.Text + "',
                                                 provincia = '" + txProvincia.Text + "',
                                                 telefono = '" + txTel1.Text + "',
+                                                iva = '" + txPorciva.Text + "',
+                                                recargo = '" + txPorcrec.Text + "',
                                                 telefono2 = '" + txTel2.Text + "'", conexionmy)
             cmdActualizar.ExecuteNonQuery()
             MsgBox("Los datos de configuración se han actualizado correctamente")

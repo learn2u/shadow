@@ -93,6 +93,7 @@ Public Class frVerClientes
             frAlbaran.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
             Me.Hide()
             frAlbaran.recalcularDescuentos()
+            cargoEnvios()
         End If
 
         If formCli = "D" Then
@@ -118,10 +119,44 @@ Public Class frVerClientes
         rdrCli = cmdCli.ExecuteReader
         rdrCli.Read()
 
-        MsgBox(rdrCli("mensaje"))
+        If rdrCli("mensaje") = "" Then
+            'Si el mensaje esta en blanco
+        Else
+            MsgBox(rdrCli("mensaje"))
+        End If
+
+
 
         rdrCli.Close()
 
         conexionmy.Close()
+    End Sub
+    Public Sub cargoEnvios()
+        frAlbaran.cbEnvio.ResetText()
+
+        Dim cn As MySqlConnection
+        Dim cm As MySqlCommand
+
+        Dim da As MySqlDataAdapter
+        Dim ds As DataSet
+        cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+        cn.Open()
+        cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & frAlbaran.txNumcli.Text & "'", cn)
+
+
+        cm.CommandType = CommandType.Text
+        cm.Connection = cn
+
+        da = New MySqlDataAdapter(cm)
+        ds = New DataSet()
+        da.Fill(ds)
+
+
+        frAlbaran.cbEnvio.DataSource = ds.Tables(0)
+        frAlbaran.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
+        frAlbaran.cbEnvio.ValueMember = "envioID"
+
+        cn.Close()
     End Sub
 End Class

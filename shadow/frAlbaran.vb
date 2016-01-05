@@ -13,6 +13,8 @@ Public Class frAlbaran
     Public Shared cantIni As Decimal
     Public Shared cantFin As Decimal
     Public Shared serieIni As String
+    Public Shared posicion As Integer
+
     Private Sub frAlbaran_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
 
@@ -109,7 +111,7 @@ Public Class frAlbaran
         txtNumpres.Text = ""
         txFecha.Text = ""
         txReferenciapres.Text = ""
-        txBultos.Text = ""
+        txBultos.Text = 0
         txNumcli.Text = ""
         txClientepres.Text = ""
         txAgente.Text = ""
@@ -147,6 +149,9 @@ Public Class frAlbaran
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(9).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(10).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(11).Value = ""
+                dgLineasPres1.Focus()
+                dgLineasPres1.CurrentCell = dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(2)
+                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(2).Selected = True
             Else
                 lineas = lineas + 1
                 dgLineasPres2.Rows.Add()
@@ -159,6 +164,9 @@ Public Class frAlbaran
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(10).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(11).Value = ""
+                dgLineasPres2.Focus()
+                dgLineasPres2.CurrentCell = dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(2)
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(2).Selected = True
             End If
 
         End If
@@ -297,6 +305,10 @@ Public Class frAlbaran
             recalcularTotales()
 
         End If
+        If (e.ColumnIndex = 2) Then
+            Dim vRef As String = dgLineasPres1.CurrentCell.Value
+            cargarArticulos(vRef)
+        End If
     End Sub
 
     Private Sub cmdCliente_ButtonClick(sender As Object, e As EventArgs) Handles cmdCliente.ButtonClick
@@ -380,7 +392,7 @@ Public Class frAlbaran
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, serie, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, bultos, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txBultos.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, serie, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, bultos, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txBultos.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
             cmd.ExecuteNonQuery()
             If cbSerie.Text = "S1" Then
                 Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran = '" + txtNumpres.Text + "'", conexionmy)
@@ -449,9 +461,9 @@ Public Class frAlbaran
                 cmdLinea.ExecuteNonQuery()
                 If row.Cells(11).Value = "" Then
                     'descontarStock(arti, lincant)
-                    MsgBox("no hay lote")
+                    'MsgBox("no hay lote")
                 Else
-                    MsgBox(row.Cells(11).Value)
+                    'MsgBox(row.Cells(11).Value)
                 End If
 
             Next
@@ -482,7 +494,7 @@ Public Class frAlbaran
             'Guardo cabecera y actualizo número de presupuesto
 
             If vSerie = serieIni Then
-                Dim cmd As New MySqlCommand("UPDATE albaran_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalalbaran = '" + guardo_imptot + "', serie = '" + vSerie + "' WHERE num_albaran = " + txtNumpres.Text + "", conexionmy)
+                Dim cmd As New MySqlCommand("UPDATE albaran_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', bultos = '" + txBultos.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalalbaran = '" + guardo_imptot + "', serie = '" + vSerie + "' WHERE num_albaran = " + txtNumpres.Text + "", conexionmy)
                 cmd.ExecuteNonQuery()
 
             Else
@@ -491,7 +503,7 @@ Public Class frAlbaran
                 Dim cmdEliminarCab As New MySqlCommand("DELETE FROM albaran_cab WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
                 cmdEliminarCab.ExecuteNonQuery()
                 cargoNumero()
-                Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, serie, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, bultos, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txBultos.Text + "','" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
+                Dim cmd As New MySqlCommand("INSERT INTO albaran_cab (num_albaran, serie, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, bultos, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txBultos.Text + "','" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N')", conexionmy)
                 cmd.ExecuteNonQuery()
                 If cbSerie.Text = "S1" Then
                     Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran = '" + txtNumpres.Text + "'", conexionmy)
@@ -652,6 +664,13 @@ Public Class frAlbaran
             cbSerie.Text = "S2"
             serieIni = "2"
         End If
+        If rdrCab("facturado") = "N" Then
+            cbEstado.Text = "NO FACTURADO"
+        Else
+            cbEstado.Text = "FACTURADO"
+        End If
+        cbEstado.Enabled = False
+
 
         rdrCab.Close()
 
@@ -670,6 +689,8 @@ Public Class frAlbaran
         rdrCli.Close()
 
         conexionmy.Close()
+        cargoEnvios()
+
     End Sub
     Public Sub cargoLineas()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -743,6 +764,10 @@ Public Class frAlbaran
             'MsgBox(cantIni)
             'MsgBox(cantFin)
         End If
+        If (e.ColumnIndex = 2) Then
+            Dim vRef As String = dgLineasPres2.CurrentCell.Value
+            cargarArticulos(vRef)
+        End If
     End Sub
     Public Sub recalcularDescuentos()
         For Each row2 As DataGridViewRow In dgLineasPres2.Rows
@@ -815,6 +840,7 @@ Public Class frAlbaran
             tsBotones.Focus()
             cmdLineas.Select()
         End If
+
     End Sub
 
     Private Sub dgLineasPres2_CellLeave(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellLeave
@@ -822,5 +848,81 @@ Public Class frAlbaran
             tsBotones.Focus()
             cmdLineas.Select()
         End If
+        If (e.ColumnIndex = 2) Then
+            Dim vRef As String = dgLineasPres2.CurrentRow.Cells(2).Value
+            cargarArticulos(vRef)
+        End If
+    End Sub
+
+    Private Sub dgLineasPres2_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellValueChanged
+        If dgLineasPres2.CurrentCell Is Nothing Then
+            Exit Sub
+        Else
+
+            If Me.dgLineasPres2.Columns("Columna3").Index = e.ColumnIndex Then
+                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres2.CurrentCell.Value = cellValue
+
+            End If
+        End If
+    End Sub
+    Public Sub cargoEnvios()
+        cbEnvio.ResetText()
+
+        Dim cn As MySqlConnection
+        Dim cm As MySqlCommand
+
+        Dim da As MySqlDataAdapter
+        Dim ds As DataSet
+        cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+        cn.Open()
+        cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & txNumcli.Text & "'", cn)
+
+
+        cm.CommandType = CommandType.Text
+        cm.Connection = cn
+
+        da = New MySqlDataAdapter(cm)
+        ds = New DataSet()
+        da.Fill(ds)
+
+
+        cbEnvio.DataSource = ds.Tables(0)
+        cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
+        cbEnvio.ValueMember = "envioID"
+
+        cn.Close()
+    End Sub
+    Public Sub cargarArticulos(refer As String)
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmdCli As New MySqlCommand
+        Dim rdrArt As MySqlDataReader
+        cmdCli = New MySqlCommand("SELECT ref_proveedor,referencia,descripcion,pvp,iva,medidaID,familia FROM articulos2 WHERE ref_proveedor = '" & refer & "'", conexionmy)
+
+
+        cmdCli.CommandType = CommandType.Text
+        cmdCli.Connection = conexionmy
+        rdrArt = cmdCli.ExecuteReader
+        rdrArt.Read()
+
+        If rdrArt.HasRows = True Then
+            dgLineasPres1.CurrentRow.Cells(3).Value = rdrArt("descripcion")
+            dgLineasPres1.CurrentRow.Cells(5).Value = rdrArt("medidaID")
+            dgLineasPres1.CurrentRow.Cells(7).Value = rdrArt("pvp")
+            txIva.Text = rdrArt("iva")
+        Else
+
+        End If
+
+
+
+        rdrArt.Close()
+
+        conexionmy.Close()
     End Sub
 End Class
