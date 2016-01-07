@@ -831,6 +831,22 @@ Public Class frAlbaran
                 dgLineasPres1.CurrentCell.Value = cellValue
 
             End If
+            If Me.dgLineasPres1.Columns("Column6").Index = e.ColumnIndex Then
+                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres1.CurrentCell.Value = cellValue
+
+            End If
+            If Me.dgLineasPres1.Columns("Column7").Index = e.ColumnIndex Then
+                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres1.CurrentCell.Value = cellValue
+
+            End If
         End If
 
     End Sub
@@ -860,6 +876,22 @@ Public Class frAlbaran
         Else
 
             If Me.dgLineasPres2.Columns("Columna3").Index = e.ColumnIndex Then
+                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres2.CurrentCell.Value = cellValue
+
+            End If
+            If Me.dgLineasPres2.Columns("Columna6").Index = e.ColumnIndex Then
+                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres2.CurrentCell.Value = cellValue
+
+            End If
+            If Me.dgLineasPres2.Columns("Columna7").Index = e.ColumnIndex Then
                 Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
 

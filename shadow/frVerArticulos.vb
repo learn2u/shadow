@@ -9,7 +9,7 @@ Public Class frVerArticulos
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT referencia,descripcion,pvp,iva,medidaID,familia FROM articulos2", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT ref_proveedor,referencia,descripcion,pvp,stock,stock_disp,iva,medidaID,familia FROM articulos2", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -24,27 +24,39 @@ Public Class frVerArticulos
 
         dgArticulos.DataSource = bind
         dgArticulos.AutoGenerateColumns = False
-        dgArticulos.Columns(0).HeaderText = "REFERENCIA"
-        dgArticulos.Columns(0).Name = "referen"
+        dgArticulos.Columns(0).HeaderText = "REF PROV"
+        dgArticulos.Columns(0).Name = "refpro"
         dgArticulos.Columns(0).FillWeight = 80
         dgArticulos.Columns(0).MinimumWidth = 80
-        dgArticulos.Columns(1).HeaderText = "DESCRIPCION"
-        dgArticulos.Columns(1).Name = "descrip"
-        dgArticulos.Columns(1).FillWeight = 245
-        dgArticulos.Columns(1).MinimumWidth = 245
-        dgArticulos.Columns(2).HeaderText = "PRECIO"
-        dgArticulos.Columns(2).Name = "prec"
-        dgArticulos.Columns(2).FillWeight = 50
-        dgArticulos.Columns(2).MinimumWidth = 50
-        dgArticulos.Columns(3).HeaderText = "IVA"
-        dgArticulos.Columns(3).Name = "porciva"
-        dgArticulos.Columns(3).Visible = False
-        dgArticulos.Columns(4).HeaderText = "MEDIDA"
-        dgArticulos.Columns(4).Name = "longitud"
-        dgArticulos.Columns(4).Visible = False
-        dgArticulos.Columns(5).HeaderText = "FAMILIA"
-        dgArticulos.Columns(5).Name = "fam"
-        dgArticulos.Columns(5).Visible = False
+        dgArticulos.Columns(1).HeaderText = "REFERENCIA"
+        dgArticulos.Columns(1).Name = "referen"
+        dgArticulos.Columns(1).FillWeight = 80
+        dgArticulos.Columns(1).MinimumWidth = 80
+        dgArticulos.Columns(2).HeaderText = "DESCRIPCION"
+        dgArticulos.Columns(2).Name = "descrip"
+        dgArticulos.Columns(2).FillWeight = 245
+        dgArticulos.Columns(2).MinimumWidth = 245
+        dgArticulos.Columns(3).HeaderText = "PRECIO"
+        dgArticulos.Columns(3).Name = "prec"
+        dgArticulos.Columns(3).FillWeight = 50
+        dgArticulos.Columns(3).MinimumWidth = 50
+        dgArticulos.Columns(4).HeaderText = "STOCK"
+        dgArticulos.Columns(4).Name = "stock"
+        dgArticulos.Columns(4).FillWeight = 50
+        dgArticulos.Columns(4).MinimumWidth = 50
+        dgArticulos.Columns(5).HeaderText = "DISP"
+        dgArticulos.Columns(5).Name = "disponible"
+        dgArticulos.Columns(5).FillWeight = 50
+        dgArticulos.Columns(5).MinimumWidth = 50
+        dgArticulos.Columns(6).HeaderText = "IVA"
+        dgArticulos.Columns(6).Name = "porciva"
+        dgArticulos.Columns(6).Visible = False
+        dgArticulos.Columns(7).HeaderText = "MEDIDA"
+        dgArticulos.Columns(7).Name = "longitud"
+        dgArticulos.Columns(7).Visible = False
+        dgArticulos.Columns(8).HeaderText = "FAMILIA"
+        dgArticulos.Columns(8).Name = "fam"
+        dgArticulos.Columns(8).Visible = False
 
 
         dgArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
@@ -57,7 +69,7 @@ Public Class frVerArticulos
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT referencia,descripcion,pvp,iva,medidaID,familia FROM articulos2 WHERE referencia LIKE'" & txCodigo.Text & "%'", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT ref_proveedor,referencia,descripcion,pvp,stock,stock_disp,iva,medidaID,familia FROM articulos2 WHERE referencia LIKE'" & txCodigo.Text & "%'", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -73,27 +85,39 @@ Public Class frVerArticulos
         bind.DataSource = dtable
         dgArticulos.DataSource = bind
         dgArticulos.AutoGenerateColumns = False
-        dgArticulos.Columns(0).HeaderText = "REFERENCIA"
-        dgArticulos.Columns(0).Name = "referen"
+        dgArticulos.Columns(0).HeaderText = "REF PROV"
+        dgArticulos.Columns(0).Name = "refpro"
         dgArticulos.Columns(0).FillWeight = 80
         dgArticulos.Columns(0).MinimumWidth = 80
-        dgArticulos.Columns(1).HeaderText = "DESCRIPCION"
-        dgArticulos.Columns(1).Name = "descrip"
-        dgArticulos.Columns(1).FillWeight = 245
-        dgArticulos.Columns(1).MinimumWidth = 245
-        dgArticulos.Columns(2).HeaderText = "PRECIO"
-        dgArticulos.Columns(2).Name = "prec"
-        dgArticulos.Columns(2).FillWeight = 50
-        dgArticulos.Columns(2).MinimumWidth = 50
-        dgArticulos.Columns(3).HeaderText = "IVA"
-        dgArticulos.Columns(3).Name = "porciva"
-        dgArticulos.Columns(3).Visible = False
-        dgArticulos.Columns(4).HeaderText = "MEDIDA"
-        dgArticulos.Columns(4).Name = "longitud"
-        dgArticulos.Columns(4).Visible = False
-        dgArticulos.Columns(5).HeaderText = "FAMILIA"
-        dgArticulos.Columns(5).Name = "fam"
-        dgArticulos.Columns(5).Visible = False
+        dgArticulos.Columns(1).HeaderText = "REFERENCIA"
+        dgArticulos.Columns(1).Name = "referen"
+        dgArticulos.Columns(1).FillWeight = 80
+        dgArticulos.Columns(1).MinimumWidth = 80
+        dgArticulos.Columns(2).HeaderText = "DESCRIPCION"
+        dgArticulos.Columns(2).Name = "descrip"
+        dgArticulos.Columns(2).FillWeight = 245
+        dgArticulos.Columns(2).MinimumWidth = 245
+        dgArticulos.Columns(3).HeaderText = "PRECIO"
+        dgArticulos.Columns(3).Name = "prec"
+        dgArticulos.Columns(3).FillWeight = 50
+        dgArticulos.Columns(3).MinimumWidth = 50
+        dgArticulos.Columns(4).HeaderText = "STOCK"
+        dgArticulos.Columns(4).Name = "stock"
+        dgArticulos.Columns(4).FillWeight = 50
+        dgArticulos.Columns(4).MinimumWidth = 50
+        dgArticulos.Columns(5).HeaderText = "DISP"
+        dgArticulos.Columns(5).Name = "disponible"
+        dgArticulos.Columns(5).FillWeight = 50
+        dgArticulos.Columns(5).MinimumWidth = 50
+        dgArticulos.Columns(6).HeaderText = "IVA"
+        dgArticulos.Columns(6).Name = "porciva"
+        dgArticulos.Columns(6).Visible = False
+        dgArticulos.Columns(7).HeaderText = "MEDIDA"
+        dgArticulos.Columns(7).Name = "longitud"
+        dgArticulos.Columns(7).Visible = False
+        dgArticulos.Columns(8).HeaderText = "FAMILIA"
+        dgArticulos.Columns(8).Name = "fam"
+        dgArticulos.Columns(8).Visible = False
         dgArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
         conexionmy.Close()
@@ -104,7 +128,7 @@ Public Class frVerArticulos
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT referencia,descripcion,pvp,iva,medidaID,familia FROM articulos2 WHERE descripcion LIKE'" & txArticulo.Text & "%'", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT ref_proveedor,referencia,descripcion,pvp,stock,stock_disp,iva,medidaID,familia FROM articulos2 WHERE descripcion LIKE'" & txArticulo.Text & "%'", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -120,27 +144,39 @@ Public Class frVerArticulos
         bind.DataSource = dtable
         dgArticulos.DataSource = bind
         dgArticulos.AutoGenerateColumns = False
-        dgArticulos.Columns(0).HeaderText = "REFERENCIA"
-        dgArticulos.Columns(0).Name = "referen"
+        dgArticulos.Columns(0).HeaderText = "REF PROV"
+        dgArticulos.Columns(0).Name = "refpro"
         dgArticulos.Columns(0).FillWeight = 80
         dgArticulos.Columns(0).MinimumWidth = 80
-        dgArticulos.Columns(1).HeaderText = "DESCRIPCION"
-        dgArticulos.Columns(1).Name = "descrip"
-        dgArticulos.Columns(1).FillWeight = 245
-        dgArticulos.Columns(1).MinimumWidth = 245
-        dgArticulos.Columns(2).HeaderText = "PRECIO"
-        dgArticulos.Columns(2).Name = "prec"
-        dgArticulos.Columns(2).FillWeight = 50
-        dgArticulos.Columns(2).MinimumWidth = 50
-        dgArticulos.Columns(3).HeaderText = "IVA"
-        dgArticulos.Columns(3).Name = "porciva"
-        dgArticulos.Columns(3).Visible = False
-        dgArticulos.Columns(4).HeaderText = "MEDIDA"
-        dgArticulos.Columns(4).Name = "longitud"
-        dgArticulos.Columns(4).Visible = False
-        dgArticulos.Columns(5).HeaderText = "FAMILIA"
-        dgArticulos.Columns(5).Name = "fam"
-        dgArticulos.Columns(5).Visible = False
+        dgArticulos.Columns(1).HeaderText = "REFERENCIA"
+        dgArticulos.Columns(1).Name = "referen"
+        dgArticulos.Columns(1).FillWeight = 80
+        dgArticulos.Columns(1).MinimumWidth = 80
+        dgArticulos.Columns(2).HeaderText = "DESCRIPCION"
+        dgArticulos.Columns(2).Name = "descrip"
+        dgArticulos.Columns(2).FillWeight = 245
+        dgArticulos.Columns(2).MinimumWidth = 245
+        dgArticulos.Columns(3).HeaderText = "PRECIO"
+        dgArticulos.Columns(3).Name = "prec"
+        dgArticulos.Columns(3).FillWeight = 50
+        dgArticulos.Columns(3).MinimumWidth = 50
+        dgArticulos.Columns(4).HeaderText = "STOCK"
+        dgArticulos.Columns(4).Name = "stock"
+        dgArticulos.Columns(4).FillWeight = 50
+        dgArticulos.Columns(4).MinimumWidth = 50
+        dgArticulos.Columns(5).HeaderText = "DISP"
+        dgArticulos.Columns(5).Name = "disponible"
+        dgArticulos.Columns(5).FillWeight = 50
+        dgArticulos.Columns(5).MinimumWidth = 50
+        dgArticulos.Columns(6).HeaderText = "IVA"
+        dgArticulos.Columns(6).Name = "porciva"
+        dgArticulos.Columns(6).Visible = False
+        dgArticulos.Columns(7).HeaderText = "MEDIDA"
+        dgArticulos.Columns(7).Name = "longitud"
+        dgArticulos.Columns(7).Visible = False
+        dgArticulos.Columns(8).HeaderText = "FAMILIA"
+        dgArticulos.Columns(8).Name = "fam"
+        dgArticulos.Columns(8).Visible = False
         dgArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
         conexionmy.Close()

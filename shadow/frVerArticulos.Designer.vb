@@ -36,7 +36,7 @@ Partial Class frVerArticulos
         Me.dgArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgArticulos.Location = New System.Drawing.Point(12, 115)
         Me.dgArticulos.Name = "dgArticulos"
-        Me.dgArticulos.Size = New System.Drawing.Size(710, 334)
+        Me.dgArticulos.Size = New System.Drawing.Size(955, 334)
         Me.dgArticulos.TabIndex = 0
         '
         'Label1
@@ -75,7 +75,7 @@ Partial Class frVerArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(734, 461)
+        Me.ClientSize = New System.Drawing.Size(979, 461)
         Me.Controls.Add(Me.txCodigo)
         Me.Controls.Add(Me.txArticulo)
         Me.Controls.Add(Me.Label2)
