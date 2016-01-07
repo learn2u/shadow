@@ -317,11 +317,19 @@ Public Class frPresupuestos
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
 
             Dim fecha As Date = txFecha.Text
+            Dim vEstado As String
+            If cbEstado.Text = "PENDIENTE" Then
+                vEstado = "P"
+            ElseIf cbEstado.Text = "ACEPTADO" Then
+                vEstado = "A"
+            Else
+                vEstado = "R"
+            End If
 
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO presupuesto_cab (num_presupuesto, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalpresupuesto, aceptado, pedido) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'N', 'N')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO presupuesto_cab (num_presupuesto, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalpresupuesto, estado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', '" + vEstado + "')", conexionmy)
             cmd.ExecuteNonQuery()
             Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
             cmdActualizar.ExecuteNonQuery()
@@ -405,10 +413,18 @@ Public Class frPresupuestos
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
 
             Dim fecha As Date = txFecha.Text
+            Dim vEstado As String
+            If cbEstado.Text = "PENDIENTE" Then
+                vEstado = "P"
+            ElseIf cbEstado.Text = "ACEPTADO" Then
+                vEstado = "A"
+            Else
+                vEstado = "R"
+            End If
 
             'Guardo cabecera y actualizo número de presupuesto
 
-            Dim cmd As New MySqlCommand("UPDATE presupuesto_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalpresupuesto = '" + guardo_imptot + "' WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
+            Dim cmd As New MySqlCommand("UPDATE presupuesto_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalpresupuesto = '" + guardo_imptot + "', estado = '" + vEstado + "' WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
             cmd.ExecuteNonQuery()
 
 

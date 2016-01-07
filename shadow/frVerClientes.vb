@@ -85,6 +85,7 @@ Public Class frVerClientes
             frPresupuestos.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
             Me.Hide()
             frPresupuestos.recalcularDescuentos()
+            cargoEnvios()
         End If
         If formCli = "A" Then
             frAlbaran.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
@@ -103,6 +104,7 @@ Public Class frVerClientes
             frPedido.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
             Me.Hide()
             frPedido.recalcularDescuentos()
+            cargoEnvios()
         End If
 
     End Sub
@@ -132,31 +134,90 @@ Public Class frVerClientes
         conexionmy.Close()
     End Sub
     Public Sub cargoEnvios()
-        frAlbaran.cbEnvio.ResetText()
+        If formCli = "P" Then
+            frPresupuestos.cbEnvio.ResetText()
 
-        Dim cn As MySqlConnection
-        Dim cm As MySqlCommand
+            Dim cn As MySqlConnection
+            Dim cm As MySqlCommand
 
-        Dim da As MySqlDataAdapter
-        Dim ds As DataSet
-        cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            Dim da As MySqlDataAdapter
+            Dim ds As DataSet
+            cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
-        cn.Open()
-        cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & frAlbaran.txNumcli.Text & "'", cn)
-
-
-        cm.CommandType = CommandType.Text
-        cm.Connection = cn
-
-        da = New MySqlDataAdapter(cm)
-        ds = New DataSet()
-        da.Fill(ds)
+            cn.Open()
+            cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & frPresupuestos.txNumcli.Text & "'", cn)
 
 
-        frAlbaran.cbEnvio.DataSource = ds.Tables(0)
-        frAlbaran.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
-        frAlbaran.cbEnvio.ValueMember = "envioID"
+            cm.CommandType = CommandType.Text
+            cm.Connection = cn
 
-        cn.Close()
+            da = New MySqlDataAdapter(cm)
+            ds = New DataSet()
+            da.Fill(ds)
+
+
+            frPresupuestos.cbEnvio.DataSource = ds.Tables(0)
+            frPresupuestos.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
+            frPresupuestos.cbEnvio.ValueMember = "envioID"
+
+            cn.Close()
+        End If
+        If formCli = "A" Then
+            frAlbaran.cbEnvio.ResetText()
+
+            Dim cn As MySqlConnection
+            Dim cm As MySqlCommand
+
+            Dim da As MySqlDataAdapter
+            Dim ds As DataSet
+            cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+            cn.Open()
+            cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & frAlbaran.txNumcli.Text & "'", cn)
+
+
+            cm.CommandType = CommandType.Text
+            cm.Connection = cn
+
+            da = New MySqlDataAdapter(cm)
+            ds = New DataSet()
+            da.Fill(ds)
+
+
+            frAlbaran.cbEnvio.DataSource = ds.Tables(0)
+            frAlbaran.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
+            frAlbaran.cbEnvio.ValueMember = "envioID"
+
+            cn.Close()
+        End If
+        If formCli = "D" Then
+            frPedido.cbEnvio.ResetText()
+
+            Dim cn As MySqlConnection
+            Dim cm As MySqlCommand
+
+            Dim da As MySqlDataAdapter
+            Dim ds As DataSet
+            cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+            cn.Open()
+            cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & frPedido.txNumcli.Text & "'", cn)
+
+
+            cm.CommandType = CommandType.Text
+            cm.Connection = cn
+
+            da = New MySqlDataAdapter(cm)
+            ds = New DataSet()
+            da.Fill(ds)
+
+
+            frPedido.cbEnvio.DataSource = ds.Tables(0)
+            frPedido.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
+            frPedido.cbEnvio.ValueMember = "envioID"
+
+            cn.Close()
+        End If
+
     End Sub
 End Class
