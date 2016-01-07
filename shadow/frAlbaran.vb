@@ -52,9 +52,10 @@ Public Class frAlbaran
                                                     clientes.nombre, 
                                                     albaran_cab.totalbruto, 
                                                     albaran_cab.totalalbaran, 
-                                                    albaran_cab.clienteID, 
+                                                    albaran_cab.clienteID,
+                                                    albaran_cab.eliminado, 
                                                     clientes.clienteID
-                                            FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.clienteID ORDER BY albaran_cab.num_albaran DESC", conexionmy)
+                                            FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.clienteID WHERE eliminado = 'N' ORDER BY albaran_cab.num_albaran DESC", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -102,6 +103,7 @@ Public Class frAlbaran
         dgAlbaranes.Columns(5).MinimumWidth = 90
         dgAlbaranes.Columns(6).Visible = False
         dgAlbaranes.Columns(7).Visible = False
+        dgAlbaranes.Columns(8).Visible = False
         dgAlbaranes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgAlbaranes.Visible = True
 
