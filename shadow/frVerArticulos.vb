@@ -243,7 +243,7 @@ Public Class frVerArticulos
             End If
 
             If formArti = "D" Then
-                If frAlbaran.flagEdit = "N" Then
+                If frPedido.flagEdit = "N" Then
                     frPedido.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("referen").Value
                     frPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     frPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
@@ -263,6 +263,32 @@ Public Class frVerArticulos
                     frPedido.dgLineasPres2.BeginEdit(True)
                     frPedido.actualizarLinea()
                     frPedido.recalcularTotales()
+
+                    Me.Hide()
+                End If
+            End If
+
+            If formArti = "F" Then
+                If frFacturaManual.flagEdit = "N" Then
+                    frFacturaManual.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("referen").Value
+                    frFacturaManual.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
+                    frFacturaManual.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
+                    frFacturaManual.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
+                    frFacturaManual.dgLineasPres1.CurrentCell = frFacturaManual.dgLineasPres1.CurrentRow.Cells(4)
+                    frFacturaManual.dgLineasPres1.BeginEdit(True)
+
+                    Me.Hide()
+                Else
+                    frFacturaManual.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("referen").Value
+                    frFacturaManual.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
+                    frFacturaManual.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
+                    frFacturaManual.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
+                    frFacturaManual.dgLineasPres2.CurrentCell = frFacturaManual.dgLineasPres2.CurrentRow.Cells(4)
+                    frFacturaManual.dgLineasPres2.BeginEdit(True)
+                    frFacturaManual.actualizarLinea()
+                    frFacturaManual.recalcularTotales()
 
                     Me.Hide()
                 End If

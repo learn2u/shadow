@@ -107,6 +107,16 @@ Public Class frVerClientes
             cargoEnvios()
         End If
 
+        If formCli = "F" Then
+            frFacturaManual.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+            frFacturaManual.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+            frFacturaManual.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+            frFacturaManual.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+            Me.Hide()
+            frFacturaManual.recalcularDescuentos()
+            cargoEnvios()
+        End If
+
     End Sub
     Public Sub mostrarEmergente(vCodcli As String)
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -215,6 +225,35 @@ Public Class frVerClientes
             frPedido.cbEnvio.DataSource = ds.Tables(0)
             frPedido.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
             frPedido.cbEnvio.ValueMember = "envioID"
+
+            cn.Close()
+        End If
+
+        If formCli = "F" Then
+            frFacturaManual.cbEnvio.ResetText()
+
+            Dim cn As MySqlConnection
+            Dim cm As MySqlCommand
+
+            Dim da As MySqlDataAdapter
+            Dim ds As DataSet
+            cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+            cn.Open()
+            cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & frFacturaManual.txNumcli.Text & "'", cn)
+
+
+            cm.CommandType = CommandType.Text
+            cm.Connection = cn
+
+            da = New MySqlDataAdapter(cm)
+            ds = New DataSet()
+            da.Fill(ds)
+
+
+            frFacturaManual.cbEnvio.DataSource = ds.Tables(0)
+            frFacturaManual.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
+            frFacturaManual.cbEnvio.ValueMember = "envioID"
 
             cn.Close()
         End If

@@ -243,6 +243,7 @@ Public Class frPresupuestos
     Public Sub deshabilitarBotones()
         cmdGuardar.Enabled = False
         cmdCancelar.Enabled = False
+        cmdDelete.Enabled = False
         cmdImprimir.Enabled = False
         cmdPDF.Enabled = False
         cmdMail.Enabled = False
@@ -601,6 +602,7 @@ Public Class frPresupuestos
 
         cargoPresupuesto()
         cargoLineas()
+        cmdDelete.Enabled = True
         recalcularTotales()
 
 

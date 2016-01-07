@@ -31,6 +31,7 @@ Public Class frPedido
     Public Sub deshabilitarBotones()
         cmdGuardar.Enabled = False
         cmdCancelar.Enabled = False
+        cmdDelete.Enabled = False
         cmdImprimir.Enabled = False
         cmdPDF.Enabled = False
         cmdMail.Enabled = False
@@ -50,9 +51,10 @@ Public Class frPedido
                                                     clientes.nombre, 
                                                     pedido_cab.totalbruto, 
                                                     pedido_cab.totalpedido, 
-                                                    pedido_cab.clienteID, 
+                                                    pedido_cab.clienteID,
+                                                    pedido_cab.eliminado, 
                                                     clientes.clienteID 
-                                            FROM pedido_cab INNER JOIN clientes ON pedido_cab.clienteID=clientes.clienteID ORDER BY pedido_cab.num_pedido DESC", conexionmy)
+                                            FROM pedido_cab INNER JOIN clientes ON pedido_cab.clienteID=clientes.clienteID WHERE eliminado = 'N' ORDER BY pedido_cab.num_pedido DESC", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -100,6 +102,7 @@ Public Class frPedido
         dgPedidos.Columns(5).MinimumWidth = 90
         dgPedidos.Columns(6).Visible = False
         dgPedidos.Columns(7).Visible = False
+        dgPedidos.Columns(8).Visible = False
         dgPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgPedidos.Visible = True
 
@@ -145,6 +148,10 @@ Public Class frPedido
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(8).Value = txDtocli.Text
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(9).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(10).Value = 0
+                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(11).Value = ""
+                dgLineasPres1.Focus()
+                dgLineasPres1.CurrentCell = dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(2)
+                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(2).Selected = True
             Else
                 lineas = lineas + 1
                 dgLineasPres2.Rows.Add()
@@ -156,6 +163,10 @@ Public Class frPedido
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(8).Value = txDtocli.Text
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(10).Value = 0
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(11).Value = ""
+                dgLineasPres2.Focus()
+                dgLineasPres2.CurrentCell = dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(2)
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(2).Selected = True
             End If
 
         End If
@@ -176,6 +187,7 @@ Public Class frPedido
             dgLineasPres1.CurrentRow.Cells(8).Value = txDtocli.Text
             dgLineasPres1.CurrentRow.Cells(9).Value = 0
             dgLineasPres1.CurrentRow.Cells(10).Value = 0
+            dgLineasPres1.CurrentRow.Cells(11).Value = ""
         Else
             dgLineasPres2.Rows.Insert(dgLineasPres2.CurrentRow.Index)
             renumerar()
@@ -190,6 +202,7 @@ Public Class frPedido
             dgLineasPres2.CurrentRow.Cells(8).Value = txDtocli.Text
             dgLineasPres2.CurrentRow.Cells(9).Value = 0
             dgLineasPres2.CurrentRow.Cells(10).Value = 0
+            dgLineasPres2.CurrentRow.Cells(11).Value = ""
         End If
     End Sub
     Public Sub renumerar()
@@ -292,6 +305,10 @@ Public Class frPedido
             recalcularTotales()
 
         End If
+        If (e.ColumnIndex = 2) Then
+            Dim vRef As String = dgLineasPres1.CurrentCell.Value
+            cargarArticulos(vRef)
+        End If
     End Sub
 
     Private Sub cmdCliente_ButtonClick(sender As Object, e As EventArgs) Handles cmdCliente.ButtonClick
@@ -366,11 +383,17 @@ Public Class frPedido
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
 
             Dim fecha As Date = txFecha.Text
+            Dim vEstado As String
+            If cbEstado.Text = "PENDIENTE" Then
+                vEstado = "P"
+            Else
+                vEstado = "E"
+            End If
 
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO pedido_cab (num_pedido, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalpedido, pendiente, enviado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'S', 'N')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO pedido_cab (num_pedido, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalpedido, estado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', '" + vEstado + "')", conexionmy)
             cmd.ExecuteNonQuery()
 
             Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_pedido = '" + txtNumpres.Text + "'", conexionmy)
@@ -460,11 +483,17 @@ Public Class frPedido
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
 
             Dim fecha As Date = txFecha.Text
+            Dim vEstado As String
+            If cbEstado.Text = "PENDIENTE" Then
+                vEstado = "P"
+            Else
+                vEstado = "E"
+            End If
 
             'Guardo cabecera y actualizo número de presupuesto
 
 
-            Dim cmd As New MySqlCommand("UPDATE pedido_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalpedido = '" + guardo_imptot + "' WHERE num_pedido = " + txtNumpres.Text + "", conexionmy)
+            Dim cmd As New MySqlCommand("UPDATE pedido_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalpedido = '" + guardo_imptot + "', estado = '" + vEstado + "' WHERE num_pedido = " + txtNumpres.Text + "", conexionmy)
             cmd.ExecuteNonQuery()
 
 
@@ -581,6 +610,7 @@ Public Class frPedido
 
         cargoPedido()
         cargoLineas()
+        cmdDelete.Enabled = True
         recalcularTotales()
     End Sub
     Public Sub cargoPedido()
@@ -606,7 +636,11 @@ Public Class frPedido
         txAgente.Text = rdrCab("agenteID")
         txReferenciapres.Text = rdrCab("referencia")
         txObserva.Text = rdrCab("observaciones")
-
+        If rdrCab("estado") = "P" Then
+            cbEstado.Text = "PENDIENTE"
+        Else
+            cbEstado.Text = "ENVIADO"
+        End If
         rdrCab.Close()
 
 
@@ -621,9 +655,11 @@ Public Class frPedido
         txClientepres.Text = rdrCli("nombre")
         txDtocli.Text = rdrCli("descuento")
 
+
         rdrCli.Close()
 
         conexionmy.Close()
+        cargoEnvios()
     End Sub
     Public Sub cargoLineas()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -641,6 +677,7 @@ Public Class frPedido
                                             pedido_linea.ivalinea,
                                             pedido_linea.importe,
                                             pedido_linea.totalinea,
+                                            pedido_linea.lote,
                                             pedido_linea.num_pedido
                                             FROM pedido_linea WHERE num_pedido = '" + txtNumpres.Text + "' ORDER BY pedido_linea.linea", conexionmy)
 
@@ -664,6 +701,7 @@ Public Class frPedido
                 'dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = rdrLin("ivalinea")
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = rdrLin("importe")
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(10).Value = rdrLin("totalinea")
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(11).Value = rdrLin("lote")
             Loop
         Else
 
@@ -694,6 +732,10 @@ Public Class frPedido
             'MsgBox(artiEdit)
             'MsgBox(cantIni)
             'MsgBox(cantFin)
+        End If
+        If (e.ColumnIndex = 2) Then
+            Dim vRef As String = dgLineasPres2.CurrentCell.Value
+            cargarArticulos(vRef)
         End If
     End Sub
     Public Sub recalcularDescuentos()
@@ -743,6 +785,144 @@ Public Class frPedido
         If (e.ColumnIndex = 4) Then
             artiEdit = dgLineasPres2.CurrentRow.Cells(2).Value
             cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
+        End If
+    End Sub
+    Public Sub cargarArticulos(refer As String)
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmdCli As New MySqlCommand
+        Dim rdrArt As MySqlDataReader
+        cmdCli = New MySqlCommand("SELECT ref_proveedor,referencia,descripcion,pvp,iva,medidaID,familia FROM articulos2 WHERE ref_proveedor = '" & refer & "'", conexionmy)
+
+
+        cmdCli.CommandType = CommandType.Text
+        cmdCli.Connection = conexionmy
+        rdrArt = cmdCli.ExecuteReader
+        rdrArt.Read()
+
+        If rdrArt.HasRows = True Then
+            dgLineasPres1.CurrentRow.Cells(3).Value = rdrArt("descripcion")
+            dgLineasPres1.CurrentRow.Cells(5).Value = rdrArt("medidaID")
+            dgLineasPres1.CurrentRow.Cells(7).Value = rdrArt("pvp")
+            txIva.Text = rdrArt("iva")
+        Else
+
+        End If
+
+
+
+        rdrArt.Close()
+
+        conexionmy.Close()
+    End Sub
+    Public Sub cargoEnvios()
+        cbEnvio.ResetText()
+
+        Dim cn As MySqlConnection
+        Dim cm As MySqlCommand
+
+        Dim da As MySqlDataAdapter
+        Dim ds As DataSet
+        cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+        cn.Open()
+        cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & txNumcli.Text & "'", cn)
+
+
+        cm.CommandType = CommandType.Text
+        cm.Connection = cn
+
+        da = New MySqlDataAdapter(cm)
+        ds = New DataSet()
+        da.Fill(ds)
+
+
+        cbEnvio.DataSource = ds.Tables(0)
+        cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
+        cbEnvio.ValueMember = "envioID"
+
+        cn.Close()
+    End Sub
+
+    Private Sub dgLineasPres1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellValueChanged
+        If dgLineasPres1.CurrentCell Is Nothing Then
+            Exit Sub
+        Else
+
+            If Me.dgLineasPres1.Columns("Column3").Index = e.ColumnIndex Then
+                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres1.CurrentCell.Value = cellValue
+
+            End If
+            If Me.dgLineasPres1.Columns("Column6").Index = e.ColumnIndex Then
+                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres1.CurrentCell.Value = cellValue
+
+            End If
+            If Me.dgLineasPres1.Columns("Column7").Index = e.ColumnIndex Then
+                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres1.CurrentCell.Value = cellValue
+
+            End If
+        End If
+    End Sub
+
+    Private Sub dgLineasPres1_CellLeave(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellLeave
+        If (e.ColumnIndex = 8) Then
+            tsBotones.Focus()
+            cmdLineas.Select()
+        End If
+    End Sub
+
+    Private Sub dgLineasPres2_CellLeave(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellLeave
+        If (e.ColumnIndex = 8) Then
+            tsBotones.Focus()
+            cmdLineas.Select()
+        End If
+        If (e.ColumnIndex = 2) Then
+            Dim vRef As String = dgLineasPres2.CurrentRow.Cells(2).Value
+            cargarArticulos(vRef)
+        End If
+    End Sub
+
+    Private Sub dgLineasPres2_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellValueChanged
+        If dgLineasPres2.CurrentCell Is Nothing Then
+            Exit Sub
+        Else
+
+            If Me.dgLineasPres2.Columns("Columna3").Index = e.ColumnIndex Then
+                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres2.CurrentCell.Value = cellValue
+
+            End If
+            If Me.dgLineasPres2.Columns("Columna6").Index = e.ColumnIndex Then
+                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres2.CurrentCell.Value = cellValue
+
+            End If
+            If Me.dgLineasPres2.Columns("Columna7").Index = e.ColumnIndex Then
+                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres2.CurrentCell.Value = cellValue
+
+            End If
         End If
     End Sub
 End Class
