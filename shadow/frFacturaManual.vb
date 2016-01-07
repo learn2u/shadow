@@ -117,7 +117,7 @@ Public Class frFacturaManual
         txAgente.Text = ""
         txDtocli.Text = ""
         txIva.Text = ""
-        cbEstado.Text = ""
+        'cbEstado.Text = ""
         cbEnvio.Text = ""
         txObserva.Text = ""
         txImpBruto.Text = 0
@@ -351,7 +351,7 @@ Public Class frFacturaManual
         dgLineasPres2.Visible = False
         dgLineasPres1.Visible = True
         cbSerie.Text = "S1"
-        cbEstado.Text = "NO FACTURADO"
+        'cbEstado.Text = "NO FACTURADO"
         txFecha.Text = Format(Today, "ddMMyyyy")
         txReferenciapres.Focus()
     End Sub
