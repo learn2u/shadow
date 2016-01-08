@@ -122,6 +122,7 @@ Partial Class frAlbaran
         Me.tsBotones = New System.Windows.Forms.ToolStrip()
         Me.cmdNuevo = New System.Windows.Forms.ToolStripButton()
         Me.cmdGuardar = New System.Windows.Forms.ToolStripButton()
+        Me.cmdDelete = New System.Windows.Forms.ToolStripButton()
         Me.dgAlbaranes = New System.Windows.Forms.DataGridView()
         Me.rbTodos = New System.Windows.Forms.RadioButton()
         Me.btBuscar = New System.Windows.Forms.Button()
@@ -143,7 +144,6 @@ Partial Class frAlbaran
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.tabPresupuestos = New System.Windows.Forms.TabControl()
-        Me.cmdDelete = New System.Windows.Forms.ToolStripButton()
         CType(Me.dgLineasPres1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgLineasPres2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
@@ -990,6 +990,15 @@ Partial Class frAlbaran
         Me.cmdGuardar.Text = "ToolStripButton1"
         Me.cmdGuardar.ToolTipText = "Guardar Albarán"
         '
+        'cmdDelete
+        '
+        Me.cmdDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.cmdDelete.Image = CType(resources.GetObject("cmdDelete.Image"), System.Drawing.Image)
+        Me.cmdDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.cmdDelete.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdDelete.Name = "cmdDelete"
+        Me.cmdDelete.Size = New System.Drawing.Size(28, 35)
+        '
         'dgAlbaranes
         '
         Me.dgAlbaranes.AllowUserToAddRows = False
@@ -1204,15 +1213,6 @@ Partial Class frAlbaran
         Me.tabPresupuestos.Size = New System.Drawing.Size(1221, 565)
         Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.tabPresupuestos.TabIndex = 1
-        '
-        'cmdDelete
-        '
-        Me.cmdDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.cmdDelete.Image = CType(resources.GetObject("cmdDelete.Image"), System.Drawing.Image)
-        Me.cmdDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.cmdDelete.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdDelete.Name = "cmdDelete"
-        Me.cmdDelete.Size = New System.Drawing.Size(28, 35)
         '
         'frAlbaran
         '

@@ -955,10 +955,33 @@ Public Class frAlbaran
 
         End If
 
-
-
         rdrArt.Close()
 
         conexionmy.Close()
+    End Sub
+
+    Private Sub cmdDelete_Click(sender As Object, e As EventArgs) Handles cmdDelete.Click
+        Dim respuesta As String
+        respuesta = MsgBox("El borrado de albaranes es una acción no recuperable. ¿Está seguro?", vbYesNo)
+        If respuesta = vbYes Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdEliminar As New MySqlCommand("DELETE FROM albaran_cab WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
+            cmdEliminar.ExecuteNonQuery()
+
+            Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM albaran_linea WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
+            cmdEliminarLineas.ExecuteNonQuery()
+
+            conexionmy.Close()
+            deshabilitarBotones()
+            limpiarFormulario()
+            dgLineasPres2.Rows.Clear()
+            cmdNuevo.Enabled = True
+            cargoTodosAlbaranes()
+            tabPresupuestos.SelectTab(0)
+            flagEdit = "N"
+
+        End If
     End Sub
 End Class
