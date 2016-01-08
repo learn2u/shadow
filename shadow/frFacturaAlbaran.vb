@@ -152,11 +152,6 @@ Public Class frFacturaAlbaran
         Dim selectedRowCount As Integer = dgAlbaranes.Rows.GetRowCount(DataGridViewElementStates.Selected)
         Dim albaranes(selectedRowCount) As Integer
 
-
-        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
-        conexionmy.Open()
-
-
         If selectedRowCount > 0 Then
             Dim contador As Integer
 
@@ -167,7 +162,7 @@ Public Class frFacturaAlbaran
                 facturoAlbaran(numAlb)
             Next
         End If
-        conexionmy.Close()
+
         Me.Close()
 
     End Sub
@@ -290,40 +285,19 @@ Public Class frFacturaAlbaran
     End Sub
 
     Private Sub btFacturarTodos_Click(sender As Object, e As EventArgs) Handles btFacturarTodos.Click
-        cargoNumero()
 
         Dim selectedRowCount As Integer = dgAlbaranes.Rows.GetRowCount(DataGridViewElementStates.Selected)
-        Dim albaranes(selectedRowCount) As Integer
-        Dim texto As String
         Dim row As New DataGridViewRow
-        texto = ""
-        Dim fechaFra As Date = txFechaFra.Text
 
-        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
-        conexionmy.Open()
-        Dim cmd As New MySqlCommand
-        Dim cmdupdate As New MySqlCommand
-        cmd.CommandType = System.Data.CommandType.Text
-        cmdupdate.CommandType = System.Data.CommandType.Text
 
         If selectedRowCount = 0 Then
-            Dim contador As Integer
-
             For Each row In dgAlbaranes.Rows
-                albaranes(contador) = dgAlbaranes.SelectedRows(contador).Cells(0).Value
-
-                cmd.CommandText = "INSERT INTO factura_albaran (num_factura, num_albaran, fecha, clienteID) VALUES (" + txNumero.Text + " , " + dgAlbaranes.SelectedRows(contador).Cells(0).Value.ToString() + " , '" + fechaFra.ToString("yyyy-MM-dd") + "' ,  " + txCodcli.Text + ")"
-                cmd.Connection = conexionmy
-                cmdupdate.CommandText = "UPDATE albaran_cab SET facturado = 'S' WHERE num_albaran = " + dgAlbaranes.SelectedRows(contador).Cells(0).Value.ToString() + ""
-                cmdupdate.Connection = conexionmy
-                cmd.ExecuteNonQuery()
-                cmdupdate.ExecuteNonQuery()
+                Dim numAlb As Integer
+                numAlb = row.Cells(0).Value
+                facturoAlbaran(numAlb)
             Next
         End If
 
-        Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_factura = '" + txNumero.Text + "'  ", conexionmy)
-        cmdActualizar.ExecuteNonQuery()
-        conexionmy.Close()
         Me.Close()
     End Sub
 
@@ -380,6 +354,7 @@ Public Class frFacturaAlbaran
         Dim cmdAlb As New MySqlCommand
         Dim cmd As New MySqlCommand
         cmd.CommandType = System.Data.CommandType.Text
+
         Dim rdrAlb As MySqlDataReader
         cmdAlb = New MySqlCommand("SELECT * FROM albaran_cab WHERE num_albaran = '" & nAlb & "'", conexionmy)
 
@@ -390,8 +365,9 @@ Public Class frFacturaAlbaran
         rdrAlb.Read()
 
         If rdrAlb.HasRows = True Then
-            Dim vFecha As Date = txFechaFra.Text
+
             cargoNumero()
+            Dim vFecha As Date = txFechaFra.Text
             Dim vCliente As String = rdrAlb("clienteID").ToString
             Dim vEnvio As String = rdrAlb("envioID").ToString
             Dim vEmpresa As String = rdrAlb("empresaID").ToString
@@ -404,10 +380,18 @@ Public Class frFacturaAlbaran
             Dim vReferencia As String = rdrAlb("referencia")
             Dim vObservaciones As String = rdrAlb("observaciones")
             Dim vAlb As String = nAlb.ToString
+            Dim vDescrip As String = "Albarán Nº " + vAlb
+
             rdrAlb.Close()
             cmd.CommandText = "INSERT INTO factura_cab (num_factura, serie, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalfactura, manual, eliminado, num_albaran) VALUES (" + txNumero.Text + " , '1' , " + vCliente + ", " + vEnvio + ", " + vEmpresa + ", " + vAgente + ", " + vUsuario + ", '" + vFecha.ToString("yyyy-MM-dd") + "', '" + vReferencia + "', '" + vObservaciones + "', '" + vBruto + "', '" + vDto + "', '" + vIva + "', '" + vTotal + "', 'N', 'N', " + vAlb + ")"
             cmd.Connection = conexionmy
             cmd.ExecuteNonQuery()
+
+            Dim cmdLinea As New MySqlCommand
+            cmdLinea.CommandType = System.Data.CommandType.Text
+            cmdLinea.CommandText = "INSERT INTO factura_linea (num_factura, articuloID, descripcion, cantidad, precio, descuento, ivalinea, totalinea, linea) VALUES (" + txNumero.Text + " , '99999' , '" + vDescrip + "', 1, '" + vBruto + "', '" + vDto + "', '" + vIva + "', '" + vTotal + "', 1)"
+            cmdLinea.Connection = conexionmy
+            cmdLinea.ExecuteNonQuery()
         Else
             'Por si no encuentra el albaran
             MsgBox("Albarán no disponible en la base de datos")

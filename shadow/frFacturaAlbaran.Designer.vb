@@ -28,10 +28,14 @@ Partial Class frFacturaAlbaran
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txNumero = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txFechaH = New System.Windows.Forms.MaskedTextBox()
+        Me.txFechaD = New System.Windows.Forms.MaskedTextBox()
         Me.btFiltroFecha = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.txAlbaH = New System.Windows.Forms.TextBox()
+        Me.txAlbaD = New System.Windows.Forms.TextBox()
         Me.btFiltroAlbaran = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -54,10 +58,6 @@ Partial Class frFacturaAlbaran
         Me.cmdRentabilidad = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.txCliente = New System.Windows.Forms.TextBox()
-        Me.txFechaD = New System.Windows.Forms.MaskedTextBox()
-        Me.txFechaH = New System.Windows.Forms.MaskedTextBox()
-        Me.txAlbaD = New System.Windows.Forms.TextBox()
-        Me.txAlbaH = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgClientes, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,6 +117,22 @@ Partial Class frFacturaAlbaran
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "FECHAS"
         '
+        'txFechaH
+        '
+        Me.txFechaH.Location = New System.Drawing.Point(212, 36)
+        Me.txFechaH.Mask = "00/00/0000"
+        Me.txFechaH.Name = "txFechaH"
+        Me.txFechaH.Size = New System.Drawing.Size(81, 20)
+        Me.txFechaH.TabIndex = 1
+        '
+        'txFechaD
+        '
+        Me.txFechaD.Location = New System.Drawing.Point(59, 36)
+        Me.txFechaD.Mask = "00/00/0000"
+        Me.txFechaD.Name = "txFechaD"
+        Me.txFechaD.Size = New System.Drawing.Size(81, 20)
+        Me.txFechaD.TabIndex = 0
+        '
         'btFiltroFecha
         '
         Me.btFiltroFecha.Image = CType(resources.GetObject("btFiltroFecha.Image"), System.Drawing.Image)
@@ -157,6 +173,20 @@ Partial Class frFacturaAlbaran
         Me.GroupBox2.TabIndex = 107
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ALBARANES"
+        '
+        'txAlbaH
+        '
+        Me.txAlbaH.Location = New System.Drawing.Point(225, 36)
+        Me.txAlbaH.Name = "txAlbaH"
+        Me.txAlbaH.Size = New System.Drawing.Size(74, 20)
+        Me.txAlbaH.TabIndex = 4
+        '
+        'txAlbaD
+        '
+        Me.txAlbaD.Location = New System.Drawing.Point(65, 36)
+        Me.txAlbaD.Name = "txAlbaD"
+        Me.txAlbaD.Size = New System.Drawing.Size(74, 20)
+        Me.txAlbaD.TabIndex = 3
         '
         'btFiltroAlbaran
         '
@@ -223,6 +253,7 @@ Partial Class frFacturaAlbaran
         '
         'dgAlbaranes
         '
+        Me.dgAlbaranes.AllowUserToAddRows = False
         Me.dgAlbaranes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgAlbaranes.Location = New System.Drawing.Point(29, 226)
         Me.dgAlbaranes.Name = "dgAlbaranes"
@@ -366,36 +397,6 @@ Partial Class frFacturaAlbaran
         Me.txCliente.Name = "txCliente"
         Me.txCliente.Size = New System.Drawing.Size(472, 20)
         Me.txCliente.TabIndex = 6
-        '
-        'txFechaD
-        '
-        Me.txFechaD.Location = New System.Drawing.Point(59, 36)
-        Me.txFechaD.Mask = "00/00/0000"
-        Me.txFechaD.Name = "txFechaD"
-        Me.txFechaD.Size = New System.Drawing.Size(81, 20)
-        Me.txFechaD.TabIndex = 0
-        '
-        'txFechaH
-        '
-        Me.txFechaH.Location = New System.Drawing.Point(212, 36)
-        Me.txFechaH.Mask = "00/00/0000"
-        Me.txFechaH.Name = "txFechaH"
-        Me.txFechaH.Size = New System.Drawing.Size(81, 20)
-        Me.txFechaH.TabIndex = 1
-        '
-        'txAlbaD
-        '
-        Me.txAlbaD.Location = New System.Drawing.Point(65, 36)
-        Me.txAlbaD.Name = "txAlbaD"
-        Me.txAlbaD.Size = New System.Drawing.Size(74, 20)
-        Me.txAlbaD.TabIndex = 3
-        '
-        'txAlbaH
-        '
-        Me.txAlbaH.Location = New System.Drawing.Point(225, 36)
-        Me.txAlbaH.Name = "txAlbaH"
-        Me.txAlbaH.Size = New System.Drawing.Size(74, 20)
-        Me.txAlbaH.TabIndex = 4
         '
         'frFacturaAlbaran
         '
