@@ -878,4 +878,31 @@ Public Class frPresupuestos
             End If
         End If
     End Sub
+
+    Private Sub cmdDelete_Click(sender As Object, e As EventArgs) Handles cmdDelete.Click
+
+        Dim respuesta As String
+        respuesta = MsgBox("El borrado de presupuestos es una acción no recuperable. ¿Está seguro?", vbYesNo)
+        If respuesta = vbYes Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdEliminar As New MySqlCommand("DELETE FROM presupuesto_cab WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
+            cmdEliminar.ExecuteNonQuery()
+
+            Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM presupuesto_linea WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
+            cmdEliminarLineas.ExecuteNonQuery()
+
+            conexionmy.Close()
+            deshabilitarBotones()
+            limpiarFormulario()
+            dgLineasPres2.Rows.Clear()
+            cmdNuevo.Enabled = True
+            cargoTodosPresupuestos()
+            tabPresupuestos.SelectTab(0)
+            flagEdit = "N"
+
+        End If
+
+    End Sub
 End Class

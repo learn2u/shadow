@@ -925,4 +925,29 @@ Public Class frPedido
             End If
         End If
     End Sub
+
+    Private Sub cmdDelete_Click(sender As Object, e As EventArgs) Handles cmdDelete.Click
+        Dim respuesta As String
+        respuesta = MsgBox("El borrado de pedidos es una acción no recuperable. ¿Está seguro?", vbYesNo)
+        If respuesta = vbYes Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdEliminar As New MySqlCommand("DELETE FROM pedido_cab WHERE num_pedido = '" + txtNumpres.Text + "'", conexionmy)
+            cmdEliminar.ExecuteNonQuery()
+
+            Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM pedido_linea WHERE num_pedido = '" + txtNumpres.Text + "'", conexionmy)
+            cmdEliminarLineas.ExecuteNonQuery()
+
+            conexionmy.Close()
+            deshabilitarBotones()
+            limpiarFormulario()
+            dgLineasPres2.Rows.Clear()
+            cmdNuevo.Enabled = True
+            cargoTodosPedidos()
+            tabPresupuestos.SelectTab(0)
+            flagEdit = "N"
+
+        End If
+    End Sub
 End Class

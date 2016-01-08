@@ -88,6 +88,7 @@ Partial Class frPresupuestos
         Me.cmdNuevo = New System.Windows.Forms.ToolStripButton()
         Me.cmdGuardar = New System.Windows.Forms.ToolStripButton()
         Me.cmdCancelar = New System.Windows.Forms.ToolStripButton()
+        Me.cmdDelete = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdImprimir = New System.Windows.Forms.ToolStripButton()
         Me.cmdPDF = New System.Windows.Forms.ToolStripButton()
@@ -141,7 +142,6 @@ Partial Class frPresupuestos
         Me.Columna8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Columna9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cmdDelete = New System.Windows.Forms.ToolStripButton()
         Me.tabPresupuestos.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -690,6 +690,15 @@ Partial Class frPresupuestos
         Me.cmdCancelar.Text = "ToolStripButton1"
         Me.cmdCancelar.ToolTipText = "Cancelar Presupuesto"
         '
+        'cmdDelete
+        '
+        Me.cmdDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.cmdDelete.Image = CType(resources.GetObject("cmdDelete.Image"), System.Drawing.Image)
+        Me.cmdDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.cmdDelete.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdDelete.Name = "cmdDelete"
+        Me.cmdDelete.Size = New System.Drawing.Size(28, 35)
+        '
         'ToolStripButton2
         '
         Me.ToolStripButton2.AutoSize = False
@@ -1183,15 +1192,6 @@ Partial Class frPresupuestos
         Me.Column11.HeaderText = "LOTE"
         Me.Column11.Name = "Column11"
         Me.Column11.Visible = False
-        '
-        'cmdDelete
-        '
-        Me.cmdDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.cmdDelete.Image = CType(resources.GetObject("cmdDelete.Image"), System.Drawing.Image)
-        Me.cmdDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.cmdDelete.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdDelete.Name = "cmdDelete"
-        Me.cmdDelete.Size = New System.Drawing.Size(28, 35)
         '
         'frPresupuestos
         '

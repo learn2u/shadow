@@ -125,6 +125,9 @@ Partial Class frFacturaManual
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtNumpres = New System.Windows.Forms.TextBox()
         Me.dgLineasPres2 = New System.Windows.Forms.DataGridView()
+        Me.dgFacturas = New System.Windows.Forms.DataGridView()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.tabPresupuestos = New System.Windows.Forms.TabControl()
         Me.linedit = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btArtiEdit = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Columna1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -136,9 +139,7 @@ Partial Class frFacturaManual
         Me.Columna7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Columna8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Columna9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dgFacturas = New System.Windows.Forms.DataGridView()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.tabPresupuestos = New System.Windows.Forms.TabControl()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -1014,12 +1015,44 @@ Partial Class frFacturaManual
         '
         Me.dgLineasPres2.AllowUserToAddRows = False
         Me.dgLineasPres2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgLineasPres2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linedit, Me.btArtiEdit, Me.Columna1, Me.Columna2, Me.Columna3, Me.Columna4, Me.Columna5, Me.Columna6, Me.Columna7, Me.Columna8, Me.Columna9})
+        Me.dgLineasPres2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linedit, Me.btArtiEdit, Me.Columna1, Me.Columna2, Me.Columna3, Me.Columna4, Me.Columna5, Me.Columna6, Me.Columna7, Me.Columna8, Me.Columna9, Me.Column11})
         Me.dgLineasPres2.Location = New System.Drawing.Point(20, 156)
         Me.dgLineasPres2.Name = "dgLineasPres2"
         Me.dgLineasPres2.Size = New System.Drawing.Size(1173, 199)
         Me.dgLineasPres2.TabIndex = 57
         Me.dgLineasPres2.Visible = False
+        '
+        'dgFacturas
+        '
+        Me.dgFacturas.AllowUserToAddRows = False
+        Me.dgFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgFacturas.Location = New System.Drawing.Point(300, 6)
+        Me.dgFacturas.Name = "dgFacturas"
+        Me.dgFacturas.Size = New System.Drawing.Size(897, 527)
+        Me.dgFacturas.TabIndex = 11
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.Panel4)
+        Me.TabPage1.Controls.Add(Me.dgFacturas)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(1213, 539)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "LISTADO FACTURAS"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'tabPresupuestos
+        '
+        Me.tabPresupuestos.Controls.Add(Me.TabPage1)
+        Me.tabPresupuestos.Controls.Add(Me.TabPage2)
+        Me.tabPresupuestos.Location = New System.Drawing.Point(12, 12)
+        Me.tabPresupuestos.Name = "tabPresupuestos"
+        Me.tabPresupuestos.SelectedIndex = 0
+        Me.tabPresupuestos.Size = New System.Drawing.Size(1221, 565)
+        Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
+        Me.tabPresupuestos.TabIndex = 2
         '
         'linedit
         '
@@ -1131,37 +1164,12 @@ Partial Class frFacturaManual
         Me.Columna9.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Columna9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
-        'dgFacturas
+        'Column11
         '
-        Me.dgFacturas.AllowUserToAddRows = False
-        Me.dgFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgFacturas.Location = New System.Drawing.Point(300, 6)
-        Me.dgFacturas.Name = "dgFacturas"
-        Me.dgFacturas.Size = New System.Drawing.Size(897, 527)
-        Me.dgFacturas.TabIndex = 11
-        '
-        'TabPage1
-        '
-        Me.TabPage1.Controls.Add(Me.Panel4)
-        Me.TabPage1.Controls.Add(Me.dgFacturas)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1213, 539)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "LISTADO FACTURAS"
-        Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'tabPresupuestos
-        '
-        Me.tabPresupuestos.Controls.Add(Me.TabPage1)
-        Me.tabPresupuestos.Controls.Add(Me.TabPage2)
-        Me.tabPresupuestos.Location = New System.Drawing.Point(12, 12)
-        Me.tabPresupuestos.Name = "tabPresupuestos"
-        Me.tabPresupuestos.SelectedIndex = 0
-        Me.tabPresupuestos.Size = New System.Drawing.Size(1221, 565)
-        Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
-        Me.tabPresupuestos.TabIndex = 2
+        Me.Column11.HeaderText = "LOTE"
+        Me.Column11.Name = "Column11"
+        Me.Column11.Visible = False
+        Me.Column11.Width = 25
         '
         'frFacturaManual
         '
@@ -1266,17 +1274,6 @@ Partial Class frFacturaManual
     Friend WithEvents Label1 As Label
     Friend WithEvents txtNumpres As TextBox
     Friend WithEvents dgLineasPres2 As DataGridView
-    Friend WithEvents linedit As DataGridViewTextBoxColumn
-    Friend WithEvents btArtiEdit As DataGridViewButtonColumn
-    Friend WithEvents Columna1 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna2 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna3 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna4 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna5 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna6 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna7 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna8 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna9 As DataGridViewTextBoxColumn
     Friend WithEvents dgFacturas As DataGridView
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents tabPresupuestos As TabControl
@@ -1293,4 +1290,16 @@ Partial Class frFacturaManual
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents btArticulo As DataGridViewButtonColumn
     Friend WithEvents linea As DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna9 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna8 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna7 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna6 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna5 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna4 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna3 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna2 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna1 As DataGridViewTextBoxColumn
+    Friend WithEvents btArtiEdit As DataGridViewButtonColumn
+    Friend WithEvents linedit As DataGridViewTextBoxColumn
 End Class
