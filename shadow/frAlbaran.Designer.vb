@@ -63,7 +63,6 @@ Partial Class frAlbaran
         Me.cmdToldos = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdAlbaran = New System.Windows.Forms.ToolStripButton()
-        Me.cmdPedido = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton7 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdMail = New System.Windows.Forms.ToolStripButton()
         Me.cmdPDF = New System.Windows.Forms.ToolStripButton()
@@ -144,6 +143,7 @@ Partial Class frAlbaran
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.tabPresupuestos = New System.Windows.Forms.TabControl()
+        Me.txNumpresBk = New System.Windows.Forms.TextBox()
         CType(Me.dgLineasPres1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgLineasPres2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
@@ -390,18 +390,6 @@ Partial Class frAlbaran
         Me.cmdAlbaran.Size = New System.Drawing.Size(33, 30)
         Me.cmdAlbaran.Text = "ToolStripButton1"
         Me.cmdAlbaran.ToolTipText = "Convertir a Factura"
-        '
-        'cmdPedido
-        '
-        Me.cmdPedido.AutoSize = False
-        Me.cmdPedido.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.cmdPedido.Image = CType(resources.GetObject("cmdPedido.Image"), System.Drawing.Image)
-        Me.cmdPedido.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.cmdPedido.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdPedido.Name = "cmdPedido"
-        Me.cmdPedido.Size = New System.Drawing.Size(33, 30)
-        Me.cmdPedido.Text = "ToolStripButton1"
-        Me.cmdPedido.ToolTipText = "Realizar Pedido"
         '
         'ToolStripButton7
         '
@@ -666,6 +654,7 @@ Partial Class frAlbaran
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.White
+        Me.TabPage2.Controls.Add(Me.txNumpresBk)
         Me.TabPage2.Controls.Add(Me.txBultos)
         Me.TabPage2.Controls.Add(Me.Label14)
         Me.TabPage2.Controls.Add(Me.cbSerie)
@@ -959,7 +948,7 @@ Partial Class frAlbaran
         'tsBotones
         '
         Me.tsBotones.AutoSize = False
-        Me.tsBotones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdNuevo, Me.cmdGuardar, Me.cmdCancelar, Me.cmdDelete, Me.ToolStripButton2, Me.cmdImprimir, Me.cmdPDF, Me.cmdMail, Me.ToolStripButton7, Me.cmdPedido, Me.cmdAlbaran, Me.ToolStripSeparator2, Me.cmdToldos, Me.ToolStripButton4, Me.cmdCliente, Me.ToolStripSeparator1, Me.cmdRentabilidad, Me.ToolStripSeparator3, Me.cmdLineas})
+        Me.tsBotones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdNuevo, Me.cmdGuardar, Me.cmdCancelar, Me.cmdDelete, Me.ToolStripButton2, Me.cmdImprimir, Me.cmdPDF, Me.cmdMail, Me.ToolStripButton7, Me.cmdAlbaran, Me.ToolStripSeparator2, Me.cmdToldos, Me.ToolStripButton4, Me.cmdCliente, Me.ToolStripSeparator1, Me.cmdRentabilidad, Me.ToolStripSeparator3, Me.cmdLineas})
         Me.tsBotones.Location = New System.Drawing.Point(3, 3)
         Me.tsBotones.Name = "tsBotones"
         Me.tsBotones.Size = New System.Drawing.Size(1207, 38)
@@ -1214,6 +1203,16 @@ Partial Class frAlbaran
         Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.tabPresupuestos.TabIndex = 1
         '
+        'txNumpresBk
+        '
+        Me.txNumpresBk.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.txNumpresBk.Location = New System.Drawing.Point(142, 121)
+        Me.txNumpresBk.Name = "txNumpresBk"
+        Me.txNumpresBk.ReadOnly = True
+        Me.txNumpresBk.Size = New System.Drawing.Size(74, 20)
+        Me.txNumpresBk.TabIndex = 111
+        Me.txNumpresBk.Visible = False
+        '
         'frAlbaran
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1255,7 +1254,6 @@ Partial Class frAlbaran
     Friend WithEvents cmdToldos As ToolStripButton
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents cmdAlbaran As ToolStripButton
-    Friend WithEvents cmdPedido As ToolStripButton
     Friend WithEvents ToolStripButton7 As ToolStripSeparator
     Friend WithEvents cmdMail As ToolStripButton
     Friend WithEvents cmdPDF As ToolStripButton
@@ -1348,4 +1346,5 @@ Partial Class frAlbaran
     Friend WithEvents txBultos As TextBox
     Friend WithEvents Label14 As Label
     Friend WithEvents cmdDelete As ToolStripButton
+    Friend WithEvents txNumpresBk As TextBox
 End Class

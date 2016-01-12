@@ -211,17 +211,6 @@
         oFJ6A8osdpD9mGicAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="cmdPedido.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEHSURBVEhLtZYBDcIwEEUnAQlIwAFIQAIOwAE4AAk4AAcg
-        AQdIAAfwX7JLmvXStV33k5dly62/vfZu66SNOIoVN3PoK349b3EWS9FMV2EGxkc0FTM+iKcwE1LXXAxq
-        BnvRNFVoIcwghJQ9xE1wIGDdwztF8gxy4IAMJ+FmIDxVU3EPS7jRU2GykVoaMFaki/CCaziJSDz0gmvY
-        iUgUnBdcg1usYbFNxRXLsgA2qRb20lW4ybMIdwanMq0iS0k2yhaVnGz33vehlLsYFY2KbpkjOmpRZ90K
-        mw3dMSUGJSXEcs0yYYlmACmFkwHuRxVW84sHCZHK0CD7K0jB0ZdylswvD7GDX5+u+wPACAULjVXqjgAA
-        AABJRU5ErkJggg==
-</value>
-  </data>
   <data name="cmdMail.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

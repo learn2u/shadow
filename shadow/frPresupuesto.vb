@@ -283,6 +283,7 @@ Public Class frPresupuestos
     End Sub
     Public Sub limpiarFormulario()
         txtNumpres.Text = ""
+        txNumpresBk.Text = ""
         txFecha.Text = ""
         txReferenciapres.Text = ""
         txNumcli.Text = ""
