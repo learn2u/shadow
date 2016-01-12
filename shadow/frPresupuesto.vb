@@ -591,6 +591,9 @@ Public Class frPresupuestos
         cmdGuardar.Enabled = True
         cmdCancelar.Enabled = True
         cmdCliente.Enabled = True
+        cmdAlbaran.Enabled = True
+        cmdPedido.Enabled = True
+
 
         txtNumpres.Text = dgPresupuestos.CurrentRow.Cells("Column1").Value.ToString
         tabPresupuestos.SelectTab(1)
@@ -901,6 +904,245 @@ Public Class frPresupuestos
             cargoTodosPresupuestos()
             tabPresupuestos.SelectTab(0)
             flagEdit = "N"
+
+        End If
+
+    End Sub
+
+    Private Sub cmdPedido_Click(sender As Object, e As EventArgs) Handles cmdPedido.Click
+        'Conversion Presupuesto a Pedido
+
+        Dim respuesta As String
+        respuesta = MsgBox("La conversión a Pedido no es reversible. Una vez convertido, el presupuesto será eliminado. ¿Está seguro?", vbYesNo)
+        If respuesta = vbYes Then
+            txNumpresBk.Text = txtNumpres.Text
+
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+            Dim cmd As New MySqlCommand
+            cmd.CommandType = System.Data.CommandType.Text
+
+
+            cargoNumeroConversion("P")
+            Dim vFecha As Date = txFecha.Text
+            Dim vBruto As String = Replace(txImpBruto.Text.ToString, ",", ".")
+            Dim vDto As String = Replace(txImpDto.Text.ToString, ",", ".")
+            Dim vIva As String = Replace(txImpIva.Text.ToString, ",", ".")
+            Dim vTotal As String = Replace(txTotalAlbaran.Text.ToString, ",", ".")
+
+            cmd.CommandText = "INSERT INTO pedido_cab (num_pedido, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalpedido, estado, eliminado) VALUES (" + txtNumpres.Text + " , " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + vFecha.ToString("yyyy-MM-dd") + "', '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + vBruto + "', '" + vDto + "', '" + vIva + "', '" + vTotal + "', 'P', 'N')"
+            cmd.Connection = conexionmy
+            cmd.ExecuteNonQuery()
+
+            Dim cmdLinea As New MySqlCommand
+            Dim row As New DataGridViewRow
+
+            Dim lincant As String
+            Dim guardo_lincant As String
+            Dim linancho As String
+            Dim guardo_linancho As String
+            Dim linmetros As String
+            Dim guardo_linmetros As String
+            Dim linprec As String
+            Dim guardo_linprec As String
+            Dim lindto As String
+            Dim guardo_lindto As String
+            Dim liniva As String
+            Dim guardo_liniva As String
+            Dim linimporte As String
+            Dim guardo_linimporte As String
+            Dim lintotal As String
+            Dim guardo_lintotal As String
+
+            For Each row In dgLineasPres2.Rows
+
+
+                lincant = Decimal.Parse(row.Cells(4).Value).ToString("0.00")
+                guardo_lincant = Replace(lincant, ",", ".")
+
+                linancho = row.Cells(5).Value.ToString
+                guardo_linancho = Replace(linancho, ",", ".")
+
+                linmetros = row.Cells(6).Value.ToString
+                guardo_linmetros = Replace(linmetros, ",", ".")
+
+                linprec = row.Cells(7).Value.ToString
+                guardo_linprec = Replace(linprec, ",", ".")
+
+                lindto = row.Cells(8).Value.ToString
+                guardo_lindto = Replace(lindto, ",", ".")
+
+                liniva = txIva.Text
+                guardo_liniva = Replace(liniva, ",", ".")
+
+                linimporte = row.Cells(9).Value.ToString
+                guardo_linimporte = Replace(linimporte, ",", ".")
+
+                lintotal = row.Cells(10).Value.ToString
+                guardo_lintotal = Replace(lintotal, ",", ".")
+
+                cmdLinea.Connection = conexionmy
+                cmdLinea.CommandText = "INSERT INTO pedido_linea (num_pedido, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
+
+                cmdLinea.ExecuteNonQuery()
+
+            Next
+
+            Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_pedido = '" + txtNumpres.Text + "'  ", conexionmy)
+            cmdActualizar.ExecuteNonQuery()
+
+            'Borro la cabecera y las lineas del presupuesto
+
+            Dim cmdEliminar As New MySqlCommand("DELETE FROM presupuesto_cab WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
+            cmdEliminar.ExecuteNonQuery()
+
+            Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM presupuesto_linea WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
+            cmdEliminarLineas.ExecuteNonQuery()
+
+            conexionmy.Close()
+            deshabilitarBotones()
+            limpiarFormulario()
+            dgLineasPres2.Rows.Clear()
+            cmdNuevo.Enabled = True
+            cargoTodosPresupuestos()
+            tabPresupuestos.SelectTab(0)
+            flagEdit = "N"
+        Else
+            cargoTodosPresupuestos()
+            tabPresupuestos.SelectTab(0)
+            flagEdit = "N"
+        End If
+
+    End Sub
+
+    Private Sub cmdAlbaran_Click(sender As Object, e As EventArgs) Handles cmdAlbaran.Click
+        'conversion presupuesto a albaran
+        Dim respuesta As String
+        respuesta = MsgBox("La conversión a Albarán no es reversible. Una vez convertido, el presupuesto será eliminado. ¿Está seguro?", vbYesNo)
+        If respuesta = vbYes Then
+            txNumpresBk.Text = txtNumpres.Text
+
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+            Dim cmd As New MySqlCommand
+            cmd.CommandType = System.Data.CommandType.Text
+
+
+            cargoNumeroConversion("A")
+            Dim vFecha As Date = txFecha.Text
+            Dim vBruto As String = Replace(txImpBruto.Text.ToString, ",", ".")
+            Dim vDto As String = Replace(txImpDto.Text.ToString, ",", ".")
+            Dim vIva As String = Replace(txImpIva.Text.ToString, ",", ".")
+            Dim vTotal As String = Replace(txTotalAlbaran.Text.ToString, ",", ".")
+
+            cmd.CommandText = "INSERT INTO albaran_cab (num_albaran, serie, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado, bultos, eliminado) VALUES (" + txtNumpres.Text + " , '1', " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + vFecha.ToString("yyyy-MM-dd") + "', '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + vBruto + "', '" + vDto + "', '" + vIva + "', '" + vTotal + "', 'N', 0, 'N')"
+            cmd.Connection = conexionmy
+            cmd.ExecuteNonQuery()
+
+            Dim cmdLinea As New MySqlCommand
+            Dim row As New DataGridViewRow
+
+            Dim lincant As String
+            Dim guardo_lincant As String
+            Dim linancho As String
+            Dim guardo_linancho As String
+            Dim linmetros As String
+            Dim guardo_linmetros As String
+            Dim linprec As String
+            Dim guardo_linprec As String
+            Dim lindto As String
+            Dim guardo_lindto As String
+            Dim liniva As String
+            Dim guardo_liniva As String
+            Dim linimporte As String
+            Dim guardo_linimporte As String
+            Dim lintotal As String
+            Dim guardo_lintotal As String
+
+            For Each row In dgLineasPres2.Rows
+
+
+                lincant = Decimal.Parse(row.Cells(4).Value).ToString("0.00")
+                guardo_lincant = Replace(lincant, ",", ".")
+
+                linancho = row.Cells(5).Value.ToString
+                guardo_linancho = Replace(linancho, ",", ".")
+
+                linmetros = row.Cells(6).Value.ToString
+                guardo_linmetros = Replace(linmetros, ",", ".")
+
+                linprec = row.Cells(7).Value.ToString
+                guardo_linprec = Replace(linprec, ",", ".")
+
+                lindto = row.Cells(8).Value.ToString
+                guardo_lindto = Replace(lindto, ",", ".")
+
+                liniva = txIva.Text
+                guardo_liniva = Replace(liniva, ",", ".")
+
+                linimporte = row.Cells(9).Value.ToString
+                guardo_linimporte = Replace(linimporte, ",", ".")
+
+                lintotal = row.Cells(10).Value.ToString
+                guardo_lintotal = Replace(lintotal, ",", ".")
+
+                cmdLinea.Connection = conexionmy
+                cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
+
+                cmdLinea.ExecuteNonQuery()
+
+            Next
+
+            Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_albaran = '" + txtNumpres.Text + "'  ", conexionmy)
+            cmdActualizar.ExecuteNonQuery()
+
+            'Borro la cabecera y las lineas del presupuesto
+
+            Dim cmdEliminar As New MySqlCommand("DELETE FROM presupuesto_cab WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
+            cmdEliminar.ExecuteNonQuery()
+
+            Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM presupuesto_linea WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
+            cmdEliminarLineas.ExecuteNonQuery()
+
+            conexionmy.Close()
+            deshabilitarBotones()
+            limpiarFormulario()
+            dgLineasPres2.Rows.Clear()
+            cmdNuevo.Enabled = True
+            cargoTodosPresupuestos()
+            tabPresupuestos.SelectTab(0)
+            flagEdit = "N"
+        Else
+            cargoTodosPresupuestos()
+            tabPresupuestos.SelectTab(0)
+            flagEdit = "N"
+        End If
+    End Sub
+    Public Sub cargoNumeroConversion(tipoDoc As String)
+        If tipoDoc = "P" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdLastId As New MySqlCommand("SELECT num_pedido FROM configuracion  ", conexionmy)
+            Dim numid As Int32
+
+            numid = cmdLastId.ExecuteScalar()
+
+            txtNumpres.Text = numid + 1
+
+            conexionmy.Close()
+        Else
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdLastId As New MySqlCommand("SELECT num_albaran FROM configuracion  ", conexionmy)
+            Dim numid As Int32
+
+            numid = cmdLastId.ExecuteScalar()
+
+            txtNumpres.Text = numid + 1
+
+            conexionmy.Close()
 
         End If
 
