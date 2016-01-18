@@ -91,6 +91,7 @@ Partial Class frAlbaran
         Me.cmdImprimir = New System.Windows.Forms.ToolStripButton()
         Me.cmdCancelar = New System.Windows.Forms.ToolStripButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.txNumpresBk = New System.Windows.Forms.TextBox()
         Me.txBultos = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.cbSerie = New System.Windows.Forms.ComboBox()
@@ -143,7 +144,6 @@ Partial Class frAlbaran
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.tabPresupuestos = New System.Windows.Forms.TabControl()
-        Me.txNumpresBk = New System.Windows.Forms.TextBox()
         CType(Me.dgLineasPres1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgLineasPres2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
@@ -700,6 +700,16 @@ Partial Class frAlbaran
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "ALBARÁN"
         '
+        'txNumpresBk
+        '
+        Me.txNumpresBk.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.txNumpresBk.Location = New System.Drawing.Point(102, 130)
+        Me.txNumpresBk.Name = "txNumpresBk"
+        Me.txNumpresBk.ReadOnly = True
+        Me.txNumpresBk.Size = New System.Drawing.Size(74, 20)
+        Me.txNumpresBk.TabIndex = 111
+        Me.txNumpresBk.Visible = False
+        '
         'txBultos
         '
         Me.txBultos.Location = New System.Drawing.Point(1115, 59)
@@ -1202,16 +1212,6 @@ Partial Class frAlbaran
         Me.tabPresupuestos.Size = New System.Drawing.Size(1221, 565)
         Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.tabPresupuestos.TabIndex = 1
-        '
-        'txNumpresBk
-        '
-        Me.txNumpresBk.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.txNumpresBk.Location = New System.Drawing.Point(142, 121)
-        Me.txNumpresBk.Name = "txNumpresBk"
-        Me.txNumpresBk.ReadOnly = True
-        Me.txNumpresBk.Size = New System.Drawing.Size(74, 20)
-        Me.txNumpresBk.TabIndex = 111
-        Me.txNumpresBk.Visible = False
         '
         'frAlbaran
         '

@@ -61,14 +61,14 @@ Partial Class frVerArticulos
         '
         Me.txArticulo.Location = New System.Drawing.Point(82, 62)
         Me.txArticulo.Name = "txArticulo"
-        Me.txArticulo.Size = New System.Drawing.Size(640, 20)
+        Me.txArticulo.Size = New System.Drawing.Size(630, 20)
         Me.txArticulo.TabIndex = 3
         '
         'txCodigo
         '
         Me.txCodigo.Location = New System.Drawing.Point(82, 29)
         Me.txCodigo.Name = "txCodigo"
-        Me.txCodigo.Size = New System.Drawing.Size(640, 20)
+        Me.txCodigo.Size = New System.Drawing.Size(630, 20)
         Me.txCodigo.TabIndex = 4
         '
         'frVerArticulos
