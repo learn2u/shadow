@@ -144,6 +144,10 @@ Partial Class frAlbaran
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.tabPresupuestos = New System.Windows.Forms.TabControl()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.txParcial = New System.Windows.Forms.TextBox()
+        Me.btPagos = New System.Windows.Forms.Button()
         CType(Me.dgLineasPres1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgLineasPres2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
@@ -654,6 +658,10 @@ Partial Class frAlbaran
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.White
+        Me.TabPage2.Controls.Add(Me.btPagos)
+        Me.TabPage2.Controls.Add(Me.txParcial)
+        Me.TabPage2.Controls.Add(Me.CheckBox2)
+        Me.TabPage2.Controls.Add(Me.CheckBox1)
         Me.TabPage2.Controls.Add(Me.txNumpresBk)
         Me.TabPage2.Controls.Add(Me.txBultos)
         Me.TabPage2.Controls.Add(Me.Label14)
@@ -1213,6 +1221,45 @@ Partial Class frAlbaran
         Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.tabPresupuestos.TabIndex = 1
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(790, 124)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(94, 17)
+        Me.CheckBox1.TabIndex = 112
+        Me.CheckBox1.Text = "PAGO TOTAL"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(890, 125)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(104, 17)
+        Me.CheckBox2.TabIndex = 113
+        Me.CheckBox2.Text = "PAGO PARCIAL"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'txParcial
+        '
+        Me.txParcial.Location = New System.Drawing.Point(1000, 121)
+        Me.txParcial.Name = "txParcial"
+        Me.txParcial.ReadOnly = True
+        Me.txParcial.Size = New System.Drawing.Size(90, 20)
+        Me.txParcial.TabIndex = 114
+        Me.txParcial.Text = "0"
+        Me.txParcial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'btPagos
+        '
+        Me.btPagos.Location = New System.Drawing.Point(1096, 118)
+        Me.btPagos.Name = "btPagos"
+        Me.btPagos.Size = New System.Drawing.Size(97, 23)
+        Me.btPagos.TabIndex = 115
+        Me.btPagos.Text = "Editar Pagos"
+        Me.btPagos.UseVisualStyleBackColor = True
+        '
         'frAlbaran
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1347,4 +1394,8 @@ Partial Class frAlbaran
     Friend WithEvents Label14 As Label
     Friend WithEvents cmdDelete As ToolStripButton
     Friend WithEvents txNumpresBk As TextBox
+    Friend WithEvents txParcial As TextBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents btPagos As Button
 End Class
