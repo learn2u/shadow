@@ -334,7 +334,12 @@ Public Class frAlbaran
             recalcularTotales()
         Else
             'Cargo los datos de la linea para el control de stocks
-            artiEdit = dgLineasPres2.CurrentRow.Cells(2).Value
+            If dgLineasPres2.CurrentRow.Cells(11).Value = "" Then
+                artiEdit = dgLineasPres2.CurrentRow.Cells(2).Value
+            Else
+                artiEdit = dgLineasPres2.CurrentRow.Cells(11).Value
+            End If
+
             cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
             cantFin = 0
             lineasEdit.Add(New lineasEditadas() With {.codigoArt = artiEdit, .cantAntes = cantIni, .cantDespues = cantFin})
@@ -428,6 +433,7 @@ Public Class frAlbaran
             Dim lintotal As String
             Dim guardo_lintotal As String
             Dim arti As String
+            Dim vLote As String
 
             For Each row In dgLineasPres1.Rows
 
@@ -463,9 +469,11 @@ Public Class frAlbaran
 
                 cmdLinea.ExecuteNonQuery()
                 If row.Cells(11).Value = "" Then
-                    'descontarStock(arti, lincant)
+                    descontarStock(arti, lincant)
                     'MsgBox("no hay lote")
                 Else
+                    vLote = row.Cells(11).Value
+                    descontarStockLote(vLote, lincant)
                     'MsgBox(row.Cells(11).Value)
                 End If
 
@@ -542,6 +550,7 @@ Public Class frAlbaran
             Dim guardo_linimporte As String
             Dim lintotal As String
             Dim guardo_lintotal As String
+            Dim vLote As String
 
             For Each row In dgLineasPres2.Rows
 
@@ -582,20 +591,27 @@ Public Class frAlbaran
 
             If lineasEdit.Count > 0 Then
                 For Each itemlineas As lineasEditadas In lineasEdit
-                    aumentarStock(itemlineas.codigoArt, itemlineas.cantAntes)
-                    descontarStock(itemlineas.codigoArt, itemlineas.cantDespues)
+                    If row.Cells(11).Value = "" Then
+                        aumentarStock(itemlineas.codigoArt, itemlineas.cantAntes)
+                        descontarStock(itemlineas.codigoArt, itemlineas.cantDespues)
+                    Else
+                        vLote = row.Cells(11).Value
+                        aumentarStockLote(itemlineas.codigoArt, itemlineas.cantAntes)
+                        descontarStockLote(itemlineas.codigoArt, itemlineas.cantDespues)
+                    End If
+
                 Next
             End If
             lineasEdit.Clear()
 
 
             deshabilitarBotones()
-                limpiarFormulario()
-                cmdNuevo.Enabled = True
-                cargoTodosAlbaranes()
-                tabPresupuestos.SelectTab(0)
-                flagEdit = "N"
-            End If
+            limpiarFormulario()
+            cmdNuevo.Enabled = True
+            cargoTodosAlbaranes()
+            tabPresupuestos.SelectTab(0)
+            flagEdit = "N"
+        End If
     End Sub
     Public Sub cargoNumero()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -787,14 +803,14 @@ Public Class frAlbaran
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
         Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
         reader.Read()
 
         Dim stock As String = (reader.GetString(1) - unidades).ToString
         reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
         cmdActualizo.ExecuteNonQuery()
 
         conexionmy.Close()
@@ -804,14 +820,14 @@ Public Class frAlbaran
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
         Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
         reader.Read()
 
         Dim stock As String = (reader.GetString(1) + unidades).ToString
         reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
         cmdActualizo.ExecuteNonQuery()
 
         conexionmy.Close()
@@ -819,8 +835,14 @@ Public Class frAlbaran
     End Sub
     Private Sub dgLineasPres2_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellEnter
         If (e.ColumnIndex = 4) Then
-            artiEdit = dgLineasPres2.CurrentRow.Cells(2).Value
-            cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
+            If dgLineasPres2.CurrentRow.Cells(11).Value = "" Then
+                artiEdit = dgLineasPres2.CurrentRow.Cells(2).Value
+                cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
+            Else
+                artiEdit = dgLineasPres2.CurrentRow.Cells(11).Value
+                cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
+            End If
+
         End If
     End Sub
 
@@ -833,23 +855,23 @@ Public Class frAlbaran
                 Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
 
-                Dim cellValue As Decimal = CType(value, Decimal)
+                Dim cellValue As Decimal = Decimal.Parse(value)
                 dgLineasPres1.CurrentCell.Value = cellValue
 
             End If
-            If Me.dgLineasPres1.Columns("Column6").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
+            'If Me.dgLineasPres1.Columns("Column6").Index = e.ColumnIndex Then
+            ' Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
+            ' value = value.Replace(".", ",")
 
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres1.CurrentCell.Value = cellValue
+            'Dim cellValue As Decimal = Decimal.Parse(value)
+            'dgLineasPres1.CurrentCell.Value = cellValue
 
-            End If
+            'End If
             If Me.dgLineasPres1.Columns("Column7").Index = e.ColumnIndex Then
                 Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
 
-                Dim cellValue As Decimal = CType(value, Decimal)
+                Dim cellValue As Decimal = Decimal.Parse(value)
                 dgLineasPres1.CurrentCell.Value = cellValue
 
             End If
@@ -889,14 +911,14 @@ Public Class frAlbaran
                 dgLineasPres2.CurrentCell.Value = cellValue
 
             End If
-            If Me.dgLineasPres2.Columns("Columna6").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
+            'If Me.dgLineasPres2.Columns("Columna6").Index = e.ColumnIndex Then
+            'Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
+            'value = value.Replace(".", ",")
 
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres2.CurrentCell.Value = cellValue
+            'Dim cellValue As Decimal = CType(value, Decimal)
+            'dgLineasPres2.CurrentCell.Value = cellValue
 
-            End If
+            'End If
             If Me.dgLineasPres2.Columns("Columna7").Index = e.ColumnIndex Then
                 Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
@@ -1104,5 +1126,37 @@ Public Class frAlbaran
 
         conexionmy.Close()
 
+    End Sub
+    Public Sub descontarStockLote(codArti As String, unidades As Decimal)
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+
+        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock, lote FROM lotes WHERE lote = '" + codArti + "'", conexionmy)
+        Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+        reader.Read()
+
+        Dim stock As String = (reader.GetString(1) - unidades).ToString
+        reader.Close()
+
+        Dim cmdActualizo As New MySqlCommand("UPDATE lotes SET stock = '" + stock + "' WHERE lote = '" + codArti + "'", conexionmy)
+        cmdActualizo.ExecuteNonQuery()
+
+        conexionmy.Close()
+    End Sub
+    Public Sub aumentarStockLote(codArti As String, unidades As Decimal)
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+
+        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock, lote FROM lotes WHERE lote = '" + codArti + "'", conexionmy)
+        Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+        reader.Read()
+
+        Dim stock As String = (reader.GetString(1) + unidades).ToString
+        reader.Close()
+
+        Dim cmdActualizo As New MySqlCommand("UPDATE lotes SET stock = '" + stock + "' WHERE lote = '" + codArti + "'", conexionmy)
+        cmdActualizo.ExecuteNonQuery()
+
+        conexionmy.Close()
     End Sub
 End Class

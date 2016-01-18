@@ -218,7 +218,7 @@ Public Class frVerArticulos
             End If
             If formArti = "A" Then
                 If frAlbaran.flagEdit = "N" Then
-                    frAlbaran.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("referen").Value
+                    frAlbaran.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frAlbaran.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     frAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
                     frAlbaran.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
@@ -228,7 +228,7 @@ Public Class frVerArticulos
 
                     Me.Hide()
                 Else
-                    frAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("referen").Value
+                    frAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frAlbaran.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     frAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
                     frAlbaran.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
