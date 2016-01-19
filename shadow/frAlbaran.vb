@@ -1162,4 +1162,25 @@ Public Class frAlbaran
 
         conexionmy.Close()
     End Sub
+
+    Private Sub cmdContado_Click(sender As Object, e As EventArgs) Handles cmdContado.Click
+        'Modificar la cabecera para guardar como albaran de contado
+        'Cambio el código del cliente por 999999 y guardo el cliene original en campo -clave
+        Dim respuesta As String
+        respuesta = MsgBox("¿Está seguro de que quiere convertir este Albarán en una Venta de contado?", vbYesNo)
+        If respuesta = vbYes Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+            Dim cmd As New MySqlCommand("UPDATE albaran_cab SET clienteID = '999999', clave = " + txNumcli.Text + " WHERE num_albaran = " + txtNumpres.Text + "", conexionmy)
+            cmd.ExecuteNonQuery()
+            cargoTodosAlbaranes()
+            tabPresupuestos.SelectTab(0)
+            flagEdit = "N"
+        Else
+            cargoTodosAlbaranes()
+            tabPresupuestos.SelectTab(0)
+            flagEdit = "N"
+        End If
+
+    End Sub
 End Class
