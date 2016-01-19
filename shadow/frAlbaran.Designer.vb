@@ -658,6 +658,10 @@ Partial Class frAlbaran
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.White
+        Me.TabPage2.Controls.Add(Me.btPagos)
+        Me.TabPage2.Controls.Add(Me.txParcial)
+        Me.TabPage2.Controls.Add(Me.CheckBox2)
+        Me.TabPage2.Controls.Add(Me.CheckBox1)
         Me.TabPage2.Controls.Add(Me.txNumpresBk)
         Me.TabPage2.Controls.Add(Me.txBultos)
         Me.TabPage2.Controls.Add(Me.Label14)
@@ -1390,4 +1394,8 @@ Partial Class frAlbaran
     Friend WithEvents Label14 As Label
     Friend WithEvents cmdDelete As ToolStripButton
     Friend WithEvents txNumpresBk As TextBox
+    Friend WithEvents txParcial As TextBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents btPagos As Button
 End Class
