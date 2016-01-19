@@ -883,9 +883,6 @@ Public Class frAlbaran
         If (e.ColumnIndex = 8) Then
             tsBotones.Focus()
             cmdLineas.Select()
-            'Crear una linea nueva
-
-
         End If
 
     End Sub
