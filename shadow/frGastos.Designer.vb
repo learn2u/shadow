@@ -133,14 +133,22 @@ Partial Class frGastos
         Me.cmdCancelar = New System.Windows.Forms.ToolStripButton()
         Me.tabPresupuestos = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.txNumcli = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.txDni = New System.Windows.Forms.TextBox()
-        Me.ckCheck1 = New System.Windows.Forms.CheckBox()
-        Me.ckCheck2 = New System.Windows.Forms.CheckBox()
-        Me.ckCheck3 = New System.Windows.Forms.CheckBox()
-        Me.ckCheck4 = New System.Windows.Forms.CheckBox()
         Me.ckCheck5 = New System.Windows.Forms.CheckBox()
+        Me.ckCheck4 = New System.Windows.Forms.CheckBox()
+        Me.ckCheck3 = New System.Windows.Forms.CheckBox()
+        Me.ckCheck2 = New System.Windows.Forms.CheckBox()
+        Me.txDni = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txNumcli = New System.Windows.Forms.TextBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.dgLineasPres1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -151,6 +159,8 @@ Partial Class frGastos
         Me.tsBotones.SuspendLayout()
         Me.tabPresupuestos.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStripButton2
@@ -901,9 +911,9 @@ Partial Class frGastos
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.Location = New System.Drawing.Point(953, 514)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(102, 13)
+        Me.Label12.Size = New System.Drawing.Size(105, 13)
         Me.Label12.TabIndex = 72
-        Me.Label12.Text = "TOTAL PEDIDO:"
+        Me.Label12.Text = "TOTAL GASTOS:"
         '
         'txImpRecargo
         '
@@ -1003,8 +1013,8 @@ Partial Class frGastos
         'cbEstado
         '
         Me.cbEstado.FormattingEnabled = True
-        Me.cbEstado.Items.AddRange(New Object() {"PENDIENTE", "ENVIADO"})
-        Me.cbEstado.Location = New System.Drawing.Point(491, 58)
+        Me.cbEstado.Items.AddRange(New Object() {"SUELDOS Y SALARIOS", "SEGURIDAD SOCIAL", "COMPRAS Y SERVICIOS", "SUMINISTROS", "ALQUILERES", "G.FINANCIEROS SEGUROS", "TRIBUTOS NO ESTATALES", "REPARACIONES Y CONSERVACION", "TRABAJOS EXTERNOS", "OTROS"})
+        Me.cbEstado.Location = New System.Drawing.Point(735, 59)
         Me.cbEstado.Name = "cbEstado"
         Me.cbEstado.Size = New System.Drawing.Size(221, 21)
         Me.cbEstado.TabIndex = 1
@@ -1012,7 +1022,7 @@ Partial Class frGastos
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(422, 66)
+        Me.Label6.Location = New System.Drawing.Point(666, 67)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(63, 13)
         Me.Label6.TabIndex = 60
@@ -1078,11 +1088,13 @@ Partial Class frGastos
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.White
+        Me.TabPage2.Controls.Add(Me.TextBox1)
+        Me.TabPage2.Controls.Add(Me.Label5)
+        Me.TabPage2.Controls.Add(Me.GroupBox1)
         Me.TabPage2.Controls.Add(Me.ckCheck5)
         Me.TabPage2.Controls.Add(Me.ckCheck4)
         Me.TabPage2.Controls.Add(Me.ckCheck3)
         Me.TabPage2.Controls.Add(Me.ckCheck2)
-        Me.TabPage2.Controls.Add(Me.ckCheck1)
         Me.TabPage2.Controls.Add(Me.txDni)
         Me.TabPage2.Controls.Add(Me.Label4)
         Me.TabPage2.Controls.Add(Me.txUsuario)
@@ -1121,60 +1133,15 @@ Partial Class frGastos
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "GASTOS"
         '
-        'txNumcli
+        'ckCheck5
         '
-        Me.txNumcli.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.txNumcli.Location = New System.Drawing.Point(102, 95)
-        Me.txNumcli.Name = "txNumcli"
-        Me.txNumcli.ReadOnly = True
-        Me.txNumcli.Size = New System.Drawing.Size(114, 20)
-        Me.txNumcli.TabIndex = 102
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(735, 102)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(50, 13)
-        Me.Label4.TabIndex = 108
-        Me.Label4.Text = "CIF/DNI:"
-        '
-        'txDni
-        '
-        Me.txDni.Location = New System.Drawing.Point(794, 95)
-        Me.txDni.Name = "txDni"
-        Me.txDni.Size = New System.Drawing.Size(162, 20)
-        Me.txDni.TabIndex = 109
-        '
-        'ckCheck1
-        '
-        Me.ckCheck1.AutoSize = True
-        Me.ckCheck1.Location = New System.Drawing.Point(1011, 56)
-        Me.ckCheck1.Name = "ckCheck1"
-        Me.ckCheck1.Size = New System.Drawing.Size(160, 17)
-        Me.ckCheck1.TabIndex = 110
-        Me.ckCheck1.Text = "RECARGO EQUIVALENCIA"
-        Me.ckCheck1.UseVisualStyleBackColor = True
-        '
-        'ckCheck2
-        '
-        Me.ckCheck2.AutoSize = True
-        Me.ckCheck2.Location = New System.Drawing.Point(1011, 79)
-        Me.ckCheck2.Name = "ckCheck2"
-        Me.ckCheck2.Size = New System.Drawing.Size(89, 17)
-        Me.ckCheck2.TabIndex = 111
-        Me.ckCheck2.Text = "RETENCION"
-        Me.ckCheck2.UseVisualStyleBackColor = True
-        '
-        'ckCheck3
-        '
-        Me.ckCheck3.AutoSize = True
-        Me.ckCheck3.Location = New System.Drawing.Point(1011, 102)
-        Me.ckCheck3.Name = "ckCheck3"
-        Me.ckCheck3.Size = New System.Drawing.Size(108, 17)
-        Me.ckCheck3.TabIndex = 112
-        Me.ckCheck3.Text = "EXENTO DE IVA"
-        Me.ckCheck3.UseVisualStyleBackColor = True
+        Me.ckCheck5.AutoSize = True
+        Me.ckCheck5.Location = New System.Drawing.Point(1011, 56)
+        Me.ckCheck5.Name = "ckCheck5"
+        Me.ckCheck5.Size = New System.Drawing.Size(71, 17)
+        Me.ckCheck5.TabIndex = 114
+        Me.ckCheck5.Text = "PAGADO"
+        Me.ckCheck5.UseVisualStyleBackColor = True
         '
         'ckCheck4
         '
@@ -1186,15 +1153,132 @@ Partial Class frGastos
         Me.ckCheck4.Text = "IVA INCLUIDO"
         Me.ckCheck4.UseVisualStyleBackColor = True
         '
-        'ckCheck5
+        'ckCheck3
         '
-        Me.ckCheck5.AutoSize = True
-        Me.ckCheck5.Location = New System.Drawing.Point(794, 56)
-        Me.ckCheck5.Name = "ckCheck5"
-        Me.ckCheck5.Size = New System.Drawing.Size(71, 17)
-        Me.ckCheck5.TabIndex = 114
-        Me.ckCheck5.Text = "PAGADO"
-        Me.ckCheck5.UseVisualStyleBackColor = True
+        Me.ckCheck3.AutoSize = True
+        Me.ckCheck3.Location = New System.Drawing.Point(1011, 102)
+        Me.ckCheck3.Name = "ckCheck3"
+        Me.ckCheck3.Size = New System.Drawing.Size(108, 17)
+        Me.ckCheck3.TabIndex = 112
+        Me.ckCheck3.Text = "EXENTO DE IVA"
+        Me.ckCheck3.UseVisualStyleBackColor = True
+        '
+        'ckCheck2
+        '
+        Me.ckCheck2.AutoSize = True
+        Me.ckCheck2.Location = New System.Drawing.Point(1011, 79)
+        Me.ckCheck2.Name = "ckCheck2"
+        Me.ckCheck2.Size = New System.Drawing.Size(89, 17)
+        Me.ckCheck2.TabIndex = 111
+        Me.ckCheck2.Text = "RETENCION"
+        Me.ckCheck2.UseVisualStyleBackColor = True
+        '
+        'txDni
+        '
+        Me.txDni.Location = New System.Drawing.Point(794, 95)
+        Me.txDni.Name = "txDni"
+        Me.txDni.Size = New System.Drawing.Size(162, 20)
+        Me.txDni.TabIndex = 109
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(735, 102)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(50, 13)
+        Me.Label4.TabIndex = 108
+        Me.Label4.Text = "CIF/DNI:"
+        '
+        'txNumcli
+        '
+        Me.txNumcli.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.txNumcli.Location = New System.Drawing.Point(102, 95)
+        Me.txNumcli.Name = "txNumcli"
+        Me.txNumcli.ReadOnly = True
+        Me.txNumcli.Size = New System.Drawing.Size(114, 20)
+        Me.txNumcli.TabIndex = 102
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.DataGridView1)
+        Me.GroupBox1.Controls.Add(Me.TextBox2)
+        Me.GroupBox1.Controls.Add(Me.Label14)
+        Me.GroupBox1.Controls.Add(Me.ComboBox1)
+        Me.GroupBox1.Controls.Add(Me.Label13)
+        Me.GroupBox1.Location = New System.Drawing.Point(21, 368)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(780, 159)
+        Me.GroupBox1.TabIndex = 115
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "FORMA DE PAGO Y PLAZOS"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(502, 60)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(124, 20)
+        Me.TextBox1.TabIndex = 117
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(391, 66)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(105, 13)
+        Me.Label5.TabIndex = 116
+        Me.Label5.Text = "FRA. PROVEEDOR:"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"CONTADO", "30 DIAS", "60 DIAS", "90 DIAS", "120 DIAS", "150 DIAS", "180 DIAS", "30/60 DIAS", "30/60/90 DIAS"})
+        Me.ComboBox1.Location = New System.Drawing.Point(99, 29)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(141, 21)
+        Me.ComboBox1.TabIndex = 118
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(12, 37)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(81, 13)
+        Me.Label13.TabIndex = 119
+        Me.Label13.Text = "FORMA PAGO:"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(99, 56)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(141, 20)
+        Me.TextBox2.TabIndex = 119
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(14, 62)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(86, 13)
+        Me.Label14.TabIndex = 118
+        Me.Label14.Text = "DIAS DE PAGO:"
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(261, 19)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(503, 124)
+        Me.DataGridView1.TabIndex = 120
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(99, 118)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(141, 25)
+        Me.Button1.TabIndex = 118
+        Me.Button1.Text = "RECALCULAR PLAZOS"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'frGastos
         '
@@ -1218,6 +1302,9 @@ Partial Class frGastos
         Me.tabPresupuestos.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1323,7 +1410,15 @@ Partial Class frGastos
     Friend WithEvents ckCheck4 As CheckBox
     Friend WithEvents ckCheck3 As CheckBox
     Friend WithEvents ckCheck2 As CheckBox
-    Friend WithEvents ckCheck1 As CheckBox
     Friend WithEvents txDni As TextBox
     Friend WithEvents Label4 As Label
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Button1 As Button
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Label13 As Label
 End Class

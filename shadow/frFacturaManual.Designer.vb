@@ -140,8 +140,9 @@ Partial Class frFacturaManual
         Me.dgFacturas = New System.Windows.Forms.DataGridView()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.tabPresupuestos = New System.Windows.Forms.TabControl()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -553,8 +554,9 @@ Partial Class frFacturaManual
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.White
-        Me.TabPage2.Controls.Add(Me.CheckBox2)
-        Me.TabPage2.Controls.Add(Me.CheckBox1)
+        Me.TabPage2.Controls.Add(Me.Button1)
+        Me.TabPage2.Controls.Add(Me.ComboBox1)
+        Me.TabPage2.Controls.Add(Me.Label6)
         Me.TabPage2.Controls.Add(Me.cbSerie)
         Me.TabPage2.Controls.Add(Me.Label13)
         Me.TabPage2.Controls.Add(Me.txObserva)
@@ -1175,27 +1177,32 @@ Partial Class frFacturaManual
         Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.tabPresupuestos.TabIndex = 2
         '
-        'CheckBox1
+        'Label6
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(790, 61)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(177, 17)
-        Me.CheckBox1.TabIndex = 109
-        Me.CheckBox1.Text = "MODIFICAR FORMA DE PAGO"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(729, 66)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(99, 13)
+        Me.Label6.TabIndex = 109
+        Me.Label6.Text = "FORMA DE PAGO:"
         '
-        'CheckBox2
+        'ComboBox1
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Checked = True
-        Me.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox2.Location = New System.Drawing.Point(983, 61)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(163, 17)
-        Me.CheckBox2.TabIndex = 110
-        Me.CheckBox2.Text = "GENERAR VENCIMIENTOS"
-        Me.CheckBox2.UseVisualStyleBackColor = True
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"CONTADO", "30 DIAS", "60 DIAS", "90 DIAS", "120 DIAS", "150 DIAS", "180 DIAS", "30/60 DIAS", "30/60/90 DIAS"})
+        Me.ComboBox1.Location = New System.Drawing.Point(834, 59)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(206, 21)
+        Me.ComboBox1.TabIndex = 110
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(1061, 57)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(132, 23)
+        Me.Button1.TabIndex = 111
+        Me.Button1.Text = "RECALCULAR PLAZOS"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'frFacturaManual
         '
@@ -1328,6 +1335,7 @@ Partial Class frFacturaManual
     Friend WithEvents Columna1 As DataGridViewTextBoxColumn
     Friend WithEvents btArtiEdit As DataGridViewButtonColumn
     Friend WithEvents linedit As DataGridViewTextBoxColumn
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Label6 As Label
 End Class
