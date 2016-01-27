@@ -64,9 +64,4 @@ Public Class launcher
         frFacturaAlbaran.Show()
 
     End Sub
-
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
-        frGastos.Show()
-
-    End Sub
 End Class
