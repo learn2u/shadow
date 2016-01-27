@@ -145,6 +145,12 @@
     <Compile Include="frFacturaManual.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frGastos.Designer.vb">
+      <DependentUpon>frGastos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frGastos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frPedido.Designer.vb">
       <DependentUpon>frPedido.vb</DependentUpon>
     </Compile>
@@ -233,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frFacturaManual.resx">
       <DependentUpon>frFacturaManual.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frGastos.resx">
+      <DependentUpon>frGastos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frPedido.resx">
       <DependentUpon>frPedido.vb</DependentUpon>
