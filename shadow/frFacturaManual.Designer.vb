@@ -125,9 +125,6 @@ Partial Class frFacturaManual
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtNumpres = New System.Windows.Forms.TextBox()
         Me.dgLineasPres2 = New System.Windows.Forms.DataGridView()
-        Me.dgFacturas = New System.Windows.Forms.DataGridView()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.tabPresupuestos = New System.Windows.Forms.TabControl()
         Me.linedit = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btArtiEdit = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Columna1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -140,6 +137,11 @@ Partial Class frFacturaManual
         Me.Columna8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Columna9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgFacturas = New System.Windows.Forms.DataGridView()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.tabPresupuestos = New System.Windows.Forms.TabControl()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.Panel4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -551,6 +553,8 @@ Partial Class frFacturaManual
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.White
+        Me.TabPage2.Controls.Add(Me.CheckBox2)
+        Me.TabPage2.Controls.Add(Me.CheckBox1)
         Me.TabPage2.Controls.Add(Me.cbSerie)
         Me.TabPage2.Controls.Add(Me.Label13)
         Me.TabPage2.Controls.Add(Me.txObserva)
@@ -1022,38 +1026,6 @@ Partial Class frFacturaManual
         Me.dgLineasPres2.TabIndex = 57
         Me.dgLineasPres2.Visible = False
         '
-        'dgFacturas
-        '
-        Me.dgFacturas.AllowUserToAddRows = False
-        Me.dgFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgFacturas.Location = New System.Drawing.Point(300, 6)
-        Me.dgFacturas.Name = "dgFacturas"
-        Me.dgFacturas.Size = New System.Drawing.Size(897, 527)
-        Me.dgFacturas.TabIndex = 11
-        '
-        'TabPage1
-        '
-        Me.TabPage1.Controls.Add(Me.Panel4)
-        Me.TabPage1.Controls.Add(Me.dgFacturas)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1213, 539)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "LISTADO FACTURAS"
-        Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'tabPresupuestos
-        '
-        Me.tabPresupuestos.Controls.Add(Me.TabPage1)
-        Me.tabPresupuestos.Controls.Add(Me.TabPage2)
-        Me.tabPresupuestos.Location = New System.Drawing.Point(12, 12)
-        Me.tabPresupuestos.Name = "tabPresupuestos"
-        Me.tabPresupuestos.SelectedIndex = 0
-        Me.tabPresupuestos.Size = New System.Drawing.Size(1221, 565)
-        Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
-        Me.tabPresupuestos.TabIndex = 2
-        '
         'linedit
         '
         Me.linedit.HeaderText = "L"
@@ -1170,6 +1142,60 @@ Partial Class frFacturaManual
         Me.Column11.Name = "Column11"
         Me.Column11.Visible = False
         Me.Column11.Width = 25
+        '
+        'dgFacturas
+        '
+        Me.dgFacturas.AllowUserToAddRows = False
+        Me.dgFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgFacturas.Location = New System.Drawing.Point(300, 6)
+        Me.dgFacturas.Name = "dgFacturas"
+        Me.dgFacturas.Size = New System.Drawing.Size(897, 527)
+        Me.dgFacturas.TabIndex = 11
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.Panel4)
+        Me.TabPage1.Controls.Add(Me.dgFacturas)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(1213, 539)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "LISTADO FACTURAS"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'tabPresupuestos
+        '
+        Me.tabPresupuestos.Controls.Add(Me.TabPage1)
+        Me.tabPresupuestos.Controls.Add(Me.TabPage2)
+        Me.tabPresupuestos.Location = New System.Drawing.Point(12, 12)
+        Me.tabPresupuestos.Name = "tabPresupuestos"
+        Me.tabPresupuestos.SelectedIndex = 0
+        Me.tabPresupuestos.Size = New System.Drawing.Size(1221, 565)
+        Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
+        Me.tabPresupuestos.TabIndex = 2
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(790, 61)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(177, 17)
+        Me.CheckBox1.TabIndex = 109
+        Me.CheckBox1.Text = "MODIFICAR FORMA DE PAGO"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Checked = True
+        Me.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox2.Location = New System.Drawing.Point(983, 61)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(163, 17)
+        Me.CheckBox2.TabIndex = 110
+        Me.CheckBox2.Text = "GENERAR VENCIMIENTOS"
+        Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'frFacturaManual
         '
@@ -1302,4 +1328,6 @@ Partial Class frFacturaManual
     Friend WithEvents Columna1 As DataGridViewTextBoxColumn
     Friend WithEvents btArtiEdit As DataGridViewButtonColumn
     Friend WithEvents linedit As DataGridViewTextBoxColumn
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CheckBox1 As CheckBox
 End Class
