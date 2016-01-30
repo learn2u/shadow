@@ -353,7 +353,6 @@ Public Class frPedido
         flagEdit = "N"
         dgLineasPres2.Visible = False
         dgLineasPres1.Visible = True
-        'cbSerie.Text = "S1"
         cbEstado.Text = "PENDIENTE"
         txFecha.Text = Format(Today, "ddMMyyyy")
         txReferenciapres.Focus()
