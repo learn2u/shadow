@@ -432,6 +432,9 @@ Public Class frGastos
 
             conexionmy.Close()
 
+            grabarVencimientos()
+
+
             deshabilitarBotones()
             limpiarFormulario()
             cmdNuevo.Enabled = True
@@ -861,7 +864,7 @@ Public Class frGastos
 
     Private Sub cmdDelete_Click(sender As Object, e As EventArgs) Handles cmdDelete.Click
         Dim respuesta As String
-        respuesta = MsgBox("El borrado de gastos es una acción no recuperable. Se actualizarán vencimientos ¿Está seguro?", vbYesNo)
+        respuesta = MsgBox("El borrado de gastos es una acción no recuperable. También se eliminarán vencimientos ¿Está seguro?", vbYesNo)
         If respuesta = vbYes Then
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
@@ -870,6 +873,9 @@ Public Class frGastos
             cmdEliminar.ExecuteNonQuery()
 
             Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM gastos_linea WHERE num_gasto = '" + txtNumpres.Text + "'", conexionmy)
+            cmdEliminarLineas.ExecuteNonQuery()
+
+            Dim cmdEliminarVto As New MySqlCommand("DELETE FROM vto_gastos WHERE gastoID = '" + txtNumpres.Text + "'", conexionmy)
             cmdEliminarLineas.ExecuteNonQuery()
 
             conexionmy.Close()
@@ -1163,5 +1169,31 @@ Public Class frGastos
             cbFormapago.Enabled = True
             txDiaspago.Enabled = True
         End If
+    End Sub
+    Public Sub grabarVencimientos()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim vPagado As String
+        Dim orden As Int16 = 0
+        Dim linImporte As String
+
+
+        If ckPagado.Checked = True Then
+            vPagado = "S"
+        Else
+            vPagado = "N"
+        End If
+
+        For Each row In dgPlazos.Rows
+            orden = orden + 1
+
+            Dim fecha As Date = row.Cells(0).Value
+            linImporte = row.Cells(2).Value.ToString
+
+            Dim cmd As New MySqlCommand("INSERT INTO vto_gastos (gastoID, fecha, concepto, importe, orden, pagado) VALUES (" + txtNumpres.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + row.Cells(1).Value + "', '" + linImporte + "', '" + orden.ToString + "', '" + vPagado + "')", conexionmy)
+            cmd.ExecuteNonQuery()
+        Next
+        conexionmy.Close()
+
     End Sub
 End Class
