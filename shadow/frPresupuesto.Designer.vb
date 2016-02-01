@@ -60,6 +60,7 @@ Partial Class frPresupuestos
         Me.rbTodos = New System.Windows.Forms.RadioButton()
         Me.dgPresupuestos = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.txNumpresBk = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.txObserva = New System.Windows.Forms.TextBox()
         Me.txUsuario = New System.Windows.Forms.TextBox()
@@ -142,7 +143,7 @@ Partial Class frPresupuestos
         Me.Columna8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Columna9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.txNumpresBk = New System.Windows.Forms.TextBox()
+        Me.txRecargo = New System.Windows.Forms.TextBox()
         Me.tabPresupuestos.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -384,6 +385,7 @@ Partial Class frPresupuestos
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.White
+        Me.TabPage2.Controls.Add(Me.txRecargo)
         Me.TabPage2.Controls.Add(Me.txNumpresBk)
         Me.TabPage2.Controls.Add(Me.Label13)
         Me.TabPage2.Controls.Add(Me.txObserva)
@@ -426,6 +428,16 @@ Partial Class frPresupuestos
         Me.TabPage2.Size = New System.Drawing.Size(1213, 539)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "PRESUPUESTO"
+        '
+        'txNumpresBk
+        '
+        Me.txNumpresBk.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.txNumpresBk.Location = New System.Drawing.Point(102, 122)
+        Me.txNumpresBk.Name = "txNumpresBk"
+        Me.txNumpresBk.ReadOnly = True
+        Me.txNumpresBk.Size = New System.Drawing.Size(114, 20)
+        Me.txNumpresBk.TabIndex = 108
+        Me.txNumpresBk.Visible = False
         '
         'Label13
         '
@@ -1195,15 +1207,13 @@ Partial Class frPresupuestos
         Me.Column11.Name = "Column11"
         Me.Column11.Visible = False
         '
-        'txNumpresBk
+        'txRecargo
         '
-        Me.txNumpresBk.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.txNumpresBk.Location = New System.Drawing.Point(102, 122)
-        Me.txNumpresBk.Name = "txNumpresBk"
-        Me.txNumpresBk.ReadOnly = True
-        Me.txNumpresBk.Size = New System.Drawing.Size(114, 20)
-        Me.txNumpresBk.TabIndex = 108
-        Me.txNumpresBk.Visible = False
+        Me.txRecargo.Location = New System.Drawing.Point(594, 122)
+        Me.txRecargo.Name = "txRecargo"
+        Me.txRecargo.Size = New System.Drawing.Size(40, 20)
+        Me.txRecargo.TabIndex = 109
+        Me.txRecargo.Visible = False
         '
         'frPresupuestos
         '
@@ -1339,4 +1349,5 @@ Partial Class frPresupuestos
     Friend WithEvents linedit As DataGridViewTextBoxColumn
     Friend WithEvents cmdDelete As ToolStripButton
     Friend WithEvents txNumpresBk As TextBox
+    Friend WithEvents txRecargo As TextBox
 End Class

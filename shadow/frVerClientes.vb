@@ -9,7 +9,7 @@ Public Class frVerClientes
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT nombre, agenteID, descuento, clienteID FROM clientes", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT nombre, agenteID, descuento, clienteID, recargo FROM clientes", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -35,6 +35,9 @@ Public Class frVerClientes
         dgClientes.Columns(3).HeaderText = "CODIGO"
         dgClientes.Columns(3).Name = "cod"
         dgClientes.Columns(3).Visible = False
+        dgClientes.Columns(4).HeaderText = "REC"
+        dgClientes.Columns(4).Name = "recargo"
+        dgClientes.Columns(4).Visible = False
         dgClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
         conexionmy.Close()
@@ -45,7 +48,7 @@ Public Class frVerClientes
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT nombre, agenteID, descuento, clienteID FROM clientes WHERE nombre LIKE'" & txCliente.Text & "%'", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT nombre, agenteID, descuento, clienteID, recargo FROM clientes WHERE nombre LIKE'" & txCliente.Text & "%'", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -70,6 +73,9 @@ Public Class frVerClientes
         dgClientes.Columns(3).HeaderText = "CODIGO"
         dgClientes.Columns(3).Name = "cod"
         dgClientes.Columns(3).Visible = False
+        dgClientes.Columns(4).HeaderText = "REC"
+        dgClientes.Columns(4).Name = "recargo"
+        dgClientes.Columns(4).Visible = False
         dgClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
         conexionmy.Close()
@@ -83,6 +89,7 @@ Public Class frVerClientes
             frPresupuestos.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
             frPresupuestos.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
             frPresupuestos.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+            frPresupuestos.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
             Me.Hide()
             frPresupuestos.recalcularDescuentos()
             cargoEnvios()
@@ -92,6 +99,7 @@ Public Class frVerClientes
             frAlbaran.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
             frAlbaran.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
             frAlbaran.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+            frAlbaran.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
             Me.Hide()
             frAlbaran.recalcularDescuentos()
             cargoEnvios()

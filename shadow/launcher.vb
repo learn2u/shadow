@@ -7,12 +7,10 @@ Imports System.Xml
 Public Class launcher
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         frPresupuestos.Show()
-
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         frAlbaran.Show()
-
     End Sub
 
     Private Sub launcher_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -30,6 +28,26 @@ Public Class launcher
         Next
         formArti = "N"
         formCli = "N"
+
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmd As New MySqlCommand
+
+        Dim rdr As MySqlDataReader
+
+        cmd = New MySqlCommand("SELECT recargo FROM configuracion", conexionmy)
+
+        cmd.CommandType = CommandType.Text
+        cmd.Connection = conexionmy
+        rdr = cmd.ExecuteReader
+
+
+        rdr.Read()
+
+        vRecargo = rdr("recargo")
+
+        conexionmy.Close()
+
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -62,11 +80,9 @@ Public Class launcher
 
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
         frFacturaAlbaran.Show()
-
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
         frGastos.Show()
-
     End Sub
 End Class

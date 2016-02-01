@@ -126,6 +126,8 @@ Public Class frPresupuestos
         Dim totalLinea As Decimal = 0
         Dim dtoLinea As Decimal = 0
         Dim ivaLinea As Decimal = 0
+        Dim reclinea As Decimal = 0
+
 
         If flagEdit = "N" Then
             For Each row2 As DataGridViewRow In dgLineasPres1.Rows
@@ -144,8 +146,13 @@ Public Class frPresupuestos
         txImponible.Text = (totalLinea - dtoLinea).ToString("0.00")
         'ivaLinea = (Decimal.Parse(txImponible.Text) * Decimal.Parse(txIva.Text)) / 100
         ivaLinea = (Decimal.Parse(txImponible.Text) * 21) / 100
+        If txRecargo.Text = "S" Then
+            reclinea = (Decimal.Parse(txImponible.Text) * vRecargo) / 100
+            txImpRecargo.Text = reclinea.ToString("0.00")
+        End If
+
         txImpIva.Text = ivaLinea.ToString("0.00")
-        txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea).ToString("0.00")
+        txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea + reclinea).ToString("0.00")
 
     End Sub
     Public Sub actualizarLinea()
@@ -317,6 +324,8 @@ Public Class frPresupuestos
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
             Dim imptot As String = txTotalAlbaran.Text
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
+            Dim imprec As String = txImpRecargo.Text
+            Dim guardo_imprec As String = Replace(imprec, ",", ".")
 
             Dim fecha As Date = txFecha.Text
             Dim vEstado As String
@@ -331,7 +340,7 @@ Public Class frPresupuestos
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO presupuesto_cab (num_presupuesto, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalpresupuesto, estado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', '" + vEstado + "')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO presupuesto_cab (num_presupuesto, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalrecargo, totalpresupuesto, estado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imprec + "', '" + guardo_imptot + "', '" + vEstado + "')", conexionmy)
             cmd.ExecuteNonQuery()
             Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
             cmdActualizar.ExecuteNonQuery()
@@ -413,6 +422,8 @@ Public Class frPresupuestos
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
             Dim imptot As String = txTotalAlbaran.Text
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
+            Dim imprec As String = txImpRecargo.Text
+            Dim guardo_imprec As String = Replace(imprec, ",", ".")
 
             Dim fecha As Date = txFecha.Text
             Dim vEstado As String
@@ -426,7 +437,7 @@ Public Class frPresupuestos
 
             'Guardo cabecera y actualizo número de presupuesto
 
-            Dim cmd As New MySqlCommand("UPDATE presupuesto_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalpresupuesto = '" + guardo_imptot + "', estado = '" + vEstado + "' WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
+            Dim cmd As New MySqlCommand("UPDATE presupuesto_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalrecargo = '" + guardo_imprec + "', totalpresupuesto = '" + guardo_imptot + "', estado = '" + vEstado + "' WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
             cmd.ExecuteNonQuery()
 
 
@@ -814,7 +825,7 @@ Public Class frPresupuestos
                 dgLineasPres1.CurrentCell.Value = cellValue
 
             End If
-            If Me.dgLineasPres1.Columns("Column6").Index = e.ColumnIndex Then
+            If Me.dgLineasPres1.Columns("Column7").Index = e.ColumnIndex Then
                 Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
 
@@ -822,7 +833,7 @@ Public Class frPresupuestos
                 dgLineasPres1.CurrentCell.Value = cellValue
 
             End If
-            If Me.dgLineasPres1.Columns("Column7").Index = e.ColumnIndex Then
+            If Me.dgLineasPres1.Columns("Column8").Index = e.ColumnIndex Then
                 Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
 
@@ -864,7 +875,7 @@ Public Class frPresupuestos
                 dgLineasPres2.CurrentCell.Value = cellValue
 
             End If
-            If Me.dgLineasPres2.Columns("Columna6").Index = e.ColumnIndex Then
+            If Me.dgLineasPres2.Columns("Columna7").Index = e.ColumnIndex Then
                 Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
 
@@ -872,7 +883,7 @@ Public Class frPresupuestos
                 dgLineasPres2.CurrentCell.Value = cellValue
 
             End If
-            If Me.dgLineasPres2.Columns("Columna7").Index = e.ColumnIndex Then
+            If Me.dgLineasPres2.Columns("Columna8").Index = e.ColumnIndex Then
                 Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
 
@@ -929,9 +940,10 @@ Public Class frPresupuestos
             Dim vBruto As String = Replace(txImpBruto.Text.ToString, ",", ".")
             Dim vDto As String = Replace(txImpDto.Text.ToString, ",", ".")
             Dim vIva As String = Replace(txImpIva.Text.ToString, ",", ".")
+            Dim vRec As String = Replace(txImpRecargo.Text.ToString, ",", ".")
             Dim vTotal As String = Replace(txTotalAlbaran.Text.ToString, ",", ".")
 
-            cmd.CommandText = "INSERT INTO pedido_cab (num_pedido, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalpedido, estado, eliminado) VALUES (" + txtNumpres.Text + " , " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + vFecha.ToString("yyyy-MM-dd") + "', '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + vBruto + "', '" + vDto + "', '" + vIva + "', '" + vTotal + "', 'P', 'N')"
+            cmd.CommandText = "INSERT INTO pedido_cab (num_pedido, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalrecargo, totalpedido, estado, eliminado) VALUES (" + txtNumpres.Text + " , " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + vFecha.ToString("yyyy-MM-dd") + "', '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + vBruto + "', '" + vDto + "', '" + vIva + "', '" + vRec + "', '" + vTotal + "', 'P', 'N')"
             cmd.Connection = conexionmy
             cmd.ExecuteNonQuery()
 
@@ -1034,9 +1046,10 @@ Public Class frPresupuestos
             Dim vBruto As String = Replace(txImpBruto.Text.ToString, ",", ".")
             Dim vDto As String = Replace(txImpDto.Text.ToString, ",", ".")
             Dim vIva As String = Replace(txImpIva.Text.ToString, ",", ".")
+            Dim vRec As String = Replace(txImpRecargo.Text.ToString, ",", ".")
             Dim vTotal As String = Replace(txTotalAlbaran.Text.ToString, ",", ".")
 
-            cmd.CommandText = "INSERT INTO albaran_cab (num_albaran, serie, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalalbaran, facturado, bultos, eliminado) VALUES (" + txtNumpres.Text + " , '1', " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + vFecha.ToString("yyyy-MM-dd") + "', '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + vBruto + "', '" + vDto + "', '" + vIva + "', '" + vTotal + "', 'N', 0, 'N')"
+            cmd.CommandText = "INSERT INTO albaran_cab (num_albaran, serie, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalrecargo, totalalbaran, facturado, bultos, eliminado) VALUES (" + txtNumpres.Text + " , '1', " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + vFecha.ToString("yyyy-MM-dd") + "', '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + vBruto + "', '" + vDto + "', '" + vIva + "', '" + vRec + "', '" + vTotal + "', 'N', 0, 'N')"
             cmd.Connection = conexionmy
             cmd.ExecuteNonQuery()
 
