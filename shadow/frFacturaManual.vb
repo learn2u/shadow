@@ -13,8 +13,11 @@ Public Class frFacturaManual
     Public Shared cantIni As Decimal
     Public Shared cantFin As Decimal
     Public Shared serieIni As String
+    Public Shared fechadiapago As Date
     Private Sub frFacturaManual_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
+        grPlazos.Visible = False
+
 
         lineas = 0
 
@@ -117,7 +120,6 @@ Public Class frFacturaManual
         txAgente.Text = ""
         txDtocli.Text = ""
         txIva.Text = ""
-        'cbEstado.Text = ""
         cbEnvio.Text = ""
         txObserva.Text = ""
         txImpBruto.Text = 0
@@ -129,6 +131,8 @@ Public Class frFacturaManual
         tsBotones.Focus()
         cmdNuevo.Select()
         dgLineasPres1.Rows.Clear()
+        grPlazos.Visible = False
+
     End Sub
 
     Private Sub cmdLineas_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
@@ -463,6 +467,8 @@ Public Class frFacturaManual
 
             conexionmy.Close()
 
+            grabarVencimientos()
+
             deshabilitarBotones()
             limpiarFormulario()
             cmdNuevo.Enabled = True
@@ -766,14 +772,14 @@ Public Class frFacturaManual
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
         Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
         reader.Read()
 
         Dim stock As String = (reader.GetString(1) - unidades).ToString
         reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
         cmdActualizo.ExecuteNonQuery()
 
         conexionmy.Close()
@@ -783,14 +789,14 @@ Public Class frFacturaManual
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
         Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
         reader.Read()
 
         Dim stock As String = (reader.GetString(1) + unidades).ToString
         reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
         cmdActualizo.ExecuteNonQuery()
 
         conexionmy.Close()
@@ -873,14 +879,14 @@ Public Class frFacturaManual
                 dgLineasPres1.CurrentCell.Value = cellValue
 
             End If
-            If Me.dgLineasPres1.Columns("Column6").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
+            'If Me.dgLineasPres1.Columns("Column6").Index = e.ColumnIndex Then
+            'Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
+            'value = value.Replace(".", ",")
 
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres1.CurrentCell.Value = cellValue
+            'Dim cellValue As Decimal = CType(value, Decimal)
+            'dgLineasPres1.CurrentCell.Value = cellValue
 
-            End If
+            'End If
             If Me.dgLineasPres1.Columns("Column7").Index = e.ColumnIndex Then
                 Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
@@ -939,6 +945,265 @@ Public Class frFacturaManual
                 dgLineasPres2.CurrentCell.Value = cellValue
 
             End If
+        End If
+    End Sub
+
+    Private Sub btRecalcular_Click(sender As Object, e As EventArgs) Handles btRecalcular.Click
+        grPlazos.Visible = True
+        recalcularPlazos()
+
+    End Sub
+
+    Private Sub cmdMostrarAgente_Click(sender As Object, e As EventArgs) Handles cmdMostrarAgente.Click
+        grPlazos.Visible = True
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        grPlazos.Visible = False
+
+    End Sub
+    Public Sub recalcularPlazos()
+        'Recalcular lo plazos de pago y el grid con los vencimientos
+        dgPlazos.Rows.Clear()
+
+        If txDiapago.Text = "" Then
+            MsgBox("Para calcular los vencimientos es necesario introducir un día de pago")
+        Else
+            Dim vDia As String
+            Dim vMes As String
+            Dim vYear As String
+            Dim vFechahoy As String = txFecha.Text
+
+
+            vDia = txDiapago.Text
+            vMes = vFechahoy.Substring(3, 2)
+            vYear = vFechahoy.Substring(6, 4)
+            fechadiapago = vDia + "/" + vMes + "/" + vYear
+
+
+            If cbFormapago.SelectedValue = 1 Then
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = txFecha.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = txTotalAlbaran.Text
+            End If
+            If cbFormapago.SelectedValue = 2 Then
+                Dim fechahoy As Date = fechadiapago
+                Dim fechaplazo As Date = DateAdd(DateInterval.Month, 1, fechahoy)
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = txTotalAlbaran.Text
+            End If
+            If cbFormapago.SelectedValue = 3 Then
+                Dim fechahoy As Date = fechadiapago
+                Dim fechaplazo As Date = DateAdd(DateInterval.Month, 2, fechahoy)
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = txTotalAlbaran.Text
+            End If
+            If cbFormapago.SelectedValue = 4 Then
+                Dim fechahoy As Date = fechadiapago
+                Dim fechaplazo As Date = DateAdd(DateInterval.Month, 3, fechahoy)
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = txTotalAlbaran.Text
+            End If
+            If cbFormapago.SelectedValue = 5 Then
+                Dim fechahoy As Date = fechadiapago
+                Dim fechaplazo1 As Date = DateAdd(DateInterval.Month, 1, fechahoy)
+                Dim fechaplazo2 As Date = DateAdd(DateInterval.Month, 2, fechahoy)
+                Dim vImportePlazo As Decimal
+                vImportePlazo = Decimal.Parse(txTotalAlbaran.Text) / 2
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo1.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo2.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+            End If
+            If cbFormapago.SelectedValue = 6 Then
+                Dim fechahoy As Date = fechadiapago
+                Dim fechaplazo1 As Date = DateAdd(DateInterval.Month, 1, fechahoy)
+                Dim fechaplazo2 As Date = DateAdd(DateInterval.Month, 2, fechahoy)
+                Dim fechaplazo3 As Date = DateAdd(DateInterval.Month, 3, fechahoy)
+                Dim vImportePlazo As Decimal
+                vImportePlazo = Decimal.Parse(txTotalAlbaran.Text) / 3
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo1.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo2.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo3.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+            End If
+            If cbFormapago.SelectedValue = 7 Then
+                Dim fechahoy As Date = fechadiapago
+                Dim fechaplazo1 As Date = DateAdd(DateInterval.Month, 1, fechahoy)
+                Dim fechaplazo2 As Date = DateAdd(DateInterval.Month, 2, fechahoy)
+                Dim fechaplazo3 As Date = DateAdd(DateInterval.Month, 3, fechahoy)
+                Dim fechaplazo4 As Date = DateAdd(DateInterval.Month, 4, fechahoy)
+                Dim vImportePlazo As Decimal
+                vImportePlazo = Decimal.Parse(txTotalAlbaran.Text) / 4
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo1.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo2.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo3.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo4.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+            End If
+            If cbFormapago.SelectedValue = 8 Then
+                Dim fechahoy As Date = fechadiapago
+                Dim fechaplazo1 As Date = DateAdd(DateInterval.Month, 1, fechahoy)
+                Dim fechaplazo2 As Date = DateAdd(DateInterval.Month, 2, fechahoy)
+                Dim fechaplazo3 As Date = DateAdd(DateInterval.Month, 3, fechahoy)
+                Dim fechaplazo4 As Date = DateAdd(DateInterval.Month, 4, fechahoy)
+                Dim fechaplazo5 As Date = DateAdd(DateInterval.Month, 5, fechahoy)
+                Dim vImportePlazo As Decimal
+                vImportePlazo = Decimal.Parse(txTotalAlbaran.Text) / 5
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo1.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo2.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo3.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo4.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo5.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+            End If
+            If cbFormapago.SelectedValue = 9 Then
+                Dim fechahoy As Date = fechadiapago
+                Dim fechaplazo1 As Date = DateAdd(DateInterval.Month, 1, fechahoy)
+                Dim fechaplazo2 As Date = DateAdd(DateInterval.Month, 2, fechahoy)
+                Dim fechaplazo3 As Date = DateAdd(DateInterval.Month, 3, fechahoy)
+                Dim fechaplazo4 As Date = DateAdd(DateInterval.Month, 4, fechahoy)
+                Dim fechaplazo5 As Date = DateAdd(DateInterval.Month, 5, fechahoy)
+                Dim fechaplazo6 As Date = DateAdd(DateInterval.Month, 6, fechahoy)
+                Dim vImportePlazo As Decimal
+                vImportePlazo = Decimal.Parse(txTotalAlbaran.Text) / 6
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo1.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo2.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo3.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo4.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo5.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = fechaplazo6.ToString("dd/MM/yyyy")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = "Pago fra. referencia:" + txReferenciapres.Text
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = vImportePlazo.ToString("0.00")
+
+            End If
+        End If
+    End Sub
+    Public Sub grabarVencimientos()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim vPagado As String
+        Dim orden As Int16 = 0
+        Dim linImporte As String
+
+
+        If ckPagado.Checked = True Then
+            vPagado = "S"
+        Else
+            vPagado = "N"
+        End If
+
+        For Each row In dgPlazos.Rows
+            orden = orden + 1
+
+            Dim fecha As Date = row.Cells(0).Value
+            linImporte = row.Cells(2).Value.ToString
+
+            Dim cmd As New MySqlCommand("INSERT INTO vto_cobros (documentoID, tipodoc, concepto, vencimiento, importe, orden, pagado) VALUES (" + txtNumpres.Text + ", 'F', '" + row.Cells(1).Value + "', '" + fecha.ToString("yyyy-MM-dd") + "', '" + linImporte + "', '" + orden.ToString + "', '" + vPagado + "')", conexionmy)
+            cmd.ExecuteNonQuery()
+        Next
+        conexionmy.Close()
+
+    End Sub
+
+    Private Sub ckPagado_CheckedChanged(sender As Object, e As EventArgs) Handles ckPagado.CheckedChanged
+        If ckPagado.Checked = True Then
+            cbFormapago.SelectedIndex = 0
+            Dim vFechahoy As String = txFecha.Text
+            Dim vDia As String
+            vDia = vFechahoy.Substring(0, 2)
+            txDiapago.Text = vDia
+            dgPlazos.Rows.Clear()
+            recalcularPlazos()
+            cbFormapago.Enabled = False
+            txDiapago.Enabled = False
+        Else
+            cbFormapago.Enabled = True
+            txDiapago.Enabled = True
         End If
     End Sub
 End Class

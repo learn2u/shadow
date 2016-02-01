@@ -115,6 +115,7 @@ Public Class frVerClientes
             Me.Hide()
             frFacturaManual.recalcularDescuentos()
             cargoEnvios()
+            cargoFormapagoCliente()
         End If
 
     End Sub
@@ -258,5 +259,75 @@ Public Class frVerClientes
             cn.Close()
         End If
 
+    End Sub
+    Public Sub cargoFormapagoCliente()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmd As New MySqlCommand
+
+        Dim rdr As MySqlDataReader
+
+        cmd = New MySqlCommand("SELECT * FROM clientes WHERE clienteID = '" + frFacturaManual.txNumcli.Text + "'", conexionmy)
+
+        cmd.CommandType = CommandType.Text
+        cmd.Connection = conexionmy
+        rdr = cmd.ExecuteReader
+
+
+        rdr.Read()
+
+        frFacturaManual.txDiapago.Text = rdr("diapago")
+        cargoFormaPago()
+
+        Dim vForma As Integer = 0
+        vForma = rdr("formapago")
+        Select Case vForma
+            Case 1
+                frFacturaManual.cbFormapago.SelectedIndex = 0
+            Case 2
+                frFacturaManual.cbFormapago.SelectedIndex = 1
+            Case 3
+                frFacturaManual.cbFormapago.SelectedIndex = 2
+            Case 4
+                frFacturaManual.cbFormapago.SelectedIndex = 3
+            Case 5
+                frFacturaManual.cbFormapago.SelectedIndex = 4
+            Case 6
+                frFacturaManual.cbFormapago.SelectedIndex = 5
+            Case 7
+                frFacturaManual.cbFormapago.SelectedIndex = 6
+            Case 8
+                frFacturaManual.cbFormapago.SelectedIndex = 7
+            Case 9
+                frFacturaManual.cbFormapago.SelectedIndex = 8
+        End Select
+    End Sub
+    Public Sub cargoFormaPago()
+        frFacturaManual.cbFormapago.ResetText()
+
+        Dim cn As MySqlConnection
+        Dim cm As MySqlCommand
+
+        Dim da As MySqlDataAdapter
+        Dim ds As DataSet
+        cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+        cn.Open()
+        cm = New MySqlCommand("SELECT formaID, formapago FROM formapago", cn)
+
+
+        cm.CommandType = CommandType.Text
+        cm.Connection = cn
+
+        da = New MySqlDataAdapter(cm)
+        ds = New DataSet()
+        da.Fill(ds)
+
+
+        frFacturaManual.cbFormapago.DataSource = ds.Tables(0)
+        frFacturaManual.cbFormapago.DisplayMember = ds.Tables(0).Columns("formapago").ToString
+        frFacturaManual.cbFormapago.ValueMember = "formaID"
+
+        cn.Close()
     End Sub
 End Class
