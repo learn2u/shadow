@@ -33,6 +33,8 @@ Partial Class frCliente
         Me.cmdCancelar = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdDirEnvio = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.cbProvincia = New System.Windows.Forms.ComboBox()
@@ -74,6 +76,7 @@ Partial Class frCliente
         Me.txCif = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.cbFormapago = New System.Windows.Forms.ComboBox()
         Me.cbTipocli = New System.Windows.Forms.ComboBox()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.grBanco = New System.Windows.Forms.GroupBox()
@@ -88,13 +91,9 @@ Partial Class frCliente
         Me.txComision = New System.Windows.Forms.TextBox()
         Me.chRecargo = New System.Windows.Forms.CheckBox()
         Me.chIVA = New System.Windows.Forms.CheckBox()
-        Me.txtPago3 = New System.Windows.Forms.TextBox()
-        Me.txtPago2 = New System.Windows.Forms.TextBox()
         Me.txPago1 = New System.Windows.Forms.TextBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.cmdMostrarAgente = New System.Windows.Forms.Button()
-        Me.cmdMostrarFPago = New System.Windows.Forms.Button()
-        Me.txFormaPago = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.txDescuento = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -124,8 +123,7 @@ Partial Class frCliente
         Me.Label26 = New System.Windows.Forms.Label()
         Me.txHorario = New System.Windows.Forms.TextBox()
         Me.Label27 = New System.Windows.Forms.Label()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.txIdAgente = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgClientes, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -244,6 +242,24 @@ Partial Class frCliente
         Me.cmdDirEnvio.Size = New System.Drawing.Size(33, 30)
         Me.cmdDirEnvio.Text = "ToolStripButton1"
         Me.cmdDirEnvio.ToolTipText = "Imprimir"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.AutoSize = False
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(33, 30)
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.AutoSize = False
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(33, 30)
+        Me.ToolStripButton1.Text = "ToolStripButton1"
+        Me.ToolStripButton1.ToolTipText = "Imprimir"
         '
         'TabControl2
         '
@@ -615,19 +631,17 @@ Partial Class frCliente
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.txIdAgente)
+        Me.TabPage5.Controls.Add(Me.cbFormapago)
         Me.TabPage5.Controls.Add(Me.cbTipocli)
         Me.TabPage5.Controls.Add(Me.Label38)
         Me.TabPage5.Controls.Add(Me.grBanco)
         Me.TabPage5.Controls.Add(Me.txComision)
         Me.TabPage5.Controls.Add(Me.chRecargo)
         Me.TabPage5.Controls.Add(Me.chIVA)
-        Me.TabPage5.Controls.Add(Me.txtPago3)
-        Me.TabPage5.Controls.Add(Me.txtPago2)
         Me.TabPage5.Controls.Add(Me.txPago1)
         Me.TabPage5.Controls.Add(Me.Label20)
         Me.TabPage5.Controls.Add(Me.cmdMostrarAgente)
-        Me.TabPage5.Controls.Add(Me.cmdMostrarFPago)
-        Me.TabPage5.Controls.Add(Me.txFormaPago)
         Me.TabPage5.Controls.Add(Me.Label19)
         Me.TabPage5.Controls.Add(Me.txDescuento)
         Me.TabPage5.Controls.Add(Me.Label18)
@@ -640,6 +654,14 @@ Partial Class frCliente
         Me.TabPage5.TabIndex = 1
         Me.TabPage5.Text = "DATOS COMERCIALES"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'cbFormapago
+        '
+        Me.cbFormapago.FormattingEnabled = True
+        Me.cbFormapago.Location = New System.Drawing.Point(108, 74)
+        Me.cbFormapago.Name = "cbFormapago"
+        Me.cbFormapago.Size = New System.Drawing.Size(187, 21)
+        Me.cbFormapago.TabIndex = 80
         '
         'cbTipocli
         '
@@ -767,20 +789,6 @@ Partial Class frCliente
         Me.chIVA.Text = "IVA"
         Me.chIVA.UseVisualStyleBackColor = True
         '
-        'txtPago3
-        '
-        Me.txtPago3.Location = New System.Drawing.Point(232, 100)
-        Me.txtPago3.Name = "txtPago3"
-        Me.txtPago3.Size = New System.Drawing.Size(56, 20)
-        Me.txtPago3.TabIndex = 58
-        '
-        'txtPago2
-        '
-        Me.txtPago2.Location = New System.Drawing.Point(170, 100)
-        Me.txtPago2.Name = "txtPago2"
-        Me.txtPago2.Size = New System.Drawing.Size(56, 20)
-        Me.txtPago2.TabIndex = 57
-        '
         'txPago1
         '
         Me.txPago1.Location = New System.Drawing.Point(108, 100)
@@ -808,25 +816,6 @@ Partial Class frCliente
         Me.cmdMostrarAgente.Size = New System.Drawing.Size(21, 19)
         Me.cmdMostrarAgente.TabIndex = 54
         Me.cmdMostrarAgente.UseVisualStyleBackColor = False
-        '
-        'cmdMostrarFPago
-        '
-        Me.cmdMostrarFPago.BackColor = System.Drawing.Color.White
-        Me.cmdMostrarFPago.FlatAppearance.BorderSize = 0
-        Me.cmdMostrarFPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdMostrarFPago.Image = CType(resources.GetObject("cmdMostrarFPago.Image"), System.Drawing.Image)
-        Me.cmdMostrarFPago.Location = New System.Drawing.Point(369, 75)
-        Me.cmdMostrarFPago.Name = "cmdMostrarFPago"
-        Me.cmdMostrarFPago.Size = New System.Drawing.Size(21, 19)
-        Me.cmdMostrarFPago.TabIndex = 53
-        Me.cmdMostrarFPago.UseVisualStyleBackColor = False
-        '
-        'txFormaPago
-        '
-        Me.txFormaPago.Location = New System.Drawing.Point(108, 74)
-        Me.txFormaPago.Name = "txFormaPago"
-        Me.txFormaPago.Size = New System.Drawing.Size(255, 20)
-        Me.txFormaPago.TabIndex = 51
         '
         'Label19
         '
@@ -1095,23 +1084,13 @@ Partial Class frCliente
         Me.Label27.TabIndex = 54
         Me.Label27.Text = "HORARIO:"
         '
-        'ToolStripSeparator1
+        'txIdAgente
         '
-        Me.ToolStripSeparator1.AutoSize = False
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(33, 30)
-        '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.AutoSize = False
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(33, 30)
-        Me.ToolStripButton1.Text = "ToolStripButton1"
-        Me.ToolStripButton1.ToolTipText = "Imprimir"
+        Me.txIdAgente.Location = New System.Drawing.Point(662, 47)
+        Me.txIdAgente.Name = "txIdAgente"
+        Me.txIdAgente.Size = New System.Drawing.Size(100, 20)
+        Me.txIdAgente.TabIndex = 81
+        Me.txIdAgente.Visible = False
         '
         'frCliente
         '
@@ -1198,12 +1177,8 @@ Partial Class frCliente
     Friend WithEvents Label18 As Label
     Friend WithEvents txAgente As TextBox
     Friend WithEvents Label17 As Label
-    Friend WithEvents txFormaPago As TextBox
     Friend WithEvents Label19 As Label
     Friend WithEvents cmdMostrarAgente As Button
-    Friend WithEvents cmdMostrarFPago As Button
-    Friend WithEvents txtPago3 As TextBox
-    Friend WithEvents txtPago2 As TextBox
     Friend WithEvents txPago1 As TextBox
     Friend WithEvents Label20 As Label
     Friend WithEvents chRecargo As CheckBox
@@ -1247,4 +1222,6 @@ Partial Class frCliente
     Friend WithEvents txFechaAlta As MaskedTextBox
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents cbFormapago As ComboBox
+    Friend WithEvents txIdAgente As TextBox
 End Class

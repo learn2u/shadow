@@ -49,7 +49,7 @@ Public Class frCliente
             Dim guardo_descuento As String = Replace(descuento, ",", ".")
             Dim comision As String = txComision.Text
             Dim guardo_comision As String = Replace(comision, ",", ".")
-            Dim dpago As String = txPago1.Text + "," + txtPago2.Text + "," + txtPago3.Text
+
 
 
             If chRecargo.Checked = True Then
@@ -67,7 +67,7 @@ Public Class frCliente
             Dim fecha As Date = txFechaAlta.Text
 
             cmd.CommandType = System.Data.CommandType.Text
-            cmd.CommandText = "INSERT INTO clientes (cif, nombre, nombrecom, direccion, poblacion, cpostal, provincia, pais, telefono, movil, fax, email, url, observaciones, contacto, contacto2, telefcontac1, telefcontac2, agenteID, descuento, comision, recargo, exento, formapago, diapago, entidad, cuentabancaria, iban, bic, tipocli, fechaalta, horario, mensaje, libre1, libre2, libre3) VALUES ('" + txCif.Text + "' , '" + txNFiscal.Text + "' , '" + txNComercial.Text + "' , '" + txDomicilio.Text + "' , '" + txPoblacion.Text + "' , '" + txCpostal.Text + "' , '" + cbProvincia.Text + "' , '" + txPais.Text + "' , '" + txTel.Text + "' , '" + txMovil.Text + "' , '" + txFax.Text + "' , '" + txEmail.Text + "' , '" + txWeb.Text + "' , '" + txObservaciones.Text + "' , '" + txContacto1.Text + "' , '" + txContacto2.Text + "' , '" + txTel1.Text + "' , '" + txTel2.Text + "' , '" + txAgente.Text + "' , '" + guardo_descuento + "' , '" + guardo_comision + "' , '" + equiv + "' , '" + exento + "' , '" + txFormaPago.Text + "' , '" + dpago + "' , '" + txBANCO.Text + "' , '" + txCCC.Text + "' ,'" + txIBAN.Text + "' , '" + txBIC.Text + "' , '" + cbTipocli.Text + "' , '" + fecha.ToString("yyyy-MM-dd") + "' , '" + txHorario.Text + "' , '" + txEmergente.Text + "' , '" + txLibre1.Text + "', '" + txLibre2.Text + "', '" + txLibre3.Text + "')"
+            cmd.CommandText = "INSERT INTO clientes (cif, nombre, nombrecom, direccion, poblacion, cpostal, provincia, pais, telefono, movil, fax, email, url, observaciones, contacto, contacto2, telefcontac1, telefcontac2, agenteID, descuento, comision, recargo, exento, formapago, formatexto, diapago, entidad, cuentabancaria, iban, bic, tipocli, fechaalta, horario, mensaje, libre1, libre2, libre3) VALUES ('" + txCif.Text + "' , '" + txNFiscal.Text + "' , '" + txNComercial.Text + "' , '" + txDomicilio.Text + "' , '" + txPoblacion.Text + "' , '" + txCpostal.Text + "' , '" + cbProvincia.Text + "' , '" + txPais.Text + "' , '" + txTel.Text + "' , '" + txMovil.Text + "' , '" + txFax.Text + "' , '" + txEmail.Text + "' , '" + txWeb.Text + "' , '" + txObservaciones.Text + "' , '" + txContacto1.Text + "' , '" + txContacto2.Text + "' , '" + txTel1.Text + "' , '" + txTel2.Text + "' , '" + txIdAgente.Text + "' , '" + guardo_descuento + "' , '" + guardo_comision + "' , '" + equiv + "' , '" + exento + "' , " + cbFormapago.SelectedValue.ToString + " , '" + cbFormapago.Text + "' , '" + txPago1.Text + "' , '" + txBANCO.Text + "' , '" + txCCC.Text + "' ,'" + txIBAN.Text + "' , '" + txBIC.Text + "' , '" + cbTipocli.Text + "' , '" + fecha.ToString("yyyy-MM-dd") + "' , '" + txHorario.Text + "' , '" + txEmergente.Text + "' , '" + txLibre1.Text + "', '" + txLibre2.Text + "', '" + txLibre3.Text + "')"
 
             cmd.Connection = conexionmy
 
@@ -95,7 +95,6 @@ Public Class frCliente
             Dim guardo_descuento As String = Replace(descuento, ",", ".")
             Dim comision As String = txComision.Text
             Dim guardo_comision As String = Replace(comision, ",", ".")
-            Dim dpago As String = txPago1.Text + "," + txtPago2.Text + "," + txtPago3.Text
 
             If chRecargo.Checked = True Then
                 equiv = "S"
@@ -129,13 +128,14 @@ Public Class frCliente
                                                 contacto2 = '" + txContacto2.Text + "',
                                                 telefcontac1 = '" + txTel1.Text + "',
                                                 telefcontac2 = '" + txTel2.Text + "',
-                                                agenteID = '" + txAgente.Text + "',
+                                                agenteID = '" + txIdAgente.Text + "',
                                                 descuento = '" + guardo_descuento + "',
                                                 comision = '" + guardo_comision + "',
                                                 exento = '" + exento + "',
                                                 recargo = '" + equiv + "',
-                                                formapago = '" + txFormaPago.Text + "',
-                                                diapago = '" + dpago + "',
+                                                formapago = '" + cbFormapago.SelectedValue.ToString + "',
+                                                formatexto = '" + cbFormapago.Text + "',
+                                                diapago = '" + txPago1.Text + "',
                                                 entidad = '" + txBANCO.Text + "',
                                                 cuentabancaria = '" + txCCC.Text + "',
                                                 iban = '" + txIBAN.Text + "',
@@ -222,6 +222,8 @@ Public Class frCliente
         txTel1.Text = rdr("telefcontac1")
         txTel2.Text = rdr("telefcontac2")
         txDescuento.Text = rdr("descuento")
+        txIdAgente.Text = rdr("agenteID")
+        cargoAgente()
         txComision.Text = rdr("comision")
         If rdr("exento") = "N" Then
             chIVA.Checked = False
@@ -233,7 +235,30 @@ Public Class frCliente
         Else
             chRecargo.Checked = True
         End If
-        txFormaPago.Text = rdr("formapago")
+        cargoFormaPago()
+        Dim vForma As Integer = 0
+        vForma = rdr("formapago")
+        Select Case vForma
+            Case 1
+                cbFormapago.SelectedIndex = 0
+            Case 2
+                cbFormapago.SelectedIndex = 1
+            Case 3
+                cbFormapago.SelectedIndex = 2
+            Case 4
+                cbFormapago.SelectedIndex = 3
+            Case 5
+                cbFormapago.SelectedIndex = 4
+            Case 6
+                cbFormapago.SelectedIndex = 5
+            Case 7
+                cbFormapago.SelectedIndex = 6
+            Case 8
+                cbFormapago.SelectedIndex = 7
+            Case 9
+                cbFormapago.SelectedIndex = 8
+        End Select
+
         txPago1.Text = rdr("diapago")
         txBANCO.Text = rdr("entidad")
         txCCC.Text = rdr("cuentabancaria")
@@ -283,10 +308,9 @@ Public Class frCliente
         txAgente.Text = ""
         chIVA.Checked = False
         chRecargo.Checked = False
-        txFormaPago.Text = ""
+
         txPago1.Text = ""
-        txtPago2.Text = ""
-        txtPago3.Text = ""
+
         txBANCO.Text = ""
         txCCC.Text = ""
         txIBAN.Text = ""
@@ -387,6 +411,59 @@ Public Class frCliente
     End Sub
 
     Private Sub cmdDirEnvio_Click(sender As Object, e As EventArgs) Handles cmdDirEnvio.Click
+
+    End Sub
+
+    Private Sub cmdMostrarAgente_Click(sender As Object, e As EventArgs) Handles cmdMostrarAgente.Click
+        frVerAgentes.Show()
+    End Sub
+    Public Sub cargoFormaPago()
+        cbFormapago.ResetText()
+
+        Dim cn As MySqlConnection
+        Dim cm As MySqlCommand
+
+        Dim da As MySqlDataAdapter
+        Dim ds As DataSet
+        cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+        cn.Open()
+        cm = New MySqlCommand("SELECT formaID, formapago FROM formapago", cn)
+
+
+        cm.CommandType = CommandType.Text
+        cm.Connection = cn
+
+        da = New MySqlDataAdapter(cm)
+        ds = New DataSet()
+        da.Fill(ds)
+
+
+        cbFormapago.DataSource = ds.Tables(0)
+        cbFormapago.DisplayMember = ds.Tables(0).Columns("formapago").ToString
+        cbFormapago.ValueMember = "formaID"
+
+        cn.Close()
+    End Sub
+    Public Sub cargoAgente()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmd As New MySqlCommand
+
+        Dim rdr As MySqlDataReader
+
+        cmd = New MySqlCommand("SELECT * FROM agentes WHERE agenteID = '" + txIdAgente.Text + "'", conexionmy)
+
+        cmd.CommandType = CommandType.Text
+        cmd.Connection = conexionmy
+        rdr = cmd.ExecuteReader
+
+
+        rdr.Read()
+
+        txAgente.Text = rdr("agente")
+
+        conexionmy.Close()
 
     End Sub
 End Class

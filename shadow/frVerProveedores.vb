@@ -6,38 +6,8 @@ Imports System.ComponentModel
 Imports System.Xml
 Public Class frVerProveedores
     Private Sub frVerProveedores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        cargoTodosProveedores()
 
-        conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT nombre, descuento, proveedorID, cif FROM proveedores", conexionmy)
-
-        Dim readermy As MySqlDataReader
-        Dim dtable As New DataTable
-        Dim bind As New BindingSource()
-
-
-        readermy = consultamy.ExecuteReader
-        dtable.Load(readermy, LoadOption.OverwriteChanges)
-
-        bind.DataSource = dtable
-
-
-        dgProvedores.DataSource = bind
-        dgProvedores.AutoGenerateColumns = False
-        dgProvedores.Columns(0).HeaderText = "NOMBRE"
-        dgProvedores.Columns(0).Name = "cliente"
-        dgProvedores.Columns(1).HeaderText = "DESCUENTO"
-        dgProvedores.Columns(1).Name = "dto"
-        dgProvedores.Columns(1).Visible = False
-        dgProvedores.Columns(2).HeaderText = "CODIGO"
-        dgProvedores.Columns(2).Name = "cod"
-        dgProvedores.Columns(2).Visible = False
-        dgProvedores.Columns(3).HeaderText = "CIF"
-        dgProvedores.Columns(3).Name = "cif"
-        dgProvedores.Columns(3).Visible = False
-        dgProvedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-
-        conexionmy.Close()
     End Sub
 
     Private Sub txProveedor_TextChanged(sender As Object, e As EventArgs) Handles txProveedor.TextChanged
@@ -90,5 +60,80 @@ Public Class frVerProveedores
         Me.Hide()
         frPedidoProv.recalcularDescuentos()
 
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+
+        If CheckBox1.Checked = True Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+            conexionmy.Open()
+            Dim consultamy As New MySqlCommand("SELECT nombre, descuento, proveedorID, cif FROM proveedores WHERE tipo = 'T'", conexionmy)
+
+            Dim readermy As MySqlDataReader
+            Dim dtable As New DataTable
+            Dim bind As New BindingSource()
+
+
+            readermy = consultamy.ExecuteReader
+            dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+            bind.DataSource = dtable
+
+
+            dgProvedores.DataSource = bind
+            dgProvedores.AutoGenerateColumns = False
+            dgProvedores.Columns(0).HeaderText = "NOMBRE"
+            dgProvedores.Columns(0).Name = "cliente"
+            dgProvedores.Columns(1).HeaderText = "DESCUENTO"
+            dgProvedores.Columns(1).Name = "dto"
+            dgProvedores.Columns(1).Visible = False
+            dgProvedores.Columns(2).HeaderText = "CODIGO"
+            dgProvedores.Columns(2).Name = "cod"
+            dgProvedores.Columns(2).Visible = False
+            dgProvedores.Columns(3).HeaderText = "CIF"
+            dgProvedores.Columns(3).Name = "cif"
+            dgProvedores.Columns(3).Visible = False
+            dgProvedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+
+            conexionmy.Close()
+        Else
+            cargoTodosProveedores()
+        End If
+
+    End Sub
+    Public Sub cargoTodosProveedores()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+        conexionmy.Open()
+        Dim consultamy As New MySqlCommand("SELECT nombre, descuento, proveedorID, cif FROM proveedores WHERE tipo = 'P'", conexionmy)
+
+        Dim readermy As MySqlDataReader
+        Dim dtable As New DataTable
+        Dim bind As New BindingSource()
+
+
+        readermy = consultamy.ExecuteReader
+        dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+        bind.DataSource = dtable
+
+
+        dgProvedores.DataSource = bind
+        dgProvedores.AutoGenerateColumns = False
+        dgProvedores.Columns(0).HeaderText = "NOMBRE"
+        dgProvedores.Columns(0).Name = "cliente"
+        dgProvedores.Columns(1).HeaderText = "DESCUENTO"
+        dgProvedores.Columns(1).Name = "dto"
+        dgProvedores.Columns(1).Visible = False
+        dgProvedores.Columns(2).HeaderText = "CODIGO"
+        dgProvedores.Columns(2).Name = "cod"
+        dgProvedores.Columns(2).Visible = False
+        dgProvedores.Columns(3).HeaderText = "CIF"
+        dgProvedores.Columns(3).Name = "cif"
+        dgProvedores.Columns(3).Visible = False
+        dgProvedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+
+        conexionmy.Close()
     End Sub
 End Class
