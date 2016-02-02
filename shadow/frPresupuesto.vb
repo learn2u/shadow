@@ -296,6 +296,7 @@ Public Class frPresupuestos
         txNumcli.Text = ""
         txClientepres.Text = ""
         txAgente.Text = ""
+        txRecargo.Text = ""
         txDtocli.Text = ""
         txIva.Text = ""
         cbEstado.Text = ""

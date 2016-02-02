@@ -92,6 +92,7 @@ Partial Class frPedido
         Me.cmdImprimir = New System.Windows.Forms.ToolStripButton()
         Me.cmdCancelar = New System.Windows.Forms.ToolStripButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.txRecargo = New System.Windows.Forms.TextBox()
         Me.txNumpresBk = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.txObserva = New System.Windows.Forms.TextBox()
@@ -665,6 +666,7 @@ Partial Class frPedido
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.White
+        Me.TabPage2.Controls.Add(Me.txRecargo)
         Me.TabPage2.Controls.Add(Me.txNumpresBk)
         Me.TabPage2.Controls.Add(Me.Label13)
         Me.TabPage2.Controls.Add(Me.txObserva)
@@ -707,6 +709,14 @@ Partial Class frPedido
         Me.TabPage2.Size = New System.Drawing.Size(1213, 539)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "PEDIDO"
+        '
+        'txRecargo
+        '
+        Me.txRecargo.Location = New System.Drawing.Point(594, 122)
+        Me.txRecargo.Name = "txRecargo"
+        Me.txRecargo.Size = New System.Drawing.Size(48, 20)
+        Me.txRecargo.TabIndex = 109
+        Me.txRecargo.Visible = False
         '
         'txNumpresBk
         '
@@ -1339,4 +1349,5 @@ Partial Class frPedido
     Friend WithEvents btArticulo As DataGridViewButtonColumn
     Friend WithEvents linea As DataGridViewTextBoxColumn
     Friend WithEvents txNumpresBk As TextBox
+    Friend WithEvents txRecargo As TextBox
 End Class

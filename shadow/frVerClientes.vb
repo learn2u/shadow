@@ -110,6 +110,7 @@ Public Class frVerClientes
             frPedido.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
             frPedido.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
             frPedido.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+            frPedido.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
             Me.Hide()
             frPedido.recalcularDescuentos()
             cargoEnvios()
@@ -120,6 +121,7 @@ Public Class frVerClientes
             frFacturaManual.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
             frFacturaManual.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
             frFacturaManual.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+            frFacturaManual.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
             Me.Hide()
             frFacturaManual.recalcularDescuentos()
             cargoEnvios()

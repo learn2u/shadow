@@ -116,6 +116,7 @@ Public Class frPedido
         txNumcli.Text = ""
         txClientepres.Text = ""
         txAgente.Text = ""
+        txRecargo.Text = ""
         txDtocli.Text = ""
         txIva.Text = ""
         cbEstado.Text = ""
@@ -226,6 +227,7 @@ Public Class frPedido
         Dim totalLinea As Decimal = 0
         Dim dtoLinea As Decimal = 0
         Dim ivaLinea As Decimal = 0
+        Dim reclinea As Decimal = 0
 
         If flagEdit = "N" Then
             For Each row2 As DataGridViewRow In dgLineasPres1.Rows
@@ -244,8 +246,12 @@ Public Class frPedido
         txImponible.Text = (totalLinea - dtoLinea).ToString("0.00")
         'ivaLinea = (Decimal.Parse(txImponible.Text) * Decimal.Parse(txIva.Text)) / 100
         ivaLinea = (Decimal.Parse(txImponible.Text) * 21) / 100
+        If txRecargo.Text = "S" Then
+            reclinea = (Decimal.Parse(txImponible.Text) * vRecargo) / 100
+            txImpRecargo.Text = reclinea.ToString("0.00")
+        End If
         txImpIva.Text = ivaLinea.ToString("0.00")
-        txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea).ToString("0.00")
+        txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea + reclinea).ToString("0.00")
 
     End Sub
     Public Sub actualizarLinea()
@@ -381,6 +387,8 @@ Public Class frPedido
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
             Dim imptot As String = txTotalAlbaran.Text
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
+            Dim imprec As String = txImpRecargo.Text
+            Dim guardo_imprec As String = Replace(imprec, ",", ".")
 
             Dim fecha As Date = txFecha.Text
             Dim vEstado As String
@@ -393,7 +401,7 @@ Public Class frPedido
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO pedido_cab (num_pedido, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalpedido, estado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', '" + vEstado + "')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO pedido_cab (num_pedido, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalrecargo, totalpedido, estado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imprec + "', '" + guardo_imptot + "', '" + vEstado + "')", conexionmy)
             cmd.ExecuteNonQuery()
 
             Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_pedido = '" + txtNumpres.Text + "'", conexionmy)
@@ -481,6 +489,8 @@ Public Class frPedido
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
             Dim imptot As String = txTotalAlbaran.Text
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
+            Dim imprec As String = txImpRecargo.Text
+            Dim guardo_imprec As String = Replace(imprec, ",", ".")
 
             Dim fecha As Date = txFecha.Text
             Dim vEstado As String
@@ -493,7 +503,7 @@ Public Class frPedido
             'Guardo cabecera y actualizo número de presupuesto
 
 
-            Dim cmd As New MySqlCommand("UPDATE pedido_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalpedido = '" + guardo_imptot + "', estado = '" + vEstado + "' WHERE num_pedido = " + txtNumpres.Text + "", conexionmy)
+            Dim cmd As New MySqlCommand("UPDATE pedido_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalrecargo = '" + guardo_imprec + "', totalpedido = '" + guardo_imptot + "', estado = '" + vEstado + "' WHERE num_pedido = " + txtNumpres.Text + "", conexionmy)
             cmd.ExecuteNonQuery()
 
 

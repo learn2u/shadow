@@ -81,10 +81,12 @@ Partial Class frFacturaManual
         Me.rbTodos = New System.Windows.Forms.RadioButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.grPlazos = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.dgPlazos = New System.Windows.Forms.DataGridView()
         Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.concepto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ckPagado = New System.Windows.Forms.CheckBox()
         Me.txDiapago = New System.Windows.Forms.TextBox()
         Me.cmdMostrarAgente = New System.Windows.Forms.Button()
         Me.txRecargo = New System.Windows.Forms.TextBox()
@@ -152,8 +154,6 @@ Partial Class frFacturaManual
         Me.dgFacturas = New System.Windows.Forms.DataGridView()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.tabPresupuestos = New System.Windows.Forms.TabControl()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.ckPagado = New System.Windows.Forms.CheckBox()
         Me.Panel4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -629,6 +629,15 @@ Partial Class frFacturaManual
         Me.grPlazos.Text = "VENCIMIENTOS Y PLAZOS"
         Me.grPlazos.Visible = False
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(428, 12)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 122
+        Me.Button1.Text = "Cerrar"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'dgPlazos
         '
         Me.dgPlazos.AllowUserToAddRows = False
@@ -659,6 +668,16 @@ Partial Class frFacturaManual
         Me.importe.Name = "importe"
         Me.importe.Width = 70
         '
+        'ckPagado
+        '
+        Me.ckPagado.AutoSize = True
+        Me.ckPagado.Location = New System.Drawing.Point(790, 124)
+        Me.ckPagado.Name = "ckPagado"
+        Me.ckPagado.Size = New System.Drawing.Size(70, 17)
+        Me.ckPagado.TabIndex = 116
+        Me.ckPagado.Text = "PAGADA"
+        Me.ckPagado.UseVisualStyleBackColor = True
+        '
         'txDiapago
         '
         Me.txDiapago.Location = New System.Drawing.Point(658, 122)
@@ -685,7 +704,6 @@ Partial Class frFacturaManual
         Me.txRecargo.Name = "txRecargo"
         Me.txRecargo.Size = New System.Drawing.Size(59, 20)
         Me.txRecargo.TabIndex = 112
-        Me.txRecargo.Text = "1"
         Me.txRecargo.Visible = False
         '
         'btRecalcular
@@ -1292,25 +1310,6 @@ Partial Class frFacturaManual
         Me.tabPresupuestos.Size = New System.Drawing.Size(1221, 565)
         Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.tabPresupuestos.TabIndex = 2
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(428, 12)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 122
-        Me.Button1.Text = "Cerrar"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'ckPagado
-        '
-        Me.ckPagado.AutoSize = True
-        Me.ckPagado.Location = New System.Drawing.Point(790, 124)
-        Me.ckPagado.Name = "ckPagado"
-        Me.ckPagado.Size = New System.Drawing.Size(70, 17)
-        Me.ckPagado.TabIndex = 116
-        Me.ckPagado.Text = "PAGADA"
-        Me.ckPagado.UseVisualStyleBackColor = True
         '
         'frFacturaManual
         '

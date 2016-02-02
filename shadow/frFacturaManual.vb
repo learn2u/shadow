@@ -118,6 +118,7 @@ Public Class frFacturaManual
         txNumcli.Text = ""
         txClientepres.Text = ""
         txAgente.Text = ""
+        txRecargo.Text = ""
         txDtocli.Text = ""
         txIva.Text = ""
         cbEnvio.Text = ""
@@ -227,6 +228,7 @@ Public Class frFacturaManual
         Dim totalLinea As Decimal = 0
         Dim dtoLinea As Decimal = 0
         Dim ivaLinea As Decimal = 0
+        Dim reclinea As Decimal = 0
 
         If flagEdit = "N" Then
             For Each row2 As DataGridViewRow In dgLineasPres1.Rows
@@ -245,8 +247,12 @@ Public Class frFacturaManual
         txImponible.Text = (totalLinea - dtoLinea).ToString("0.00")
         'ivaLinea = (Decimal.Parse(txImponible.Text) * Decimal.Parse(txIva.Text)) / 100
         ivaLinea = (Decimal.Parse(txImponible.Text) * 21) / 100
+        If txRecargo.Text = "S" Then
+            reclinea = (Decimal.Parse(txImponible.Text) * vRecargo) / 100
+            txImpRecargo.Text = reclinea.ToString("0.00")
+        End If
         txImpIva.Text = ivaLinea.ToString("0.00")
-        txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea).ToString("0.00")
+        txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea + reclinea).ToString("0.00")
 
     End Sub
     Public Sub actualizarLinea()
@@ -388,13 +394,15 @@ Public Class frFacturaManual
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
             Dim imptot As String = txTotalAlbaran.Text
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
+            Dim imprec As String = txImpRecargo.Text
+            Dim guardo_imprec As String = Replace(imprec, ",", ".")
 
             Dim fecha As Date = txFecha.Text
 
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO factura_cab (num_factura, serie, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalfactura, manual) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'S')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO factura_cab (num_factura, serie, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalrecargo, totalfactura, manual) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imprec + "', '" + guardo_imptot + "', 'S')", conexionmy)
             cmd.ExecuteNonQuery()
             If cbSerie.Text = "S1" Then
                 Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_factura = '" + txtNumpres.Text + "'", conexionmy)
@@ -487,13 +495,15 @@ Public Class frFacturaManual
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
             Dim imptot As String = txTotalAlbaran.Text
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
+            Dim imprec As String = txImpRecargo.Text
+            Dim guardo_imprec As String = Replace(imprec, ",", ".")
 
             Dim fecha As Date = txFecha.Text
 
             'Guardo cabecera y actualizo número de presupuesto
 
             If vSerie = serieIni Then
-                Dim cmd As New MySqlCommand("UPDATE factura_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalfactura = '" + guardo_imptot + "', serie = '" + vSerie + "' WHERE num_factura = " + txtNumpres.Text + "", conexionmy)
+                Dim cmd As New MySqlCommand("UPDATE factura_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalrecargo = '" + guardo_imprec + "', totalfactura = '" + guardo_imptot + "', serie = '" + vSerie + "' WHERE num_factura = " + txtNumpres.Text + "", conexionmy)
                 cmd.ExecuteNonQuery()
 
             Else
@@ -502,7 +512,7 @@ Public Class frFacturaManual
                 Dim cmdEliminarCab As New MySqlCommand("DELETE FROM factura_cab WHERE num_factura = '" + txtNumpres.Text + "'", conexionmy)
                 cmdEliminarCab.ExecuteNonQuery()
                 cargoNumero()
-                Dim cmd As New MySqlCommand("INSERT INTO factura_cab (num_factura, serie, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalfactura, manual) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'S')", conexionmy)
+                Dim cmd As New MySqlCommand("INSERT INTO factura_cab (num_factura, serie, clienteID, envioID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalrecargo, totalfactura, manual) VALUES (" + txtNumpres.Text + ", '" + vSerie + "'," + txNumcli.Text + ", " + cbEnvio.SelectedValue.ToString + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imprec + "', '" + guardo_imptot + "', 'S')", conexionmy)
                 cmd.ExecuteNonQuery()
                 If cbSerie.Text = "S1" Then
                     Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_factura = '" + txtNumpres.Text + "'", conexionmy)
