@@ -44,16 +44,15 @@ Public Class frPedidoProv
     Public Sub cargoTodosPedidos()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT pedido_cab.num_pedido, 
-                                                    pedido_cab.referencia,
-                                                    pedido_cab.fecha, 
-                                                    clientes.nombre, 
-                                                    pedido_cab.totalbruto, 
-                                                    pedido_cab.totalpedido, 
-                                                    pedido_cab.clienteID, 
-                                                    clientes.clienteID,
-                                                    clientes.codigo 
-                                            FROM pedido_cab INNER JOIN clientes ON pedido_cab.clienteID=clientes.codigo ORDER BY pedido_cab.num_pedido DESC", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT pedidoprov_cab.num_pedidoprov, 
+                                                    pedidoprov_cab.referencia,
+                                                    pedidoprov_cab.fecha, 
+                                                    proveedores.nombre, 
+                                                    pedidoprov_cab.totalbruto, 
+                                                    pedidoprov_cab.totalpedido, 
+                                                    pedidoprov_cab.proveedorID, 
+                                                    proveedores.proveedorID 
+                                            FROM pedidoprov_cab INNER JOIN proveedores ON pedidoprov_cab.proveedorID=proveedores.proveedorID ORDER BY pedidoprov_cab.num_pedidoprov DESC", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -112,17 +111,14 @@ Public Class frPedidoProv
         txReferenciapres.Text = ""
         txNumcli.Text = ""
         txClientepres.Text = ""
-        txAgente.Text = ""
+        txFechaEntrega.Text = ""
         txDtocli.Text = ""
         txIva.Text = ""
         cbEstado.Text = ""
-        cbEnvio.Text = ""
         txObserva.Text = ""
         txImpBruto.Text = 0
         txImpDto.Text = 0
         txImponible.Text = 0
-        txImpIva.Text = 0
-        txImpRecargo.Text = 0
         txTotalAlbaran.Text = 0
         tsBotones.Focus()
         cmdNuevo.Select()
@@ -131,9 +127,9 @@ Public Class frPedidoProv
 
     Private Sub cmdLineas_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
         If txNumcli.Text = "" Then
-            MsgBox("Antes de añadir líneas al pedido es necesario seleccionar un cliente")
+            MsgBox("Antes de añadir líneas al pedido es necesario seleccionar un proveedor")
             formCli = "D"
-            frVerClientes.Show()
+            frVerProveedores.Show()
         Else
             If flagEdit = "N" Then
                 lineas = lineas + 1
@@ -302,7 +298,11 @@ Public Class frPedidoProv
 
     Private Sub dgLineasPres1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellClick
         If (e.ColumnIndex = 1) Then
-            formArti = "D"
+            formArti = "R"
+            frVerArticulos.Show()
+        End If
+        If (e.ColumnIndex = 12) Then
+            formArti = "R"
             frVerArticulos.Show()
         End If
         pos = dgLineasPres1.CurrentRow.Index
@@ -366,14 +366,15 @@ Public Class frPedidoProv
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
 
             Dim fecha As Date = txFecha.Text
+            Dim fechaent As Date = txFechaEntrega.Text
 
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO pedido_cab (num_pedido, clienteID, empresaID, agenteID, usuarioID, fecha, referencia, observaciones, totalbruto, totaldto, totaliva, totalpedido, pendiente, enviado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + txEmpresa.Text + ", " + txAgente.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'S', 'N')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO pedidoprov_cab (num_pedidoprov, proveedorID, empresaID, usuarioID, fecha, fechaentrega, referencia, observaciones, totalbruto, totaldto, totaliva, totalpedido, estado, eliminado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + txEmpresa.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "', '" + fechaent.ToString("yyyy-MM-dd") + "', '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'P', 'N')", conexionmy)
             cmd.ExecuteNonQuery()
 
-            Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_pedido = '" + txtNumpres.Text + "'", conexionmy)
+            Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_pedidoprov = '" + txtNumpres.Text + "'", conexionmy)
             cmdActualizar.ExecuteNonQuery()
 
 
@@ -431,7 +432,7 @@ Public Class frPedidoProv
                 arti = row.Cells(2).Value
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO pedido_linea (num_pedido, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO pedidoprov_linea (num_pedidoprov, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
 
                 cmdLinea.ExecuteNonQuery()
                 descontarStock(arti, lincant)
@@ -460,17 +461,18 @@ Public Class frPedidoProv
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
 
             Dim fecha As Date = txFecha.Text
+            Dim fechaent As Date = txFechaEntrega.Text
 
             'Guardo cabecera y actualizo número de presupuesto
 
 
-            Dim cmd As New MySqlCommand("UPDATE pedido_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalpedido = '" + guardo_imptot + "' WHERE num_pedido = " + txtNumpres.Text + "", conexionmy)
+            Dim cmd As New MySqlCommand("UPDATE pedidoprov_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', fechaentrega = '" + fechaent.ToString("yyyy-MM-dd") + "', proveedorID = " + txNumcli.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalpedido = '" + guardo_imptot + "' WHERE num_pedidoprov = " + txtNumpres.Text + "", conexionmy)
             cmd.ExecuteNonQuery()
 
 
             'Guardo líneas del presupuesto
 
-            Dim cmdEliminar As New MySqlCommand("DELETE FROM pedido_linea WHERE num_pedido = '" + txtNumpres.Text + "'", conexionmy)
+            Dim cmdEliminar As New MySqlCommand("DELETE FROM pedidoprov_linea WHERE num_pedidoprov = '" + txtNumpres.Text + "'", conexionmy)
             cmdEliminar.ExecuteNonQuery()
 
             Dim cmdLinea As New MySqlCommand
@@ -521,7 +523,7 @@ Public Class frPedidoProv
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO pedido_linea (num_pedido, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO pedidoprov_linea (num_pedidoprov, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
 
                 cmdLinea.ExecuteNonQuery()
 
@@ -532,8 +534,8 @@ Public Class frPedidoProv
 
             If lineasEdit.Count > 0 Then
                 For Each itemlineas As lineasEditadas In lineasEdit
-                    aumentarStock(itemlineas.codigoArt, itemlineas.cantAntes)
-                    descontarStock(itemlineas.codigoArt, itemlineas.cantDespues)
+                    'aumentarStock(itemlineas.codigoArt, itemlineas.cantAntes)
+                    'descontarStock(itemlineas.codigoArt, itemlineas.cantDespues)
                 Next
             End If
             lineasEdit.Clear()
@@ -554,7 +556,7 @@ Public Class frPedidoProv
         Dim numid As Int32
 
 
-        Dim cmdLastId As New MySqlCommand("SELECT num_pedido FROM configuracion  ", conexionmy)
+        Dim cmdLastId As New MySqlCommand("SELECT num_pedidoprov FROM configuracion  ", conexionmy)
         numid = cmdLastId.ExecuteScalar()
 
 
@@ -595,29 +597,28 @@ Public Class frPedidoProv
         Dim rdrCli As MySqlDataReader
 
 
-        cmdCab = New MySqlCommand("SELECT * FROM pedido_cab WHERE num_pedido = '" + txtNumpres.Text + "'", conexionmy)
+        cmdCab = New MySqlCommand("SELECT * FROM pedidoprov_cab WHERE num_pedidoprov = '" + txtNumpres.Text + "'", conexionmy)
 
         cmdCab.CommandType = CommandType.Text
         cmdCab.Connection = conexionmy
         rdrCab = cmdCab.ExecuteReader
         rdrCab.Read()
         txFecha.Text = rdrCab("fecha")
-        txNumcli.Text = rdrCab("clienteID")
-        txAgente.Text = rdrCab("agenteID")
+        txNumcli.Text = rdrCab("proveedorID")
         txReferenciapres.Text = rdrCab("referencia")
         txObserva.Text = rdrCab("observaciones")
 
         rdrCab.Close()
 
 
-        cmdCli = New MySqlCommand("SELECT * FROM clientes WHERE codigo = '" + txNumcli.Text + "'", conexionmy)
+        cmdCli = New MySqlCommand("SELECT * FROM proveedores WHERE proveedorID = '" + txNumcli.Text + "'", conexionmy)
 
         cmdCli.CommandType = CommandType.Text
         cmdCli.Connection = conexionmy
         rdrCli = cmdCli.ExecuteReader
         rdrCli.Read()
 
-        txNumcli.Text = rdrCli("clienteID")
+        txNumcli.Text = rdrCli("proveedorID")
         txClientepres.Text = rdrCli("nombre")
         txDtocli.Text = rdrCli("descuento")
 
@@ -630,19 +631,19 @@ Public Class frPedidoProv
         conexionmy.Open()
         Dim cmdLinea As New MySqlCommand
 
-        cmdLinea = New MySqlCommand("SELECT pedido_linea.linea,
-                                            pedido_linea.codigo,
-                                            pedido_linea.descripcion,
-                                            pedido_linea.cantidad,
-                                            pedido_linea.ancho_largo,
-                                            pedido_linea.m2_ml,
-                                            pedido_linea.precio,
-                                            pedido_linea.descuento,
-                                            pedido_linea.ivalinea,
-                                            pedido_linea.importe,
-                                            pedido_linea.totalinea,
-                                            pedido_linea.num_pedido
-                                            FROM pedido_linea WHERE num_pedido = '" + txtNumpres.Text + "' ORDER BY pedido_linea.linea", conexionmy)
+        cmdLinea = New MySqlCommand("SELECT pedidoprov_linea.linea,
+                                            pedidoprov_linea.codigo,
+                                            pedidoprov_linea.descripcion,
+                                            pedidoprov_linea.cantidad,
+                                            pedidoprov_linea.ancho_largo,
+                                            pedidoprov_linea.m2_ml,
+                                            pedidoprov_linea.precio,
+                                            pedidoprov_linea.descuento,
+                                            pedidoprov_linea.ivalinea,
+                                            pedidoprov_linea.importe,
+                                            pedidoprov_linea.totalinea,
+                                            pedidoprov_linea.num_pedido
+                                            FROM pedidoprov_linea WHERE num_pedidoprov = '" + txtNumpres.Text + "' ORDER BY pedidoprov_linea.linea", conexionmy)
 
         cmdLinea.CommandType = CommandType.Text
         cmdLinea.Connection = conexionmy
@@ -677,7 +678,11 @@ Public Class frPedidoProv
 
     Private Sub dgLineasPres2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellClick
         If (e.ColumnIndex = 1) Then
-            formArti = "D"
+            formArti = "R"
+            frVerArticulos.Show()
+        End If
+        If (e.ColumnIndex = 12) Then
+            formArti = "R"
             frVerArticulos.Show()
         End If
         pos = dgLineasPres2.CurrentRow.Index

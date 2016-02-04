@@ -53,12 +53,15 @@ Public Class frVerProveedores
             frGastos.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
             Me.Hide()
         End If
-        frPedidoProv.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
-        frPedidoProv.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
-        'frPedidoProv.txAgente.Text = dgProvedores.CurrentRow.Cells("agent").Value
-        frPedidoProv.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
-        Me.Hide()
-        frPedidoProv.recalcularDescuentos()
+        If formCli = "D" Then
+            frPedidoProv.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
+            frPedidoProv.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+            frPedidoProv.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
+            Me.Hide()
+            frPedidoProv.recalcularDescuentos()
+        End If
+
+
 
     End Sub
 

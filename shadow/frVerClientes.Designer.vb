@@ -65,6 +65,7 @@ Partial Class frVerClientes
         Me.Name = "frVerClientes"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "SELECCION DE CLIENTES"
+        Me.TopMost = True
         CType(Me.dgClientes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

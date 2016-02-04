@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class launcher
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class launcher
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -37,7 +37,7 @@ Partial Class launcher
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(31, 38)
+        Me.Button1.Location = New System.Drawing.Point(29, 35)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(144, 45)
         Me.Button1.TabIndex = 0
@@ -46,7 +46,7 @@ Partial Class launcher
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(31, 114)
+        Me.Button2.Location = New System.Drawing.Point(29, 86)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(144, 45)
         Me.Button2.TabIndex = 1
@@ -55,7 +55,7 @@ Partial Class launcher
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(31, 253)
+        Me.Button3.Location = New System.Drawing.Point(193, 187)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(144, 45)
         Me.Button3.TabIndex = 2
@@ -64,7 +64,7 @@ Partial Class launcher
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(31, 183)
+        Me.Button4.Location = New System.Drawing.Point(29, 137)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(144, 44)
         Me.Button4.TabIndex = 3
@@ -73,7 +73,7 @@ Partial Class launcher
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(199, 38)
+        Me.Button5.Location = New System.Drawing.Point(193, 35)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(143, 45)
         Me.Button5.TabIndex = 4
@@ -82,7 +82,7 @@ Partial Class launcher
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(198, 253)
+        Me.Button6.Location = New System.Drawing.Point(29, 187)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(144, 45)
         Me.Button6.TabIndex = 5
@@ -91,7 +91,7 @@ Partial Class launcher
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(198, 114)
+        Me.Button7.Location = New System.Drawing.Point(193, 86)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(143, 45)
         Me.Button7.TabIndex = 6
@@ -100,7 +100,7 @@ Partial Class launcher
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(199, 183)
+        Me.Button8.Location = New System.Drawing.Point(193, 137)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(143, 45)
         Me.Button8.TabIndex = 7
@@ -109,7 +109,7 @@ Partial Class launcher
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(363, 38)
+        Me.Button9.Location = New System.Drawing.Point(357, 35)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(142, 45)
         Me.Button9.TabIndex = 8
@@ -118,7 +118,7 @@ Partial Class launcher
         '
         'Button10
         '
-        Me.Button10.Location = New System.Drawing.Point(363, 114)
+        Me.Button10.Location = New System.Drawing.Point(357, 86)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(142, 45)
         Me.Button10.TabIndex = 9
@@ -127,9 +127,9 @@ Partial Class launcher
         '
         'Button11
         '
-        Me.Button11.Location = New System.Drawing.Point(367, 183)
+        Me.Button11.Location = New System.Drawing.Point(357, 137)
         Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(137, 44)
+        Me.Button11.Size = New System.Drawing.Size(142, 44)
         Me.Button11.TabIndex = 10
         Me.Button11.Text = "Control Gastos"
         Me.Button11.UseVisualStyleBackColor = True
@@ -138,21 +138,22 @@ Partial Class launcher
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(686, 386)
+        Me.ClientSize = New System.Drawing.Size(907, 518)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button11)
-        Me.Controls.Add(Me.Button10)
-        Me.Controls.Add(Me.Button9)
-        Me.Controls.Add(Me.Button8)
-        Me.Controls.Add(Me.Button7)
-        Me.Controls.Add(Me.Button6)
-        Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Button7)
+        Me.Controls.Add(Me.Button10)
+        Me.Controls.Add(Me.Button5)
+        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.Button8)
+        Me.Controls.Add(Me.Button9)
+        Me.Controls.Add(Me.Button6)
         Me.Name = "launcher"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Shadow"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ResumeLayout(False)
 
     End Sub

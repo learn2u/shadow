@@ -293,6 +293,31 @@ Public Class frVerArticulos
                     Me.Hide()
                 End If
             End If
+            If formArti = "R" Then
+                If frPedidoProv.flagEdit = "N" Then
+                    frPedidoProv.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
+                    frPedidoProv.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
+                    frPedidoProv.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
+                    frPedidoProv.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
+                    frPedidoProv.dgLineasPres1.CurrentCell = frPedidoProv.dgLineasPres1.CurrentRow.Cells(4)
+                    frPedidoProv.dgLineasPres1.BeginEdit(True)
+
+                    Me.Hide()
+                Else
+                    frPedidoProv.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
+                    frPedidoProv.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value
+                    frPedidoProv.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
+                    frPedidoProv.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
+                    frPedidoProv.dgLineasPres2.CurrentCell = frPedidoProv.dgLineasPres2.CurrentRow.Cells(4)
+                    frPedidoProv.dgLineasPres2.BeginEdit(True)
+                    frPedidoProv.actualizarLinea()
+                    frPedidoProv.recalcularTotales()
+
+                    Me.Hide()
+                End If
+            End If
         End If
 
 

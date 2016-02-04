@@ -43,11 +43,8 @@ Partial Class frPedidoProv
         Me.txEmpresa = New System.Windows.Forms.TextBox()
         Me.txIva = New System.Windows.Forms.TextBox()
         Me.txDtocli = New System.Windows.Forms.TextBox()
-        Me.txAgente = New System.Windows.Forms.TextBox()
         Me.txTotalAlbaran = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.txImpRecargo = New System.Windows.Forms.TextBox()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.txImpIva = New System.Windows.Forms.TextBox()
         Me.txImponible = New System.Windows.Forms.TextBox()
         Me.txImpDto = New System.Windows.Forms.TextBox()
@@ -58,11 +55,9 @@ Partial Class frPedidoProv
         Me.Label7 = New System.Windows.Forms.Label()
         Me.cbEstado = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.cbEnvio = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.cmdCancelar = New System.Windows.Forms.ToolStripButton()
         Me.txNumcli = New System.Windows.Forms.TextBox()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.btBuscar = New System.Windows.Forms.Button()
@@ -86,7 +81,9 @@ Partial Class frPedidoProv
         Me.cmdGuardar = New System.Windows.Forms.ToolStripButton()
         Me.cmdNuevo = New System.Windows.Forms.ToolStripButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.txFechaEntrega = New System.Windows.Forms.MaskedTextBox()
         Me.tsBotones = New System.Windows.Forms.ToolStrip()
+        Me.cmdDelete = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdImprimir = New System.Windows.Forms.ToolStripButton()
         Me.cmdPDF = New System.Windows.Forms.ToolStripButton()
@@ -111,12 +108,16 @@ Partial Class frPedidoProv
         Me.btArticulo = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Column14 = New System.Windows.Forms.DataGridViewImageColumn()
         Me.txFecha = New System.Windows.Forms.MaskedTextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txReferenciapres = New System.Windows.Forms.TextBox()
@@ -137,9 +138,11 @@ Partial Class frPedidoProv
         Me.Columna7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Columna8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Columna9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.tabPresupuestos = New System.Windows.Forms.TabControl()
-        Me.cmdDelete = New System.Windows.Forms.ToolStripButton()
+        Me.ckColor = New System.Windows.Forms.CheckBox()
         Me.Panel4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -204,14 +207,6 @@ Partial Class frPedidoProv
         Me.txDtocli.TabIndex = 75
         Me.txDtocli.Visible = False
         '
-        'txAgente
-        '
-        Me.txAgente.Location = New System.Drawing.Point(240, 122)
-        Me.txAgente.Name = "txAgente"
-        Me.txAgente.Size = New System.Drawing.Size(68, 20)
-        Me.txAgente.TabIndex = 74
-        Me.txAgente.Visible = False
-        '
         'txTotalAlbaran
         '
         Me.txTotalAlbaran.Location = New System.Drawing.Point(1061, 507)
@@ -231,25 +226,6 @@ Partial Class frPedidoProv
         Me.Label12.Size = New System.Drawing.Size(102, 13)
         Me.Label12.TabIndex = 72
         Me.Label12.Text = "TOTAL PEDIDO:"
-        '
-        'txImpRecargo
-        '
-        Me.txImpRecargo.Location = New System.Drawing.Point(923, 478)
-        Me.txImpRecargo.Name = "txImpRecargo"
-        Me.txImpRecargo.ReadOnly = True
-        Me.txImpRecargo.Size = New System.Drawing.Size(132, 20)
-        Me.txImpRecargo.TabIndex = 71
-        Me.txImpRecargo.Text = "0"
-        Me.txImpRecargo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(818, 485)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(76, 13)
-        Me.Label11.TabIndex = 70
-        Me.Label11.Text = "RECARGO E.:"
         '
         'txImpIva
         '
@@ -345,22 +321,14 @@ Partial Class frPedidoProv
         Me.Label6.TabIndex = 60
         Me.Label6.Text = "ESTADO:"
         '
-        'cbEnvio
-        '
-        Me.cbEnvio.FormattingEnabled = True
-        Me.cbEnvio.Location = New System.Drawing.Point(790, 94)
-        Me.cbEnvio.Name = "cbEnvio"
-        Me.cbEnvio.Size = New System.Drawing.Size(403, 21)
-        Me.cbEnvio.TabIndex = 2
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(729, 102)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(43, 13)
+        Me.Label5.Size = New System.Drawing.Size(174, 13)
         Me.Label5.TabIndex = 58
-        Me.Label5.Text = "ENVÍO:"
+        Me.Label5.Text = "FECHA ENTREGA APROXIMADA:"
         '
         'cmdCancelar
         '
@@ -382,17 +350,6 @@ Partial Class frPedidoProv
         Me.txNumcli.ReadOnly = True
         Me.txNumcli.Size = New System.Drawing.Size(114, 20)
         Me.txNumcli.TabIndex = 102
-        '
-        'Column3
-        '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle1.Format = "N2"
-        DataGridViewCellStyle1.NullValue = "0"
-        Me.Column3.DefaultCellStyle = DataGridViewCellStyle1
-        Me.Column3.HeaderText = "CANTIDAD"
-        Me.Column3.Name = "Column3"
-        Me.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Column3.Width = 85
         '
         'Panel4
         '
@@ -624,17 +581,16 @@ Partial Class frPedidoProv
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.White
+        Me.TabPage2.Controls.Add(Me.ckColor)
+        Me.TabPage2.Controls.Add(Me.txFechaEntrega)
         Me.TabPage2.Controls.Add(Me.Label13)
         Me.TabPage2.Controls.Add(Me.txObserva)
         Me.TabPage2.Controls.Add(Me.txUsuario)
         Me.TabPage2.Controls.Add(Me.txEmpresa)
         Me.TabPage2.Controls.Add(Me.txIva)
         Me.TabPage2.Controls.Add(Me.txDtocli)
-        Me.TabPage2.Controls.Add(Me.txAgente)
         Me.TabPage2.Controls.Add(Me.txTotalAlbaran)
         Me.TabPage2.Controls.Add(Me.Label12)
-        Me.TabPage2.Controls.Add(Me.txImpRecargo)
-        Me.TabPage2.Controls.Add(Me.Label11)
         Me.TabPage2.Controls.Add(Me.txImpIva)
         Me.TabPage2.Controls.Add(Me.txImponible)
         Me.TabPage2.Controls.Add(Me.txImpDto)
@@ -645,7 +601,6 @@ Partial Class frPedidoProv
         Me.TabPage2.Controls.Add(Me.Label7)
         Me.TabPage2.Controls.Add(Me.cbEstado)
         Me.TabPage2.Controls.Add(Me.Label6)
-        Me.TabPage2.Controls.Add(Me.cbEnvio)
         Me.TabPage2.Controls.Add(Me.Label5)
         Me.TabPage2.Controls.Add(Me.txNumcli)
         Me.TabPage2.Controls.Add(Me.tsBotones)
@@ -666,6 +621,15 @@ Partial Class frPedidoProv
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "PEDIDO"
         '
+        'txFechaEntrega
+        '
+        Me.txFechaEntrega.Location = New System.Drawing.Point(910, 95)
+        Me.txFechaEntrega.Mask = "00/00/0000"
+        Me.txFechaEntrega.Name = "txFechaEntrega"
+        Me.txFechaEntrega.Size = New System.Drawing.Size(100, 20)
+        Me.txFechaEntrega.TabIndex = 108
+        Me.txFechaEntrega.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'tsBotones
         '
         Me.tsBotones.AutoSize = False
@@ -675,6 +639,15 @@ Partial Class frPedidoProv
         Me.tsBotones.Size = New System.Drawing.Size(1207, 38)
         Me.tsBotones.TabIndex = 55
         Me.tsBotones.Text = "ToolStrip1"
+        '
+        'cmdDelete
+        '
+        Me.cmdDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.cmdDelete.Image = CType(resources.GetObject("cmdDelete.Image"), System.Drawing.Image)
+        Me.cmdDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.cmdDelete.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdDelete.Name = "cmdDelete"
+        Me.cmdDelete.Size = New System.Drawing.Size(28, 35)
         '
         'ToolStripButton2
         '
@@ -848,7 +821,7 @@ Partial Class frPedidoProv
         '
         Me.dgLineasPres1.AllowUserToAddRows = False
         Me.dgLineasPres1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgLineasPres1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linea, Me.btArticulo, Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9})
+        Me.dgLineasPres1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linea, Me.btArticulo, Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column14})
         Me.dgLineasPres1.Location = New System.Drawing.Point(20, 155)
         Me.dgLineasPres1.Name = "dgLineasPres1"
         Me.dgLineasPres1.Size = New System.Drawing.Size(1173, 200)
@@ -883,7 +856,18 @@ Partial Class frPedidoProv
         Me.Column2.HeaderText = "DESCRIPCION"
         Me.Column2.Name = "Column2"
         Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Column2.Width = 370
+        Me.Column2.Width = 295
+        '
+        'Column3
+        '
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle1.Format = "N2"
+        DataGridViewCellStyle1.NullValue = "0"
+        Me.Column3.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Column3.HeaderText = "CANTIDAD"
+        Me.Column3.Name = "Column3"
+        Me.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Column3.Width = 85
         '
         'Column4
         '
@@ -952,6 +936,28 @@ Partial Class frPedidoProv
         Me.Column9.Name = "Column9"
         Me.Column9.ReadOnly = True
         Me.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        '
+        'Column10
+        '
+        Me.Column10.HeaderText = "C"
+        Me.Column10.Name = "Column10"
+        Me.Column10.Width = 25
+        '
+        'Column11
+        '
+        Me.Column11.HeaderText = "P"
+        Me.Column11.Name = "Column11"
+        Me.Column11.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column11.Width = 25
+        '
+        'Column14
+        '
+        Me.Column14.HeaderText = "E"
+        Me.Column14.Image = CType(resources.GetObject("Column14.Image"), System.Drawing.Image)
+        Me.Column14.Name = "Column14"
+        Me.Column14.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column14.Width = 25
         '
         'txFecha
         '
@@ -1029,7 +1035,7 @@ Partial Class frPedidoProv
         '
         Me.dgLineasPres2.AllowUserToAddRows = False
         Me.dgLineasPres2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgLineasPres2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linedit, Me.btArtiEdit, Me.Columna1, Me.Columna2, Me.Columna3, Me.Columna4, Me.Columna5, Me.Columna6, Me.Columna7, Me.Columna8, Me.Columna9})
+        Me.dgLineasPres2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linedit, Me.btArtiEdit, Me.Columna1, Me.Columna2, Me.Columna3, Me.Columna4, Me.Columna5, Me.Columna6, Me.Columna7, Me.Columna8, Me.Columna9, Me.Column12, Me.Column13})
         Me.dgLineasPres2.Location = New System.Drawing.Point(20, 156)
         Me.dgLineasPres2.Name = "dgLineasPres2"
         Me.dgLineasPres2.Size = New System.Drawing.Size(1173, 199)
@@ -1062,7 +1068,7 @@ Partial Class frPedidoProv
         Me.Columna2.Name = "Columna2"
         Me.Columna2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Columna2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Columna2.Width = 370
+        Me.Columna2.Width = 320
         '
         'Columna3
         '
@@ -1146,6 +1152,19 @@ Partial Class frPedidoProv
         Me.Columna9.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Columna9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
+        'Column12
+        '
+        Me.Column12.HeaderText = "C"
+        Me.Column12.Name = "Column12"
+        Me.Column12.Width = 25
+        '
+        'Column13
+        '
+        Me.Column13.HeaderText = "P"
+        Me.Column13.Name = "Column13"
+        Me.Column13.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column13.Width = 25
+        '
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.Panel4)
@@ -1169,14 +1188,15 @@ Partial Class frPedidoProv
         Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.tabPresupuestos.TabIndex = 2
         '
-        'cmdDelete
+        'ckColor
         '
-        Me.cmdDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.cmdDelete.Image = CType(resources.GetObject("cmdDelete.Image"), System.Drawing.Image)
-        Me.cmdDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.cmdDelete.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdDelete.Name = "cmdDelete"
-        Me.cmdDelete.Size = New System.Drawing.Size(28, 35)
+        Me.ckColor.AutoSize = True
+        Me.ckColor.Location = New System.Drawing.Point(1027, 95)
+        Me.ckColor.Name = "ckColor"
+        Me.ckColor.Size = New System.Drawing.Size(50, 17)
+        Me.ckColor.TabIndex = 109
+        Me.ckColor.Text = "Color"
+        Me.ckColor.UseVisualStyleBackColor = True
         '
         'frPedidoProv
         '
@@ -1212,11 +1232,8 @@ Partial Class frPedidoProv
     Friend WithEvents txEmpresa As TextBox
     Friend WithEvents txIva As TextBox
     Friend WithEvents txDtocli As TextBox
-    Friend WithEvents txAgente As TextBox
     Friend WithEvents txTotalAlbaran As TextBox
     Friend WithEvents Label12 As Label
-    Friend WithEvents txImpRecargo As TextBox
-    Friend WithEvents Label11 As Label
     Friend WithEvents txImpIva As TextBox
     Friend WithEvents txImponible As TextBox
     Friend WithEvents txImpDto As TextBox
@@ -1227,11 +1244,9 @@ Partial Class frPedidoProv
     Friend WithEvents Label7 As Label
     Friend WithEvents cbEstado As ComboBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents cbEnvio As ComboBox
     Friend WithEvents Label5 As Label
     Friend WithEvents cmdCancelar As ToolStripButton
     Friend WithEvents txNumcli As TextBox
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Panel4 As Panel
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents btBuscar As Button
@@ -1276,16 +1291,6 @@ Partial Class frPedidoProv
     Friend WithEvents INSERTARToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ELIMINARToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents dgLineasPres1 As DataGridView
-    Friend WithEvents linea As DataGridViewTextBoxColumn
-    Friend WithEvents btArticulo As DataGridViewButtonColumn
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As DataGridViewTextBoxColumn
-    Friend WithEvents Column6 As DataGridViewTextBoxColumn
-    Friend WithEvents Column7 As DataGridViewTextBoxColumn
-    Friend WithEvents Column8 As DataGridViewTextBoxColumn
-    Friend WithEvents Column9 As DataGridViewTextBoxColumn
     Friend WithEvents txFecha As MaskedTextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents txReferenciapres As TextBox
@@ -1295,18 +1300,36 @@ Partial Class frPedidoProv
     Friend WithEvents Label1 As Label
     Friend WithEvents txtNumpres As TextBox
     Friend WithEvents dgLineasPres2 As DataGridView
-    Friend WithEvents linedit As DataGridViewTextBoxColumn
-    Friend WithEvents btArtiEdit As DataGridViewButtonColumn
-    Friend WithEvents Columna1 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna2 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna3 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna4 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna5 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna6 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna7 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna8 As DataGridViewTextBoxColumn
-    Friend WithEvents Columna9 As DataGridViewTextBoxColumn
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents tabPresupuestos As TabControl
     Friend WithEvents cmdDelete As ToolStripButton
+    Friend WithEvents txFechaEntrega As MaskedTextBox
+    Friend WithEvents Column13 As DataGridViewCheckBoxColumn
+    Friend WithEvents Column12 As DataGridViewCheckBoxColumn
+    Friend WithEvents Columna9 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna8 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna7 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna6 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna5 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna4 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna3 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna2 As DataGridViewTextBoxColumn
+    Friend WithEvents Columna1 As DataGridViewTextBoxColumn
+    Friend WithEvents btArtiEdit As DataGridViewButtonColumn
+    Friend WithEvents linedit As DataGridViewTextBoxColumn
+    Friend WithEvents Column14 As DataGridViewImageColumn
+    Friend WithEvents Column11 As DataGridViewCheckBoxColumn
+    Friend WithEvents Column10 As DataGridViewCheckBoxColumn
+    Friend WithEvents Column9 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents btArticulo As DataGridViewButtonColumn
+    Friend WithEvents linea As DataGridViewTextBoxColumn
+    Friend WithEvents ckColor As CheckBox
 End Class
