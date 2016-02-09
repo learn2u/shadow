@@ -13,6 +13,7 @@ Public Class frPedidoProv
     Public Shared cantIni As Decimal
     Public Shared cantFin As Decimal
     Public Shared serieIni As String
+    Public Shared estadoLinea As String = "N"
     Private Sub frPedidoProv_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
 
@@ -142,6 +143,9 @@ Public Class frPedidoProv
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(8).Value = txDtocli.Text
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(9).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(10).Value = 0
+                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(13).Value = 0
+                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(14).Style.BackColor = Color.Red
+
             Else
                 lineas = lineas + 1
                 dgLineasPres2.Rows.Add()
@@ -153,6 +157,8 @@ Public Class frPedidoProv
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(8).Value = txDtocli.Text
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(10).Value = 0
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(13).Value = 0
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(14).Style.BackColor = Color.Red
             End If
 
         End If
@@ -173,6 +179,7 @@ Public Class frPedidoProv
             dgLineasPres1.CurrentRow.Cells(8).Value = txDtocli.Text
             dgLineasPres1.CurrentRow.Cells(9).Value = 0
             dgLineasPres1.CurrentRow.Cells(10).Value = 0
+            dgLineasPres1.CurrentRow.Cells(13).Value = 0
         Else
             dgLineasPres2.Rows.Insert(dgLineasPres2.CurrentRow.Index)
             renumerar()
@@ -187,6 +194,7 @@ Public Class frPedidoProv
             dgLineasPres2.CurrentRow.Cells(8).Value = txDtocli.Text
             dgLineasPres2.CurrentRow.Cells(9).Value = 0
             dgLineasPres2.CurrentRow.Cells(10).Value = 0
+            dgLineasPres2.CurrentRow.Cells(13).Value = 0
         End If
     End Sub
     Public Sub renumerar()
@@ -289,6 +297,10 @@ Public Class frPedidoProv
             recalcularTotales()
 
         End If
+        If (e.ColumnIndex = 13) Then
+            dgLineasPres1.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(4).Value) - Decimal.Parse(dgLineasPres1.CurrentRow.Cells(13).Value)
+            dgLineasPres1.CurrentCell = dgLineasPres1.CurrentRow.Cells(2)
+        End If
     End Sub
 
     Private Sub cmdCliente_ButtonClick(sender As Object, e As EventArgs) Handles cmdCliente.ButtonClick
@@ -301,10 +313,24 @@ Public Class frPedidoProv
             formArti = "R"
             frVerArticulos.Show()
         End If
-        If (e.ColumnIndex = 12) Then
-            formArti = "R"
-            frVerArticulos.Show()
+        If (e.ColumnIndex = 11) Then
+            dgLineasPres1.CurrentRow.Cells(13).Value = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(4).Value)
+            dgLineasPres1.CurrentRow.Cells(14).Style.BackColor = Color.Green
+            dgLineasPres1.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(4).Value) - Decimal.Parse(dgLineasPres1.CurrentRow.Cells(13).Value)
         End If
+        If (e.ColumnIndex = 12) Then
+            'dgLineasPres1.CurrentRow.Cells(13).Value = 0
+            dgLineasPres1.CurrentRow.Cells(14).Style.BackColor = Color.Orange
+            dgLineasPres1.CurrentCell = dgLineasPres1.CurrentRow.Cells(13)
+            'dgLineasPres1.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(4).Value) - Decimal.Parse(dgLineasPres1.CurrentRow.Cells(13).Value)
+        End If
+        If (e.ColumnIndex = 14) Then
+            dgLineasPres1.CurrentRow.Cells(14).Style.BackColor = Color.Red
+            dgLineasPres1.CurrentCell = dgLineasPres1.CurrentRow.Cells(2)
+            dgLineasPres1.CurrentRow.Cells(13).Value = 0
+            dgLineasPres1.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(4).Value)
+        End If
+
         pos = dgLineasPres1.CurrentRow.Index
     End Sub
 
@@ -681,9 +707,20 @@ Public Class frPedidoProv
             formArti = "R"
             frVerArticulos.Show()
         End If
+        If (e.ColumnIndex = 11) Then
+            dgLineasPres2.CurrentRow.Cells(13).Value = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
+            dgLineasPres2.CurrentRow.Cells(14).Style.BackColor = Color.Green
+            dgLineasPres2.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value) - Decimal.Parse(dgLineasPres2.CurrentRow.Cells(13).Value)
+        End If
         If (e.ColumnIndex = 12) Then
-            formArti = "R"
-            frVerArticulos.Show()
+            dgLineasPres2.CurrentRow.Cells(13).Value = 0
+            dgLineasPres2.CurrentRow.Cells(14).Style.BackColor = Color.Orange
+            dgLineasPres2.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value) - Decimal.Parse(dgLineasPres2.CurrentRow.Cells(13).Value)
+        End If
+        If (e.ColumnIndex = 14) Then
+            dgLineasPres2.CurrentRow.Cells(14).Style.BackColor = Color.Red
+            dgLineasPres2.CurrentCell = dgLineasPres2.CurrentRow.Cells(2)
+            dgLineasPres2.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
         End If
         pos = dgLineasPres2.CurrentRow.Index
     End Sub
