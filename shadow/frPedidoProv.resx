@@ -271,6 +271,17 @@
         gg==
 </value>
   </data>
+  <data name="cmdEntradas.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEiSURBVEhLvZQBDcJADEUnAQlIwAFIwAE4AAcgAQk4AAfg
+        ACTgABxA38Inhd1t1xH4yUt2Tdd/125XmUbG1bh/CTWo1dDaSL3QB2o15A22z3WUYoMJgR4KG9DLVQd+
+        MyEDimvdhYaqdZHB0Li5WA5yyEWKFRmggcFzG+RIYYOpkeq7hxwpZPDzGXD00hmoTYoVGUg8t+EVNpgb
+        qb57ZoYUMvjLDC4uloOc3Aww5nZdsvg06CPe5aJEtJfir48gYsDO/PcvURQla0UMODJ5B0PXBGKnO0N1
+        1Kpa0RadDeXzNXGqk4sdjTd5g4UxboFdUzD3I/oL8CVv0AXDox1q1Sep+dQDSiXnoNdob/j4xsiKY9P/
+        UjgFqFXM5SfCDBM2mFBVPQCK0BQSksvjsAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="linea.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

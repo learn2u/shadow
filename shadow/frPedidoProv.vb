@@ -397,7 +397,7 @@ Public Class frPedidoProv
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO pedidoprov_cab (num_pedidoprov, proveedorID, empresaID, usuarioID, fecha, fechaentrega, referencia, observaciones, totalbruto, totaldto, totaliva, totalpedido, estado, eliminado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + txEmpresa.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "', '" + fechaent.ToString("yyyy-MM-dd") + "', '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'P', 'N')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO pedidoprov_cab (num_pedidoprov, proveedorID, empresaID, usuarioID, fecha, fechaentrega, albaranpro, referencia, observaciones, totalbruto, totaldto, totaliva, totalpedido, estado, eliminado) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + txEmpresa.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "', '" + fechaent.ToString("yyyy-MM-dd") + "', '" + txAlbaranPro.Text + "', '" + txReferenciapres.Text + "', '" + txObserva.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', 'P', 'N')", conexionmy)
             cmd.ExecuteNonQuery()
 
             Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_pedidoprov = '" + txtNumpres.Text + "'", conexionmy)
@@ -426,6 +426,11 @@ Public Class frPedidoProv
             Dim guardo_linimporte As String
             Dim lintotal As String
             Dim guardo_lintotal As String
+            Dim linentrada As String
+            Dim guardo_linentrada As String
+            Dim linpendiente As String
+            Dim guardo_linpendiente As String
+
             Dim arti As String
 
             For Each row In dgLineasPres1.Rows
@@ -455,13 +460,19 @@ Public Class frPedidoProv
                 lintotal = row.Cells(10).Value.ToString
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
+                linentrada = row.Cells(13).Value.ToString
+                guardo_linentrada = Replace(linentrada, ",", ".")
+
+                linpendiente = row.Cells(14).Value.ToString
+                guardo_linpendiente = Replace(linpendiente, ",", ".")
+
                 arti = row.Cells(2).Value
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO pedidoprov_linea (num_pedidoprov, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO pedidoprov_linea (num_pedidoprov, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, estado, entrada, pendiente, albaranpro) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', 'N', '" + guardo_linentrada + "', '" + guardo_linpendiente + "', '" + txAlbaranPro.Text + "')"
 
                 cmdLinea.ExecuteNonQuery()
-                descontarStock(arti, lincant)
+                'descontarStock(arti, lincant)
 
             Next
 
@@ -492,7 +503,7 @@ Public Class frPedidoProv
             'Guardo cabecera y actualizo número de presupuesto
 
 
-            Dim cmd As New MySqlCommand("UPDATE pedidoprov_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', fechaentrega = '" + fechaent.ToString("yyyy-MM-dd") + "', proveedorID = " + txNumcli.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalpedido = '" + guardo_imptot + "' WHERE num_pedidoprov = " + txtNumpres.Text + "", conexionmy)
+            Dim cmd As New MySqlCommand("UPDATE pedidoprov_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', fechaentrega = '" + fechaent.ToString("yyyy-MM-dd") + "', proveedorID = " + txNumcli.Text + ", albaranpro = '" + txAlbaranPro.Text + "', referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalpedido = '" + guardo_imptot + "' WHERE num_pedidoprov = " + txtNumpres.Text + "", conexionmy)
             cmd.ExecuteNonQuery()
 
 
@@ -520,6 +531,10 @@ Public Class frPedidoProv
             Dim guardo_linimporte As String
             Dim lintotal As String
             Dim guardo_lintotal As String
+            Dim linentrada As String
+            Dim guardo_linentrada As String
+            Dim linpendiente As String
+            Dim guardo_linpendiente As String
 
             For Each row In dgLineasPres2.Rows
 
@@ -548,8 +563,14 @@ Public Class frPedidoProv
                 lintotal = row.Cells(10).Value.ToString
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
+                linentrada = row.Cells(13).Value.ToString
+                guardo_linentrada = Replace(linentrada, ",", ".")
+
+                linpendiente = row.Cells(14).Value.ToString
+                guardo_linpendiente = Replace(linpendiente, ",", ".")
+
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO pedidoprov_linea (num_pedidoprov, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO pedidoprov_linea (num_pedidoprov, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, estado, entrada, pendiente, albaranpro) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', 'N', '" + guardo_linentrada + "', '" + guardo_linpendiente + "', '" + txAlbaranPro.Text + "')"
 
                 cmdLinea.ExecuteNonQuery()
 
@@ -630,8 +651,10 @@ Public Class frPedidoProv
         rdrCab = cmdCab.ExecuteReader
         rdrCab.Read()
         txFecha.Text = rdrCab("fecha")
+        txFechaEntrega.Text = rdrCab("fechaentrega")
         txNumcli.Text = rdrCab("proveedorID")
         txReferenciapres.Text = rdrCab("referencia")
+        txAlbaranPro.Text = rdrCab("albaranpro")
         txObserva.Text = rdrCab("observaciones")
 
         rdrCab.Close()
@@ -668,7 +691,9 @@ Public Class frPedidoProv
                                             pedidoprov_linea.ivalinea,
                                             pedidoprov_linea.importe,
                                             pedidoprov_linea.totalinea,
-                                            pedidoprov_linea.num_pedido
+                                            pedidoprov_linea.entrada,
+                                            pedidoprov_linea.pendiente,
+                                            pedidoprov_linea.num_pedidoprov
                                             FROM pedidoprov_linea WHERE num_pedidoprov = '" + txtNumpres.Text + "' ORDER BY pedidoprov_linea.linea", conexionmy)
 
         cmdLinea.CommandType = CommandType.Text
@@ -691,6 +716,17 @@ Public Class frPedidoProv
                 'dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = rdrLin("ivalinea")
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = rdrLin("importe")
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(10).Value = rdrLin("totalinea")
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(13).Value = rdrLin("entrada")
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(14).Value = rdrLin("pendiente")
+                If Decimal.Parse(dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(14).Value) = 0 Then
+                    dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(14).Style.BackColor = Color.Green
+                End If
+                If Decimal.Parse(dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(14).Value) > 0 And Decimal.Parse(dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(14).Value) < Decimal.Parse(dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(4).Value) Then
+                    dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(14).Style.BackColor = Color.Orange
+                End If
+                If Decimal.Parse(dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(14).Value) = Decimal.Parse(dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(4).Value) Then
+                    dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(14).Style.BackColor = Color.Red
+                End If
             Loop
         Else
 

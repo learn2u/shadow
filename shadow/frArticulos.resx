@@ -150,7 +150,7 @@
         5lIvhNoyDwjhSygCyctDQ53zpXwBFaKJ9A76yZIAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="ToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="cmdLotes.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD1SURBVFhH7ZUBDcJADEUnAQlIQAISkIAEHIADJCABHIAT
@@ -160,7 +160,7 @@
         J3Mb8umt5/iQ3wCcokTuiRRGd7dRf0kj2yEqlX/RNB9Z6uSlzyS1awAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="ToolStripButton3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="cmdFlechas.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADXSURBVEhLtZQBDcIwEEUrAQlIwAFIQAISJgEpSMABOAAJ
@@ -170,7 +170,7 @@
         vQGyqi7/MmfC0AAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="cmdDirEnvio.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="cmdLonas.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADjSURBVEhL7ZXRCcIwFEUzgiM4gbiBruGfH/7rl/inm+gI
@@ -178,15 +178,6 @@
         REgwOxgVVBhwfjHMlC7imsBIlJ4Buon4wW9MRGEAX34gpt4wU8oW8K5F2QKCGmsRy7TRFrHR9uLoDTOl
         /2kRO3gp1t4wU8oawI2NN8yU5mKRQE+UbhEzSoX32VOx8GzknIYHESenwuhZkRzTsfc8ZuvCaLnGoZBV
         tIglT2FOCPvhtPog5x6NXyIbdvg+9AAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="btCargarImagen.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAN1JREFUSEvd
-        lOERATEQhVOCUpSgA0rQAR1Qgg7ogA7ogA6UoAT2OWte1obc2PzgzXwzm91L3mWTu/QXmguLRsyEdG3M
-        MzgJhyCw1ovBCIMgYa0Qg4kw7sJMIQYrQeciZoUYcJ/Rd1aIwVLQubjqrGqDoTDoQleoA6sqAyx8EY6P
-        uI+qDNBXra2R6KGPBtxfxfYZmgp7we7wrQEXLfwSWFzzto1FAzx0ppwFZ4JD3VBOYZOiwY7GJWDi5YGa
-        uAZbir8BJviF6DgrRsG7zAotcJOR3O837n0LvG/np5TSDTTqFMcd1E4+AAAAAElFTkSuQmCC
 </value>
   </data>
 </root>
