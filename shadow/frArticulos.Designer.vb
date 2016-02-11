@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frArticulos
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frArticulos
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frArticulos))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
@@ -39,12 +39,29 @@ Partial Class frArticulos
         Me.cmdLonas = New System.Windows.Forms.ToolStripButton()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.grColor = New System.Windows.Forms.GroupBox()
+        Me.btCloseCol = New System.Windows.Forms.Button()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.grModelo = New System.Windows.Forms.GroupBox()
+        Me.dgMods = New System.Windows.Forms.DataGridView()
+        Me.btCloseMod = New System.Windows.Forms.Button()
+        Me.btColor = New System.Windows.Forms.Button()
+        Me.btModelo = New System.Windows.Forms.Button()
+        Me.btProveedor = New System.Windows.Forms.Button()
+        Me.cbFamilias = New System.Windows.Forms.ComboBox()
+        Me.txMedida = New System.Windows.Forms.TextBox()
+        Me.txColor = New System.Windows.Forms.TextBox()
+        Me.txModeloID = New System.Windows.Forms.TextBox()
+        Me.txNumPro = New System.Windows.Forms.TextBox()
+        Me.txProveedor = New System.Windows.Forms.TextBox()
+        Me.txColorID = New System.Windows.Forms.TextBox()
         Me.txUbicacion = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.cbTipoArti = New System.Windows.Forms.ComboBox()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.ckControlStock = New System.Windows.Forms.CheckBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.txModelo = New System.Windows.Forms.TextBox()
         Me.cbTejido = New System.Windows.Forms.ComboBox()
         Me.txTejido = New System.Windows.Forms.TextBox()
         Me.Label44 = New System.Windows.Forms.Label()
@@ -86,14 +103,6 @@ Partial Class frArticulos
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.txColorID = New System.Windows.Forms.TextBox()
-        Me.txProveedor = New System.Windows.Forms.TextBox()
-        Me.txNumPro = New System.Windows.Forms.TextBox()
-        Me.txModelo = New System.Windows.Forms.TextBox()
-        Me.txModeloID = New System.Windows.Forms.TextBox()
-        Me.txColor = New System.Windows.Forms.TextBox()
-        Me.txMedida = New System.Windows.Forms.TextBox()
-        Me.cbFamilias = New System.Windows.Forms.ComboBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,6 +110,10 @@ Partial Class frArticulos
         Me.tsBotones.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
+        Me.grColor.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grModelo.SuspendLayout()
+        CType(Me.dgMods, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -166,7 +179,7 @@ Partial Class frArticulos
         Me.cmdNuevo.Name = "cmdNuevo"
         Me.cmdNuevo.Size = New System.Drawing.Size(33, 30)
         Me.cmdNuevo.Text = "ToolStripButton1"
-        Me.cmdNuevo.ToolTipText = "Nuevo Presupuesto"
+        Me.cmdNuevo.ToolTipText = "Nuevo Artículo"
         '
         'cmdGuardar
         '
@@ -178,7 +191,7 @@ Partial Class frArticulos
         Me.cmdGuardar.Name = "cmdGuardar"
         Me.cmdGuardar.Size = New System.Drawing.Size(33, 30)
         Me.cmdGuardar.Text = "ToolStripButton1"
-        Me.cmdGuardar.ToolTipText = "Guardar Presupuesto"
+        Me.cmdGuardar.ToolTipText = "Guardar Artículo"
         '
         'cmdCancelar
         '
@@ -190,7 +203,7 @@ Partial Class frArticulos
         Me.cmdCancelar.Name = "cmdCancelar"
         Me.cmdCancelar.Size = New System.Drawing.Size(33, 30)
         Me.cmdCancelar.Text = "ToolStripButton1"
-        Me.cmdCancelar.ToolTipText = "Cancelar Presupuesto"
+        Me.cmdCancelar.ToolTipText = "Cancelar Artículo"
         '
         'ToolStripSeparator1
         '
@@ -244,7 +257,7 @@ Partial Class frArticulos
         Me.cmdLonas.Name = "cmdLonas"
         Me.cmdLonas.Size = New System.Drawing.Size(33, 30)
         Me.cmdLonas.Text = "ToolStripButton1"
-        Me.cmdLonas.ToolTipText = "Imprimir"
+        Me.cmdLonas.ToolTipText = "Activar Lonas"
         '
         'TabControl2
         '
@@ -257,6 +270,11 @@ Partial Class frArticulos
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.grColor)
+        Me.TabPage4.Controls.Add(Me.grModelo)
+        Me.TabPage4.Controls.Add(Me.btColor)
+        Me.TabPage4.Controls.Add(Me.btModelo)
+        Me.TabPage4.Controls.Add(Me.btProveedor)
         Me.TabPage4.Controls.Add(Me.cbFamilias)
         Me.TabPage4.Controls.Add(Me.txMedida)
         Me.TabPage4.Controls.Add(Me.txColor)
@@ -313,6 +331,159 @@ Partial Class frArticulos
         Me.TabPage4.TabIndex = 0
         Me.TabPage4.Text = "GENERAL"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'grColor
+        '
+        Me.grColor.BackColor = System.Drawing.Color.White
+        Me.grColor.Controls.Add(Me.btCloseCol)
+        Me.grColor.Controls.Add(Me.DataGridView1)
+        Me.grColor.Location = New System.Drawing.Point(150, 281)
+        Me.grColor.Name = "grColor"
+        Me.grColor.Size = New System.Drawing.Size(369, 164)
+        Me.grColor.TabIndex = 141
+        Me.grColor.TabStop = False
+        Me.grColor.Text = "COLOR"
+        Me.grColor.Visible = False
+        '
+        'btCloseCol
+        '
+        Me.btCloseCol.BackgroundImage = CType(resources.GetObject("btCloseCol.BackgroundImage"), System.Drawing.Image)
+        Me.btCloseCol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btCloseCol.Location = New System.Drawing.Point(336, 12)
+        Me.btCloseCol.Name = "btCloseCol"
+        Me.btCloseCol.Size = New System.Drawing.Size(23, 23)
+        Me.btCloseCol.TabIndex = 122
+        Me.btCloseCol.UseVisualStyleBackColor = True
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(10, 41)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(350, 117)
+        Me.DataGridView1.TabIndex = 121
+        '
+        'grModelo
+        '
+        Me.grModelo.BackColor = System.Drawing.Color.White
+        Me.grModelo.Controls.Add(Me.dgMods)
+        Me.grModelo.Controls.Add(Me.btCloseMod)
+        Me.grModelo.Location = New System.Drawing.Point(486, 88)
+        Me.grModelo.Name = "grModelo"
+        Me.grModelo.Size = New System.Drawing.Size(369, 164)
+        Me.grModelo.TabIndex = 140
+        Me.grModelo.TabStop = False
+        Me.grModelo.Text = "MODELO"
+        Me.grModelo.Visible = False
+        '
+        'dgMods
+        '
+        Me.dgMods.AllowUserToAddRows = False
+        Me.dgMods.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgMods.Location = New System.Drawing.Point(6, 42)
+        Me.dgMods.Name = "dgMods"
+        Me.dgMods.Size = New System.Drawing.Size(354, 112)
+        Me.dgMods.TabIndex = 123
+        '
+        'btCloseMod
+        '
+        Me.btCloseMod.BackgroundImage = CType(resources.GetObject("btCloseMod.BackgroundImage"), System.Drawing.Image)
+        Me.btCloseMod.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btCloseMod.Location = New System.Drawing.Point(336, 12)
+        Me.btCloseMod.Name = "btCloseMod"
+        Me.btCloseMod.Size = New System.Drawing.Size(24, 23)
+        Me.btCloseMod.TabIndex = 122
+        Me.btCloseMod.UseVisualStyleBackColor = True
+        '
+        'btColor
+        '
+        Me.btColor.BackColor = System.Drawing.Color.Gainsboro
+        Me.btColor.BackgroundImage = CType(resources.GetObject("btColor.BackgroundImage"), System.Drawing.Image)
+        Me.btColor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btColor.Location = New System.Drawing.Point(292, 255)
+        Me.btColor.Name = "btColor"
+        Me.btColor.Size = New System.Drawing.Size(26, 23)
+        Me.btColor.TabIndex = 139
+        Me.btColor.UseVisualStyleBackColor = False
+        '
+        'btModelo
+        '
+        Me.btModelo.BackColor = System.Drawing.Color.Gainsboro
+        Me.btModelo.BackgroundImage = CType(resources.GetObject("btModelo.BackgroundImage"), System.Drawing.Image)
+        Me.btModelo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btModelo.Location = New System.Drawing.Point(606, 150)
+        Me.btModelo.Name = "btModelo"
+        Me.btModelo.Size = New System.Drawing.Size(26, 23)
+        Me.btModelo.TabIndex = 138
+        Me.btModelo.UseVisualStyleBackColor = False
+        '
+        'btProveedor
+        '
+        Me.btProveedor.BackColor = System.Drawing.Color.Gainsboro
+        Me.btProveedor.BackgroundImage = CType(resources.GetObject("btProveedor.BackgroundImage"), System.Drawing.Image)
+        Me.btProveedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btProveedor.Location = New System.Drawing.Point(606, 42)
+        Me.btProveedor.Name = "btProveedor"
+        Me.btProveedor.Size = New System.Drawing.Size(26, 23)
+        Me.btProveedor.TabIndex = 137
+        Me.btProveedor.UseVisualStyleBackColor = False
+        '
+        'cbFamilias
+        '
+        Me.cbFamilias.FormattingEnabled = True
+        Me.cbFamilias.Location = New System.Drawing.Point(150, 226)
+        Me.cbFamilias.Name = "cbFamilias"
+        Me.cbFamilias.Size = New System.Drawing.Size(368, 21)
+        Me.cbFamilias.TabIndex = 136
+        '
+        'txMedida
+        '
+        Me.txMedida.Location = New System.Drawing.Point(150, 283)
+        Me.txMedida.Name = "txMedida"
+        Me.txMedida.Size = New System.Drawing.Size(82, 20)
+        Me.txMedida.TabIndex = 135
+        '
+        'txColor
+        '
+        Me.txColor.Location = New System.Drawing.Point(150, 255)
+        Me.txColor.Name = "txColor"
+        Me.txColor.Size = New System.Drawing.Size(132, 20)
+        Me.txColor.TabIndex = 134
+        '
+        'txModeloID
+        '
+        Me.txModeloID.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.txModeloID.Location = New System.Drawing.Point(657, 150)
+        Me.txModeloID.Name = "txModeloID"
+        Me.txModeloID.Size = New System.Drawing.Size(72, 20)
+        Me.txModeloID.TabIndex = 131
+        Me.txModeloID.Visible = False
+        '
+        'txNumPro
+        '
+        Me.txNumPro.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.txNumPro.Location = New System.Drawing.Point(657, 44)
+        Me.txNumPro.Name = "txNumPro"
+        Me.txNumPro.Size = New System.Drawing.Size(100, 20)
+        Me.txNumPro.TabIndex = 130
+        Me.txNumPro.Visible = False
+        '
+        'txProveedor
+        '
+        Me.txProveedor.Location = New System.Drawing.Point(150, 45)
+        Me.txProveedor.Name = "txProveedor"
+        Me.txProveedor.Size = New System.Drawing.Size(449, 20)
+        Me.txProveedor.TabIndex = 129
+        '
+        'txColorID
+        '
+        Me.txColorID.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.txColorID.Location = New System.Drawing.Point(342, 257)
+        Me.txColorID.Name = "txColorID"
+        Me.txColorID.Size = New System.Drawing.Size(83, 20)
+        Me.txColorID.TabIndex = 128
+        Me.txColorID.Visible = False
         '
         'txUbicacion
         '
@@ -371,6 +542,13 @@ Partial Class frArticulos
         Me.GroupBox2.TabIndex = 121
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "LONAS"
+        '
+        'txModelo
+        '
+        Me.txModelo.Location = New System.Drawing.Point(81, 54)
+        Me.txModelo.Name = "txModelo"
+        Me.txModelo.Size = New System.Drawing.Size(352, 20)
+        Me.txModelo.TabIndex = 98
         '
         'cbTejido
         '
@@ -711,66 +889,6 @@ Partial Class frArticulos
         Me.Label1.TabIndex = 46
         Me.Label1.Text = "DESCRIPCION:"
         '
-        'txColorID
-        '
-        Me.txColorID.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.txColorID.Location = New System.Drawing.Point(288, 255)
-        Me.txColorID.Name = "txColorID"
-        Me.txColorID.Size = New System.Drawing.Size(83, 20)
-        Me.txColorID.TabIndex = 128
-        '
-        'txProveedor
-        '
-        Me.txProveedor.Location = New System.Drawing.Point(150, 45)
-        Me.txProveedor.Name = "txProveedor"
-        Me.txProveedor.Size = New System.Drawing.Size(449, 20)
-        Me.txProveedor.TabIndex = 129
-        '
-        'txNumPro
-        '
-        Me.txNumPro.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.txNumPro.Location = New System.Drawing.Point(612, 44)
-        Me.txNumPro.Name = "txNumPro"
-        Me.txNumPro.Size = New System.Drawing.Size(100, 20)
-        Me.txNumPro.TabIndex = 130
-        '
-        'txModelo
-        '
-        Me.txModelo.Location = New System.Drawing.Point(81, 54)
-        Me.txModelo.Name = "txModelo"
-        Me.txModelo.Size = New System.Drawing.Size(352, 20)
-        Me.txModelo.TabIndex = 98
-        '
-        'txModeloID
-        '
-        Me.txModeloID.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.txModeloID.Location = New System.Drawing.Point(606, 151)
-        Me.txModeloID.Name = "txModeloID"
-        Me.txModeloID.Size = New System.Drawing.Size(72, 20)
-        Me.txModeloID.TabIndex = 131
-        '
-        'txColor
-        '
-        Me.txColor.Location = New System.Drawing.Point(150, 255)
-        Me.txColor.Name = "txColor"
-        Me.txColor.Size = New System.Drawing.Size(132, 20)
-        Me.txColor.TabIndex = 134
-        '
-        'txMedida
-        '
-        Me.txMedida.Location = New System.Drawing.Point(150, 283)
-        Me.txMedida.Name = "txMedida"
-        Me.txMedida.Size = New System.Drawing.Size(82, 20)
-        Me.txMedida.TabIndex = 135
-        '
-        'cbFamilias
-        '
-        Me.cbFamilias.FormattingEnabled = True
-        Me.cbFamilias.Location = New System.Drawing.Point(150, 226)
-        Me.cbFamilias.Name = "cbFamilias"
-        Me.cbFamilias.Size = New System.Drawing.Size(368, 21)
-        Me.cbFamilias.TabIndex = 136
-        '
         'frArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -790,6 +908,10 @@ Partial Class frArticulos
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
+        Me.grColor.ResumeLayout(False)
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grModelo.ResumeLayout(False)
+        CType(Me.dgMods, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
@@ -867,4 +989,13 @@ Partial Class frArticulos
     Friend WithEvents txColor As TextBox
     Friend WithEvents txMedida As TextBox
     Friend WithEvents cbFamilias As ComboBox
+    Friend WithEvents btColor As Button
+    Friend WithEvents btModelo As Button
+    Friend WithEvents btProveedor As Button
+    Friend WithEvents grModelo As GroupBox
+    Friend WithEvents btCloseMod As Button
+    Friend WithEvents grColor As GroupBox
+    Friend WithEvents btCloseCol As Button
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents dgMods As DataGridView
 End Class

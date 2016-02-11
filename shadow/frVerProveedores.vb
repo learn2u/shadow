@@ -60,7 +60,12 @@ Public Class frVerProveedores
             Me.Hide()
             frPedidoProv.recalcularDescuentos()
         End If
-
+        If formCli = "A" Then
+            frArticulos.txNumPro.Text = dgProvedores.CurrentRow.Cells("cod").Value
+            frArticulos.txProveedor.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+            frArticulos.txDto.Text = dgProvedores.CurrentRow.Cells("dto").Value
+            Me.Hide()
+        End If
 
 
     End Sub

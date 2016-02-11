@@ -88,6 +88,9 @@ Public Class frArticulos
 
     Private Sub frArticulos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
+        grModelo.Visible = False
+        grColor.Visible = False
+
         TabControl1.SelectTab(1)
         cmdNuevo.Enabled = True
         cmdGuardar.Enabled = False
@@ -99,14 +102,16 @@ Public Class frArticulos
         cargoArticulos()
 
         flagEditArti = False
+
     End Sub
 
     Private Sub cmdLonas_Click(sender As Object, e As EventArgs) Handles cmdLonas.Click
         If GroupBox2.Enabled = False Then
             GroupBox2.Enabled = True
-
+            btModelo.Enabled = True
         Else
             GroupBox2.Enabled = False
+            btModelo.Enabled = False
         End If
 
     End Sub
@@ -116,6 +121,10 @@ Public Class frArticulos
         cmdFlechas.Enabled = False
         cmdLonas.Enabled = False
         cmdLotes.Enabled = False
+        btProveedor.Enabled = False
+        btModelo.Enabled = False
+        btColor.Enabled = False
+
     End Sub
     Public Sub limpiarFormulario()
         txRefProv.Text = ""
@@ -151,8 +160,6 @@ Public Class frArticulos
         conexionmy.Open()
 
         Dim equiv As String
-        Dim exento As String
-
 
         If flagEditArti = False Then
             Dim cmd As New MySqlCommand
@@ -266,6 +273,140 @@ Public Class frArticulos
         TabControl2.SelectTab(0)
         TabControl1.SelectTab(0)
         cargoArticulos()
+
+    End Sub
+
+    Private Sub btProveedor_Click(sender As Object, e As EventArgs) Handles btProveedor.Click
+        formCli = "A"
+        frVerProveedores.Show()
+
+    End Sub
+    Public Sub cargarModelos()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+        conexionmy.Open()
+
+        Dim consultamod As New MySqlCommand("SELECT modeloID, modelos FROM modelos_lona", conexionmy)
+        Dim readermod As MySqlDataReader
+        Dim dtablemod As New DataTable
+        Dim bind4 As New BindingSource()
+
+        readermod = consultamod.ExecuteReader
+        dtablemod.Load(readermod, LoadOption.OverwriteChanges)
+        bind4.DataSource = dtablemod
+
+        dgMods.DataSource = bind4
+        dgMods.EnableHeadersVisualStyles = False
+        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+        styCabeceras.BackColor = Color.Beige
+        styCabeceras.ForeColor = Color.Black
+        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+        dgMods.ColumnHeadersDefaultCellStyle = styCabeceras
+
+        dgMods.Columns(0).HeaderText = "ID"
+        dgMods.Columns(0).Name = "Column11"
+        dgMods.Columns(0).FillWeight = 30
+        dgMods.Columns(0).MinimumWidth = 30
+        dgMods.Columns(1).HeaderText = "MODELOS"
+        dgMods.Columns(1).Name = "Column12"
+        dgMods.Columns(1).FillWeight = 260
+        dgMods.Columns(1).MinimumWidth = 260
+
+        dgMods.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgMods.Visible = True
+
+        conexionmy.Close()
+
+    End Sub
+    Public Sub cargarColores()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+        conexionmy.Open()
+
+        Dim consultacolor As New MySqlCommand("SELECT colorID, colores FROM colores", conexionmy)
+        Dim readercolor As MySqlDataReader
+        Dim dtablecolor As New DataTable
+        Dim bind5 As New BindingSource()
+
+        readercolor = consultacolor.ExecuteReader
+        dtablecolor.Load(readercolor, LoadOption.OverwriteChanges)
+        bind5.DataSource = dtablecolor
+
+        DataGridView1.DataSource = bind5
+        DataGridView1.EnableHeadersVisualStyles = False
+        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+        styCabeceras.BackColor = Color.Beige
+        styCabeceras.ForeColor = Color.Black
+        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+        DataGridView1.ColumnHeadersDefaultCellStyle = styCabeceras
+
+        DataGridView1.Columns(0).HeaderText = "ID"
+        DataGridView1.Columns(0).Name = "Column21"
+        DataGridView1.Columns(0).FillWeight = 30
+        DataGridView1.Columns(0).MinimumWidth = 30
+        DataGridView1.Columns(1).HeaderText = "COLORES"
+        DataGridView1.Columns(1).Name = "Column22"
+        DataGridView1.Columns(1).FillWeight = 260
+        DataGridView1.Columns(1).MinimumWidth = 260
+
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        DataGridView1.Visible = True
+
+        conexionmy.Close()
+
+    End Sub
+
+    Private Sub btColor_Click(sender As Object, e As EventArgs) Handles btColor.Click
+
+        grColor.Visible = True
+        cargarColores()
+
+    End Sub
+
+    Private Sub btModelo_Click(sender As Object, e As EventArgs) Handles btModelo.Click
+
+        grModelo.Visible = True
+        cargarModelos()
+
+    End Sub
+
+    Private Sub btCloseMod_Click(sender As Object, e As EventArgs) Handles btCloseMod.Click
+        grModelo.Visible = False
+
+    End Sub
+
+    Private Sub btCloseCol_Click(sender As Object, e As EventArgs) Handles btCloseCol.Click
+        grColor.Visible = False
+
+    End Sub
+
+    Private Sub dgMods_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgMods.CellClick
+        txModeloID.Text = dgMods.CurrentRow.Cells(0).Value
+        txModelo.Text = dgMods.CurrentRow.Cells(1).Value
+        grModelo.Visible = False
+
+    End Sub
+
+    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+        txColorID.Text = DataGridView1.CurrentRow.Cells(0).Value
+        txColor.Text = DataGridView1.CurrentRow.Cells(1).Value
+        grColor.Visible = False
+
+    End Sub
+
+    Private Sub cmdNuevo_Click(sender As Object, e As EventArgs) Handles cmdNuevo.Click
+        limpiarFormulario()
+        cmdNuevo.Enabled = False
+        cmdGuardar.Enabled = True
+        cmdCancelar.Enabled = True
+        cmdFlechas.Enabled = False
+        cmdLotes.Enabled = True
+        cmdLonas.Enabled = True
+        btProveedor.Enabled = True
+        btModelo.Enabled = True
+        btColor.Enabled = True
+
+        txRefProv.Focus()
 
     End Sub
 End Class
