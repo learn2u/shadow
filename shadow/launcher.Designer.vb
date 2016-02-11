@@ -127,7 +127,7 @@ Partial Class launcher
         '
         'Button11
         '
-        Me.Button11.Location = New System.Drawing.Point(421, 137)
+        Me.Button11.Location = New System.Drawing.Point(357, 138)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(142, 44)
         Me.Button11.TabIndex = 10
