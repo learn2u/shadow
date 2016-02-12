@@ -151,6 +151,12 @@
     <Compile Include="frGastos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frLotes.Designer.vb">
+      <DependentUpon>frLotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frLotes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frPedido.Designer.vb">
       <DependentUpon>frPedido.vb</DependentUpon>
     </Compile>
@@ -248,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frGastos.resx">
       <DependentUpon>frGastos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frLotes.resx">
+      <DependentUpon>frLotes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frPedido.resx">
       <DependentUpon>frPedido.vb</DependentUpon>

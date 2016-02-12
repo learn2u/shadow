@@ -6,6 +6,7 @@ Imports System.ComponentModel
 Imports System.Xml
 Public Class frArticulos
     Public flagEditArti As Boolean
+    Public flagLona As Boolean
 
     Public Sub cargoArticulos()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -88,8 +89,9 @@ Public Class frArticulos
 
     Private Sub frArticulos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
-        grModelo.Visible = False
-        grColor.Visible = False
+        pnModelo.Visible = False
+        pnTejidos.Visible = False
+        pnColores.Visible = False
 
         TabControl1.SelectTab(1)
         cmdNuevo.Enabled = True
@@ -102,6 +104,8 @@ Public Class frArticulos
         cargoArticulos()
 
         flagEditArti = False
+        flagLona = False
+
 
     End Sub
 
@@ -109,9 +113,11 @@ Public Class frArticulos
         If GroupBox2.Enabled = False Then
             GroupBox2.Enabled = True
             btModelo.Enabled = True
+            btTejidos.Enabled = True
         Else
             GroupBox2.Enabled = False
             btModelo.Enabled = False
+            btTejidos.Enabled = False
         End If
 
     End Sub
@@ -124,6 +130,7 @@ Public Class frArticulos
         btProveedor.Enabled = False
         btModelo.Enabled = False
         btColor.Enabled = False
+        btTejidos.Enabled = False
 
     End Sub
     Public Sub limpiarFormulario()
@@ -148,7 +155,6 @@ Public Class frArticulos
         txMargenEuro.Text = 0
         txPrecio.Text = 0
         txStock.Text = 0
-        txDisponible.Text = 0
         txMinimo.Text = 0
         txInicial.Text = 0
         tsBotones.Focus()
@@ -183,8 +189,7 @@ Public Class frArticulos
             Dim guardo_precio As String = Replace(precio, ",", ".")
             Dim stock As String = txStock.Text
             Dim guardo_stock As String = Replace(stock, ",", ".")
-            Dim stockdisp As String = txDisponible.Text
-            Dim guardo_stockdisp As String = Replace(stockdisp, ",", ".")
+
             Dim stockmin As String = txMinimo.Text
             Dim guardo_stockmin As String = Replace(stockmin, ",", ".")
             Dim stockini As String = txInicial.Text
@@ -199,7 +204,7 @@ Public Class frArticulos
             End If
 
             cmd.CommandType = System.Data.CommandType.Text
-            cmd.CommandText = "INSERT INTO clientes (ref_proveedor, referencia, grupoID, proveedorID, descripcion, modelo, tejido, familia, color, colorID, ubicacion, medida, unidad, control_stock, iva, precio_compra, dto_prov, porc_margen, euro_margen, pvp, stock, stock_disp, stock_min, stock_ini) VALUES ('" + txRefProv.Text + "' , '" + txCodigo.Text + "' , '" + txGrupo.Text + "' , '" + txNumPro.Text + "' , '" + txDescripcion.Text + "' , '" + txModelo.Text + "' , '" + txTejido.Text + "' , '" + cbFamilias.SelectedValue.ToString + "' , '" + txColor.Text + "' , '" + txColorID.Text + "' , '" + txUbicacion.Text + "' , '" + txMedida.Text + "' , '" + cbUnidad.SelectedValue.ToString + "' , '" + equiv + "' , '" + guardo_iva + "' , '" + guardo_compra + "' , '" + guardo_dto + "' , '" + guardo_margenpor + "' , '" + guardo_margeneur + "' , '" + guardo_precio + "' , '" + guardo_stock + "' , '" + guardo_stockdisp + "' , '" + guardo_stockmin + "' , '" + guardo_stockini + "')"
+            cmd.CommandText = "INSERT INTO clientes (ref_proveedor, referencia, grupoID, proveedorID, descripcion, modelo, tejido, familia, color, colorID, ubicacion, medida, unidad, control_stock, iva, precio_compra, dto_prov, porc_margen, euro_margen, pvp, stock, stock_min, stock_ini) VALUES ('" + txRefProv.Text + "' , '" + txCodigo.Text + "' , '" + txGrupo.Text + "' , '" + txNumPro.Text + "' , '" + txDescripcion.Text + "' , '" + txModelo.Text + "' , '" + txTejido.Text + "' , '" + cbFamilias.SelectedValue.ToString + "' , '" + txColor.Text + "' , '" + txColorID.Text + "' , '" + txUbicacion.Text + "' , '" + txMedida.Text + "' , '" + cbUnidad.SelectedValue.ToString + "' , '" + equiv + "' , '" + guardo_iva + "' , '" + guardo_compra + "' , '" + guardo_dto + "' , '" + guardo_margenpor + "' , '" + guardo_margeneur + "' , '" + guardo_precio + "' , '" + guardo_stock + "' , '" + guardo_stockmin + "' , '" + guardo_stockini + "')"
 
             cmd.Connection = conexionmy
 
@@ -227,8 +232,7 @@ Public Class frArticulos
             Dim guardo_precio As String = Replace(precio, ",", ".")
             Dim stock As String = txStock.Text
             Dim guardo_stock As String = Replace(stock, ",", ".")
-            Dim stockdisp As String = txDisponible.Text
-            Dim guardo_stockdisp As String = Replace(stockdisp, ",", ".")
+
             Dim stockmin As String = txMinimo.Text
             Dim guardo_stockmin As String = Replace(stockmin, ",", ".")
             Dim stockini As String = txInicial.Text
@@ -261,7 +265,6 @@ Public Class frArticulos
                                                 euro_margen = '" + guardo_margeneur + "',
                                                 pvp = '" + guardo_precio + "',
                                                 stock = '" + guardo_stock + "',
-                                                stock_disp = '" + guardo_stockdisp + "',
                                                 stock_min = '" + guardo_stockmin + "',
                                                 stock_ini = '" + guardo_stockini + "' WHERE ref_proveedor = '" + txRefProv.Text + "'", conexionmy)
             cmdActualizar.ExecuteNonQuery()
@@ -358,39 +361,39 @@ Public Class frArticulos
 
     Private Sub btColor_Click(sender As Object, e As EventArgs) Handles btColor.Click
 
-        grColor.Visible = True
+        pnColores.Visible = True
         cargarColores()
 
     End Sub
 
     Private Sub btModelo_Click(sender As Object, e As EventArgs) Handles btModelo.Click
 
-        grModelo.Visible = True
+        pnModelo.Visible = True
         cargarModelos()
 
     End Sub
 
     Private Sub btCloseMod_Click(sender As Object, e As EventArgs) Handles btCloseMod.Click
-        grModelo.Visible = False
+        pnModelo.Visible = False
 
     End Sub
 
     Private Sub btCloseCol_Click(sender As Object, e As EventArgs) Handles btCloseCol.Click
-        grColor.Visible = False
+        pnColores.Visible = False
 
     End Sub
 
     Private Sub dgMods_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgMods.CellClick
         txModeloID.Text = dgMods.CurrentRow.Cells(0).Value
         txModelo.Text = dgMods.CurrentRow.Cells(1).Value
-        grModelo.Visible = False
+        pnModelo.Visible = False
 
     End Sub
 
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         txColorID.Text = DataGridView1.CurrentRow.Cells(0).Value
         txColor.Text = DataGridView1.CurrentRow.Cells(1).Value
-        grColor.Visible = False
+        pnColores.Visible = False
 
     End Sub
 
@@ -403,10 +406,86 @@ Public Class frArticulos
         cmdLotes.Enabled = True
         cmdLonas.Enabled = True
         btProveedor.Enabled = True
-        btModelo.Enabled = True
-        btColor.Enabled = True
+        btModelo.Enabled = False
+        btColor.Enabled = False
+        btTejidos.Enabled = False
+        GroupBox2.Enabled = False
 
         txRefProv.Focus()
+
+    End Sub
+
+    Private Sub cmdLotes_Click(sender As Object, e As EventArgs) Handles cmdLotes.Click
+        pnLotes.Visible = True
+
+    End Sub
+
+    Private Sub btTejidos_Click(sender As Object, e As EventArgs) Handles btTejidos.Click
+        pnTejidos.Visible = True
+        cargarTejidos()
+    End Sub
+    Public Sub cargarTejidos()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+        conexionmy.Open()
+
+        Dim consultacolor As New MySqlCommand("SELECT colorID, coloreslona FROM colores_lona", conexionmy)
+        Dim readercolor As MySqlDataReader
+        Dim dtablecolor As New DataTable
+        Dim bind5 As New BindingSource()
+
+        readercolor = consultacolor.ExecuteReader
+        dtablecolor.Load(readercolor, LoadOption.OverwriteChanges)
+        bind5.DataSource = dtablecolor
+
+        dgTejidos.DataSource = bind5
+        dgTejidos.EnableHeadersVisualStyles = False
+        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+        styCabeceras.BackColor = Color.Beige
+        styCabeceras.ForeColor = Color.Black
+        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+        dgTejidos.ColumnHeadersDefaultCellStyle = styCabeceras
+
+        dgTejidos.Columns(0).HeaderText = "ID"
+        dgTejidos.Columns(0).Name = "Column21"
+        dgTejidos.Columns(0).FillWeight = 30
+        dgTejidos.Columns(0).MinimumWidth = 30
+        dgTejidos.Columns(1).HeaderText = "COLORES"
+        dgTejidos.Columns(1).Name = "Column22"
+        dgTejidos.Columns(1).FillWeight = 260
+        dgTejidos.Columns(1).MinimumWidth = 260
+
+        dgTejidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgTejidos.Visible = True
+
+        conexionmy.Close()
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        pnTejidos.Visible = False
+
+    End Sub
+
+    Private Sub dgTejidos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgTejidos.CellClick
+        txTejidoID.Text = dgTejidos.CurrentRow.Cells(0).Value
+        txTejido.Text = dgTejidos.CurrentRow.Cells(1).Value
+        pnTejidos.Visible = False
+    End Sub
+    Public Sub montoDescripcion()
+        txDescripcion.Text = txModelo.Text + " " + txTejido.Text + " " + txCodigo.Text
+    End Sub
+
+    Private Sub txModelo_TextChanged(sender As Object, e As EventArgs) Handles txModelo.TextChanged
+        montoDescripcion()
+    End Sub
+
+    Private Sub txTejido_TextChanged(sender As Object, e As EventArgs) Handles txTejido.TextChanged
+        montoDescripcion()
+    End Sub
+
+    Private Sub btCloseLotes_Click(sender As Object, e As EventArgs) Handles btCloseLotes.Click
+        pnLotes.Visible = False
 
     End Sub
 End Class

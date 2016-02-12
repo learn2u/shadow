@@ -39,12 +39,20 @@ Partial Class frArticulos
         Me.cmdLonas = New System.Windows.Forms.ToolStripButton()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.pnTejidos = New System.Windows.Forms.Panel()
+        Me.grTejidos = New System.Windows.Forms.GroupBox()
+        Me.dgTejidos = New System.Windows.Forms.DataGridView()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.pnColores = New System.Windows.Forms.Panel()
         Me.grColor = New System.Windows.Forms.GroupBox()
         Me.btCloseCol = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.pnModelo = New System.Windows.Forms.Panel()
         Me.grModelo = New System.Windows.Forms.GroupBox()
         Me.dgMods = New System.Windows.Forms.DataGridView()
         Me.btCloseMod = New System.Windows.Forms.Button()
+        Me.txTejidoID = New System.Windows.Forms.TextBox()
+        Me.btTejidos = New System.Windows.Forms.Button()
         Me.btColor = New System.Windows.Forms.Button()
         Me.btModelo = New System.Windows.Forms.Button()
         Me.btProveedor = New System.Windows.Forms.Button()
@@ -71,7 +79,6 @@ Partial Class frArticulos
         Me.txInicial = New System.Windows.Forms.TextBox()
         Me.txMinimo = New System.Windows.Forms.TextBox()
         Me.txStock = New System.Windows.Forms.TextBox()
-        Me.txDisponible = New System.Windows.Forms.TextBox()
         Me.txMargenEuro = New System.Windows.Forms.TextBox()
         Me.txDto = New System.Windows.Forms.TextBox()
         Me.txIva = New System.Windows.Forms.TextBox()
@@ -83,7 +90,6 @@ Partial Class frArticulos
         Me.txMargenPor = New System.Windows.Forms.TextBox()
         Me.txRefProv = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -103,6 +109,10 @@ Partial Class frArticulos
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.pnLotes = New System.Windows.Forms.Panel()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.btCloseLotes = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,11 +120,18 @@ Partial Class frArticulos
         Me.tsBotones.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
+        Me.pnTejidos.SuspendLayout()
+        Me.grTejidos.SuspendLayout()
+        CType(Me.dgTejidos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnColores.SuspendLayout()
         Me.grColor.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnModelo.SuspendLayout()
         Me.grModelo.SuspendLayout()
         CType(Me.dgMods, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
+        Me.pnLotes.SuspendLayout()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -221,7 +238,7 @@ Partial Class frArticulos
         Me.cmdLotes.Name = "cmdLotes"
         Me.cmdLotes.Size = New System.Drawing.Size(33, 30)
         Me.cmdLotes.Text = "ToolStripButton1"
-        Me.cmdLotes.ToolTipText = "Imprimir"
+        Me.cmdLotes.ToolTipText = "Creación de lotes"
         '
         'ToolStripSeparator2
         '
@@ -270,8 +287,12 @@ Partial Class frArticulos
         '
         'TabPage4
         '
-        Me.TabPage4.Controls.Add(Me.grColor)
-        Me.TabPage4.Controls.Add(Me.grModelo)
+        Me.TabPage4.Controls.Add(Me.pnLotes)
+        Me.TabPage4.Controls.Add(Me.pnTejidos)
+        Me.TabPage4.Controls.Add(Me.pnColores)
+        Me.TabPage4.Controls.Add(Me.pnModelo)
+        Me.TabPage4.Controls.Add(Me.txTejidoID)
+        Me.TabPage4.Controls.Add(Me.btTejidos)
         Me.TabPage4.Controls.Add(Me.btColor)
         Me.TabPage4.Controls.Add(Me.btModelo)
         Me.TabPage4.Controls.Add(Me.btProveedor)
@@ -292,7 +313,6 @@ Partial Class frArticulos
         Me.TabPage4.Controls.Add(Me.txInicial)
         Me.TabPage4.Controls.Add(Me.txMinimo)
         Me.TabPage4.Controls.Add(Me.txStock)
-        Me.TabPage4.Controls.Add(Me.txDisponible)
         Me.TabPage4.Controls.Add(Me.txMargenEuro)
         Me.TabPage4.Controls.Add(Me.txDto)
         Me.TabPage4.Controls.Add(Me.txIva)
@@ -304,7 +324,6 @@ Partial Class frArticulos
         Me.TabPage4.Controls.Add(Me.txMargenPor)
         Me.TabPage4.Controls.Add(Me.txRefProv)
         Me.TabPage4.Controls.Add(Me.Label15)
-        Me.TabPage4.Controls.Add(Me.Label13)
         Me.TabPage4.Controls.Add(Me.Label43)
         Me.TabPage4.Controls.Add(Me.Label14)
         Me.TabPage4.Controls.Add(Me.Label8)
@@ -332,18 +351,66 @@ Partial Class frArticulos
         Me.TabPage4.Text = "GENERAL"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
+        'pnTejidos
+        '
+        Me.pnTejidos.Controls.Add(Me.grTejidos)
+        Me.pnTejidos.Location = New System.Drawing.Point(198, 195)
+        Me.pnTejidos.Name = "pnTejidos"
+        Me.pnTejidos.Size = New System.Drawing.Size(401, 186)
+        Me.pnTejidos.TabIndex = 146
+        Me.pnTejidos.Visible = False
+        '
+        'grTejidos
+        '
+        Me.grTejidos.BackColor = System.Drawing.Color.White
+        Me.grTejidos.Controls.Add(Me.dgTejidos)
+        Me.grTejidos.Controls.Add(Me.Button1)
+        Me.grTejidos.Location = New System.Drawing.Point(17, 11)
+        Me.grTejidos.Name = "grTejidos"
+        Me.grTejidos.Size = New System.Drawing.Size(369, 164)
+        Me.grTejidos.TabIndex = 141
+        Me.grTejidos.TabStop = False
+        Me.grTejidos.Text = "TEJIDOS"
+        '
+        'dgTejidos
+        '
+        Me.dgTejidos.AllowUserToAddRows = False
+        Me.dgTejidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgTejidos.Location = New System.Drawing.Point(6, 42)
+        Me.dgTejidos.Name = "dgTejidos"
+        Me.dgTejidos.Size = New System.Drawing.Size(354, 112)
+        Me.dgTejidos.TabIndex = 123
+        '
+        'Button1
+        '
+        Me.Button1.BackgroundImage = CType(resources.GetObject("Button1.BackgroundImage"), System.Drawing.Image)
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button1.Location = New System.Drawing.Point(336, 12)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(24, 23)
+        Me.Button1.TabIndex = 122
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'pnColores
+        '
+        Me.pnColores.Controls.Add(Me.grColor)
+        Me.pnColores.Location = New System.Drawing.Point(150, 283)
+        Me.pnColores.Name = "pnColores"
+        Me.pnColores.Size = New System.Drawing.Size(401, 175)
+        Me.pnColores.TabIndex = 145
+        Me.pnColores.Visible = False
+        '
         'grColor
         '
         Me.grColor.BackColor = System.Drawing.Color.White
         Me.grColor.Controls.Add(Me.btCloseCol)
         Me.grColor.Controls.Add(Me.DataGridView1)
-        Me.grColor.Location = New System.Drawing.Point(150, 281)
+        Me.grColor.Location = New System.Drawing.Point(17, 5)
         Me.grColor.Name = "grColor"
         Me.grColor.Size = New System.Drawing.Size(369, 164)
         Me.grColor.TabIndex = 141
         Me.grColor.TabStop = False
         Me.grColor.Text = "COLOR"
-        Me.grColor.Visible = False
         '
         'btCloseCol
         '
@@ -364,18 +431,26 @@ Partial Class frArticulos
         Me.DataGridView1.Size = New System.Drawing.Size(350, 117)
         Me.DataGridView1.TabIndex = 121
         '
+        'pnModelo
+        '
+        Me.pnModelo.Controls.Add(Me.grModelo)
+        Me.pnModelo.Location = New System.Drawing.Point(475, 11)
+        Me.pnModelo.Name = "pnModelo"
+        Me.pnModelo.Size = New System.Drawing.Size(401, 187)
+        Me.pnModelo.TabIndex = 144
+        Me.pnModelo.Visible = False
+        '
         'grModelo
         '
         Me.grModelo.BackColor = System.Drawing.Color.White
         Me.grModelo.Controls.Add(Me.dgMods)
         Me.grModelo.Controls.Add(Me.btCloseMod)
-        Me.grModelo.Location = New System.Drawing.Point(486, 88)
+        Me.grModelo.Location = New System.Drawing.Point(17, 8)
         Me.grModelo.Name = "grModelo"
         Me.grModelo.Size = New System.Drawing.Size(369, 164)
         Me.grModelo.TabIndex = 140
         Me.grModelo.TabStop = False
         Me.grModelo.Text = "MODELO"
-        Me.grModelo.Visible = False
         '
         'dgMods
         '
@@ -396,6 +471,25 @@ Partial Class frArticulos
         Me.btCloseMod.TabIndex = 122
         Me.btCloseMod.UseVisualStyleBackColor = True
         '
+        'txTejidoID
+        '
+        Me.txTejidoID.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.txTejidoID.Location = New System.Drawing.Point(642, 154)
+        Me.txTejidoID.Name = "txTejidoID"
+        Me.txTejidoID.Size = New System.Drawing.Size(72, 20)
+        Me.txTejidoID.TabIndex = 143
+        '
+        'btTejidos
+        '
+        Me.btTejidos.BackColor = System.Drawing.Color.Gainsboro
+        Me.btTejidos.BackgroundImage = CType(resources.GetObject("btTejidos.BackgroundImage"), System.Drawing.Image)
+        Me.btTejidos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btTejidos.Location = New System.Drawing.Point(606, 151)
+        Me.btTejidos.Name = "btTejidos"
+        Me.btTejidos.Size = New System.Drawing.Size(26, 23)
+        Me.btTejidos.TabIndex = 142
+        Me.btTejidos.UseVisualStyleBackColor = False
+        '
         'btColor
         '
         Me.btColor.BackColor = System.Drawing.Color.Gainsboro
@@ -412,7 +506,7 @@ Partial Class frArticulos
         Me.btModelo.BackColor = System.Drawing.Color.Gainsboro
         Me.btModelo.BackgroundImage = CType(resources.GetObject("btModelo.BackgroundImage"), System.Drawing.Image)
         Me.btModelo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btModelo.Location = New System.Drawing.Point(606, 150)
+        Me.btModelo.Location = New System.Drawing.Point(606, 123)
         Me.btModelo.Name = "btModelo"
         Me.btModelo.Size = New System.Drawing.Size(26, 23)
         Me.btModelo.TabIndex = 138
@@ -454,7 +548,7 @@ Partial Class frArticulos
         'txModeloID
         '
         Me.txModeloID.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.txModeloID.Location = New System.Drawing.Point(657, 150)
+        Me.txModeloID.Location = New System.Drawing.Point(642, 125)
         Me.txModeloID.Name = "txModeloID"
         Me.txModeloID.Size = New System.Drawing.Size(72, 20)
         Me.txModeloID.TabIndex = 131
@@ -536,7 +630,7 @@ Partial Class frArticulos
         Me.GroupBox2.Controls.Add(Me.Label44)
         Me.GroupBox2.Controls.Add(Me.Label45)
         Me.GroupBox2.Controls.Add(Me.Label46)
-        Me.GroupBox2.Location = New System.Drawing.Point(150, 97)
+        Me.GroupBox2.Location = New System.Drawing.Point(150, 71)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(449, 118)
         Me.GroupBox2.TabIndex = 121
@@ -608,6 +702,7 @@ Partial Class frArticulos
         Me.txInicial.Name = "txInicial"
         Me.txInicial.Size = New System.Drawing.Size(73, 20)
         Me.txInicial.TabIndex = 119
+        Me.txInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txMinimo
         '
@@ -615,20 +710,15 @@ Partial Class frArticulos
         Me.txMinimo.Name = "txMinimo"
         Me.txMinimo.Size = New System.Drawing.Size(73, 20)
         Me.txMinimo.TabIndex = 115
+        Me.txMinimo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txStock
         '
-        Me.txStock.Location = New System.Drawing.Point(684, 310)
+        Me.txStock.Location = New System.Drawing.Point(684, 336)
         Me.txStock.Name = "txStock"
         Me.txStock.Size = New System.Drawing.Size(73, 20)
         Me.txStock.TabIndex = 105
-        '
-        'txDisponible
-        '
-        Me.txDisponible.Location = New System.Drawing.Point(684, 336)
-        Me.txDisponible.Name = "txDisponible"
-        Me.txDisponible.Size = New System.Drawing.Size(73, 20)
-        Me.txDisponible.TabIndex = 106
+        Me.txStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txMargenEuro
         '
@@ -636,6 +726,7 @@ Partial Class frArticulos
         Me.txMargenEuro.Name = "txMargenEuro"
         Me.txMargenEuro.Size = New System.Drawing.Size(73, 20)
         Me.txMargenEuro.TabIndex = 103
+        Me.txMargenEuro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txDto
         '
@@ -650,6 +741,7 @@ Partial Class frArticulos
         Me.txIva.Name = "txIva"
         Me.txIva.Size = New System.Drawing.Size(43, 20)
         Me.txIva.TabIndex = 98
+        Me.txIva.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txGrupo
         '
@@ -664,11 +756,11 @@ Partial Class frArticulos
         Me.txCompra.Name = "txCompra"
         Me.txCompra.Size = New System.Drawing.Size(104, 20)
         Me.txCompra.TabIndex = 7
+        Me.txCompra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txCodigo
         '
         Me.txCodigo.BackColor = System.Drawing.Color.White
-        Me.txCodigo.Enabled = False
         Me.txCodigo.Location = New System.Drawing.Point(400, 18)
         Me.txCodigo.Name = "txCodigo"
         Me.txCodigo.Size = New System.Drawing.Size(144, 20)
@@ -676,7 +768,7 @@ Partial Class frArticulos
         '
         'txDescripcion
         '
-        Me.txDescripcion.Location = New System.Drawing.Point(150, 71)
+        Me.txDescripcion.Location = New System.Drawing.Point(150, 200)
         Me.txDescripcion.Name = "txDescripcion"
         Me.txDescripcion.Size = New System.Drawing.Size(449, 20)
         Me.txDescripcion.TabIndex = 1
@@ -687,6 +779,7 @@ Partial Class frArticulos
         Me.txPrecio.Name = "txPrecio"
         Me.txPrecio.Size = New System.Drawing.Size(93, 20)
         Me.txPrecio.TabIndex = 16
+        Me.txPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txMargenPor
         '
@@ -694,6 +787,7 @@ Partial Class frArticulos
         Me.txMargenPor.Name = "txMargenPor"
         Me.txMargenPor.Size = New System.Drawing.Size(73, 20)
         Me.txMargenPor.TabIndex = 15
+        Me.txMargenPor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txRefProv
         '
@@ -711,19 +805,10 @@ Partial Class frArticulos
         Me.Label15.TabIndex = 116
         Me.Label15.Text = "STOCK MINIMO:"
         '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(565, 343)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(113, 13)
-        Me.Label13.TabIndex = 114
-        Me.Label13.Text = "STOCK DISPONIBLE:"
-        '
         'Label43
         '
         Me.Label43.AutoSize = True
-        Me.Label43.Location = New System.Drawing.Point(631, 317)
+        Me.Label43.Location = New System.Drawing.Point(631, 343)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(46, 13)
         Me.Label43.TabIndex = 108
@@ -883,11 +968,51 @@ Partial Class frArticulos
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(61, 78)
+        Me.Label1.Location = New System.Drawing.Point(61, 207)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(83, 13)
         Me.Label1.TabIndex = 46
         Me.Label1.Text = "DESCRIPCION:"
+        '
+        'pnLotes
+        '
+        Me.pnLotes.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.pnLotes.Controls.Add(Me.Button2)
+        Me.pnLotes.Controls.Add(Me.btCloseLotes)
+        Me.pnLotes.Controls.Add(Me.DataGridView2)
+        Me.pnLotes.Location = New System.Drawing.Point(42, 10)
+        Me.pnLotes.Name = "pnLotes"
+        Me.pnLotes.Size = New System.Drawing.Size(830, 320)
+        Me.pnLotes.TabIndex = 147
+        Me.pnLotes.Visible = False
+        '
+        'DataGridView2
+        '
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.Location = New System.Drawing.Point(10, 59)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.Size = New System.Drawing.Size(809, 251)
+        Me.DataGridView2.TabIndex = 0
+        '
+        'btCloseLotes
+        '
+        Me.btCloseLotes.BackgroundImage = CType(resources.GetObject("btCloseLotes.BackgroundImage"), System.Drawing.Image)
+        Me.btCloseLotes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btCloseLotes.Location = New System.Drawing.Point(795, 14)
+        Me.btCloseLotes.Name = "btCloseLotes"
+        Me.btCloseLotes.Size = New System.Drawing.Size(24, 23)
+        Me.btCloseLotes.TabIndex = 123
+        Me.btCloseLotes.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.BackgroundImage = CType(resources.GetObject("Button2.BackgroundImage"), System.Drawing.Image)
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button2.Location = New System.Drawing.Point(10, 14)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(26, 23)
+        Me.Button2.TabIndex = 124
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'frArticulos
         '
@@ -908,12 +1033,19 @@ Partial Class frArticulos
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
+        Me.pnTejidos.ResumeLayout(False)
+        Me.grTejidos.ResumeLayout(False)
+        CType(Me.dgTejidos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnColores.ResumeLayout(False)
         Me.grColor.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnModelo.ResumeLayout(False)
         Me.grModelo.ResumeLayout(False)
         CType(Me.dgMods, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.pnLotes.ResumeLayout(False)
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -940,7 +1072,6 @@ Partial Class frArticulos
     Friend WithEvents txInicial As TextBox
     Friend WithEvents txMinimo As TextBox
     Friend WithEvents txStock As TextBox
-    Friend WithEvents txDisponible As TextBox
     Friend WithEvents txMargenEuro As TextBox
     Friend WithEvents txDto As TextBox
     Friend WithEvents txIva As TextBox
@@ -952,7 +1083,6 @@ Partial Class frArticulos
     Friend WithEvents txMargenPor As TextBox
     Friend WithEvents txRefProv As TextBox
     Friend WithEvents Label15 As Label
-    Friend WithEvents Label13 As Label
     Friend WithEvents Label43 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label8 As Label
@@ -998,4 +1128,16 @@ Partial Class frArticulos
     Friend WithEvents btCloseCol As Button
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents dgMods As DataGridView
+    Friend WithEvents txTejidoID As TextBox
+    Friend WithEvents btTejidos As Button
+    Friend WithEvents grTejidos As GroupBox
+    Friend WithEvents dgTejidos As DataGridView
+    Friend WithEvents Button1 As Button
+    Friend WithEvents pnTejidos As Panel
+    Friend WithEvents pnColores As Panel
+    Friend WithEvents pnModelo As Panel
+    Friend WithEvents pnLotes As Panel
+    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents btCloseLotes As Button
+    Friend WithEvents Button2 As Button
 End Class
