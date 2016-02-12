@@ -488,4 +488,21 @@ Public Class frArticulos
         pnLotes.Visible = False
 
     End Sub
+
+    Private Sub btNuevaLinea_Click(sender As Object, e As EventArgs) Handles btNuevaLinea.Click
+        dgLotes.Rows.Add()
+        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = txCodigo.Text
+        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = txDescripcion.Text
+        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = ""
+        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = 0
+        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(4).Value = ""
+
+        dgLotes.Focus()
+        dgLotes.CurrentCell = dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2)
+        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Selected = True
+    End Sub
+
+    Private Sub btEliminarLinea_Click(sender As Object, e As EventArgs) Handles btEliminarLinea.Click
+        dgLotes.Rows.RemoveAt(dgLotes.CurrentRow.Index)
+    End Sub
 End Class

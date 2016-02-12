@@ -22,6 +22,7 @@ Partial Class frArticulos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frArticulos))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -39,6 +40,10 @@ Partial Class frArticulos
         Me.cmdLonas = New System.Windows.Forms.ToolStripButton()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.pnLotes = New System.Windows.Forms.Panel()
+        Me.btGuardarLote = New System.Windows.Forms.Button()
+        Me.btCloseLotes = New System.Windows.Forms.Button()
+        Me.dgLotes = New System.Windows.Forms.DataGridView()
         Me.pnTejidos = New System.Windows.Forms.Panel()
         Me.grTejidos = New System.Windows.Forms.GroupBox()
         Me.dgTejidos = New System.Windows.Forms.DataGridView()
@@ -109,10 +114,13 @@ Partial Class frArticulos
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.pnLotes = New System.Windows.Forms.Panel()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.btCloseLotes = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.referencia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lote = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.stock = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ubicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btNuevaLinea = New System.Windows.Forms.Button()
+        Me.btEliminarLinea = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,6 +128,8 @@ Partial Class frArticulos
         Me.tsBotones.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
+        Me.pnLotes.SuspendLayout()
+        CType(Me.dgLotes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnTejidos.SuspendLayout()
         Me.grTejidos.SuspendLayout()
         CType(Me.dgTejidos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -130,8 +140,6 @@ Partial Class frArticulos
         Me.grModelo.SuspendLayout()
         CType(Me.dgMods, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
-        Me.pnLotes.SuspendLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -350,6 +358,50 @@ Partial Class frArticulos
         Me.TabPage4.TabIndex = 0
         Me.TabPage4.Text = "GENERAL"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'pnLotes
+        '
+        Me.pnLotes.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.pnLotes.Controls.Add(Me.btEliminarLinea)
+        Me.pnLotes.Controls.Add(Me.btNuevaLinea)
+        Me.pnLotes.Controls.Add(Me.btGuardarLote)
+        Me.pnLotes.Controls.Add(Me.btCloseLotes)
+        Me.pnLotes.Controls.Add(Me.dgLotes)
+        Me.pnLotes.Location = New System.Drawing.Point(42, 10)
+        Me.pnLotes.Name = "pnLotes"
+        Me.pnLotes.Size = New System.Drawing.Size(830, 320)
+        Me.pnLotes.TabIndex = 147
+        Me.pnLotes.Visible = False
+        '
+        'btGuardarLote
+        '
+        Me.btGuardarLote.BackgroundImage = CType(resources.GetObject("btGuardarLote.BackgroundImage"), System.Drawing.Image)
+        Me.btGuardarLote.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btGuardarLote.Location = New System.Drawing.Point(10, 14)
+        Me.btGuardarLote.Name = "btGuardarLote"
+        Me.btGuardarLote.Size = New System.Drawing.Size(26, 23)
+        Me.btGuardarLote.TabIndex = 124
+        Me.btGuardarLote.UseVisualStyleBackColor = True
+        '
+        'btCloseLotes
+        '
+        Me.btCloseLotes.BackgroundImage = CType(resources.GetObject("btCloseLotes.BackgroundImage"), System.Drawing.Image)
+        Me.btCloseLotes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btCloseLotes.Location = New System.Drawing.Point(795, 14)
+        Me.btCloseLotes.Name = "btCloseLotes"
+        Me.btCloseLotes.Size = New System.Drawing.Size(24, 23)
+        Me.btCloseLotes.TabIndex = 123
+        Me.btCloseLotes.UseVisualStyleBackColor = True
+        '
+        'dgLotes
+        '
+        Me.dgLotes.AllowUserToAddRows = False
+        Me.dgLotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgLotes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.referencia, Me.descripcion, Me.lote, Me.stock, Me.ubicacion})
+        Me.dgLotes.Location = New System.Drawing.Point(10, 59)
+        Me.dgLotes.Name = "dgLotes"
+        Me.dgLotes.Size = New System.Drawing.Size(809, 251)
+        Me.dgLotes.TabIndex = 0
         '
         'pnTejidos
         '
@@ -974,45 +1026,59 @@ Partial Class frArticulos
         Me.Label1.TabIndex = 46
         Me.Label1.Text = "DESCRIPCION:"
         '
-        'pnLotes
+        'referencia
         '
-        Me.pnLotes.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.pnLotes.Controls.Add(Me.Button2)
-        Me.pnLotes.Controls.Add(Me.btCloseLotes)
-        Me.pnLotes.Controls.Add(Me.DataGridView2)
-        Me.pnLotes.Location = New System.Drawing.Point(42, 10)
-        Me.pnLotes.Name = "pnLotes"
-        Me.pnLotes.Size = New System.Drawing.Size(830, 320)
-        Me.pnLotes.TabIndex = 147
-        Me.pnLotes.Visible = False
+        Me.referencia.HeaderText = "REFERENCIA"
+        Me.referencia.Name = "referencia"
+        Me.referencia.ReadOnly = True
+        Me.referencia.Width = 110
         '
-        'DataGridView2
+        'descripcion
         '
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(10, 59)
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.Size = New System.Drawing.Size(809, 251)
-        Me.DataGridView2.TabIndex = 0
+        Me.descripcion.HeaderText = "DESCRIPCION"
+        Me.descripcion.Name = "descripcion"
+        Me.descripcion.Width = 330
         '
-        'btCloseLotes
+        'lote
         '
-        Me.btCloseLotes.BackgroundImage = CType(resources.GetObject("btCloseLotes.BackgroundImage"), System.Drawing.Image)
-        Me.btCloseLotes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btCloseLotes.Location = New System.Drawing.Point(795, 14)
-        Me.btCloseLotes.Name = "btCloseLotes"
-        Me.btCloseLotes.Size = New System.Drawing.Size(24, 23)
-        Me.btCloseLotes.TabIndex = 123
-        Me.btCloseLotes.UseVisualStyleBackColor = True
+        Me.lote.HeaderText = "LOTE"
+        Me.lote.Name = "lote"
         '
-        'Button2
+        'stock
         '
-        Me.Button2.BackgroundImage = CType(resources.GetObject("Button2.BackgroundImage"), System.Drawing.Image)
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button2.Location = New System.Drawing.Point(10, 14)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(26, 23)
-        Me.Button2.TabIndex = 124
-        Me.Button2.UseVisualStyleBackColor = True
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle2.Format = "N2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.stock.DefaultCellStyle = DataGridViewCellStyle2
+        Me.stock.HeaderText = "STOCK"
+        Me.stock.Name = "stock"
+        Me.stock.Width = 75
+        '
+        'ubicacion
+        '
+        Me.ubicacion.HeaderText = "UBICACION"
+        Me.ubicacion.Name = "ubicacion"
+        Me.ubicacion.Width = 150
+        '
+        'btNuevaLinea
+        '
+        Me.btNuevaLinea.BackgroundImage = CType(resources.GetObject("btNuevaLinea.BackgroundImage"), System.Drawing.Image)
+        Me.btNuevaLinea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btNuevaLinea.Location = New System.Drawing.Point(53, 15)
+        Me.btNuevaLinea.Name = "btNuevaLinea"
+        Me.btNuevaLinea.Size = New System.Drawing.Size(24, 23)
+        Me.btNuevaLinea.TabIndex = 125
+        Me.btNuevaLinea.UseVisualStyleBackColor = True
+        '
+        'btEliminarLinea
+        '
+        Me.btEliminarLinea.BackgroundImage = CType(resources.GetObject("btEliminarLinea.BackgroundImage"), System.Drawing.Image)
+        Me.btEliminarLinea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btEliminarLinea.Location = New System.Drawing.Point(83, 15)
+        Me.btEliminarLinea.Name = "btEliminarLinea"
+        Me.btEliminarLinea.Size = New System.Drawing.Size(24, 23)
+        Me.btEliminarLinea.TabIndex = 126
+        Me.btEliminarLinea.UseVisualStyleBackColor = True
         '
         'frArticulos
         '
@@ -1033,6 +1099,8 @@ Partial Class frArticulos
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
+        Me.pnLotes.ResumeLayout(False)
+        CType(Me.dgLotes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnTejidos.ResumeLayout(False)
         Me.grTejidos.ResumeLayout(False)
         CType(Me.dgTejidos, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1044,8 +1112,6 @@ Partial Class frArticulos
         CType(Me.dgMods, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.pnLotes.ResumeLayout(False)
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1137,7 +1203,14 @@ Partial Class frArticulos
     Friend WithEvents pnColores As Panel
     Friend WithEvents pnModelo As Panel
     Friend WithEvents pnLotes As Panel
-    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents dgLotes As DataGridView
     Friend WithEvents btCloseLotes As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btGuardarLote As Button
+    Friend WithEvents referencia As DataGridViewTextBoxColumn
+    Friend WithEvents descripcion As DataGridViewTextBoxColumn
+    Friend WithEvents lote As DataGridViewTextBoxColumn
+    Friend WithEvents stock As DataGridViewTextBoxColumn
+    Friend WithEvents ubicacion As DataGridViewTextBoxColumn
+    Friend WithEvents btEliminarLinea As Button
+    Friend WithEvents btNuevaLinea As Button
 End Class
