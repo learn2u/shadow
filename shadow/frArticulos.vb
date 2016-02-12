@@ -212,6 +212,25 @@ Public Class frArticulos
 
             numid = cmdLastId.ExecuteScalar()
 
+            'Guardo lotes
+            Dim cmdLinea As New MySqlCommand
+            Dim row As New DataGridViewRow
+            Dim lincant As String
+            Dim guardo_lincant As String
+
+
+            For Each row In dgLotes.Rows
+
+                lincant = Decimal.Parse(row.Cells(3).Value).ToString("0.00")
+                guardo_lincant = Replace(lincant, ",", ".")
+
+                cmdLinea.Connection = conexionmy
+                cmdLinea.CommandText = "INSERT INTO lotes (referencia, descripcion, lote, stock_inicial, ubicacion) VALUES ('" + row.Cells(0).Value + "', " + row.Cells(1).Value + ", '" + row.Cells(2).Value + "', '" + guardo_lincant + "', '" + row.Cells(4).Value + "')"
+
+                cmdLinea.ExecuteNonQuery()
+
+            Next
+
             conexionmy.Close()
             Me.Hide()
         Else
