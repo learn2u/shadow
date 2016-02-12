@@ -22,8 +22,8 @@ Partial Class frArticulos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frArticulos))
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.dgArticulos = New System.Windows.Forms.DataGridView()
@@ -41,9 +41,15 @@ Partial Class frArticulos
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.pnLotes = New System.Windows.Forms.Panel()
-        Me.btGuardarLote = New System.Windows.Forms.Button()
+        Me.btEliminarLinea = New System.Windows.Forms.Button()
+        Me.btNuevaLinea = New System.Windows.Forms.Button()
         Me.btCloseLotes = New System.Windows.Forms.Button()
         Me.dgLotes = New System.Windows.Forms.DataGridView()
+        Me.referencia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lote = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.stock = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ubicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnTejidos = New System.Windows.Forms.Panel()
         Me.grTejidos = New System.Windows.Forms.GroupBox()
         Me.dgTejidos = New System.Windows.Forms.DataGridView()
@@ -114,13 +120,6 @@ Partial Class frArticulos
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.referencia = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.lote = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.stock = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ubicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.btNuevaLinea = New System.Windows.Forms.Button()
-        Me.btEliminarLinea = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -364,7 +363,6 @@ Partial Class frArticulos
         Me.pnLotes.BackColor = System.Drawing.Color.WhiteSmoke
         Me.pnLotes.Controls.Add(Me.btEliminarLinea)
         Me.pnLotes.Controls.Add(Me.btNuevaLinea)
-        Me.pnLotes.Controls.Add(Me.btGuardarLote)
         Me.pnLotes.Controls.Add(Me.btCloseLotes)
         Me.pnLotes.Controls.Add(Me.dgLotes)
         Me.pnLotes.Location = New System.Drawing.Point(42, 10)
@@ -373,15 +371,25 @@ Partial Class frArticulos
         Me.pnLotes.TabIndex = 147
         Me.pnLotes.Visible = False
         '
-        'btGuardarLote
+        'btEliminarLinea
         '
-        Me.btGuardarLote.BackgroundImage = CType(resources.GetObject("btGuardarLote.BackgroundImage"), System.Drawing.Image)
-        Me.btGuardarLote.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btGuardarLote.Location = New System.Drawing.Point(10, 14)
-        Me.btGuardarLote.Name = "btGuardarLote"
-        Me.btGuardarLote.Size = New System.Drawing.Size(26, 23)
-        Me.btGuardarLote.TabIndex = 124
-        Me.btGuardarLote.UseVisualStyleBackColor = True
+        Me.btEliminarLinea.BackgroundImage = CType(resources.GetObject("btEliminarLinea.BackgroundImage"), System.Drawing.Image)
+        Me.btEliminarLinea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btEliminarLinea.Location = New System.Drawing.Point(40, 16)
+        Me.btEliminarLinea.Name = "btEliminarLinea"
+        Me.btEliminarLinea.Size = New System.Drawing.Size(24, 23)
+        Me.btEliminarLinea.TabIndex = 126
+        Me.btEliminarLinea.UseVisualStyleBackColor = True
+        '
+        'btNuevaLinea
+        '
+        Me.btNuevaLinea.BackgroundImage = CType(resources.GetObject("btNuevaLinea.BackgroundImage"), System.Drawing.Image)
+        Me.btNuevaLinea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btNuevaLinea.Location = New System.Drawing.Point(10, 16)
+        Me.btNuevaLinea.Name = "btNuevaLinea"
+        Me.btNuevaLinea.Size = New System.Drawing.Size(24, 23)
+        Me.btNuevaLinea.TabIndex = 125
+        Me.btNuevaLinea.UseVisualStyleBackColor = True
         '
         'btCloseLotes
         '
@@ -402,6 +410,40 @@ Partial Class frArticulos
         Me.dgLotes.Name = "dgLotes"
         Me.dgLotes.Size = New System.Drawing.Size(809, 251)
         Me.dgLotes.TabIndex = 0
+        '
+        'referencia
+        '
+        Me.referencia.HeaderText = "REFERENCIA"
+        Me.referencia.Name = "referencia"
+        Me.referencia.ReadOnly = True
+        Me.referencia.Width = 110
+        '
+        'descripcion
+        '
+        Me.descripcion.HeaderText = "DESCRIPCION"
+        Me.descripcion.Name = "descripcion"
+        Me.descripcion.Width = 330
+        '
+        'lote
+        '
+        Me.lote.HeaderText = "LOTE"
+        Me.lote.Name = "lote"
+        '
+        'stock
+        '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle2.Format = "N2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.stock.DefaultCellStyle = DataGridViewCellStyle2
+        Me.stock.HeaderText = "STOCK"
+        Me.stock.Name = "stock"
+        Me.stock.Width = 75
+        '
+        'ubicacion
+        '
+        Me.ubicacion.HeaderText = "UBICACION"
+        Me.ubicacion.Name = "ubicacion"
+        Me.ubicacion.Width = 150
         '
         'pnTejidos
         '
@@ -786,6 +828,7 @@ Partial Class frArticulos
         Me.txDto.Name = "txDto"
         Me.txDto.Size = New System.Drawing.Size(104, 20)
         Me.txDto.TabIndex = 101
+        Me.txDto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txIva
         '
@@ -1026,60 +1069,6 @@ Partial Class frArticulos
         Me.Label1.TabIndex = 46
         Me.Label1.Text = "DESCRIPCION:"
         '
-        'referencia
-        '
-        Me.referencia.HeaderText = "REFERENCIA"
-        Me.referencia.Name = "referencia"
-        Me.referencia.ReadOnly = True
-        Me.referencia.Width = 110
-        '
-        'descripcion
-        '
-        Me.descripcion.HeaderText = "DESCRIPCION"
-        Me.descripcion.Name = "descripcion"
-        Me.descripcion.Width = 330
-        '
-        'lote
-        '
-        Me.lote.HeaderText = "LOTE"
-        Me.lote.Name = "lote"
-        '
-        'stock
-        '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle2.Format = "N2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.stock.DefaultCellStyle = DataGridViewCellStyle2
-        Me.stock.HeaderText = "STOCK"
-        Me.stock.Name = "stock"
-        Me.stock.Width = 75
-        '
-        'ubicacion
-        '
-        Me.ubicacion.HeaderText = "UBICACION"
-        Me.ubicacion.Name = "ubicacion"
-        Me.ubicacion.Width = 150
-        '
-        'btNuevaLinea
-        '
-        Me.btNuevaLinea.BackgroundImage = CType(resources.GetObject("btNuevaLinea.BackgroundImage"), System.Drawing.Image)
-        Me.btNuevaLinea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btNuevaLinea.Location = New System.Drawing.Point(53, 15)
-        Me.btNuevaLinea.Name = "btNuevaLinea"
-        Me.btNuevaLinea.Size = New System.Drawing.Size(24, 23)
-        Me.btNuevaLinea.TabIndex = 125
-        Me.btNuevaLinea.UseVisualStyleBackColor = True
-        '
-        'btEliminarLinea
-        '
-        Me.btEliminarLinea.BackgroundImage = CType(resources.GetObject("btEliminarLinea.BackgroundImage"), System.Drawing.Image)
-        Me.btEliminarLinea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btEliminarLinea.Location = New System.Drawing.Point(83, 15)
-        Me.btEliminarLinea.Name = "btEliminarLinea"
-        Me.btEliminarLinea.Size = New System.Drawing.Size(24, 23)
-        Me.btEliminarLinea.TabIndex = 126
-        Me.btEliminarLinea.UseVisualStyleBackColor = True
-        '
         'frArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1205,7 +1194,6 @@ Partial Class frArticulos
     Friend WithEvents pnLotes As Panel
     Friend WithEvents dgLotes As DataGridView
     Friend WithEvents btCloseLotes As Button
-    Friend WithEvents btGuardarLote As Button
     Friend WithEvents referencia As DataGridViewTextBoxColumn
     Friend WithEvents descripcion As DataGridViewTextBoxColumn
     Friend WithEvents lote As DataGridViewTextBoxColumn
