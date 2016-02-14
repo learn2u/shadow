@@ -103,6 +103,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Envios.vb" />
+    <Compile Include="frProveedor.Designer.vb">
+      <DependentUpon>frProveedor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frProveedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frArticulos.Designer.vb">
       <DependentUpon>frArticulos.vb</DependentUpon>
     </Compile>
@@ -231,6 +237,9 @@
     <Compile Include="variables.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frProveedor.resx">
+      <DependentUpon>frProveedor.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frArticulos.resx">
       <DependentUpon>frArticulos.vb</DependentUpon>
     </EmbeddedResource>
