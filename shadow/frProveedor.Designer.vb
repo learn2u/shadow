@@ -35,6 +35,7 @@ Partial Class frProveedor
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.ckTipo = New System.Windows.Forms.CheckBox()
         Me.cbProvincia = New System.Windows.Forms.ComboBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -76,11 +77,11 @@ Partial Class frProveedor
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.cbFormapago = New System.Windows.Forms.ComboBox()
         Me.grBanco = New System.Windows.Forms.GroupBox()
-        Me.txBANCO = New System.Windows.Forms.TextBox()
+        Me.txBanco = New System.Windows.Forms.TextBox()
         Me.Label24 = New System.Windows.Forms.Label()
-        Me.txBIC = New System.Windows.Forms.TextBox()
+        Me.txBic = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
-        Me.txIBAN = New System.Windows.Forms.TextBox()
+        Me.txIban = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.txCCC = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
@@ -235,6 +236,7 @@ Partial Class frProveedor
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.ckTipo)
         Me.TabPage4.Controls.Add(Me.cbProvincia)
         Me.TabPage4.Controls.Add(Me.Label13)
         Me.TabPage4.Controls.Add(Me.Label15)
@@ -280,6 +282,18 @@ Partial Class frProveedor
         Me.TabPage4.TabIndex = 0
         Me.TabPage4.Text = "GENERAL"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'ckTipo
+        '
+        Me.ckTipo.AutoSize = True
+        Me.ckTipo.Checked = True
+        Me.ckTipo.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ckTipo.Location = New System.Drawing.Point(265, 21)
+        Me.ckTipo.Name = "ckTipo"
+        Me.ckTipo.Size = New System.Drawing.Size(94, 17)
+        Me.ckTipo.TabIndex = 85
+        Me.ckTipo.Text = "PROVEEDOR"
+        Me.ckTipo.UseVisualStyleBackColor = True
         '
         'cbProvincia
         '
@@ -619,11 +633,11 @@ Partial Class frProveedor
         '
         'grBanco
         '
-        Me.grBanco.Controls.Add(Me.txBANCO)
+        Me.grBanco.Controls.Add(Me.txBanco)
         Me.grBanco.Controls.Add(Me.Label24)
-        Me.grBanco.Controls.Add(Me.txBIC)
+        Me.grBanco.Controls.Add(Me.txBic)
         Me.grBanco.Controls.Add(Me.Label23)
-        Me.grBanco.Controls.Add(Me.txIBAN)
+        Me.grBanco.Controls.Add(Me.txIban)
         Me.grBanco.Controls.Add(Me.Label22)
         Me.grBanco.Controls.Add(Me.txCCC)
         Me.grBanco.Controls.Add(Me.Label21)
@@ -634,12 +648,12 @@ Partial Class frProveedor
         Me.grBanco.TabStop = False
         Me.grBanco.Text = "DATOS BANCARIOS"
         '
-        'txBANCO
+        'txBanco
         '
-        Me.txBANCO.Location = New System.Drawing.Point(75, 39)
-        Me.txBANCO.Name = "txBANCO"
-        Me.txBANCO.Size = New System.Drawing.Size(449, 20)
-        Me.txBANCO.TabIndex = 75
+        Me.txBanco.Location = New System.Drawing.Point(75, 39)
+        Me.txBanco.Name = "txBanco"
+        Me.txBanco.Size = New System.Drawing.Size(449, 20)
+        Me.txBanco.TabIndex = 75
         '
         'Label24
         '
@@ -650,12 +664,12 @@ Partial Class frProveedor
         Me.Label24.TabIndex = 76
         Me.Label24.Text = "BANCO:"
         '
-        'txBIC
+        'txBic
         '
-        Me.txBIC.Location = New System.Drawing.Point(75, 117)
-        Me.txBIC.Name = "txBIC"
-        Me.txBIC.Size = New System.Drawing.Size(160, 20)
-        Me.txBIC.TabIndex = 73
+        Me.txBic.Location = New System.Drawing.Point(75, 117)
+        Me.txBic.Name = "txBic"
+        Me.txBic.Size = New System.Drawing.Size(160, 20)
+        Me.txBic.TabIndex = 73
         '
         'Label23
         '
@@ -666,12 +680,12 @@ Partial Class frProveedor
         Me.Label23.TabIndex = 74
         Me.Label23.Text = "BIC:"
         '
-        'txIBAN
+        'txIban
         '
-        Me.txIBAN.Location = New System.Drawing.Point(75, 91)
-        Me.txIBAN.Name = "txIBAN"
-        Me.txIBAN.Size = New System.Drawing.Size(255, 20)
-        Me.txIBAN.TabIndex = 71
+        Me.txIban.Location = New System.Drawing.Point(75, 91)
+        Me.txIban.Name = "txIban"
+        Me.txIban.Size = New System.Drawing.Size(255, 20)
+        Me.txIban.TabIndex = 71
         '
         'Label22
         '
@@ -749,6 +763,8 @@ Partial Class frProveedor
         Me.txDescuento.Name = "txDescuento"
         Me.txDescuento.Size = New System.Drawing.Size(56, 20)
         Me.txDescuento.TabIndex = 49
+        Me.txDescuento.Text = "0"
+        Me.txDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label18
         '
@@ -890,6 +906,7 @@ Partial Class frProveedor
         Me.ClientSize = New System.Drawing.Size(960, 624)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "frProveedor"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "PROVEEDORES"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
@@ -963,11 +980,11 @@ Partial Class frProveedor
     Friend WithEvents TabPage5 As TabPage
     Friend WithEvents cbFormapago As ComboBox
     Friend WithEvents grBanco As GroupBox
-    Friend WithEvents txBANCO As TextBox
+    Friend WithEvents txBanco As TextBox
     Friend WithEvents Label24 As Label
-    Friend WithEvents txBIC As TextBox
+    Friend WithEvents txBic As TextBox
     Friend WithEvents Label23 As Label
-    Friend WithEvents txIBAN As TextBox
+    Friend WithEvents txIban As TextBox
     Friend WithEvents Label22 As Label
     Friend WithEvents txCCC As TextBox
     Friend WithEvents Label21 As Label
@@ -991,4 +1008,5 @@ Partial Class frProveedor
     Friend WithEvents Label26 As Label
     Friend WithEvents txHorario As TextBox
     Friend WithEvents Label27 As Label
+    Friend WithEvents ckTipo As CheckBox
 End Class

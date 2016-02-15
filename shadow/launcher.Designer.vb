@@ -33,6 +33,7 @@ Partial Class launcher
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
+        Me.btProveedores = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -134,11 +135,21 @@ Partial Class launcher
         Me.Button11.Text = "Control Gastos"
         Me.Button11.UseVisualStyleBackColor = True
         '
+        'btProveedores
+        '
+        Me.btProveedores.Location = New System.Drawing.Point(357, 191)
+        Me.btProveedores.Name = "btProveedores"
+        Me.btProveedores.Size = New System.Drawing.Size(141, 40)
+        Me.btProveedores.TabIndex = 11
+        Me.btProveedores.Text = "Proveedores"
+        Me.btProveedores.UseVisualStyleBackColor = True
+        '
         'launcher
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(907, 518)
+        Me.Controls.Add(Me.btProveedores)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button11)
         Me.Controls.Add(Me.Button3)
@@ -169,4 +180,5 @@ Partial Class launcher
     Friend WithEvents Button9 As Button
     Friend WithEvents Button10 As Button
     Friend WithEvents Button11 As Button
+    Friend WithEvents btProveedores As Button
 End Class

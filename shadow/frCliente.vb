@@ -7,14 +7,6 @@ Public Class frCliente
     Public Shared dirEnvios As New List(Of Envios)
     Public flagEditCli As Boolean
 
-    Private Sub btBuscar_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Label13_Click(sender As Object, e As EventArgs) Handles Label13.Click
-
-    End Sub
-
     Private Sub frCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabControl1.SelectTab(1)
         cmdNuevo.Enabled = True

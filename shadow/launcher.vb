@@ -85,4 +85,8 @@ Public Class launcher
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
         frGastos.Show()
     End Sub
+
+    Private Sub btProveedores_Click(sender As Object, e As EventArgs) Handles btProveedores.Click
+        frProveedor.Show()
+    End Sub
 End Class
