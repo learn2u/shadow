@@ -186,7 +186,7 @@ Public Class frVerArticulos
     Private Sub dgArticulos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgArticulos.CellClick
 
         If dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
-            frVerLotes.vReferencia = dgArticulos.CurrentRow.Cells("refpro").Value
+            frVerLotes.vReferencia = dgArticulos.CurrentRow.Cells("referen").Value
             frVerLotes.vPrecio = dgArticulos.CurrentRow.Cells("prec").Value
             frVerLotes.vIva = dgArticulos.CurrentRow.Cells("porciva").Value
             frVerLotes.Show()

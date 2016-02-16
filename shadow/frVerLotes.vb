@@ -115,7 +115,7 @@ Public Class frVerLotes
                 frPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
                 'frPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
                 frPedido.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
-                'frPedido.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
+                frPedido.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
                 frPedido.txIva.Text = vIva
                 frPedido.dgLineasPres1.CurrentCell = frPedido.dgLineasPres1.CurrentRow.Cells(4)
                 frPedido.dgLineasPres1.BeginEdit(True)
@@ -126,7 +126,7 @@ Public Class frVerLotes
                 frPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
                 'frPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
                 frPedido.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
-                'frPedido.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
+                frPedido.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
                 frPedido.txIva.Text = vIva
                 frPedido.dgLineasPres2.CurrentCell = frPedido.dgLineasPres2.CurrentRow.Cells(4)
                 frPedido.dgLineasPres2.BeginEdit(True)

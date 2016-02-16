@@ -38,7 +38,7 @@ Partial Class launcher
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(29, 35)
+        Me.Button1.Location = New System.Drawing.Point(28, 86)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(144, 45)
         Me.Button1.TabIndex = 0
@@ -47,7 +47,7 @@ Partial Class launcher
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(29, 86)
+        Me.Button2.Location = New System.Drawing.Point(28, 137)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(144, 45)
         Me.Button2.TabIndex = 1
@@ -56,7 +56,7 @@ Partial Class launcher
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(193, 187)
+        Me.Button3.Location = New System.Drawing.Point(505, 35)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(144, 45)
         Me.Button3.TabIndex = 2
@@ -65,7 +65,7 @@ Partial Class launcher
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(29, 137)
+        Me.Button4.Location = New System.Drawing.Point(28, 36)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(144, 44)
         Me.Button4.TabIndex = 3
@@ -74,7 +74,7 @@ Partial Class launcher
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(193, 35)
+        Me.Button5.Location = New System.Drawing.Point(29, 188)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(143, 45)
         Me.Button5.TabIndex = 4
@@ -83,7 +83,7 @@ Partial Class launcher
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(29, 187)
+        Me.Button6.Location = New System.Drawing.Point(505, 87)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(144, 45)
         Me.Button6.TabIndex = 5
@@ -92,7 +92,7 @@ Partial Class launcher
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(193, 86)
+        Me.Button7.Location = New System.Drawing.Point(193, 35)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(143, 45)
         Me.Button7.TabIndex = 6
@@ -101,7 +101,7 @@ Partial Class launcher
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(193, 137)
+        Me.Button8.Location = New System.Drawing.Point(193, 86)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(143, 45)
         Me.Button8.TabIndex = 7
@@ -119,7 +119,7 @@ Partial Class launcher
         '
         'Button10
         '
-        Me.Button10.Location = New System.Drawing.Point(357, 86)
+        Me.Button10.Location = New System.Drawing.Point(30, 239)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(142, 45)
         Me.Button10.TabIndex = 9
@@ -128,7 +128,7 @@ Partial Class launcher
         '
         'Button11
         '
-        Me.Button11.Location = New System.Drawing.Point(357, 137)
+        Me.Button11.Location = New System.Drawing.Point(357, 87)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(142, 44)
         Me.Button11.TabIndex = 10
@@ -137,7 +137,7 @@ Partial Class launcher
         '
         'btProveedores
         '
-        Me.btProveedores.Location = New System.Drawing.Point(357, 191)
+        Me.btProveedores.Location = New System.Drawing.Point(193, 137)
         Me.btProveedores.Name = "btProveedores"
         Me.btProveedores.Size = New System.Drawing.Size(141, 40)
         Me.btProveedores.TabIndex = 11

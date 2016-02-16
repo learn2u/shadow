@@ -462,7 +462,7 @@ Public Class frPedido
                 arti = row.Cells(2).Value
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO pedido_linea (num_pedido, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO pedido_linea (num_pedido, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
 
                 cmdLinea.ExecuteNonQuery()
                 descontarStock(arti, lincant)
@@ -763,14 +763,14 @@ Public Class frPedido
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock_disponible FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock_disp FROM articulos2 WHERE referencia = '" + codArti + "'", conexionmy)
         Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
         reader.Read()
 
         Dim stock As String = (reader.GetString(1) - unidades).ToString
         reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock_disponible = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock_disp = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
         cmdActualizo.ExecuteNonQuery()
 
         conexionmy.Close()
@@ -780,14 +780,14 @@ Public Class frPedido
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock_disponible FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock_disp FROM articulos2 WHERE referencia = '" + codArti + "'", conexionmy)
         Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
         reader.Read()
 
         Dim stock As String = (reader.GetString(1) + unidades).ToString
         reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock_disponible = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock_disp = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
         cmdActualizo.ExecuteNonQuery()
 
         conexionmy.Close()
@@ -870,14 +870,14 @@ Public Class frPedido
                 dgLineasPres1.CurrentCell.Value = cellValue
 
             End If
-            If Me.dgLineasPres1.Columns("Column6").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
+            'If Me.dgLineasPres1.Columns("Column6").Index = e.ColumnIndex Then
+            'Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
+            'value = value.Replace(".", ",")
 
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres1.CurrentCell.Value = cellValue
+            'Dim cellValue As Decimal = CType(value, Decimal)
+            'dgLineasPres1.CurrentCell.Value = cellValue
 
-            End If
+            'End If
             If Me.dgLineasPres1.Columns("Column7").Index = e.ColumnIndex Then
                 Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
@@ -920,14 +920,14 @@ Public Class frPedido
                 dgLineasPres2.CurrentCell.Value = cellValue
 
             End If
-            If Me.dgLineasPres2.Columns("Columna6").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
+            'If Me.dgLineasPres2.Columns("Columna6").Index = e.ColumnIndex Then
+            'Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
+            'value = value.Replace(".", ",")
 
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres2.CurrentCell.Value = cellValue
+            'Dim cellValue As Decimal = CType(value, Decimal)
+            'dgLineasPres2.CurrentCell.Value = cellValue
 
-            End If
+            'End If
             If Me.dgLineasPres2.Columns("Columna7").Index = e.ColumnIndex Then
                 Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
