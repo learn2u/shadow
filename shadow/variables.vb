@@ -6,4 +6,6 @@
     Public formCli As String
     Public formArti As String
     Public vRecargo As Decimal
+    Public vLotes As String
+    Public vReLote As String
 End Module

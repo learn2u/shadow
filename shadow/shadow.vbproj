@@ -206,6 +206,12 @@
     <Compile Include="frVerLotes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frVerLotesM.Designer.vb">
+      <DependentUpon>frVerLotesM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frVerLotesM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frVerProveedores.Designer.vb">
       <DependentUpon>frVerProveedores.vb</DependentUpon>
     </Compile>
@@ -287,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frVerLotes.resx">
       <DependentUpon>frVerLotes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frVerLotesM.resx">
+      <DependentUpon>frVerLotesM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frVerProveedores.resx">
       <DependentUpon>frVerProveedores.vb</DependentUpon>

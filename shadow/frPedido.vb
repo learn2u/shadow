@@ -560,7 +560,7 @@ Public Class frPedido
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO pedido_linea (num_pedido, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO pedido_linea (num_pedido, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
 
                 cmdLinea.ExecuteNonQuery()
 
@@ -730,6 +730,13 @@ Public Class frPedido
         If (e.ColumnIndex = 1) Then
             formArti = "D"
             frVerArticulos.Show()
+        End If
+        If (e.ColumnIndex = 12) Then
+            formArti = "D"
+            vLotes = dgLineasPres2.CurrentRow.Cells(11).Value
+            vReLote = dgLineasPres2.CurrentRow.Cells(2).Value
+            'MsgBox(vReLote)
+            frVerLotesM.Show()
         End If
         pos = dgLineasPres2.CurrentRow.Index
     End Sub
