@@ -241,6 +241,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="variables.vb" />
+    <Compile Include="vtosEditados.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frProveedor.resx">

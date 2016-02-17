@@ -14,6 +14,7 @@ Public Class frFacturaManual
     Public Shared cantFin As Decimal
     Public Shared serieIni As String
     Public Shared fechadiapago As Date
+    Public Shared vtosEdit As New List(Of vtosEditados)
     Private Sub frFacturaManual_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
         grPlazos.Visible = False
@@ -1311,7 +1312,7 @@ Public Class frFacturaManual
         Dim cmdCli As New MySqlCommand
         Dim rdrArt As MySqlDataReader
         cmdCli = New MySqlCommand("SELECT * FROM vto_cobros WHERE tipodoc = 'F' AND documentoID = '" & txtNumpres.Text & "' ORDER BY orden", conexionmy)
-
+        Dim vtoRow As New DataGridViewRow
 
         cmdCli.CommandType = CommandType.Text
         cmdCli.Connection = conexionmy
@@ -1335,8 +1336,41 @@ Public Class frFacturaManual
             MsgBox("No se han registrado vencimientos")
         End If
 
+        Dim varLinea As Int16 = 0
+        Dim varFactura As String
+        Dim varVto As Date
+        Dim varConcepto As String
+        Dim varImporte As Decimal
+        Dim varPagado As String
+
+        For Each vtoRow In dgPlazos.Rows
+            varLinea = varLinea + 1
+            varFactura = txtNumpres.Text
+            varVto = vtoRow.Cells(0).Value.ToString
+            varConcepto = vtoRow.Cells(1).Value
+            varImporte = vtoRow.Cells(2).Value
+            If vtoRow.Cells(3).Style.BackColor = Color.Red Then
+                varPagado = "N"
+            Else
+                varPagado = "S"
+            End If
+
+            vtosEdit.Add(New vtosEditados() With {.vtoLinea = varLinea, .vtoFactura = varFactura, .vtoVencimiento = varVto, .vtoConcepto = varConcepto, .vtoImporte = varImporte, .vtoPagado = varPagado})
+        Next
+
         rdrArt.Close()
 
         conexionmy.Close()
+
+    End Sub
+
+    Private Sub dgPlazos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgPlazos.CellDoubleClick
+        If (e.ColumnIndex = 3) Then
+            If dgPlazos.CurrentRow.Cells(3).Style.BackColor = Color.Red Then
+                dgPlazos.CurrentRow.Cells(3).Style.BackColor = Color.Green
+            Else
+                dgPlazos.CurrentRow.Cells(3).Style.BackColor = Color.Red
+            End If
+        End If
     End Sub
 End Class
