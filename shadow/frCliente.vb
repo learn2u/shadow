@@ -266,15 +266,6 @@ Public Class frCliente
 
         conexionmy.Close()
     End Sub
-
-    Private Sub dgClientes_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgClientes.CellClick
-        txCodigo.Text = dgClientes.CurrentRow.Cells("column1").Value.ToString
-        TabControl1.SelectTab(1)
-        cargoDatos()
-        cmdNuevo.Enabled = False
-
-        flagEditCli = True
-    End Sub
     Public Sub limpiarFormulario()
         txCodigo.Text = ""
         txCif.Text = ""
@@ -457,5 +448,14 @@ Public Class frCliente
 
         conexionmy.Close()
 
+    End Sub
+
+    Private Sub dgClientes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgClientes.CellDoubleClick
+        txCodigo.Text = dgClientes.CurrentRow.Cells("column1").Value.ToString
+        TabControl1.SelectTab(1)
+        cargoDatos()
+        cmdNuevo.Enabled = False
+
+        flagEditCli = True
     End Sub
 End Class

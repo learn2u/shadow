@@ -76,6 +76,7 @@ Partial Class frCliente
         Me.txCif = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.txIdAgente = New System.Windows.Forms.TextBox()
         Me.cbFormapago = New System.Windows.Forms.ComboBox()
         Me.cbTipocli = New System.Windows.Forms.ComboBox()
         Me.Label38 = New System.Windows.Forms.Label()
@@ -123,7 +124,6 @@ Partial Class frCliente
         Me.Label26 = New System.Windows.Forms.Label()
         Me.txHorario = New System.Windows.Forms.TextBox()
         Me.Label27 = New System.Windows.Forms.Label()
-        Me.txIdAgente = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgClientes, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -655,6 +655,14 @@ Partial Class frCliente
         Me.TabPage5.Text = "DATOS COMERCIALES"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'txIdAgente
+        '
+        Me.txIdAgente.Location = New System.Drawing.Point(662, 47)
+        Me.txIdAgente.Name = "txIdAgente"
+        Me.txIdAgente.Size = New System.Drawing.Size(100, 20)
+        Me.txIdAgente.TabIndex = 81
+        Me.txIdAgente.Visible = False
+        '
         'cbFormapago
         '
         Me.cbFormapago.FormattingEnabled = True
@@ -1083,14 +1091,6 @@ Partial Class frCliente
         Me.Label27.Size = New System.Drawing.Size(60, 13)
         Me.Label27.TabIndex = 54
         Me.Label27.Text = "HORARIO:"
-        '
-        'txIdAgente
-        '
-        Me.txIdAgente.Location = New System.Drawing.Point(662, 47)
-        Me.txIdAgente.Name = "txIdAgente"
-        Me.txIdAgente.Size = New System.Drawing.Size(100, 20)
-        Me.txIdAgente.TabIndex = 81
-        Me.txIdAgente.Visible = False
         '
         'frCliente
         '
