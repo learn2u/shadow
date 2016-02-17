@@ -970,11 +970,13 @@ Public Class frFacturaManual
     Private Sub btRecalcular_Click(sender As Object, e As EventArgs) Handles btRecalcular.Click
         grPlazos.Visible = True
         recalcularPlazos()
+        btActualizar.Enabled = True
 
     End Sub
 
     Private Sub cmdMostrarAgente_Click(sender As Object, e As EventArgs) Handles cmdMostrarAgente.Click
         grPlazos.Visible = True
+        btActualizar.Enabled = False
 
     End Sub
 
@@ -993,6 +995,7 @@ Public Class frFacturaManual
             Dim vMes As String
             Dim vYear As String
             Dim vFechahoy As String = txFecha.Text
+
 
 
             vDia = txDiapago.Text
@@ -1205,6 +1208,7 @@ Public Class frFacturaManual
 
             End If
         End If
+        recalcularPendiente()
     End Sub
     Public Sub grabarVencimientos()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -1212,6 +1216,7 @@ Public Class frFacturaManual
         Dim vPagado As String
         Dim orden As Int16 = 0
         Dim linImporte As String
+        Dim vtoRow As New DataGridViewRow
 
 
         If ckPagado.Checked = True Then
@@ -1220,13 +1225,20 @@ Public Class frFacturaManual
             vPagado = "N"
         End If
 
-        For Each row In dgPlazos.Rows
+        For Each vtoRow In dgPlazos.Rows
             orden = orden + 1
 
-            Dim fecha As Date = row.Cells(0).Value
-            linImporte = row.Cells(2).Value.ToString
+            Dim vVtoPagado As String
+            Dim fecha As Date = vtoRow.Cells(0).Value
+            linImporte = vtoRow.Cells(2).Value.ToString
 
-            Dim cmd As New MySqlCommand("INSERT INTO vto_cobros (documentoID, tipodoc, concepto, vencimiento, importe, orden, pagado) VALUES (" + txtNumpres.Text + ", 'F', '" + row.Cells(1).Value + "', '" + fecha.ToString("yyyy-MM-dd") + "', '" + linImporte + "', '" + orden.ToString + "', '" + vPagado + "')", conexionmy)
+            If vtoRow.Cells(3).Style.BackColor = Color.Red Then
+                vVtoPagado = "N"
+            Else
+                vVtoPagado = "S"
+            End If
+
+            Dim cmd As New MySqlCommand("INSERT INTO vto_cobros (documentoID, tipodoc, concepto, vencimiento, importe, orden, pagado) VALUES (" + txtNumpres.Text + ", 'F', '" + vtoRow.Cells(1).Value + "', '" + fecha.ToString("yyyy-MM-dd") + "', '" + linImporte + "', '" + orden.ToString + "', '" + vVtoPagado + "')", conexionmy)
             cmd.ExecuteNonQuery()
         Next
         conexionmy.Close()
@@ -1305,14 +1317,28 @@ Public Class frFacturaManual
     End Sub
     Public Sub editarVencimientos()
 
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        'Eliminar plazos anteriores
+        Dim cmdEliminar As New MySqlCommand("DELETE FROM vto_cobros WHERE documentoID = '" + txtNumpres.Text + "'", conexionmy)
+        cmdEliminar.ExecuteNonQuery()
+
+
+        'Grabar nuevos vencimientos
+        grabarVencimientos()
+
+
     End Sub
     Public Sub cargarVencimientos()
+        dgPlazos.Rows.Clear()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
         Dim cmdCli As New MySqlCommand
         Dim rdrArt As MySqlDataReader
         cmdCli = New MySqlCommand("SELECT * FROM vto_cobros WHERE tipodoc = 'F' AND documentoID = '" & txtNumpres.Text & "' ORDER BY orden", conexionmy)
         Dim vtoRow As New DataGridViewRow
+        Dim vPendiente As Decimal = 0
+
 
         cmdCli.CommandType = CommandType.Text
         cmdCli.Connection = conexionmy
@@ -1327,6 +1353,7 @@ Public Class frFacturaManual
                 dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = rdrArt("importe")
                 If rdrArt("pagado") = "N" Then
                     dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(3).Style.BackColor = Color.Red
+                    vPendiente = vPendiente + rdrArt("importe")
                 Else
                     dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(3).Style.BackColor = Color.Green
                 End If
@@ -1335,6 +1362,7 @@ Public Class frFacturaManual
         Else
             MsgBox("No se han registrado vencimientos")
         End If
+        txPendiente.Text = vPendiente
 
         Dim varLinea As Int16 = 0
         Dim varFactura As String
@@ -1368,9 +1396,29 @@ Public Class frFacturaManual
         If (e.ColumnIndex = 3) Then
             If dgPlazos.CurrentRow.Cells(3).Style.BackColor = Color.Red Then
                 dgPlazos.CurrentRow.Cells(3).Style.BackColor = Color.Green
+                recalcularPendiente()
+                btActualizar.Enabled = True
             Else
                 dgPlazos.CurrentRow.Cells(3).Style.BackColor = Color.Red
             End If
         End If
+    End Sub
+    Public Sub recalcularPendiente()
+        Dim vPendiente As Decimal = 0
+        Dim vtoRow As New DataGridViewRow
+        Dim varImporte As Decimal = 0
+
+        For Each vtoRow In dgPlazos.Rows
+            If vtoRow.Cells(3).Style.BackColor = Color.Red Then
+                varImporte = varImporte + vtoRow.Cells(2).Value
+            End If
+        Next
+        txPendiente.Text = varImporte
+    End Sub
+
+    Private Sub btActualizar_Click(sender As Object, e As EventArgs) Handles btActualizar.Click
+        editarVencimientos()
+        btActualizar.Enabled = False
+        grPlazos.Visible = False
     End Sub
 End Class
