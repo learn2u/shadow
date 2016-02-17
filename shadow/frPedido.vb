@@ -602,30 +602,6 @@ Public Class frPedido
         conexionmy.Close()
 
     End Sub
-
-    Private Sub dgPedidos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgPedidos.CellClick
-        limpiarFormulario()
-        cmdLineas.Enabled = True
-        cmdGuardar.Enabled = True
-        cmdCancelar.Enabled = True
-        cmdCliente.Enabled = True
-        cmdPedido.Enabled = True
-        cmdAlbaran.Enabled = True
-
-
-        txtNumpres.Text = dgPedidos.CurrentRow.Cells("Column1").Value.ToString
-        tabPresupuestos.SelectTab(1)
-        flagEdit = "S"
-        dgLineasPres1.Visible = False
-        dgLineasPres2.Visible = True
-        dgLineasPres2.Rows.Clear()
-
-
-        cargoPedido()
-        cargoLineas()
-        cmdDelete.Enabled = True
-        recalcularTotales()
-    End Sub
     Public Sub cargoPedido()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
@@ -1206,5 +1182,29 @@ Public Class frPedido
 
         End If
 
+    End Sub
+
+    Private Sub dgPedidos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgPedidos.CellDoubleClick
+        limpiarFormulario()
+        cmdLineas.Enabled = True
+        cmdGuardar.Enabled = True
+        cmdCancelar.Enabled = True
+        cmdCliente.Enabled = True
+        cmdPedido.Enabled = True
+        cmdAlbaran.Enabled = True
+
+
+        txtNumpres.Text = dgPedidos.CurrentRow.Cells("Column1").Value.ToString
+        tabPresupuestos.SelectTab(1)
+        flagEdit = "S"
+        dgLineasPres1.Visible = False
+        dgLineasPres2.Visible = True
+        dgLineasPres2.Rows.Clear()
+
+
+        cargoPedido()
+        cargoLineas()
+        cmdDelete.Enabled = True
+        recalcularTotales()
     End Sub
 End Class

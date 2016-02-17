@@ -132,6 +132,7 @@ Public Class frAlbaran
         tsBotones.Focus()
         cmdNuevo.Select()
         dgLineasPres1.Rows.Clear()
+        dgLineasPres2.Rows.Clear()
     End Sub
 
     Private Sub cmdLineas_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
@@ -641,29 +642,6 @@ Public Class frAlbaran
         conexionmy.Close()
 
     End Sub
-
-    Private Sub dgAlbaranes_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgAlbaranes.CellClick
-        limpiarFormulario()
-        cmdLineas.Enabled = True
-        cmdGuardar.Enabled = True
-        cmdCancelar.Enabled = True
-        cmdCliente.Enabled = True
-        cmdAlbaran.Enabled = True
-
-
-        txtNumpres.Text = dgAlbaranes.CurrentRow.Cells("Column1").Value.ToString
-        tabPresupuestos.SelectTab(1)
-        flagEdit = "S"
-        dgLineasPres1.Visible = False
-        dgLineasPres2.Visible = True
-        dgLineasPres2.Rows.Clear()
-
-
-        cargoAlbaran()
-        cargoLineas()
-        cmdDelete.Enabled = True
-        recalcularTotales()
-    End Sub
     Public Sub cargoAlbaran()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
@@ -779,6 +757,13 @@ Public Class frAlbaran
         If (e.ColumnIndex = 1) Then
             formArti = "A"
             frVerArticulos.Show()
+        End If
+        If (e.ColumnIndex = 12) Then
+            formArti = "A"
+            vLotes = dgLineasPres2.CurrentRow.Cells(11).Value
+            vReLote = dgLineasPres2.CurrentRow.Cells(2).Value
+            'MsgBox(vReLote)
+            frVerLotesM.Show()
         End If
         pos = dgLineasPres2.CurrentRow.Index
     End Sub
@@ -1192,5 +1177,27 @@ Public Class frAlbaran
             flagEdit = "N"
         End If
 
+    End Sub
+    Private Sub dgAlbaranes_CellDoubleClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles dgAlbaranes.CellDoubleClick
+        limpiarFormulario()
+        cmdLineas.Enabled = True
+        cmdGuardar.Enabled = True
+        cmdCancelar.Enabled = True
+        cmdCliente.Enabled = True
+        cmdAlbaran.Enabled = True
+
+
+        txtNumpres.Text = dgAlbaranes.CurrentRow.Cells("Column1").Value.ToString
+        tabPresupuestos.SelectTab(1)
+        flagEdit = "S"
+        dgLineasPres1.Visible = False
+        dgLineasPres2.Visible = True
+        dgLineasPres2.Rows.Clear()
+
+
+        cargoAlbaran()
+        cargoLineas()
+        cmdDelete.Enabled = True
+        recalcularTotales()
     End Sub
 End Class

@@ -61,6 +61,12 @@ Public Class frVerLotesM
 
             Me.Hide()
         End If
+        If formArti = "A" Then
+
+            frAlbaran.dgLineasPres2.CurrentRow.Cells(11).Value = dgLotes.CurrentRow.Cells("lote").Value
+
+            Me.Hide()
+        End If
 
     End Sub
 End Class
