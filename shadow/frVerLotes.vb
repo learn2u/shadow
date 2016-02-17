@@ -110,7 +110,7 @@ Public Class frVerLotes
         End If
 
         If formArti = "D" Then
-            If frAlbaran.flagEdit = "N" Then
+            If frPedido.flagEdit = "N" Then
                 frPedido.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
                 frPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
                 'frPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
