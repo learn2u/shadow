@@ -877,6 +877,7 @@ Public Class frAlbaran
         If (e.ColumnIndex = 8) Then
             tsBotones.Focus()
             cmdLineas.Select()
+
             'Crear una linea nueva
 
 
@@ -888,6 +889,8 @@ Public Class frAlbaran
         If (e.ColumnIndex = 8) Then
             tsBotones.Focus()
             cmdLineas.Select()
+
+            'crearNuevaLinea()
         End If
         If (e.ColumnIndex = 2) Then
             Dim vRef As String = dgLineasPres2.CurrentRow.Cells(2).Value
@@ -1199,5 +1202,118 @@ Public Class frAlbaran
         cargoLineas()
         cmdDelete.Enabled = True
         recalcularTotales()
+    End Sub
+
+    Private Sub btPagos_Click(sender As Object, e As EventArgs) Handles btPagos.Click
+        pnPagos.Visible = True
+        cargoPagos()
+        txFechaCobro.Text = ""
+        txImporteCobro.Text = 0
+        txConceptoCobro.Text = ""
+        txFechaCobro.Focus()
+
+    End Sub
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        pnPagos.Visible = False
+
+    End Sub
+    Public Sub cargoPagos()
+        dgCobros.Rows.Clear()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmdLinea As New MySqlCommand
+
+        cmdLinea = New MySqlCommand("SELECT cobrosacuenta.fecha,
+                                            cobrosacuenta.importe,
+                                            cobrosacuenta.concepto,
+                                            cobrosacuenta.documentoID,
+                                            cobrosacuenta.cobroID
+                                            FROM cobrosacuenta WHERE documentoID = '" + txtNumpres.Text + "' ORDER BY cobroID", conexionmy)
+
+        cmdLinea.CommandType = CommandType.Text
+        cmdLinea.Connection = conexionmy
+
+        Dim rdrLin As MySqlDataReader
+        rdrLin = cmdLinea.ExecuteReader
+        If rdrLin.HasRows Then
+            Do While rdrLin.Read()
+                lineas = lineas + 1
+                dgCobros.Rows.Add()
+                dgCobros.Rows(dgCobros.Rows.Count - 1).Cells(0).Value = rdrLin("fecha")
+                dgCobros.Rows(dgCobros.Rows.Count - 1).Cells(1).Value = rdrLin("importe")
+                dgCobros.Rows(dgCobros.Rows.Count - 1).Cells(2).Value = rdrLin("concepto")
+                dgCobros.Rows(dgCobros.Rows.Count - 1).Cells(3).Value = rdrLin("documentoID")
+                dgCobros.Rows(dgCobros.Rows.Count - 1).Cells(4).Value = rdrLin("cobroID")
+            Loop
+        Else
+
+        End If
+
+        rdrLin.Close()
+        conexionmy.Close()
+        calcularPendiente()
+
+    End Sub
+
+    Private Sub btRegistrar_Click(sender As Object, e As EventArgs) Handles btRegistrar.Click
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+
+        Dim fecha As Date = txFechaCobro.Text
+        Dim impbru As String = txImporteCobro.Text
+        Dim guardo_impbru As String = Replace(impbru, ",", ".")
+
+        Dim cmd As New MySqlCommand("INSERT INTO cobrosacuenta (documentoID, fecha, importe, concepto) VALUES (" + txtNumpres.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + guardo_impbru + "', '" + txConceptoCobro.Text + "')", conexionmy)
+        cmd.ExecuteNonQuery()
+
+        conexionmy.Close()
+        dgCobros.Rows.Clear()
+
+        cargoPagos()
+        txFechaCobro.Text = ""
+        txImporteCobro.Text = 0
+        txConceptoCobro.Text = ""
+        calcularPendiente()
+    End Sub
+    Public Sub calcularPendiente()
+        Dim vPendiente As Decimal = 0
+        Dim vtoRow As New DataGridViewRow
+        Dim varImporte As Decimal = 0
+
+        For Each vtoRow In dgCobros.Rows
+
+            varImporte = varImporte + vtoRow.Cells(1).Value
+
+        Next
+        txPendienteCobro.Text = Decimal.Parse(txTotalAlbaran.Text) - varImporte
+        If Decimal.Parse(txPendienteCobro.Text) = 0 Then
+            btRegistrar.Enabled = False
+        Else
+            btRegistrar.Enabled = True
+        End If
+
+    End Sub
+
+    Private Sub btCancelPago_Click(sender As Object, e As EventArgs) Handles btCancelPago.Click
+
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmdEliminarLin As New MySqlCommand("DELETE FROM cobrosacuenta WHERE cobroID = '" + dgCobros.CurrentRow.Cells(4).Value.ToString + "'", conexionmy)
+        cmdEliminarLin.ExecuteNonQuery()
+
+        dgCobros.Rows.RemoveAt(dgCobros.CurrentRow.Index)
+
+        cargoPagos()
+        txFechaCobro.Text = ""
+        txImporteCobro.Text = 0
+        txConceptoCobro.Text = ""
+        calcularPendiente()
+
+    End Sub
+
+    Private Sub txImporteCobro_Leave(sender As Object, e As EventArgs) Handles txImporteCobro.Leave
+        Dim vImporte As Decimal
+        vImporte = Decimal.Parse(txImporteCobro.Text)
+        txImporteCobro.Text = vImporte.ToString("0.00")
     End Sub
 End Class
