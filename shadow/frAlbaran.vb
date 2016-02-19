@@ -1093,11 +1093,11 @@ Public Class frAlbaran
 
             'Borro la cabecera y las lineas del presupuesto
 
-            Dim cmdEliminar As New MySqlCommand("DELETE FROM albaran_cab WHERE num_albaran = '" + txNumpresBk.Text + "'", conexionmy)
-            cmdEliminar.ExecuteNonQuery()
+            'Dim cmdEliminar As New MySqlCommand("DELETE FROM albaran_cab WHERE num_albaran = '" + txNumpresBk.Text + "'", conexionmy)
+            'cmdEliminar.ExecuteNonQuery()
 
-            Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM albaran_linea WHERE num_albaran = '" + txNumpresBk.Text + "'", conexionmy)
-            cmdEliminarLineas.ExecuteNonQuery()
+            'Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM albaran_linea WHERE num_albaran = '" + txNumpresBk.Text + "'", conexionmy)
+            'cmdEliminarLineas.ExecuteNonQuery()
 
             conexionmy.Close()
             deshabilitarBotones()

@@ -980,11 +980,11 @@ Public Class frPresupuestos
 
             'Borro la cabecera y las lineas del presupuesto
 
-            Dim cmdEliminar As New MySqlCommand("DELETE FROM presupuesto_cab WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
-            cmdEliminar.ExecuteNonQuery()
+            'Dim cmdEliminar As New MySqlCommand("DELETE FROM presupuesto_cab WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
+            'cmdEliminar.ExecuteNonQuery()
 
-            Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM presupuesto_linea WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
-            cmdEliminarLineas.ExecuteNonQuery()
+            'Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM presupuesto_linea WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
+            'cmdEliminarLineas.ExecuteNonQuery()
 
             conexionmy.Close()
             deshabilitarBotones()
@@ -1086,11 +1086,11 @@ Public Class frPresupuestos
 
             'Borro la cabecera y las lineas del presupuesto
 
-            Dim cmdEliminar As New MySqlCommand("DELETE FROM presupuesto_cab WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
-            cmdEliminar.ExecuteNonQuery()
+            'Dim cmdEliminar As New MySqlCommand("DELETE FROM presupuesto_cab WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
+            'cmdEliminar.ExecuteNonQuery()
 
-            Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM presupuesto_linea WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
-            cmdEliminarLineas.ExecuteNonQuery()
+            'Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM presupuesto_linea WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
+            'cmdEliminarLineas.ExecuteNonQuery()
 
             conexionmy.Close()
             deshabilitarBotones()
