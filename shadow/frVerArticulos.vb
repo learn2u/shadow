@@ -70,7 +70,7 @@ Public Class frVerArticulos
 
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT ref_proveedor,referencia,descripcion,pvp,stock,stock_disp,iva,medidaID,familia FROM articulos2 WHERE referencia LIKE'" & txCodigo.Text & "%'", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT ref_proveedor,referencia,descripcion,pvp,stock,stock_disp,iva,medidaID,familia FROM articulos2 WHERE ref_proveedor LIKE'" & txCodigo.Text & "%'", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -180,6 +180,7 @@ Public Class frVerArticulos
             dgArticulos.Columns(8).HeaderText = "FAMILIA"
             dgArticulos.Columns(8).Name = "fam"
             dgArticulos.Columns(8).Visible = False
+
             dgArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
             conexionmy.Close()
@@ -190,8 +191,7 @@ Public Class frVerArticulos
 
     End Sub
 
-    Private Sub dgArticulos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgArticulos.CellClick
-
+    Private Sub dgArticulos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgArticulos.CellDoubleClick
         If dgArticulos.CurrentRow.Cells("fam").Value = 7 And formArti <> "P" Then
             frVerLotes.vReferencia = dgArticulos.CurrentRow.Cells("referen").Value
             frVerLotes.vPrecio = dgArticulos.CurrentRow.Cells("prec").Value

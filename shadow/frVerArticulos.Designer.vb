@@ -37,7 +37,7 @@ Partial Class frVerArticulos
         Me.dgArticulos.Location = New System.Drawing.Point(12, 115)
         Me.dgArticulos.Name = "dgArticulos"
         Me.dgArticulos.Size = New System.Drawing.Size(955, 334)
-        Me.dgArticulos.TabIndex = 0
+        Me.dgArticulos.TabIndex = 1
         '
         'Label1
         '
@@ -62,14 +62,14 @@ Partial Class frVerArticulos
         Me.txArticulo.Location = New System.Drawing.Point(82, 62)
         Me.txArticulo.Name = "txArticulo"
         Me.txArticulo.Size = New System.Drawing.Size(630, 20)
-        Me.txArticulo.TabIndex = 3
+        Me.txArticulo.TabIndex = 0
         '
         'txCodigo
         '
         Me.txCodigo.Location = New System.Drawing.Point(82, 29)
         Me.txCodigo.Name = "txCodigo"
         Me.txCodigo.Size = New System.Drawing.Size(630, 20)
-        Me.txCodigo.TabIndex = 4
+        Me.txCodigo.TabIndex = 2
         '
         'frVerArticulos
         '

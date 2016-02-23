@@ -749,7 +749,7 @@ Public Class frPedidoProv
             dgLineasPres2.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value) - Decimal.Parse(dgLineasPres2.CurrentRow.Cells(13).Value)
         End If
         If (e.ColumnIndex = 12) Then
-            dgLineasPres2.CurrentRow.Cells(13).Value = 0
+            ' dgLineasPres2.CurrentRow.Cells(13).Value = 0
             dgLineasPres2.CurrentRow.Cells(14).Style.BackColor = Color.Orange
             dgLineasPres2.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value) - Decimal.Parse(dgLineasPres2.CurrentRow.Cells(13).Value)
         End If
@@ -823,4 +823,6 @@ Public Class frPedidoProv
             cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
         End If
     End Sub
+
+
 End Class

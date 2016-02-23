@@ -38,7 +38,7 @@ Public Class frPresupuestos
                 lineas = lineas + 1
                 dgLineasPres1.Rows.Add()
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(0).Value = lineas
-                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(4).Value = 0
+                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(4).Value = 1
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(5).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(6).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(7).Value = 0
@@ -53,7 +53,7 @@ Public Class frPresupuestos
                 lineas = lineas + 1
                 dgLineasPres2.Rows.Add()
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(0).Value = lineas
-                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(4).Value = 0
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(4).Value = 1
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(5).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(6).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(7).Value = 0
@@ -79,7 +79,7 @@ Public Class frPresupuestos
 
             pos = dgLineasPres1.CurrentRow.Index
 
-            dgLineasPres1.CurrentRow.Cells(4).Value = 0
+            dgLineasPres1.CurrentRow.Cells(4).Value = 1
             dgLineasPres1.CurrentRow.Cells(5).Value = 0
             dgLineasPres1.CurrentRow.Cells(6).Value = 0
             dgLineasPres1.CurrentRow.Cells(7).Value = 0
@@ -94,7 +94,7 @@ Public Class frPresupuestos
 
             pos = dgLineasPres2.CurrentRow.Index
 
-            dgLineasPres2.CurrentRow.Cells(4).Value = 0
+            dgLineasPres2.CurrentRow.Cells(4).Value = 1
             dgLineasPres2.CurrentRow.Cells(5).Value = 0
             dgLineasPres2.CurrentRow.Cells(6).Value = 0
             dgLineasPres2.CurrentRow.Cells(7).Value = 0
@@ -286,6 +286,7 @@ Public Class frPresupuestos
         If flagEdit = "S" Then
             flagEdit = "N"
         End If
+        lineas = 0
         tabPresupuestos.SelectTab(0)
     End Sub
     Public Sub limpiarFormulario()
@@ -510,8 +511,9 @@ Public Class frPresupuestos
             cargoTodosPresupuestos()
             tabPresupuestos.SelectTab(0)
             flagEdit = "N"
-        End If
 
+        End If
+        lineas = 0
 
 
     End Sub
@@ -743,10 +745,22 @@ Public Class frPresupuestos
         rdrArt.Read()
 
         If rdrArt.HasRows = True Then
-            dgLineasPres1.CurrentRow.Cells(3).Value = rdrArt("descripcion")
-            dgLineasPres1.CurrentRow.Cells(5).Value = rdrArt("medidaID")
-            dgLineasPres1.CurrentRow.Cells(7).Value = rdrArt("pvp")
-            txIva.Text = rdrArt("iva")
+            If flagEdit = "N" Then
+                dgLineasPres1.CurrentRow.Cells(3).Value = rdrArt("descripcion")
+                dgLineasPres1.CurrentRow.Cells(5).Value = rdrArt("medidaID")
+                dgLineasPres1.CurrentRow.Cells(7).Value = rdrArt("pvp")
+                txIva.Text = rdrArt("iva")
+                dgLineasPres1.CurrentCell = dgLineasPres1.CurrentRow.Cells(4)
+                dgLineasPres1.BeginEdit(True)
+            Else
+                dgLineasPres2.CurrentRow.Cells(3).Value = rdrArt("descripcion")
+                dgLineasPres2.CurrentRow.Cells(5).Value = rdrArt("medidaID")
+                dgLineasPres2.CurrentRow.Cells(7).Value = rdrArt("pvp")
+                txIva.Text = rdrArt("iva")
+                dgLineasPres2.CurrentCell = dgLineasPres2.CurrentRow.Cells(4)
+                dgLineasPres2.BeginEdit(True)
+            End If
+
         Else
 
         End If
@@ -800,22 +814,22 @@ Public Class frPresupuestos
 
             End If
             If Me.dgLineasPres1.Columns("Column7").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
+                    Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
+                    value = value.Replace(".", ",")
 
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres1.CurrentCell.Value = cellValue
+                    Dim cellValue As Decimal = CType(value, Decimal)
+                    dgLineasPres1.CurrentCell.Value = cellValue
 
+                End If
+                If Me.dgLineasPres1.Columns("Column8").Index = e.ColumnIndex Then
+                    Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
+                    value = value.Replace(".", ",")
+
+                    Dim cellValue As Decimal = CType(value, Decimal)
+                    dgLineasPres1.CurrentCell.Value = cellValue
+
+                End If
             End If
-            If Me.dgLineasPres1.Columns("Column8").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres1.CurrentCell.Value = cellValue
-
-            End If
-        End If
     End Sub
 
     Private Sub dgLineasPres1_CellLeave(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellLeave

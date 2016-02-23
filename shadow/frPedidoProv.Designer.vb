@@ -108,6 +108,8 @@ Partial Class frPedidoProv
         Me.cmdLineas = New System.Windows.Forms.ToolStripSplitButton()
         Me.INSERTARToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ELIMINARToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.cmdEntradas = New System.Windows.Forms.ToolStripButton()
         Me.dgLineasPres1 = New System.Windows.Forms.DataGridView()
         Me.linea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btArticulo = New System.Windows.Forms.DataGridViewButtonColumn()
@@ -150,8 +152,6 @@ Partial Class frPedidoProv
         Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.tabPresupuestos = New System.Windows.Forms.TabControl()
-        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.cmdEntradas = New System.Windows.Forms.ToolStripButton()
         Me.Panel4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -843,6 +843,21 @@ Partial Class frPedidoProv
         Me.ELIMINARToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
         Me.ELIMINARToolStripMenuItem.Text = "ELIMINAR"
         '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.AutoSize = False
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(33, 30)
+        '
+        'cmdEntradas
+        '
+        Me.cmdEntradas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.cmdEntradas.Image = CType(resources.GetObject("cmdEntradas.Image"), System.Drawing.Image)
+        Me.cmdEntradas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.cmdEntradas.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdEntradas.Name = "cmdEntradas"
+        Me.cmdEntradas.Size = New System.Drawing.Size(28, 35)
+        '
         'dgLineasPres1
         '
         Me.dgLineasPres1.AllowUserToAddRows = False
@@ -1247,21 +1262,6 @@ Partial Class frPedidoProv
         Me.tabPresupuestos.Size = New System.Drawing.Size(1221, 565)
         Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.tabPresupuestos.TabIndex = 2
-        '
-        'ToolStripSeparator4
-        '
-        Me.ToolStripSeparator4.AutoSize = False
-        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(33, 30)
-        '
-        'cmdEntradas
-        '
-        Me.cmdEntradas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.cmdEntradas.Image = CType(resources.GetObject("cmdEntradas.Image"), System.Drawing.Image)
-        Me.cmdEntradas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.cmdEntradas.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdEntradas.Name = "cmdEntradas"
-        Me.cmdEntradas.Size = New System.Drawing.Size(28, 35)
         '
         'frPedidoProv
         '
