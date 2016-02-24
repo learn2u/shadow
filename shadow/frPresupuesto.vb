@@ -29,6 +29,12 @@ Public Class frPresupuestos
     End Sub
 
     Private Sub ToolStripSplitButton1_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
+        If dgLineasPres1.RowCount = 0 Then
+            lineas = 0
+        End If
+        If dgLineasPres2.RowCount = 0 Then
+            lineas = 0
+        End If
         If txNumcli.Text = "" Then
             MsgBox("Antes de añadir líneas al presupuesto es necesario seleccionar un cliente")
             formCli = "P"
@@ -245,7 +251,12 @@ Public Class frPresupuestos
             renumerar()
             recalcularTotales()
         End If
-
+        If dgLineasPres1.RowCount = 0 Then
+            lineas = 0
+        End If
+        If dgLineasPres2.RowCount = 0 Then
+            lineas = 0
+        End If
     End Sub
     Public Sub deshabilitarBotones()
         cmdGuardar.Enabled = False

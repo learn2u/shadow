@@ -23,13 +23,8 @@ Partial Class frCrearLotes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frCrearLotes))
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.dgLotes = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -46,6 +41,12 @@ Partial Class frCrearLotes
         Me.btCancelar = New System.Windows.Forms.Button()
         Me.btEliminar = New System.Windows.Forms.Button()
         Me.btNuevo = New System.Windows.Forms.Button()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgLotes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -58,40 +59,6 @@ Partial Class frCrearLotes
         Me.dgLotes.Name = "dgLotes"
         Me.dgLotes.Size = New System.Drawing.Size(745, 218)
         Me.dgLotes.TabIndex = 10
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "REFERENCIA"
-        Me.Column1.Name = "Column1"
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "DESCRIPCIÓN"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Width = 255
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "LOTE"
-        Me.Column3.Name = "Column3"
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "STOCK"
-        Me.Column4.Name = "Column4"
-        Me.Column4.Width = 60
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "FECHA"
-        Me.Column5.Name = "Column5"
-        Me.Column5.Width = 75
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "UBICACIÓN"
-        Me.Column6.Name = "Column6"
-        Me.Column6.Width = 110
         '
         'Label1
         '
@@ -233,6 +200,44 @@ Partial Class frCrearLotes
         Me.btNuevo.TabIndex = 6
         Me.btNuevo.UseVisualStyleBackColor = True
         '
+        'Column1
+        '
+        Me.Column1.HeaderText = "REFERENCIA"
+        Me.Column1.Name = "Column1"
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "DESCRIPCIÓN"
+        Me.Column2.Name = "Column2"
+        Me.Column2.Width = 255
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "LOTE"
+        Me.Column3.Name = "Column3"
+        '
+        'Column4
+        '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle5.Format = "N2"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle5
+        Me.Column4.HeaderText = "STOCK"
+        Me.Column4.Name = "Column4"
+        Me.Column4.Width = 60
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "FECHA"
+        Me.Column5.Name = "Column5"
+        Me.Column5.Width = 75
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "UBICACIÓN"
+        Me.Column6.Name = "Column6"
+        Me.Column6.Width = 110
+        '
         'frCrearLotes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -278,14 +283,14 @@ Partial Class frCrearLotes
     Friend WithEvents txFecha As MaskedTextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents txUbicacion As TextBox
+    Friend WithEvents btGuardar As Button
+    Friend WithEvents btCancelar As Button
+    Friend WithEvents btEliminar As Button
+    Friend WithEvents btNuevo As Button
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents btGuardar As Button
-    Friend WithEvents btCancelar As Button
-    Friend WithEvents btEliminar As Button
-    Friend WithEvents btNuevo As Button
 End Class
