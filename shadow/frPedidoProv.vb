@@ -322,13 +322,22 @@ Public Class frPedidoProv
             'dgLineasPres1.CurrentRow.Cells(13).Value = 0
             dgLineasPres1.CurrentRow.Cells(14).Style.BackColor = Color.Orange
             dgLineasPres1.CurrentCell = dgLineasPres1.CurrentRow.Cells(13)
-            'dgLineasPres1.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(4).Value) - Decimal.Parse(dgLineasPres1.CurrentRow.Cells(13).Value)
+            dgLineasPres1.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(4).Value) - Decimal.Parse(dgLineasPres1.CurrentRow.Cells(13).Value)
         End If
         If (e.ColumnIndex = 14) Then
             dgLineasPres1.CurrentRow.Cells(14).Style.BackColor = Color.Red
             dgLineasPres1.CurrentCell = dgLineasPres1.CurrentRow.Cells(2)
             dgLineasPres1.CurrentRow.Cells(13).Value = 0
             dgLineasPres1.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(4).Value)
+        End If
+        If (e.ColumnIndex = 15) Then
+            'formArti = "R"
+            frCrearLotes.Show()
+            frCrearLotes.txReferencia.Text = dgLineasPres1.CurrentRow.Cells(2).Value
+            frCrearLotes.txDescripcion.Text = dgLineasPres1.CurrentRow.Cells(3).Value
+            frCrearLotes.txFecha.Text = Format(Today, "ddMMyyyy")
+            frCrearLotes.txLote.Focus()
+
         End If
 
         pos = dgLineasPres1.CurrentRow.Index
@@ -758,6 +767,10 @@ Public Class frPedidoProv
             dgLineasPres2.CurrentCell = dgLineasPres2.CurrentRow.Cells(2)
             dgLineasPres2.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
         End If
+        If (e.ColumnIndex = 15) Then
+            'formArti = "R"
+            frCrearLotes.Show()
+        End If
         pos = dgLineasPres2.CurrentRow.Index
     End Sub
 
@@ -823,6 +836,4 @@ Public Class frPedidoProv
             cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
         End If
     End Sub
-
-
 End Class

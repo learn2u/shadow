@@ -126,6 +126,7 @@ Partial Class frPedidoProv
         Me.Column11 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column18 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.txFecha = New System.Windows.Forms.MaskedTextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txReferenciapres = New System.Windows.Forms.TextBox()
@@ -150,6 +151,7 @@ Partial Class frPedidoProv
         Me.Column13 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.tabPresupuestos = New System.Windows.Forms.TabControl()
         Me.Panel4.SuspendLayout()
@@ -862,7 +864,7 @@ Partial Class frPedidoProv
         '
         Me.dgLineasPres1.AllowUserToAddRows = False
         Me.dgLineasPres1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgLineasPres1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linea, Me.btArticulo, Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column15, Me.Column14})
+        Me.dgLineasPres1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linea, Me.btArticulo, Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column15, Me.Column14, Me.Column18})
         Me.dgLineasPres1.Location = New System.Drawing.Point(20, 155)
         Me.dgLineasPres1.Name = "dgLineasPres1"
         Me.dgLineasPres1.Size = New System.Drawing.Size(1173, 200)
@@ -890,14 +892,13 @@ Partial Class frPedidoProv
         Me.Column1.HeaderText = "CODIGO"
         Me.Column1.Name = "Column1"
         Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Column1.Width = 110
         '
         'Column2
         '
         Me.Column2.HeaderText = "DESCRIPCION"
         Me.Column2.Name = "Column2"
         Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Column2.Width = 250
+        Me.Column2.Width = 235
         '
         'Column3
         '
@@ -1015,6 +1016,14 @@ Partial Class frPedidoProv
         Me.Column14.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column14.Width = 80
         '
+        'Column18
+        '
+        Me.Column18.HeaderText = "L"
+        Me.Column18.Name = "Column18"
+        Me.Column18.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column18.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column18.Width = 25
+        '
         'txFecha
         '
         Me.txFecha.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
@@ -1091,7 +1100,7 @@ Partial Class frPedidoProv
         '
         Me.dgLineasPres2.AllowUserToAddRows = False
         Me.dgLineasPres2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgLineasPres2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linedit, Me.btArtiEdit, Me.Columna1, Me.Columna2, Me.Columna3, Me.Columna4, Me.Columna5, Me.Columna6, Me.Columna7, Me.Columna8, Me.Columna9, Me.Column12, Me.Column13, Me.Column16, Me.Column17})
+        Me.dgLineasPres2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.linedit, Me.btArtiEdit, Me.Columna1, Me.Columna2, Me.Columna3, Me.Columna4, Me.Columna5, Me.Columna6, Me.Columna7, Me.Columna8, Me.Columna9, Me.Column12, Me.Column13, Me.Column16, Me.Column17, Me.Column19})
         Me.dgLineasPres2.Location = New System.Drawing.Point(20, 156)
         Me.dgLineasPres2.Name = "dgLineasPres2"
         Me.dgLineasPres2.Size = New System.Drawing.Size(1173, 199)
@@ -1116,7 +1125,6 @@ Partial Class frPedidoProv
         Me.Columna1.Name = "Columna1"
         Me.Columna1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Columna1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Columna1.Width = 110
         '
         'Columna2
         '
@@ -1124,7 +1132,7 @@ Partial Class frPedidoProv
         Me.Columna2.Name = "Columna2"
         Me.Columna2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Columna2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Columna2.Width = 250
+        Me.Columna2.Width = 235
         '
         'Columna3
         '
@@ -1239,6 +1247,14 @@ Partial Class frPedidoProv
         Me.Column17.HeaderText = "PDTE"
         Me.Column17.Name = "Column17"
         Me.Column17.Width = 80
+        '
+        'Column19
+        '
+        Me.Column19.HeaderText = "L"
+        Me.Column19.Name = "Column19"
+        Me.Column19.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column19.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column19.Width = 25
         '
         'TabPage1
         '
@@ -1371,6 +1387,9 @@ Partial Class frPedidoProv
     Friend WithEvents txFechaEntrega As MaskedTextBox
     Friend WithEvents txAlbaranPro As TextBox
     Friend WithEvents Label11 As Label
+    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
+    Friend WithEvents cmdEntradas As ToolStripButton
+    Friend WithEvents Column18 As DataGridViewButtonColumn
     Friend WithEvents Column14 As DataGridViewTextBoxColumn
     Friend WithEvents Column15 As DataGridViewTextBoxColumn
     Friend WithEvents Column11 As DataGridViewButtonColumn
@@ -1386,6 +1405,7 @@ Partial Class frPedidoProv
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents btArticulo As DataGridViewButtonColumn
     Friend WithEvents linea As DataGridViewTextBoxColumn
+    Friend WithEvents Column19 As DataGridViewButtonColumn
     Friend WithEvents Column17 As DataGridViewTextBoxColumn
     Friend WithEvents Column16 As DataGridViewTextBoxColumn
     Friend WithEvents Column13 As DataGridViewButtonColumn
@@ -1401,6 +1421,4 @@ Partial Class frPedidoProv
     Friend WithEvents Columna1 As DataGridViewTextBoxColumn
     Friend WithEvents btArtiEdit As DataGridViewButtonColumn
     Friend WithEvents linedit As DataGridViewTextBoxColumn
-    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
-    Friend WithEvents cmdEntradas As ToolStripButton
 End Class
