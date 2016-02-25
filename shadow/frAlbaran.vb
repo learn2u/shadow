@@ -892,10 +892,10 @@ Public Class frAlbaran
 
             'crearNuevaLinea()
         End If
-        If (e.ColumnIndex = 2) Then
-            Dim vRef As String = dgLineasPres2.CurrentRow.Cells(2).Value
-            cargarArticulos(vRef)
-        End If
+        'If (e.ColumnIndex = 2) Then
+        ' Dim vRef As String = dgLineasPres2.CurrentRow.Cells(2).Value
+        ' cargarArticulos(vRef)
+        ' End If
     End Sub
 
     Private Sub dgLineasPres2_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellValueChanged

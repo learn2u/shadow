@@ -729,10 +729,10 @@ Public Class frPresupuestos
             recalcularTotales()
 
         End If
-        If (e.ColumnIndex = 2) Then
-            Dim vRef As String = dgLineasPres2.CurrentCell.Value
-            cargarArticulos(vRef)
-        End If
+        'If (e.ColumnIndex = 2) Then
+        ' Dim vRef As String = dgLineasPres2.CurrentCell.Value
+        ' cargarArticulos(vRef)
+        ' End If
     End Sub
     Public Sub recalcularDescuentos()
         For Each row2 As DataGridViewRow In dgLineasPres2.Rows
@@ -997,6 +997,8 @@ Public Class frPresupuestos
                 cmdLinea.CommandText = "INSERT INTO pedido_linea (num_pedido, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
 
                 cmdLinea.ExecuteNonQuery()
+
+                conexionmy.Close()
 
             Next
 
