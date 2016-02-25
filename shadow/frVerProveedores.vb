@@ -44,32 +44,6 @@ Public Class frVerProveedores
         conexionmy.Close()
     End Sub
 
-    Private Sub dgProvedores_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgProvedores.CellClick
-
-        If formCli = "G" Then
-            frGastos.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
-            frGastos.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
-            frGastos.txDni.Text = dgProvedores.CurrentRow.Cells("cif").Value
-            frGastos.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
-            Me.Hide()
-        End If
-        If formCli = "D" Then
-            frPedidoProv.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
-            frPedidoProv.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
-            frPedidoProv.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
-            Me.Hide()
-            frPedidoProv.recalcularDescuentos()
-        End If
-        If formCli = "A" Then
-            frArticulos.txNumPro.Text = dgProvedores.CurrentRow.Cells("cod").Value
-            frArticulos.txProveedor.Text = dgProvedores.CurrentRow.Cells("cliente").Value
-            frArticulos.txDto.Text = dgProvedores.CurrentRow.Cells("dto").Value
-            Me.Hide()
-        End If
-
-
-    End Sub
-
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
 
         If CheckBox1.Checked = True Then
@@ -143,5 +117,28 @@ Public Class frVerProveedores
         dgProvedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
         conexionmy.Close()
+    End Sub
+
+    Private Sub dgProvedores_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgProvedores.CellDoubleClick
+        If formCli = "G" Then
+            frGastos.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
+            frGastos.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+            frGastos.txDni.Text = dgProvedores.CurrentRow.Cells("cif").Value
+            frGastos.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
+            Me.Hide()
+        End If
+        If formCli = "D" Then
+            frPedidoProv.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
+            frPedidoProv.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+            frPedidoProv.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
+            Me.Hide()
+            frPedidoProv.recalcularDescuentos()
+        End If
+        If formCli = "A" Then
+            frArticulos.txNumPro.Text = dgProvedores.CurrentRow.Cells("cod").Value
+            frArticulos.txProveedor.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+            frArticulos.txDto.Text = dgProvedores.CurrentRow.Cells("dto").Value
+            Me.Hide()
+        End If
     End Sub
 End Class
