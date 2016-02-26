@@ -41,7 +41,7 @@ Public Class frPresupuestos
                     lineas = 0
                 End If
                 For Each row As DataGridViewRow In dgLineasPres1.Rows
-                    If row.Cells(2).Value = 0 Then
+                    If row.Cells(2).Value = "" Then
                         MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
                         Exit Sub
                     End If
@@ -65,7 +65,7 @@ Public Class frPresupuestos
                     lineas = 0
                 End If
                 For Each row As DataGridViewRow In dgLineasPres2.Rows
-                    If row.Cells(2).Value = 0 Then
+                    If row.Cells(2).Value = "" Then
                         MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
                         Exit Sub
                     End If
