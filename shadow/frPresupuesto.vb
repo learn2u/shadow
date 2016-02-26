@@ -41,7 +41,7 @@ Public Class frPresupuestos
                     lineas = 0
                 End If
                 For Each row As DataGridViewRow In dgLineasPres1.Rows
-                    If row.Cells(2).Value = "" Then
+                    If row.Cells(2).Value.ToString = "" Then
                         MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
                         Exit Sub
                     End If
@@ -65,7 +65,7 @@ Public Class frPresupuestos
                     lineas = 0
                 End If
                 For Each row As DataGridViewRow In dgLineasPres2.Rows
-                    If row.Cells(2).Value = "" Then
+                    If row.Cells(2).Value.ToString = "" Then
                         MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
                         Exit Sub
                     End If
@@ -94,7 +94,7 @@ Public Class frPresupuestos
 
         If flagEdit = "N" Then
             For Each row As DataGridViewRow In dgLineasPres1.Rows
-                If row.Cells(2).Value = "" Then
+                If row.Cells(2).Value.ToString = "" Then
                     MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
                     Exit Sub
                 End If
@@ -115,7 +115,7 @@ Public Class frPresupuestos
             dgLineasPres1.CurrentRow.Cells(11).Value = ""
         Else
             For Each row As DataGridViewRow In dgLineasPres2.Rows
-                If row.Cells(2).Value = "" Then
+                If row.Cells(2).Value.ToString = "" Then
                     MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
                     Exit Sub
                 End If
@@ -878,6 +878,14 @@ Public Class frPresupuestos
                 dgLineasPres1.CurrentCell.Value = cellValue
 
             End If
+            If (e.ColumnIndex = 7) Then
+                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres1.CurrentCell.Value = cellValue
+
+            End If
             If (e.ColumnIndex = 8) Then
                 Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
@@ -917,6 +925,14 @@ Public Class frPresupuestos
         Else
 
             If (e.ColumnIndex = 4) Then
+                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
+                value = value.Replace(".", ",")
+
+                Dim cellValue As Decimal = CType(value, Decimal)
+                dgLineasPres2.CurrentCell.Value = cellValue
+
+            End If
+            If (e.ColumnIndex = 7) Then
                 Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
 
