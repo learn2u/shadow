@@ -894,14 +894,6 @@ Public Class frPresupuestos
                 dgLineasPres1.CurrentCell.Value = cellValue
 
             End If
-            If (e.ColumnIndex = 9) Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres1.CurrentCell.Value = cellValue
-
-            End If
         End If
     End Sub
 
@@ -941,14 +933,6 @@ Public Class frPresupuestos
 
             End If
             If (e.ColumnIndex = 8) Then
-                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres2.CurrentCell.Value = cellValue
-
-            End If
-            If (e.ColumnIndex = 9) Then
                 Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
                 value = value.Replace(".", ",")
 
