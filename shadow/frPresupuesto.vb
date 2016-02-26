@@ -799,7 +799,8 @@ Public Class frPresupuestos
             If flagEdit = "N" Then
                 dgLineasPres1.CurrentRow.Cells(3).Value = rdrArt("descripcion")
                 dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                dgLineasPres1.CurrentRow.Cells(5).Value = rdrArt("medidaID")
+                dgLineasPres1.CurrentRow.Cells(5).Value = rdrArt("medidaID") / 100
+                dgLineasPres1.CurrentRow.Cells(6).Value = dgLineasPres1.CurrentRow.Cells(4).Value * dgLineasPres1.CurrentRow.Cells(5).Value
                 dgLineasPres1.CurrentRow.Cells(7).Value = rdrArt("pvp")
                 dgLineasPres1.CurrentRow.Cells(8).Value = txDtocli.Text
                 dgLineasPres1.CurrentRow.Cells(9).Value = 0
@@ -811,7 +812,8 @@ Public Class frPresupuestos
             Else
                 dgLineasPres2.CurrentRow.Cells(3).Value = rdrArt("descripcion")
                 dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                dgLineasPres2.CurrentRow.Cells(5).Value = rdrArt("medidaID")
+                dgLineasPres2.CurrentRow.Cells(5).Value = rdrArt("medidaID") / 100
+                dgLineasPres1.CurrentRow.Cells(6).Value = dgLineasPres1.CurrentRow.Cells(4).Value * dgLineasPres1.CurrentRow.Cells(5).Value
                 dgLineasPres2.CurrentRow.Cells(7).Value = rdrArt("pvp")
                 dgLineasPres2.CurrentRow.Cells(8).Value = txDtocli.Text
                 dgLineasPres2.CurrentRow.Cells(9).Value = 0
