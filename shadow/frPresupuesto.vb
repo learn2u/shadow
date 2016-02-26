@@ -249,6 +249,8 @@ Public Class frPresupuestos
         If (e.ColumnIndex = 2) Then
             Dim vRef As String = dgLineasPres1.CurrentCell.Value
             cargarArticulos(vRef)
+            actualizarLinea()
+            recalcularTotales()
         End If
 
     End Sub
@@ -437,12 +439,12 @@ Public Class frPresupuestos
                 lintotal = row.Cells(10).Value.ToString
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
-                If row.Cells(2).Value = "" Then
+                If row.Cells(2).Value.ToString = "" Then
 
                 Else
 
                     cmdLinea.Connection = conexionmy
-                    cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
+                    cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value.ToString + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
 
                     cmdLinea.ExecuteNonQuery()
                 End If
@@ -541,11 +543,11 @@ Public Class frPresupuestos
                 lintotal = row.Cells(10).Value.ToString
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
-                If row.Cells(2).Value = "" Then
+                If row.Cells(2).Value.ToString = "" Then
 
                 Else
                     cmdLinea.Connection = conexionmy
-                    cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
+                    cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value.ToString + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
 
                     cmdLinea.ExecuteNonQuery()
                 End If
@@ -772,6 +774,8 @@ Public Class frPresupuestos
         If (e.ColumnIndex = 2) Then
             Dim vRef As String = dgLineasPres2.CurrentCell.Value
             cargarArticulos(vRef)
+            actualizarLinea()
+            recalcularTotales()
         End If
     End Sub
     Public Sub recalcularDescuentos()
@@ -813,7 +817,7 @@ Public Class frPresupuestos
                 dgLineasPres2.CurrentRow.Cells(3).Value = rdrArt("descripcion")
                 dgLineasPres2.CurrentRow.Cells(4).Value = 1
                 dgLineasPres2.CurrentRow.Cells(5).Value = rdrArt("medidaID") / 100
-                dgLineasPres1.CurrentRow.Cells(6).Value = dgLineasPres1.CurrentRow.Cells(4).Value * dgLineasPres1.CurrentRow.Cells(5).Value
+                dgLineasPres2.CurrentRow.Cells(6).Value = dgLineasPres2.CurrentRow.Cells(4).Value * dgLineasPres2.CurrentRow.Cells(5).Value
                 dgLineasPres2.CurrentRow.Cells(7).Value = rdrArt("pvp")
                 dgLineasPres2.CurrentRow.Cells(8).Value = txDtocli.Text
                 dgLineasPres2.CurrentRow.Cells(9).Value = 0

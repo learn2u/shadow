@@ -215,7 +215,7 @@ Public Class frVerArticulos
                     frPresupuestos.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frPresupuestos.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     frPresupuestos.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                    frPresupuestos.dgLineasPres1.CurrentRow.Cells(6).Value = frPresupuestos.dgLineasPres1.CurrentRow.Cells(4).Value * frPresupuestos.dgLineasPres1.CurrentRow.Cells(5).Value
+                    frPresupuestos.dgLineasPres2.CurrentRow.Cells(6).Value = frPresupuestos.dgLineasPres2.CurrentRow.Cells(4).Value * frPresupuestos.dgLineasPres2.CurrentRow.Cells(5).Value
                     frPresupuestos.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                     frPresupuestos.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                     frPresupuestos.dgLineasPres2.CurrentCell = frPresupuestos.dgLineasPres2.CurrentRow.Cells(4)
