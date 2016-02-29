@@ -9,6 +9,7 @@ Public Class frPresupuestos
     Public Shared lineas As Int16
     Public Shared pos As Integer
     Public Shared flagEdit As String = "N"
+    Public Shared newLinea As String = "N"
 
     Private Sub frPresupuestos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -30,7 +31,7 @@ Public Class frPresupuestos
 
     Private Sub ToolStripSplitButton1_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
 
-
+        newLinea = "S"
         If txNumcli.Text = "" Then
             MsgBox("Antes de añadir líneas al presupuesto es necesario seleccionar un cliente")
             formCli = "P"
@@ -87,11 +88,11 @@ Public Class frPresupuestos
             End If
 
         End If
-
+        newLinea = "N"
     End Sub
 
     Private Sub INSERTARToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles INSERTARToolStripMenuItem.Click
-
+        newLinea = "S"
         If flagEdit = "N" Then
             For Each row As DataGridViewRow In dgLineasPres1.Rows
                 If row.Cells(2).Value.ToString = "" Then
@@ -135,7 +136,7 @@ Public Class frPresupuestos
             dgLineasPres2.CurrentRow.Cells(10).Value = 0
             dgLineasPres2.CurrentRow.Cells(11).Value = ""
         End If
-
+        newLinea = "N"
 
     End Sub
     Public Sub renumerar()
@@ -866,41 +867,49 @@ Public Class frPresupuestos
     End Sub
 
     Private Sub dgLineasPres1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellValueChanged
-        If dgLineasPres1.CurrentCell Is Nothing Then
-            Exit Sub
-        Else
+        If newLinea = "N" Then
+            Dim value1 As String = ""
+            Dim value2 As String = ""
+            Dim value3 As String = ""
+            If dgLineasPres1.CurrentCell Is Nothing Then
+                Exit Sub
+            Else
 
-            If (e.ColumnIndex = 4) Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres1.CurrentCell.Value = cellValue
-
-            End If
-            If (e.ColumnIndex = 7) Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres1.CurrentCell.Value = cellValue
-
-            End If
-            If (e.ColumnIndex = 8) Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres1.CurrentCell.Value = cellValue
-
+                If (e.ColumnIndex = 4) Then
+                    value1 = dgLineasPres1.CurrentRow.Cells(4).EditedFormattedValue.ToString
+                    value1 = value1.Replace(".", ",")
+                    If value1 <> "" Then
+                        Dim cellValue As Decimal = CType(value1, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(4).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 7) Then
+                    value2 = dgLineasPres1.CurrentRow.Cells(7).EditedFormattedValue.ToString
+                    value2 = value2.Replace(".", ",")
+                    If value2 <> "" Then
+                        Dim cellValue As Decimal = CType(value2, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(7).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 8) Then
+                    value3 = dgLineasPres1.CurrentRow.Cells(8).EditedFormattedValue.ToString
+                    value3 = value3.Replace(".", ",")
+                    If value3 <> "" Then
+                        Dim cellValue As Decimal = CType(value3, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(8).Value = cellValue
+                    End If
+                End If
             End If
         End If
+
     End Sub
 
     Private Sub dgLineasPres1_CellLeave(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellLeave
         If (e.ColumnIndex = 8) Then
+
             tsBotones.Focus()
             cmdLineas.Select()
+
         End If
     End Sub
 
@@ -912,33 +921,38 @@ Public Class frPresupuestos
     End Sub
 
     Private Sub dgLineasPres2_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellValueChanged
-        If dgLineasPres2.CurrentCell Is Nothing Then
-            Exit Sub
-        Else
 
-            If (e.ColumnIndex = 4) Then
-                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres2.CurrentCell.Value = cellValue
-
-            End If
-            If (e.ColumnIndex = 7) Then
-                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres2.CurrentCell.Value = cellValue
-
-            End If
-            If (e.ColumnIndex = 8) Then
-                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres2.CurrentCell.Value = cellValue
-
+        If newLinea = "N" Then
+            Dim value1 As String = ""
+            Dim value2 As String = ""
+            Dim value3 As String = ""
+            If dgLineasPres2.CurrentCell Is Nothing Then
+                Exit Sub
+            Else
+                If (e.ColumnIndex = 4) Then
+                    value1 = dgLineasPres2.CurrentRow.Cells(4).EditedFormattedValue.ToString
+                    value1 = value1.Replace(".", ",")
+                    If value1 <> "" Then
+                        Dim cellValue As Decimal = CType(value1, Decimal)
+                        dgLineasPres2.CurrentRow.Cells(4).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 7) Then
+                    value2 = dgLineasPres2.CurrentRow.Cells(7).EditedFormattedValue.ToString
+                    value2 = value2.Replace(".", ",")
+                    If value2 <> "" Then
+                        Dim cellValue As Decimal = CType(value2, Decimal)
+                        dgLineasPres2.CurrentRow.Cells(7).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 8) Then
+                    value3 = dgLineasPres2.CurrentRow.Cells(8).EditedFormattedValue.ToString
+                    value3 = value3.Replace(".", ",")
+                    If value3 <> "" Then
+                        Dim cellValue As Decimal = CType(value3, Decimal)
+                        dgLineasPres2.CurrentRow.Cells(8).Value = cellValue
+                    End If
+                End If
             End If
         End If
     End Sub
