@@ -14,6 +14,7 @@ Public Class frAlbaran
     Public Shared cantFin As Decimal
     Public Shared serieIni As String
     Public Shared posicion As Integer
+    Public Shared newLinea As String = "N"
 
     Private Sub frAlbaran_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
@@ -136,12 +137,23 @@ Public Class frAlbaran
     End Sub
 
     Private Sub cmdLineas_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
+
+        newLinea = "S"
         If txNumcli.Text = "" Then
             MsgBox("Antes de añadir líneas al albarán es necesario seleccionar un cliente")
             formCli = "A"
             frVerClientes.Show()
         Else
             If flagEdit = "N" Then
+                If dgLineasPres1.RowCount = 0 Then
+                    lineas = 0
+                End If
+                For Each row As DataGridViewRow In dgLineasPres1.Rows
+                    If row.Cells(2).Value.ToString = "" Then
+                        MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
+                        Exit Sub
+                    End If
+                Next
                 lineas = lineas + 1
                 dgLineasPres1.Rows.Add()
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(0).Value = lineas
@@ -157,6 +169,15 @@ Public Class frAlbaran
                 dgLineasPres1.CurrentCell = dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(2)
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(2).Selected = True
             Else
+                If dgLineasPres2.RowCount = 0 Then
+                    lineas = 0
+                End If
+                For Each row As DataGridViewRow In dgLineasPres2.Rows
+                    If row.Cells(2).Value.ToString = "" Then
+                        MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
+                        Exit Sub
+                    End If
+                Next
                 lineas = lineas + 1
                 dgLineasPres2.Rows.Add()
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(0).Value = lineas
@@ -174,10 +195,18 @@ Public Class frAlbaran
             End If
 
         End If
+        newLinea = "N"
     End Sub
 
     Private Sub INSERTARToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles INSERTARToolStripMenuItem.Click
+        newLinea = "S"
         If flagEdit = "N" Then
+            For Each row As DataGridViewRow In dgLineasPres1.Rows
+                If row.Cells(2).Value.ToString = "" Then
+                    MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
+                    Exit Sub
+                End If
+            Next
             dgLineasPres1.Rows.Insert(dgLineasPres1.CurrentRow.Index)
             renumerar()
             dgLineasPres1.CurrentCell = dgLineasPres1.Rows(dgLineasPres1.CurrentRow.Index - 1).Cells(4)
@@ -193,6 +222,12 @@ Public Class frAlbaran
             dgLineasPres1.CurrentRow.Cells(10).Value = 0
             dgLineasPres1.CurrentRow.Cells(11).Value = ""
         Else
+            For Each row As DataGridViewRow In dgLineasPres2.Rows
+                If row.Cells(2).Value.ToString = "" Then
+                    MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
+                    Exit Sub
+                End If
+            Next
             dgLineasPres2.Rows.Insert(dgLineasPres2.CurrentRow.Index)
             renumerar()
             dgLineasPres2.CurrentCell = dgLineasPres2.Rows(dgLineasPres2.CurrentRow.Index - 1).Cells(4)
@@ -208,6 +243,7 @@ Public Class frAlbaran
             dgLineasPres2.CurrentRow.Cells(10).Value = 0
             dgLineasPres2.CurrentRow.Cells(11).Value = ""
         End If
+        newLinea = "N"
     End Sub
     Public Sub renumerar()
         lineas = 1
@@ -317,6 +353,8 @@ Public Class frAlbaran
         If (e.ColumnIndex = 2) Then
             Dim vRef As String = dgLineasPres1.CurrentCell.Value
             cargarArticulos(vRef)
+            actualizarLinea()
+            recalcularTotales()
         End If
     End Sub
 
@@ -354,6 +392,12 @@ Public Class frAlbaran
             renumerar()
             recalcularTotales()
         End If
+        If dgLineasPres1.RowCount = 0 Then
+            lineas = 0
+        End If
+        If dgLineasPres2.RowCount = 0 Then
+            lineas = 0
+        End If
     End Sub
 
     Private Sub cmdNuevo_Click(sender As Object, e As EventArgs) Handles cmdNuevo.Click
@@ -377,8 +421,12 @@ Public Class frAlbaran
         deshabilitarBotones()
         limpiarFormulario()
         If flagEdit = "S" Then
+            dgLineasPres2.Rows.Clear()
             flagEdit = "N"
+        Else
+            dgLineasPres1.Rows.Clear()
         End If
+        lineas = 0
         tabPresupuestos.SelectTab(0)
     End Sub
 
@@ -472,10 +520,16 @@ Public Class frAlbaran
 
                 arti = row.Cells(2).Value
 
-                cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
+                If row.Cells(2).Value.ToString = "" Then
 
-                cmdLinea.ExecuteNonQuery()
+                Else
+                    cmdLinea.Connection = conexionmy
+                    cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
+
+                    cmdLinea.ExecuteNonQuery()
+                End If
+
+
                 If row.Cells(11).Value = "" Then
                     descontarStock(arti, lincant)
                     'MsgBox("no hay lote")
@@ -589,10 +643,14 @@ Public Class frAlbaran
                 lintotal = row.Cells(10).Value.ToString
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
-                cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
+                If row.Cells(2).Value.ToString = "" Then
 
-                cmdLinea.ExecuteNonQuery()
+                Else
+                    cmdLinea.Connection = conexionmy
+                    cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
+
+                    cmdLinea.ExecuteNonQuery()
+                End If
 
 
             Next
@@ -783,6 +841,8 @@ Public Class frAlbaran
         If (e.ColumnIndex = 2) Then
             Dim vRef As String = dgLineasPres2.CurrentCell.Value
             cargarArticulos(vRef)
+            actualizarLinea()
+            recalcularTotales()
         End If
     End Sub
     Public Sub recalcularDescuentos()
@@ -841,33 +901,38 @@ Public Class frAlbaran
     End Sub
 
     Private Sub dgLineasPres1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellValueChanged
-        If dgLineasPres1.CurrentCell Is Nothing Then
-            Exit Sub
-        Else
+        If newLinea = "N" Then
+            Dim value1 As String = ""
+            Dim value2 As String = ""
+            Dim value3 As String = ""
+            If dgLineasPres1.CurrentCell Is Nothing Then
+                Exit Sub
+            Else
 
-            If Me.dgLineasPres1.Columns("Column3").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = Decimal.Parse(value)
-                dgLineasPres1.CurrentCell.Value = cellValue
-
-            End If
-            If Me.dgLineasPres1.Columns("Column7").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = Decimal.Parse(value)
-                dgLineasPres1.CurrentCell.Value = cellValue
-
-            End If
-            If Me.dgLineasPres1.Columns("Column8").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = Decimal.Parse(value)
-                dgLineasPres1.CurrentCell.Value = cellValue
-
+                If (e.ColumnIndex = 4) Then
+                    value1 = dgLineasPres1.CurrentRow.Cells(4).EditedFormattedValue.ToString
+                    value1 = value1.Replace(".", ",")
+                    If value1 <> "" Then
+                        Dim cellValue As Decimal = CType(value1, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(4).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 7) Then
+                    value2 = dgLineasPres1.CurrentRow.Cells(7).EditedFormattedValue.ToString
+                    value2 = value2.Replace(".", ",")
+                    If value2 <> "" Then
+                        Dim cellValue As Decimal = CType(value2, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(7).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 8) Then
+                    value3 = dgLineasPres1.CurrentRow.Cells(8).EditedFormattedValue.ToString
+                    value3 = value3.Replace(".", ",")
+                    If value3 <> "" Then
+                        Dim cellValue As Decimal = CType(value3, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(8).Value = cellValue
+                    End If
+                End If
             End If
         End If
 
@@ -877,10 +942,6 @@ Public Class frAlbaran
         If (e.ColumnIndex = 8) Then
             tsBotones.Focus()
             cmdLineas.Select()
-
-            'Crear una linea nueva
-
-
         End If
 
     End Sub
@@ -889,43 +950,41 @@ Public Class frAlbaran
         If (e.ColumnIndex = 8) Then
             tsBotones.Focus()
             cmdLineas.Select()
-
-            'crearNuevaLinea()
         End If
-        'If (e.ColumnIndex = 2) Then
-        ' Dim vRef As String = dgLineasPres2.CurrentRow.Cells(2).Value
-        ' cargarArticulos(vRef)
-        ' End If
     End Sub
 
     Private Sub dgLineasPres2_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellValueChanged
-        If dgLineasPres2.CurrentCell Is Nothing Then
-            Exit Sub
-        Else
-
-            If Me.dgLineasPres2.Columns("Columna3").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres2.CurrentCell.Value = cellValue
-
-            End If
-            If Me.dgLineasPres2.Columns("Columna7").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres2.CurrentCell.Value = cellValue
-
-            End If
-            If Me.dgLineasPres2.Columns("Columna8").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres2.CurrentCell.Value = cellValue
-
+        If newLinea = "N" Then
+            Dim value1 As String = ""
+            Dim value2 As String = ""
+            Dim value3 As String = ""
+            If dgLineasPres2.CurrentCell Is Nothing Then
+                Exit Sub
+            Else
+                If (e.ColumnIndex = 4) Then
+                    value1 = dgLineasPres2.CurrentRow.Cells(4).EditedFormattedValue.ToString
+                    value1 = value1.Replace(".", ",")
+                    If value1 <> "" Then
+                        Dim cellValue As Decimal = CType(value1, Decimal)
+                        dgLineasPres2.CurrentRow.Cells(4).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 7) Then
+                    value2 = dgLineasPres2.CurrentRow.Cells(7).EditedFormattedValue.ToString
+                    value2 = value2.Replace(".", ",")
+                    If value2 <> "" Then
+                        Dim cellValue As Decimal = CType(value2, Decimal)
+                        dgLineasPres2.CurrentRow.Cells(7).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 8) Then
+                    value3 = dgLineasPres2.CurrentRow.Cells(8).EditedFormattedValue.ToString
+                    value3 = value3.Replace(".", ",")
+                    If value3 <> "" Then
+                        Dim cellValue As Decimal = CType(value3, Decimal)
+                        dgLineasPres2.CurrentRow.Cells(8).Value = cellValue
+                    End If
+                End If
             End If
         End If
     End Sub
@@ -971,10 +1030,34 @@ Public Class frAlbaran
         rdrArt.Read()
 
         If rdrArt.HasRows = True Then
-            dgLineasPres1.CurrentRow.Cells(3).Value = rdrArt("descripcion")
-            dgLineasPres1.CurrentRow.Cells(5).Value = rdrArt("medidaID")
-            dgLineasPres1.CurrentRow.Cells(7).Value = rdrArt("pvp")
-            txIva.Text = rdrArt("iva")
+            If flagEdit = "N" Then
+                dgLineasPres1.CurrentRow.Cells(3).Value = rdrArt("descripcion")
+                dgLineasPres1.CurrentRow.Cells(4).Value = 1
+                dgLineasPres1.CurrentRow.Cells(5).Value = rdrArt("medidaID") / 100
+                dgLineasPres1.CurrentRow.Cells(6).Value = dgLineasPres1.CurrentRow.Cells(4).Value * dgLineasPres1.CurrentRow.Cells(5).Value
+                dgLineasPres1.CurrentRow.Cells(7).Value = rdrArt("pvp")
+                dgLineasPres1.CurrentRow.Cells(8).Value = txDtocli.Text
+                dgLineasPres1.CurrentRow.Cells(9).Value = 0
+                dgLineasPres1.CurrentRow.Cells(10).Value = 0
+                dgLineasPres1.CurrentRow.Cells(11).Value = ""
+                txIva.Text = rdrArt("iva")
+                'dgLineasPres1.CurrentCell = dgLineasPres1.CurrentRow.Cells(4)
+                'dgLineasPres1.BeginEdit(True)
+            Else
+                dgLineasPres2.CurrentRow.Cells(3).Value = rdrArt("descripcion")
+                dgLineasPres2.CurrentRow.Cells(4).Value = 1
+                dgLineasPres2.CurrentRow.Cells(5).Value = rdrArt("medidaID") / 100
+                dgLineasPres2.CurrentRow.Cells(6).Value = dgLineasPres2.CurrentRow.Cells(4).Value * dgLineasPres2.CurrentRow.Cells(5).Value
+                dgLineasPres2.CurrentRow.Cells(7).Value = rdrArt("pvp")
+                dgLineasPres2.CurrentRow.Cells(8).Value = txDtocli.Text
+                dgLineasPres2.CurrentRow.Cells(9).Value = 0
+                dgLineasPres2.CurrentRow.Cells(10).Value = 0
+                dgLineasPres2.CurrentRow.Cells(11).Value = ""
+                txIva.Text = rdrArt("iva")
+                'dgLineasPres2.CurrentCell = dgLineasPres2.CurrentRow.Cells(4)
+                'dgLineasPres2.BeginEdit(True)
+            End If
+
         Else
 
         End If
