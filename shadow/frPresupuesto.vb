@@ -19,10 +19,12 @@ Public Class frPresupuestos
 
         If flagEdit = "N" Then
             dgLineasPres1.Visible = True
+            dgLineasPres1.Enabled = False
             dgLineasPres2.Visible = False
         Else
             dgLineasPres1.Visible = False
             dgLineasPres2.Visible = True
+            'dgLineasPres2.Enabled = False
         End If
 
         cargoTodosPresupuestos()
@@ -42,8 +44,8 @@ Public Class frPresupuestos
                     lineas = 0
                 End If
                 For Each row As DataGridViewRow In dgLineasPres1.Rows
-                    If row.Cells(2).Value.ToString = "" Then
-                        MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
+                    If row.Cells(3).Value Is Nothing Then
+                        MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores. Introduzca una descripción")
                         Exit Sub
                     End If
                 Next
@@ -66,8 +68,8 @@ Public Class frPresupuestos
                     lineas = 0
                 End If
                 For Each row As DataGridViewRow In dgLineasPres2.Rows
-                    If row.Cells(2).Value.ToString = "" Then
-                        MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
+                    If row.Cells(3).Value Is Nothing Then
+                        MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores. Introduzca una descripción")
                         Exit Sub
                     End If
                 Next
@@ -95,8 +97,8 @@ Public Class frPresupuestos
         newLinea = "S"
         If flagEdit = "N" Then
             For Each row As DataGridViewRow In dgLineasPres1.Rows
-                If row.Cells(2).Value.ToString = "" Then
-                    MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
+                If row.Cells(3).Value Is Nothing Then
+                    MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores. Introduzca una descripción")
                     Exit Sub
                 End If
             Next
@@ -116,8 +118,8 @@ Public Class frPresupuestos
             dgLineasPres1.CurrentRow.Cells(11).Value = ""
         Else
             For Each row As DataGridViewRow In dgLineasPres2.Rows
-                If row.Cells(2).Value.ToString = "" Then
-                    MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores")
+                If row.Cells(3).Value Is Nothing Then
+                    MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores. Introduzca una descripción")
                     Exit Sub
                 End If
             Next
@@ -266,7 +268,12 @@ Public Class frPresupuestos
             formArti = "P"
             frVerArticulos.Show()
         End If
-        pos = dgLineasPres1.CurrentRow.Index
+        If (dgLineasPres1.CurrentRow.Index = 0) Then
+
+        Else
+            pos = dgLineasPres1.CurrentRow.Index
+        End If
+
 
     End Sub
 
@@ -312,6 +319,7 @@ Public Class frPresupuestos
         flagEdit = "N"
         dgLineasPres2.Visible = False
         dgLineasPres1.Visible = True
+        dgLineasPres1.Enabled = True
         cbEstado.Text = "PENDIENTE"
         txFecha.Text = Format(Today, "ddMMyyyy")
         txReferenciapres.Focus()
@@ -440,15 +448,15 @@ Public Class frPresupuestos
                 lintotal = row.Cells(10).Value.ToString
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
-                If row.Cells(2).Value.ToString = "" Then
-
-                Else
-
-                    cmdLinea.Connection = conexionmy
-                    cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value.ToString + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
-
-                    cmdLinea.ExecuteNonQuery()
+                If row.Cells(2).Value Is Nothing Then
+                    row.Cells(2).Value = ""
                 End If
+
+                cmdLinea.Connection = conexionmy
+                cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value.ToString + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
+
+                cmdLinea.ExecuteNonQuery()
+
 
 
             Next
@@ -544,16 +552,14 @@ Public Class frPresupuestos
                 lintotal = row.Cells(10).Value.ToString
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
-                If row.Cells(2).Value.ToString = "" Then
-
-                Else
-                    cmdLinea.Connection = conexionmy
-                    cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value.ToString + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
-
-                    cmdLinea.ExecuteNonQuery()
+                If row.Cells(2).Value Is Nothing Then
+                    row.Cells(2).Value = ""
                 End If
 
+                cmdLinea.Connection = conexionmy
+                cmdLinea.CommandText = "INSERT INTO presupuesto_linea (num_presupuesto, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value.ToString + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
 
+                cmdLinea.ExecuteNonQuery()
 
             Next
 
