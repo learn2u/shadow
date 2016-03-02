@@ -369,7 +369,11 @@ Public Class frAlbaran
             formArti = "A"
             frVerArticulos.Show()
         End If
-        pos = dgLineasPres1.CurrentRow.Index
+        If (dgLineasPres1.CurrentRow.Index = 0) Then
+
+        Else
+            pos = dgLineasPres1.CurrentRow.Index
+        End If
     End Sub
 
     Private Sub ELIMINARToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ELIMINARToolStripMenuItem.Click
@@ -825,7 +829,11 @@ Public Class frAlbaran
             'MsgBox(vReLote)
             frVerLotesM.Show()
         End If
-        pos = dgLineasPres2.CurrentRow.Index
+        If (dgLineasPres2.CurrentRow.Index = 0) Then
+
+        Else
+            pos = dgLineasPres2.CurrentRow.Index
+        End If
     End Sub
 
     Private Sub dgLineasPres2_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellEndEdit
