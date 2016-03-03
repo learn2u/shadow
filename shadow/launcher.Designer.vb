@@ -22,163 +22,184 @@ Partial Class launcher
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
-        Me.Button10 = New System.Windows.Forms.Button()
-        Me.Button11 = New System.Windows.Forms.Button()
-        Me.btProveedores = New System.Windows.Forms.Button()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.EmpresaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConfiguraciónEmpresaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConfiguraciónMySQLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VENTASToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PresupuestosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PedidosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AlbaranesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturaciónManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturarAlbaranesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.COMPRASToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PedidosAProveedoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EntradasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProveedoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ALMACENToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ArtículosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ADMINISTRACIÓNToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GastosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Button1
+        'MenuStrip1
         '
-        Me.Button1.Location = New System.Drawing.Point(28, 86)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(144, 45)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Presupuestos"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmpresaToolStripMenuItem, Me.VENTASToolStripMenuItem, Me.COMPRASToolStripMenuItem, Me.ALMACENToolStripMenuItem, Me.ADMINISTRACIÓNToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(907, 24)
+        Me.MenuStrip1.TabIndex = 12
+        Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'Button2
+        'EmpresaToolStripMenuItem
         '
-        Me.Button2.Location = New System.Drawing.Point(28, 137)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(144, 45)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Albaranes"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.EmpresaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfiguraciónEmpresaToolStripMenuItem, Me.ConfiguraciónMySQLToolStripMenuItem})
+        Me.EmpresaToolStripMenuItem.Name = "EmpresaToolStripMenuItem"
+        Me.EmpresaToolStripMenuItem.Size = New System.Drawing.Size(70, 20)
+        Me.EmpresaToolStripMenuItem.Text = "EMPRESA"
         '
-        'Button3
+        'ConfiguraciónEmpresaToolStripMenuItem
         '
-        Me.Button3.Location = New System.Drawing.Point(505, 35)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(144, 45)
-        Me.Button3.TabIndex = 2
-        Me.Button3.Text = "Configuración MySQL"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.ConfiguraciónEmpresaToolStripMenuItem.Name = "ConfiguraciónEmpresaToolStripMenuItem"
+        Me.ConfiguraciónEmpresaToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.ConfiguraciónEmpresaToolStripMenuItem.Text = "Configuración empresa"
         '
-        'Button4
+        'ConfiguraciónMySQLToolStripMenuItem
         '
-        Me.Button4.Location = New System.Drawing.Point(28, 36)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(144, 44)
-        Me.Button4.TabIndex = 3
-        Me.Button4.Text = "Pedidos"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.ConfiguraciónMySQLToolStripMenuItem.Name = "ConfiguraciónMySQLToolStripMenuItem"
+        Me.ConfiguraciónMySQLToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.ConfiguraciónMySQLToolStripMenuItem.Text = "Configuración MySQL"
         '
-        'Button5
+        'VENTASToolStripMenuItem
         '
-        Me.Button5.Location = New System.Drawing.Point(29, 188)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(143, 45)
-        Me.Button5.TabIndex = 4
-        Me.Button5.Text = "Facturación Manual"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.VENTASToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresupuestosToolStripMenuItem, Me.PedidosToolStripMenuItem, Me.AlbaranesToolStripMenuItem, Me.FacturaciónManualToolStripMenuItem, Me.FacturarAlbaranesToolStripMenuItem, Me.ClientesToolStripMenuItem})
+        Me.VENTASToolStripMenuItem.Name = "VENTASToolStripMenuItem"
+        Me.VENTASToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.VENTASToolStripMenuItem.Text = "VENTAS"
         '
-        'Button6
+        'PresupuestosToolStripMenuItem
         '
-        Me.Button6.Location = New System.Drawing.Point(505, 87)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(144, 45)
-        Me.Button6.TabIndex = 5
-        Me.Button6.Text = "Configuración Empresas"
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.PresupuestosToolStripMenuItem.Name = "PresupuestosToolStripMenuItem"
+        Me.PresupuestosToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.PresupuestosToolStripMenuItem.Text = "Presupuestos"
         '
-        'Button7
+        'PedidosToolStripMenuItem
         '
-        Me.Button7.Location = New System.Drawing.Point(193, 35)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(143, 45)
-        Me.Button7.TabIndex = 6
-        Me.Button7.Text = "Clientes"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.PedidosToolStripMenuItem.Name = "PedidosToolStripMenuItem"
+        Me.PedidosToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.PedidosToolStripMenuItem.Text = "Pedidos"
         '
-        'Button8
+        'AlbaranesToolStripMenuItem
         '
-        Me.Button8.Location = New System.Drawing.Point(193, 86)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(143, 45)
-        Me.Button8.TabIndex = 7
-        Me.Button8.Text = "Articulos"
-        Me.Button8.UseVisualStyleBackColor = True
+        Me.AlbaranesToolStripMenuItem.Name = "AlbaranesToolStripMenuItem"
+        Me.AlbaranesToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.AlbaranesToolStripMenuItem.Text = "Albaranes"
         '
-        'Button9
+        'FacturaciónManualToolStripMenuItem
         '
-        Me.Button9.Location = New System.Drawing.Point(357, 35)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(142, 45)
-        Me.Button9.TabIndex = 8
-        Me.Button9.Text = "Pedidos Proveedores"
-        Me.Button9.UseVisualStyleBackColor = True
+        Me.FacturaciónManualToolStripMenuItem.Name = "FacturaciónManualToolStripMenuItem"
+        Me.FacturaciónManualToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.FacturaciónManualToolStripMenuItem.Text = "Facturación manual"
         '
-        'Button10
+        'FacturarAlbaranesToolStripMenuItem
         '
-        Me.Button10.Location = New System.Drawing.Point(30, 239)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(142, 45)
-        Me.Button10.TabIndex = 9
-        Me.Button10.Text = "Facturar Albaranes"
-        Me.Button10.UseVisualStyleBackColor = True
+        Me.FacturarAlbaranesToolStripMenuItem.Name = "FacturarAlbaranesToolStripMenuItem"
+        Me.FacturarAlbaranesToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.FacturarAlbaranesToolStripMenuItem.Text = "Facturar Albaranes"
         '
-        'Button11
+        'ClientesToolStripMenuItem
         '
-        Me.Button11.Location = New System.Drawing.Point(357, 87)
-        Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(142, 44)
-        Me.Button11.TabIndex = 10
-        Me.Button11.Text = "Control Gastos"
-        Me.Button11.UseVisualStyleBackColor = True
+        Me.ClientesToolStripMenuItem.Name = "ClientesToolStripMenuItem"
+        Me.ClientesToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.ClientesToolStripMenuItem.Text = "Clientes"
         '
-        'btProveedores
+        'COMPRASToolStripMenuItem
         '
-        Me.btProveedores.Location = New System.Drawing.Point(193, 137)
-        Me.btProveedores.Name = "btProveedores"
-        Me.btProveedores.Size = New System.Drawing.Size(141, 40)
-        Me.btProveedores.TabIndex = 11
-        Me.btProveedores.Text = "Proveedores"
-        Me.btProveedores.UseVisualStyleBackColor = True
+        Me.COMPRASToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PedidosAProveedoresToolStripMenuItem, Me.EntradasToolStripMenuItem, Me.ProveedoresToolStripMenuItem})
+        Me.COMPRASToolStripMenuItem.Name = "COMPRASToolStripMenuItem"
+        Me.COMPRASToolStripMenuItem.Size = New System.Drawing.Size(75, 20)
+        Me.COMPRASToolStripMenuItem.Text = "COMPRAS"
+        '
+        'PedidosAProveedoresToolStripMenuItem
+        '
+        Me.PedidosAProveedoresToolStripMenuItem.Name = "PedidosAProveedoresToolStripMenuItem"
+        Me.PedidosAProveedoresToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.PedidosAProveedoresToolStripMenuItem.Text = "Pedidos a proveedores"
+        '
+        'EntradasToolStripMenuItem
+        '
+        Me.EntradasToolStripMenuItem.Name = "EntradasToolStripMenuItem"
+        Me.EntradasToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.EntradasToolStripMenuItem.Text = "Entradas"
+        '
+        'ProveedoresToolStripMenuItem
+        '
+        Me.ProveedoresToolStripMenuItem.Name = "ProveedoresToolStripMenuItem"
+        Me.ProveedoresToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.ProveedoresToolStripMenuItem.Text = "Proveedores"
+        '
+        'ALMACENToolStripMenuItem
+        '
+        Me.ALMACENToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArtículosToolStripMenuItem})
+        Me.ALMACENToolStripMenuItem.Name = "ALMACENToolStripMenuItem"
+        Me.ALMACENToolStripMenuItem.Size = New System.Drawing.Size(75, 20)
+        Me.ALMACENToolStripMenuItem.Text = "ALMACÉN"
+        '
+        'ArtículosToolStripMenuItem
+        '
+        Me.ArtículosToolStripMenuItem.Name = "ArtículosToolStripMenuItem"
+        Me.ArtículosToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ArtículosToolStripMenuItem.Text = "Artículos"
+        '
+        'ADMINISTRACIÓNToolStripMenuItem
+        '
+        Me.ADMINISTRACIÓNToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GastosToolStripMenuItem})
+        Me.ADMINISTRACIÓNToolStripMenuItem.Name = "ADMINISTRACIÓNToolStripMenuItem"
+        Me.ADMINISTRACIÓNToolStripMenuItem.Size = New System.Drawing.Size(118, 20)
+        Me.ADMINISTRACIÓNToolStripMenuItem.Text = "ADMINISTRACIÓN"
+        '
+        'GastosToolStripMenuItem
+        '
+        Me.GastosToolStripMenuItem.Name = "GastosToolStripMenuItem"
+        Me.GastosToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.GastosToolStripMenuItem.Text = "Gastos"
         '
         'launcher
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(907, 518)
-        Me.Controls.Add(Me.btProveedores)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Button11)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button7)
-        Me.Controls.Add(Me.Button10)
-        Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.Button8)
-        Me.Controls.Add(Me.Button9)
-        Me.Controls.Add(Me.Button6)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "launcher"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Shadow"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button8 As Button
-    Friend WithEvents Button9 As Button
-    Friend WithEvents Button10 As Button
-    Friend WithEvents Button11 As Button
-    Friend WithEvents btProveedores As Button
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents EmpresaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ConfiguraciónEmpresaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ConfiguraciónMySQLToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VENTASToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PresupuestosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PedidosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AlbaranesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FacturaciónManualToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FacturarAlbaranesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ClientesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents COMPRASToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PedidosAProveedoresToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EntradasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ProveedoresToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ALMACENToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ArtículosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ADMINISTRACIÓNToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GastosToolStripMenuItem As ToolStripMenuItem
 End Class
