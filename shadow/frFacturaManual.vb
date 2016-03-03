@@ -9,6 +9,7 @@ Public Class frFacturaManual
     Public Shared pos As Integer
     Public Shared flagEdit As String = "N"
     Public Shared lineasEdit As New List(Of lineasEditadas)
+    Public Shared lineasElim As New List(Of lineasEliminadas)
     Public Shared artiEdit As String
     Public Shared cantIni As Decimal
     Public Shared cantFin As Decimal
@@ -490,6 +491,8 @@ Public Class frFacturaManual
             Dim lintotal As String
             Dim guardo_lintotal As String
             Dim arti As String
+            Dim vLote As String
+
 
             For Each row In dgLineasPres1.Rows
 
@@ -607,6 +610,7 @@ Public Class frFacturaManual
             Dim guardo_linimporte As String
             Dim lintotal As String
             Dim guardo_lintotal As String
+            Dim vLote As String
 
             For Each row In dgLineasPres2.Rows
 
@@ -651,10 +655,18 @@ Public Class frFacturaManual
 
             If lineasEdit.Count > 0 Then
                 For Each itemlineas As lineasEditadas In lineasEdit
-                    aumentarStock(itemlineas.codigoArt, itemlineas.cantAntes)
-                    descontarStock(itemlineas.codigoArt, itemlineas.cantDespues)
+                    If row.Cells(11).Value = "" Then
+                        aumentarStock(itemlineas.codigoArt, itemlineas.cantAntes)
+                        descontarStock(itemlineas.codigoArt, itemlineas.cantDespues)
+                    Else
+                        vLote = row.Cells(11).Value
+                        aumentarStockLote(itemlineas.codigoArt, itemlineas.cantAntes)
+                        descontarStockLote(itemlineas.codigoArt, itemlineas.cantDespues)
+                    End If
+
                 Next
             End If
+
             lineasEdit.Clear()
 
 
@@ -1517,5 +1529,86 @@ Public Class frFacturaManual
         editarVencimientos()
         btActualizar.Enabled = False
         grPlazos.Visible = False
+    End Sub
+    Public Sub eliminarFacturaEditStock()
+
+
+        Dim row As New DataGridViewRow
+        For Each row In dgLineasPres2.Rows
+            artiEdit = row.Cells(2).Value
+            cantIni = Decimal.Parse(row.Cells(4).Value)
+            'MsgBox(cantIni)
+            'lineasElim.Add(New lineasEliminadas() With {.codigoArtDel = artiEdit, .cantAntesDel = cantIni})
+            If row.Cells(11).Value = "" Then
+                aumentarStock(artiEdit, cantIni)
+            Else
+                aumentarStockLote(artiEdit, cantIni)
+            End If
+        Next
+    End Sub
+
+    Private Sub cmdDelete_Click(sender As Object, e As EventArgs) Handles cmdDelete.Click
+        Dim respuesta As String
+        respuesta = MsgBox("El borrado de facturas es una acción no recuperable. ¿Está seguro?", vbYesNo)
+        If respuesta = vbYes Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdEliminar As New MySqlCommand("DELETE FROM factura_cab WHERE num_factura = '" + txtNumpres.Text + "'", conexionmy)
+            cmdEliminar.ExecuteNonQuery()
+
+            eliminarFacturaEditStock()
+
+            Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM factura_linea WHERE num_factura = '" + txtNumpres.Text + "'", conexionmy)
+            cmdEliminarLineas.ExecuteNonQuery()
+
+            conexionmy.Close()
+            deshabilitarBotones()
+            limpiarFormulario()
+            dgLineasPres2.Rows.Clear()
+            cmdNuevo.Enabled = True
+            cargoTodasFacturas()
+            tabPresupuestos.SelectTab(0)
+            flagEdit = "N"
+
+        End If
+    End Sub
+    Public Sub descontarStockLote(codArti As String, unidades As Decimal)
+        If codArti <> "" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdLastId As New MySqlCommand("SELECT referencia, stock, lote FROM lotes WHERE lote = '" + codArti + "'", conexionmy)
+            Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+            reader.Read()
+
+            Dim stock As String = (reader.GetString(1) - unidades).ToString
+            reader.Close()
+
+            Dim cmdActualizo As New MySqlCommand("UPDATE lotes SET stock = '" + stock + "' WHERE lote = '" + codArti + "'", conexionmy)
+            cmdActualizo.ExecuteNonQuery()
+
+            conexionmy.Close()
+        End If
+
+    End Sub
+    Public Sub aumentarStockLote(codArti As String, unidades As Decimal)
+        If codArti <> "" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdLastId As New MySqlCommand("SELECT referencia, stock, lote FROM lotes WHERE lote = '" + codArti + "'", conexionmy)
+            Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+            reader.Read()
+
+            Dim stock As String = (reader.GetString(1) + unidades).ToString
+            reader.Close()
+
+            Dim cmdActualizo As New MySqlCommand("UPDATE lotes SET stock = '" + stock + "' WHERE lote = '" + codArti + "'", conexionmy)
+            cmdActualizo.ExecuteNonQuery()
+
+            conexionmy.Close()
+        End If
+
     End Sub
 End Class

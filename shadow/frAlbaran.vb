@@ -9,6 +9,7 @@ Public Class frAlbaran
     Public Shared pos As Integer
     Public Shared flagEdit As String = "N"
     Public Shared lineasEdit As New List(Of lineasEditadas)
+    Public Shared lineasElim As New List(Of lineasEliminadas)
     Public Shared artiEdit As String
     Public Shared cantIni As Decimal
     Public Shared cantFin As Decimal
@@ -1090,6 +1091,8 @@ Public Class frAlbaran
             Dim cmdEliminar As New MySqlCommand("DELETE FROM albaran_cab WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
             cmdEliminar.ExecuteNonQuery()
 
+            eliminarAlbaranEditStock()
+
             Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM albaran_linea WHERE num_albaran = '" + txtNumpres.Text + "'", conexionmy)
             cmdEliminarLineas.ExecuteNonQuery()
 
@@ -1225,36 +1228,42 @@ Public Class frAlbaran
 
     End Sub
     Public Sub descontarStockLote(codArti As String, unidades As Decimal)
-        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
-        conexionmy.Open()
+        If codArti <> "" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock, lote FROM lotes WHERE lote = '" + codArti + "'", conexionmy)
-        Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
-        reader.Read()
+            Dim cmdLastId As New MySqlCommand("SELECT referencia, stock, lote FROM lotes WHERE lote = '" + codArti + "'", conexionmy)
+            Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+            reader.Read()
 
-        Dim stock As String = (reader.GetString(1) - unidades).ToString
-        reader.Close()
+            Dim stock As String = (reader.GetString(1) - unidades).ToString
+            reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE lotes SET stock = '" + stock + "' WHERE lote = '" + codArti + "'", conexionmy)
-        cmdActualizo.ExecuteNonQuery()
+            Dim cmdActualizo As New MySqlCommand("UPDATE lotes SET stock = '" + stock + "' WHERE lote = '" + codArti + "'", conexionmy)
+            cmdActualizo.ExecuteNonQuery()
 
-        conexionmy.Close()
+            conexionmy.Close()
+        End If
+
     End Sub
     Public Sub aumentarStockLote(codArti As String, unidades As Decimal)
-        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
-        conexionmy.Open()
+        If codArti <> "" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock, lote FROM lotes WHERE lote = '" + codArti + "'", conexionmy)
-        Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
-        reader.Read()
+            Dim cmdLastId As New MySqlCommand("SELECT referencia, stock, lote FROM lotes WHERE lote = '" + codArti + "'", conexionmy)
+            Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+            reader.Read()
 
-        Dim stock As String = (reader.GetString(1) + unidades).ToString
-        reader.Close()
+            Dim stock As String = (reader.GetString(1) + unidades).ToString
+            reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE lotes SET stock = '" + stock + "' WHERE lote = '" + codArti + "'", conexionmy)
-        cmdActualizo.ExecuteNonQuery()
+            Dim cmdActualizo As New MySqlCommand("UPDATE lotes SET stock = '" + stock + "' WHERE lote = '" + codArti + "'", conexionmy)
+            cmdActualizo.ExecuteNonQuery()
 
-        conexionmy.Close()
+            conexionmy.Close()
+        End If
+
     End Sub
 
     Private Sub cmdContado_Click(sender As Object, e As EventArgs) Handles cmdContado.Click
@@ -1416,7 +1425,14 @@ Public Class frAlbaran
 
         Dim row As New DataGridViewRow
         For Each row In dgLineasPres2.Rows
+            artiEdit = row.Cells(2).Value
+            cantIni = Decimal.Parse(row.Cells(4).Value)
 
+            If row.Cells(11).Value = "" Then
+                aumentarStock(artiEdit, cantIni)
+            Else
+                aumentarStockLote(artiEdit, cantIni)
+            End If
         Next
 
     End Sub
