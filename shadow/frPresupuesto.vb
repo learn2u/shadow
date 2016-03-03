@@ -368,6 +368,7 @@ Public Class frPresupuestos
 
     Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
         If flagEdit = "N" Then
+
             cargoNumero()
 
             Dim impbru As String = txImpBruto.Text
@@ -496,7 +497,7 @@ Public Class frPresupuestos
 
             'Guardo cabecera y actualizo número de presupuesto
 
-            Dim cmd As New MySqlCommand("UPDATE presupuesto_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalrecargo = '" + guardo_imprec + "', totalpresupuesto = '" + guardo_imptot + "', estado = '" + vEstado + "' WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
+            Dim cmd As New MySqlCommand("UPDATE presupuesto_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalrecargo = '" + guardo_imprec + "', totalpresupuesto = '" + guardo_imptot + "' WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
             cmd.ExecuteNonQuery()
 
 
@@ -685,8 +686,17 @@ Public Class frPresupuestos
             cbEstado.Text = "PENDIENTE"
         ElseIf rdrCab("estado") = "A" Then
             cbEstado.Text = "ACEPTADO"
-        Else
+        ElseIf rdrCab("estado") = "R" Then
             cbEstado.Text = "RECHAZADO"
+        End If
+        If rdrCab("estado") = "D" Then
+            cbEstado.Text = "CONVERTIDO A PEDIDO"
+            cmdPedido.Enabled = False
+        End If
+        If rdrCab("estado") = "B" Then
+            cbEstado.Text = "CONVERTIDO A ALBARAN"
+            cmdPedido.Enabled = False
+            cmdAlbaran.Enabled = False
         End If
 
         rdrCab.Close()
@@ -998,7 +1008,7 @@ Public Class frPresupuestos
         'Conversion Presupuesto a Pedido
 
         Dim respuesta As String
-        respuesta = MsgBox("La conversión a Pedido no es reversible. Una vez convertido, el presupuesto será eliminado. ¿Está seguro?", vbYesNo)
+        respuesta = MsgBox("La conversión a Pedido no es reversible. ¿Está seguro?", vbYesNo)
         If respuesta = vbYes Then
             txNumpresBk.Text = txtNumpres.Text
 
@@ -1072,7 +1082,7 @@ Public Class frPresupuestos
 
                 cmdLinea.ExecuteNonQuery()
 
-                conexionmy.Close()
+                'conexionmy.Close()
 
             Next
 
@@ -1081,8 +1091,8 @@ Public Class frPresupuestos
 
             'Borro la cabecera y las lineas del presupuesto
 
-            'Dim cmdEliminar As New MySqlCommand("DELETE FROM presupuesto_cab WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
-            'cmdEliminar.ExecuteNonQuery()
+            Dim cmdEliminar As New MySqlCommand("UPDATE presupuesto_cab SET estado = 'D' WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
+            cmdEliminar.ExecuteNonQuery()
 
             'Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM presupuesto_linea WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
             'cmdEliminarLineas.ExecuteNonQuery()
@@ -1106,7 +1116,7 @@ Public Class frPresupuestos
     Private Sub cmdAlbaran_Click(sender As Object, e As EventArgs) Handles cmdAlbaran.Click
         'conversion presupuesto a albaran
         Dim respuesta As String
-        respuesta = MsgBox("La conversión a Albarán no es reversible. Una vez convertido, el presupuesto será eliminado. ¿Está seguro?", vbYesNo)
+        respuesta = MsgBox("La conversión a Albarán no es reversible. ¿Está seguro?", vbYesNo)
         If respuesta = vbYes Then
             txNumpresBk.Text = txtNumpres.Text
 
@@ -1187,8 +1197,8 @@ Public Class frPresupuestos
 
             'Borro la cabecera y las lineas del presupuesto
 
-            'Dim cmdEliminar As New MySqlCommand("DELETE FROM presupuesto_cab WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
-            'cmdEliminar.ExecuteNonQuery()
+            Dim cmdEliminar As New MySqlCommand("UPDATE presupuesto_cab SET estado = 'B' WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
+            cmdEliminar.ExecuteNonQuery()
 
             'Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM presupuesto_linea WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
             'cmdEliminarLineas.ExecuteNonQuery()
