@@ -158,7 +158,7 @@ Public Class frAlbaran
                 lineas = lineas + 1
                 dgLineasPres1.Rows.Add()
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(0).Value = lineas
-                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(4).Value = 0
+                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(4).Value = 1
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(5).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(6).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(7).Value = 0
@@ -182,7 +182,7 @@ Public Class frAlbaran
                 lineas = lineas + 1
                 dgLineasPres2.Rows.Add()
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(0).Value = lineas
-                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(4).Value = 0
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(4).Value = 1
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(5).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(6).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(7).Value = 0
@@ -214,7 +214,7 @@ Public Class frAlbaran
 
             pos = dgLineasPres1.CurrentRow.Index
 
-            dgLineasPres1.CurrentRow.Cells(4).Value = 0
+            dgLineasPres1.CurrentRow.Cells(4).Value = 1
             dgLineasPres1.CurrentRow.Cells(5).Value = 0
             dgLineasPres1.CurrentRow.Cells(6).Value = 0
             dgLineasPres1.CurrentRow.Cells(7).Value = 0
@@ -235,7 +235,7 @@ Public Class frAlbaran
 
             pos = dgLineasPres2.CurrentRow.Index
 
-            dgLineasPres2.CurrentRow.Cells(4).Value = 0
+            dgLineasPres2.CurrentRow.Cells(4).Value = 1
             dgLineasPres2.CurrentRow.Cells(5).Value = 0
             dgLineasPres2.CurrentRow.Cells(6).Value = 0
             dgLineasPres2.CurrentRow.Cells(7).Value = 0
@@ -1408,5 +1408,13 @@ Public Class frAlbaran
         Dim vImporte As Decimal
         vImporte = Decimal.Parse(txImporteCobro.Text)
         txImporteCobro.Text = vImporte.ToString("0.00")
+    End Sub
+    Public Sub eliminarAlbaranEditStock()
+
+        Dim row As New DataGridViewRow
+        For Each row In dgLineasPres2.Rows
+
+        Next
+
     End Sub
 End Class
