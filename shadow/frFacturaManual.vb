@@ -856,38 +856,40 @@ Public Class frFacturaManual
 
     End Sub
     Public Sub descontarStock(codArti As String, unidades As Decimal)
-        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
-        conexionmy.Open()
+        If codArti <> "" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
-        Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
-        reader.Read()
+            Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
+            Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+            reader.Read()
 
-        Dim stock As String = (reader.GetString(1) - unidades).ToString
-        reader.Close()
+            Dim stock As String = (reader.GetString(1) - unidades).ToString
+            reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
-        cmdActualizo.ExecuteNonQuery()
+            Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
+            cmdActualizo.ExecuteNonQuery()
 
-        conexionmy.Close()
-
+            conexionmy.Close()
+        End If
     End Sub
     Public Sub aumentarStock(codArti As String, unidades As Decimal)
-        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
-        conexionmy.Open()
+        If codArti <> "" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
-        Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
-        reader.Read()
+            Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
+            Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+            reader.Read()
 
-        Dim stock As String = (reader.GetString(1) + unidades).ToString
-        reader.Close()
+            Dim stock As String = (reader.GetString(1) + unidades).ToString
+            reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
-        cmdActualizo.ExecuteNonQuery()
+            Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
+            cmdActualizo.ExecuteNonQuery()
 
-        conexionmy.Close()
-
+            conexionmy.Close()
+        End If
     End Sub
 
     Private Sub dgLineasPres2_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellEnter
