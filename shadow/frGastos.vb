@@ -15,6 +15,7 @@ Public Class frGastos
     Public Shared serieIni As String
     Public Shared vTotal As String
     Public Shared fechadiapago As Date
+    Public Shared newLinea As String = "N"
     Private Sub frGastos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
 
@@ -22,6 +23,7 @@ Public Class frGastos
 
         If flagEdit = "N" Then
             dgLineasPres1.Visible = True
+            dgLineasPres1.Enabled = False
             dgLineasPres2.Visible = False
         Else
             dgLineasPres1.Visible = False
@@ -130,15 +132,26 @@ Public Class frGastos
         tsBotones.Focus()
         cmdNuevo.Select()
         dgLineasPres1.Rows.Clear()
+        dgPlazos.Rows.Clear()
     End Sub
 
     Private Sub cmdLineas_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
+        newLinea = "S"
         If txNumcli.Text = "" Then
             MsgBox("Antes de añadir líneas de gastos es necesario seleccionar un proveedor")
             formCli = "G"
             frVerProveedores.Show()
         Else
             If flagEdit = "N" Then
+                If dgLineasPres1.RowCount = 0 Then
+                    lineas = 0
+                End If
+                For Each row As DataGridViewRow In dgLineasPres1.Rows
+                    If row.Cells(2).Value Is Nothing Then
+                        MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores. Introduzca una descripción")
+                        Exit Sub
+                    End If
+                Next
                 lineas = lineas + 1
                 dgLineasPres1.Rows.Add()
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(0).Value = lineas
@@ -150,6 +163,15 @@ Public Class frGastos
                 dgLineasPres1.CurrentCell = dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(1)
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(1).Selected = True
             Else
+                If dgLineasPres2.RowCount = 0 Then
+                    lineas = 0
+                End If
+                For Each row As DataGridViewRow In dgLineasPres2.Rows
+                    If row.Cells(2).Value Is Nothing Then
+                        MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores. Introduzca una descripción")
+                        Exit Sub
+                    End If
+                Next
                 lineas = lineas + 1
                 dgLineasPres2.Rows.Add()
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(0).Value = lineas
@@ -163,10 +185,18 @@ Public Class frGastos
             End If
 
         End If
+        newLinea = "N"
     End Sub
 
     Private Sub INSERTARToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles INSERTARToolStripMenuItem.Click
+        newLinea = "S"
         If flagEdit = "N" Then
+            For Each row As DataGridViewRow In dgLineasPres1.Rows
+                If row.Cells(2).Value Is Nothing Then
+                    MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores. Introduzca una descripción")
+                    Exit Sub
+                End If
+            Next
             dgLineasPres1.Rows.Insert(dgLineasPres1.CurrentRow.Index)
             renumerar()
             dgLineasPres1.CurrentCell = dgLineasPres1.Rows(dgLineasPres1.CurrentRow.Index - 1).Cells(1)
@@ -179,6 +209,12 @@ Public Class frGastos
             dgLineasPres1.CurrentRow.Cells(6).Value = 0
 
         Else
+            For Each row As DataGridViewRow In dgLineasPres2.Rows
+                If row.Cells(2).Value Is Nothing Then
+                    MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores. Introduzca una descripción")
+                    Exit Sub
+                End If
+            Next
             dgLineasPres2.Rows.Insert(dgLineasPres2.CurrentRow.Index)
             renumerar()
             dgLineasPres2.CurrentCell = dgLineasPres2.Rows(dgLineasPres2.CurrentRow.Index - 1).Cells(1)
@@ -191,6 +227,7 @@ Public Class frGastos
             dgLineasPres2.CurrentRow.Cells(6).Value = 0
 
         End If
+        newLinea = "N"
     End Sub
     Public Sub renumerar()
         lineas = 1
@@ -257,7 +294,7 @@ Public Class frGastos
 
 
                 total2 = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(3).Value) * Decimal.Parse(dgLineasPres2.CurrentRow.Cells(5).Value)
-                dto2 = (total2 * Decimal.Parse(dgLineasPres2.CurrentRow.Cells(8).Value)) / 100
+                dto2 = (total2 * Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)) / 100
 
 
                 totaldef = (total2 - dto2).ToString("0.00")
@@ -308,6 +345,7 @@ Public Class frGastos
         flagEdit = "N"
         dgLineasPres2.Visible = False
         dgLineasPres1.Visible = True
+        dgLineasPres1.Enabled = True
         cargoEpigrafes()
         cargoFormaPago()
         txFecha.Text = Format(Today, "ddMMyyyy")
@@ -319,7 +357,12 @@ Public Class frGastos
         deshabilitarBotones()
         limpiarFormulario()
         If flagEdit = "S" Then
+            dgLineasPres2.Rows.Clear()
+            dgPlazos.Rows.Clear()
             flagEdit = "N"
+        Else
+            dgLineasPres1.Rows.Clear()
+            dgPlazos.Rows.Clear()
         End If
         tabPresupuestos.SelectTab(0)
     End Sub
@@ -508,57 +551,50 @@ Public Class frGastos
 
             Dim lincant As String
             Dim guardo_lincant As String
-            Dim linancho As String
-            Dim guardo_linancho As String
-            Dim linmetros As String
-            Dim guardo_linmetros As String
             Dim linprec As String
             Dim guardo_linprec As String
             Dim lindto As String
             Dim guardo_lindto As String
             Dim liniva As String
             Dim guardo_liniva As String
-            Dim linimporte As String
-            Dim guardo_linimporte As String
             Dim lintotal As String
             Dim guardo_lintotal As String
+            Dim arti As String
 
             For Each row In dgLineasPres2.Rows
 
 
-                lincant = Decimal.Parse(row.Cells(4).Value).ToString("0.00")
+                lincant = Decimal.Parse(row.Cells(3).Value).ToString("0.00")
                 guardo_lincant = Replace(lincant, ",", ".")
 
-                linancho = row.Cells(5).Value.ToString
-                guardo_linancho = Replace(linancho, ",", ".")
-
-                linmetros = row.Cells(6).Value.ToString
-                guardo_linmetros = Replace(linmetros, ",", ".")
-
-                linprec = row.Cells(7).Value.ToString
+                linprec = row.Cells(5).Value.ToString
                 guardo_linprec = Replace(linprec, ",", ".")
 
-                lindto = row.Cells(8).Value.ToString
+                lindto = row.Cells(4).Value.ToString
                 guardo_lindto = Replace(lindto, ",", ".")
 
                 liniva = txIva.Text
                 guardo_liniva = Replace(liniva, ",", ".")
 
-                linimporte = row.Cells(9).Value.ToString
-                guardo_linimporte = Replace(linimporte, ",", ".")
-
-                lintotal = row.Cells(10).Value.ToString
+                lintotal = row.Cells(6).Value.ToString
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
+                arti = row.Cells(2).Value
+
                 cmdLinea.Connection = conexionmy
-                cmdLinea.CommandText = "INSERT INTO gastos_linea (num_pedido, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "')"
+                cmdLinea.CommandText = "INSERT INTO gastos_linea (num_gasto, linea, codigo, descripcion, cantidad, descuento, importe, totalinea, ivalinea) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(1).Value + "', '" + row.Cells(2).Value + "', '" + guardo_lincant + "', '" + guardo_lindto + "', '" + guardo_linprec + "', '" + guardo_lintotal + "', '" + guardo_liniva + "')"
 
                 cmdLinea.ExecuteNonQuery()
 
 
             Next
 
+            Dim cmdEliminarVto As New MySqlCommand("DELETE FROM vto_gastos WHERE gastoID = '" + txtNumpres.Text + "'", conexionmy)
+            cmdEliminarVto.ExecuteNonQuery()
+
             conexionmy.Close()
+
+            grabarVencimientos()
 
             If lineasEdit.Count > 0 Then
                 For Each itemlineas As lineasEditadas In lineasEdit
@@ -592,30 +628,6 @@ Public Class frGastos
 
         conexionmy.Close()
 
-    End Sub
-
-    Private Sub dgPedidos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgPedidos.CellClick
-        limpiarFormulario()
-        cmdLineas.Enabled = True
-        cmdGuardar.Enabled = True
-        cmdCancelar.Enabled = True
-        cmdCliente.Enabled = True
-        cmdPedido.Enabled = True
-        cmdAlbaran.Enabled = True
-
-
-        txtNumpres.Text = dgPedidos.CurrentRow.Cells("Column1").Value.ToString
-        tabPresupuestos.SelectTab(1)
-        flagEdit = "S"
-        dgLineasPres1.Visible = False
-        dgLineasPres2.Visible = True
-        dgLineasPres2.Rows.Clear()
-
-
-        cargoGasto()
-        cargoLineas()
-        cmdDelete.Enabled = True
-        recalcularTotales()
     End Sub
     Public Sub cargoGasto()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -676,7 +688,8 @@ Public Class frGastos
         rdrCli.Close()
 
         conexionmy.Close()
-        'cargoEnvios()
+        cargoFormaPago()
+        cargoVencimientos()
     End Sub
     Public Sub cargoLineas()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -782,36 +795,39 @@ Public Class frGastos
     End Sub
 
     Private Sub dgLineasPres1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellValueChanged
-        If dgLineasPres1.CurrentCell Is Nothing Then
-            Exit Sub
-        Else
+        If newLinea = "N" Then
+            Dim value1 As String = ""
+            Dim value2 As String = ""
+            Dim value3 As String = ""
+            If dgLineasPres1.CurrentCell Is Nothing Then
+                Exit Sub
+            Else
 
-            If Me.dgLineasPres1.Columns("Column3").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres1.CurrentCell.Value = cellValue
-
+                If (e.ColumnIndex = 3) Then
+                    value1 = dgLineasPres1.CurrentRow.Cells(3).EditedFormattedValue.ToString
+                    value1 = value1.Replace(".", ",")
+                    If value1 <> "" Then
+                        Dim cellValue As Decimal = CType(value1, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(3).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 4) Then
+                    value2 = dgLineasPres1.CurrentRow.Cells(4).EditedFormattedValue.ToString
+                    value2 = value2.Replace(".", ",")
+                    If value2 <> "" Then
+                        Dim cellValue As Decimal = CType(value2, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(4).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 5) Then
+                    value3 = dgLineasPres1.CurrentRow.Cells(5).EditedFormattedValue.ToString
+                    value3 = value3.Replace(".", ",")
+                    If value3 <> "" Then
+                        Dim cellValue As Decimal = CType(value3, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(5).Value = cellValue
+                    End If
+                End If
             End If
-            If Me.dgLineasPres1.Columns("Column7").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres1.CurrentCell.Value = cellValue
-
-            End If
-            If Me.dgLineasPres1.Columns("Column8").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres1.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres1.CurrentCell.Value = cellValue
-
-            End If
-
-
         End If
     End Sub
 
@@ -830,35 +846,39 @@ Public Class frGastos
     End Sub
 
     Private Sub dgLineasPres2_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellValueChanged
-        If dgLineasPres2.CurrentCell Is Nothing Then
-            Exit Sub
-        Else
+        If newLinea = "N" Then
+            Dim value1 As String = ""
+            Dim value2 As String = ""
+            Dim value3 As String = ""
+            If dgLineasPres1.CurrentCell Is Nothing Then
+                Exit Sub
+            Else
 
-            If Me.dgLineasPres2.Columns("Columna3").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres2.CurrentCell.Value = cellValue
-
+                If (e.ColumnIndex = 3) Then
+                    value1 = dgLineasPres1.CurrentRow.Cells(3).EditedFormattedValue.ToString
+                    value1 = value1.Replace(".", ",")
+                    If value1 <> "" Then
+                        Dim cellValue As Decimal = CType(value1, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(3).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 4) Then
+                    value2 = dgLineasPres1.CurrentRow.Cells(4).EditedFormattedValue.ToString
+                    value2 = value2.Replace(".", ",")
+                    If value2 <> "" Then
+                        Dim cellValue As Decimal = CType(value2, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(4).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 5) Then
+                    value3 = dgLineasPres1.CurrentRow.Cells(5).EditedFormattedValue.ToString
+                    value3 = value3.Replace(".", ",")
+                    If value3 <> "" Then
+                        Dim cellValue As Decimal = CType(value3, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(5).Value = cellValue
+                    End If
+                End If
             End If
-            If Me.dgLineasPres2.Columns("Columna7").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres2.CurrentCell.Value = cellValue
-
-            End If
-            If Me.dgLineasPres2.Columns("Columna8").Index = e.ColumnIndex Then
-                Dim value As String = dgLineasPres2.CurrentCell.EditedFormattedValue.ToString
-                value = value.Replace(".", ",")
-
-                Dim cellValue As Decimal = CType(value, Decimal)
-                dgLineasPres2.CurrentCell.Value = cellValue
-
-            End If
-
         End If
     End Sub
 
@@ -1176,7 +1196,7 @@ Public Class frGastos
         Dim vPagado As String
         Dim orden As Int16 = 0
         Dim linImporte As String
-
+        Dim guardo_linimporte As String
 
         If ckPagado.Checked = True Then
             vPagado = "S"
@@ -1188,11 +1208,67 @@ Public Class frGastos
             orden = orden + 1
 
             Dim fecha As Date = row.Cells(0).Value
-            linImporte = row.Cells(2).Value.ToString
+            linImporte = Decimal.Parse(row.Cells(2).Value).ToString("0.00")
+            guardo_linimporte = Replace(linImporte, ",", ".")
 
-            Dim cmd As New MySqlCommand("INSERT INTO vto_gastos (gastoID, fecha, concepto, importe, orden, pagado) VALUES (" + txtNumpres.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + row.Cells(1).Value + "', '" + linImporte + "', '" + orden.ToString + "', '" + vPagado + "')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO vto_gastos (gastoID, fecha, concepto, importe, orden, pagado) VALUES (" + txtNumpres.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + row.Cells(1).Value + "', '" + guardo_linimporte + "', '" + orden.ToString + "', '" + vPagado + "')", conexionmy)
             cmd.ExecuteNonQuery()
         Next
+        conexionmy.Close()
+
+    End Sub
+
+    Private Sub dgPedidos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgPedidos.CellDoubleClick
+        limpiarFormulario()
+        cmdLineas.Enabled = True
+        cmdGuardar.Enabled = True
+        cmdCancelar.Enabled = True
+        cmdCliente.Enabled = True
+        cmdPedido.Enabled = True
+        cmdAlbaran.Enabled = True
+
+
+        txtNumpres.Text = dgPedidos.CurrentRow.Cells("Column1").Value.ToString
+        tabPresupuestos.SelectTab(1)
+        flagEdit = "S"
+        dgLineasPres1.Visible = False
+        dgLineasPres2.Visible = True
+        dgLineasPres2.Rows.Clear()
+
+
+        cargoGasto()
+        cargoLineas()
+        cmdDelete.Enabled = True
+        recalcularTotales()
+    End Sub
+    Public Sub cargoVencimientos()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmdLinea As New MySqlCommand
+
+        cmdLinea = New MySqlCommand("SELECT vto_gastos.fecha,
+                                            vto_gastos.concepto,
+                                            vto_gastos.importe
+                                            FROM vto_gastos WHERE gastoID = '" + txtNumpres.Text + "' ORDER BY vto_gastos.orden", conexionmy)
+
+        cmdLinea.CommandType = CommandType.Text
+        cmdLinea.Connection = conexionmy
+
+        Dim rdrLin As MySqlDataReader
+        rdrLin = cmdLinea.ExecuteReader
+        If rdrLin.HasRows Then
+            Do While rdrLin.Read()
+                lineas = lineas + 1
+                dgPlazos.Rows.Add()
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(0).Value = rdrLin("fecha")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(1).Value = rdrLin("concepto")
+                dgPlazos.Rows(dgPlazos.Rows.Count - 1).Cells(2).Value = rdrLin("importe")
+            Loop
+        Else
+
+        End If
+
+        rdrLin.Close()
         conexionmy.Close()
 
     End Sub
