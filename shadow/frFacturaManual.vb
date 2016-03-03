@@ -1085,7 +1085,7 @@ Public Class frFacturaManual
 
     Private Sub cmdMostrarAgente_Click(sender As Object, e As EventArgs) Handles cmdMostrarAgente.Click
         grPlazos.Visible = True
-        btActualizar.Enabled = False
+        btActualizar.Enabled = True
 
     End Sub
 
