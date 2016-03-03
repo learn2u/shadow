@@ -1108,7 +1108,7 @@ Public Class frAlbaran
     Private Sub cmdAlbaran_Click(sender As Object, e As EventArgs) Handles cmdAlbaran.Click
         'Convertir Pedido en Factura
         Dim respuesta As String
-        respuesta = MsgBox("La conversión a Factura no es reversible. Una vez convertido, el albarán será eliminado. ¿Está seguro?", vbYesNo)
+        respuesta = MsgBox("La conversión a Factura no es reversible. ¿Está seguro?", vbYesNo)
         If respuesta = vbYes Then
             txNumpresBk.Text = txtNumpres.Text
 
