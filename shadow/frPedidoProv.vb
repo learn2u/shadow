@@ -14,6 +14,7 @@ Public Class frPedidoProv
     Public Shared cantFin As Decimal
     Public Shared serieIni As String
     Public Shared estadoLinea As String = "N"
+    Public Shared newLinea As String = "N"
     Private Sub frPedidoProv_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
 
@@ -127,16 +128,26 @@ Public Class frPedidoProv
     End Sub
 
     Private Sub cmdLineas_ButtonClick(sender As Object, e As EventArgs) Handles cmdLineas.ButtonClick
+        newLinea = "S"
         If txNumcli.Text = "" Then
             MsgBox("Antes de añadir líneas al pedido es necesario seleccionar un proveedor")
             formCli = "D"
             frVerProveedores.Show()
         Else
             If flagEdit = "N" Then
+                If dgLineasPres1.RowCount = 0 Then
+                    lineas = 0
+                End If
+                For Each row As DataGridViewRow In dgLineasPres1.Rows
+                    If row.Cells(3).Value Is Nothing Then
+                        MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores. Introduzca una descripción")
+                        Exit Sub
+                    End If
+                Next
                 lineas = lineas + 1
                 dgLineasPres1.Rows.Add()
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(0).Value = lineas
-                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(4).Value = 0
+                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(4).Value = 1
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(5).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(6).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(7).Value = 0
@@ -144,13 +155,23 @@ Public Class frPedidoProv
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(9).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(10).Value = 0
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(13).Value = 0
+                dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(14).Value = 1
                 dgLineasPres1.Rows(dgLineasPres1.Rows.Count - 1).Cells(14).Style.BackColor = Color.Red
 
             Else
+                If dgLineasPres2.RowCount = 0 Then
+                    lineas = 0
+                End If
+                For Each row As DataGridViewRow In dgLineasPres2.Rows
+                    If row.Cells(3).Value Is Nothing Then
+                        MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores. Introduzca una descripción")
+                        Exit Sub
+                    End If
+                Next
                 lineas = lineas + 1
                 dgLineasPres2.Rows.Add()
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(0).Value = lineas
-                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(4).Value = 0
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(4).Value = 1
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(5).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(6).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(7).Value = 0
@@ -158,21 +179,30 @@ Public Class frPedidoProv
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(9).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(10).Value = 0
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(13).Value = 0
+                dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(14).Value = 1
                 dgLineasPres2.Rows(dgLineasPres2.Rows.Count - 1).Cells(14).Style.BackColor = Color.Red
             End If
 
         End If
+        newLinea = "N"
     End Sub
 
     Private Sub INSERTARToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles INSERTARToolStripMenuItem.Click
+        newLinea = "S"
         If flagEdit = "N" Then
+            For Each row As DataGridViewRow In dgLineasPres1.Rows
+                If row.Cells(3).Value Is Nothing Then
+                    MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores. Introduzca una descripción")
+                    Exit Sub
+                End If
+            Next
             dgLineasPres1.Rows.Insert(dgLineasPres1.CurrentRow.Index)
             renumerar()
             dgLineasPres1.CurrentCell = dgLineasPres1.Rows(dgLineasPres1.CurrentRow.Index - 1).Cells(4)
 
             pos = dgLineasPres1.CurrentRow.Index
 
-            dgLineasPres1.CurrentRow.Cells(4).Value = 0
+            dgLineasPres1.CurrentRow.Cells(4).Value = 1
             dgLineasPres1.CurrentRow.Cells(5).Value = 0
             dgLineasPres1.CurrentRow.Cells(6).Value = 0
             dgLineasPres1.CurrentRow.Cells(7).Value = 0
@@ -180,14 +210,22 @@ Public Class frPedidoProv
             dgLineasPres1.CurrentRow.Cells(9).Value = 0
             dgLineasPres1.CurrentRow.Cells(10).Value = 0
             dgLineasPres1.CurrentRow.Cells(13).Value = 0
+            dgLineasPres1.CurrentRow.Cells(14).Value = 1
+            dgLineasPres1.CurrentRow.Cells(14).Style.BackColor = Color.Red
         Else
+            For Each row As DataGridViewRow In dgLineasPres2.Rows
+                If row.Cells(3).Value Is Nothing Then
+                    MsgBox("No se pueden añadir líneas nuevas hasta completar las lineas anteriores. Introduzca una descrpción")
+                    Exit Sub
+                End If
+            Next
             dgLineasPres2.Rows.Insert(dgLineasPres2.CurrentRow.Index)
             renumerar()
             dgLineasPres2.CurrentCell = dgLineasPres2.Rows(dgLineasPres2.CurrentRow.Index - 1).Cells(4)
 
             pos = dgLineasPres2.CurrentRow.Index
 
-            dgLineasPres2.CurrentRow.Cells(4).Value = 0
+            dgLineasPres2.CurrentRow.Cells(4).Value = 1
             dgLineasPres2.CurrentRow.Cells(5).Value = 0
             dgLineasPres2.CurrentRow.Cells(6).Value = 0
             dgLineasPres2.CurrentRow.Cells(7).Value = 0
@@ -195,7 +233,10 @@ Public Class frPedidoProv
             dgLineasPres2.CurrentRow.Cells(9).Value = 0
             dgLineasPres2.CurrentRow.Cells(10).Value = 0
             dgLineasPres2.CurrentRow.Cells(13).Value = 0
+            dgLineasPres2.CurrentRow.Cells(14).Value = 1
+            dgLineasPres1.CurrentRow.Cells(14).Style.BackColor = Color.Red
         End If
+        newLinea = "N"
     End Sub
     Public Sub renumerar()
         lineas = 1
@@ -246,7 +287,11 @@ Public Class frPedidoProv
                 Dim dto2 As Decimal
                 Dim totaldef As Decimal
                 Dim medida As Decimal
+                Dim cantidad As Decimal
+                cantidad = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(4).Value)
 
+                dgLineasPres1.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(4).Value)
+                dgLineasPres1.CurrentRow.Cells(4).Value = cantidad
                 If dgLineasPres1.CurrentRow.Cells(5).Value = 0 Then
                     total2 = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(4).Value) * Decimal.Parse(dgLineasPres1.CurrentRow.Cells(7).Value)
                 Else
@@ -297,8 +342,17 @@ Public Class frPedidoProv
             recalcularTotales()
 
         End If
+        If (e.ColumnIndex = 2) Then
+            Dim vRef As String = dgLineasPres1.CurrentCell.Value
+            cargarArticulos(vRef)
+            actualizarLinea()
+            recalcularTotales()
+        End If
         If (e.ColumnIndex = 13) Then
+            Dim entrada As Decimal
+            entrada = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(13).Value)
             dgLineasPres1.CurrentRow.Cells(14).Value = Decimal.Parse(dgLineasPres1.CurrentRow.Cells(4).Value) - Decimal.Parse(dgLineasPres1.CurrentRow.Cells(13).Value)
+            dgLineasPres1.CurrentRow.Cells(13).Value = entrada
             dgLineasPres1.CurrentCell = dgLineasPres1.CurrentRow.Cells(2)
         End If
     End Sub
@@ -382,8 +436,12 @@ Public Class frPedidoProv
         deshabilitarBotones()
         limpiarFormulario()
         If flagEdit = "S" Then
+            dgLineasPres2.Rows.Clear()
             flagEdit = "N"
+        Else
+            dgLineasPres1.Rows.Clear()
         End If
+        lineas = 0
         tabPresupuestos.SelectTab(0)
     End Sub
 
@@ -401,7 +459,13 @@ Public Class frPedidoProv
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
 
             Dim fecha As Date = txFecha.Text
-            Dim fechaent As Date = txFechaEntrega.Text
+            Dim fechaent As Date
+            If txFechaEntrega.Text = "  /  /" Then
+                fechaent = Nothing
+            Else
+                fechaent = txFechaEntrega.Text
+            End If
+
 
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -507,7 +571,12 @@ Public Class frPedidoProv
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
 
             Dim fecha As Date = txFecha.Text
-            Dim fechaent As Date = txFechaEntrega.Text
+            Dim fechaent As Date
+            If txFechaEntrega.Text = "  /  /" Then
+                fechaent = Nothing
+            Else
+                fechaent = txFechaEntrega.Text
+            End If
 
             'Guardo cabecera y actualizo número de presupuesto
 
@@ -835,5 +904,56 @@ Public Class frPedidoProv
             artiEdit = dgLineasPres2.CurrentRow.Cells(2).Value
             cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
         End If
+    End Sub
+    Public Sub cargarArticulos(refer As String)
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmdCli As New MySqlCommand
+        Dim rdrArt As MySqlDataReader
+        cmdCli = New MySqlCommand("SELECT ref_proveedor,referencia,descripcion,pvp,iva,medidaID,familia FROM articulos2 WHERE ref_proveedor = '" & refer & "'", conexionmy)
+
+
+        cmdCli.CommandType = CommandType.Text
+        cmdCli.Connection = conexionmy
+        rdrArt = cmdCli.ExecuteReader
+        rdrArt.Read()
+
+        If rdrArt.HasRows = True Then
+            If flagEdit = "N" Then
+                dgLineasPres1.CurrentRow.Cells(3).Value = rdrArt("descripcion")
+                dgLineasPres1.CurrentRow.Cells(4).Value = 1
+                dgLineasPres1.CurrentRow.Cells(5).Value = rdrArt("medidaID") / 100
+                dgLineasPres1.CurrentRow.Cells(6).Value = dgLineasPres1.CurrentRow.Cells(4).Value * dgLineasPres1.CurrentRow.Cells(5).Value
+                dgLineasPres1.CurrentRow.Cells(7).Value = rdrArt("pvp")
+                dgLineasPres1.CurrentRow.Cells(8).Value = txDtocli.Text
+                dgLineasPres1.CurrentRow.Cells(9).Value = 0
+                dgLineasPres1.CurrentRow.Cells(10).Value = 0
+                dgLineasPres1.CurrentRow.Cells(11).Value = ""
+                txIva.Text = rdrArt("iva")
+                'dgLineasPres1.CurrentCell = dgLineasPres1.CurrentRow.Cells(4)
+                'dgLineasPres1.BeginEdit(True)
+            Else
+                dgLineasPres2.CurrentRow.Cells(3).Value = rdrArt("descripcion")
+                dgLineasPres2.CurrentRow.Cells(4).Value = 1
+                dgLineasPres2.CurrentRow.Cells(5).Value = rdrArt("medidaID") / 100
+                dgLineasPres2.CurrentRow.Cells(6).Value = dgLineasPres2.CurrentRow.Cells(4).Value * dgLineasPres2.CurrentRow.Cells(5).Value
+                dgLineasPres2.CurrentRow.Cells(7).Value = rdrArt("pvp")
+                dgLineasPres2.CurrentRow.Cells(8).Value = txDtocli.Text
+                dgLineasPres2.CurrentRow.Cells(9).Value = 0
+                dgLineasPres2.CurrentRow.Cells(10).Value = 0
+                dgLineasPres2.CurrentRow.Cells(11).Value = ""
+                txIva.Text = rdrArt("iva")
+                'dgLineasPres2.CurrentCell = dgLineasPres2.CurrentRow.Cells(4)
+                'dgLineasPres2.BeginEdit(True)
+            End If
+        Else
+
+        End If
+
+
+
+        rdrArt.Close()
+
+        conexionmy.Close()
     End Sub
 End Class
