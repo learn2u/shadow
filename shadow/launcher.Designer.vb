@@ -22,6 +22,7 @@ Partial Class launcher
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(launcher))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.EmpresaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConfiguraciónEmpresaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -150,7 +151,7 @@ Partial Class launcher
         'ArtículosToolStripMenuItem
         '
         Me.ArtículosToolStripMenuItem.Name = "ArtículosToolStripMenuItem"
-        Me.ArtículosToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ArtículosToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
         Me.ArtículosToolStripMenuItem.Text = "Artículos"
         '
         'ADMINISTRACIÓNToolStripMenuItem
@@ -163,15 +164,19 @@ Partial Class launcher
         'GastosToolStripMenuItem
         '
         Me.GastosToolStripMenuItem.Name = "GastosToolStripMenuItem"
-        Me.GastosToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.GastosToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.GastosToolStripMenuItem.Text = "Gastos"
         '
         'launcher
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.White
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(907, 518)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.DoubleBuffered = True
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "launcher"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
