@@ -16,20 +16,24 @@ Public Class frArticulos
         Dim consultfamilia As New MySqlCommand("SELECT * FROM familias ORDER BY nombrefamilia", conexionmy)
         Dim consultMedidas As New MySqlCommand("SELECT * FROM unidades ORDER BY unidades", conexionmy)
         Dim consultMedidasNum As New MySqlCommand("SELECT * FROM medidas ORDER BY medida", conexionmy)
+        Dim consultColores As New MySqlCommand("SELECT * FROM colores ORDER BY colores", conexionmy)
         Dim consultacli As New MySqlCommand("SELECT ref_proveedor, grupoID, descripcion, color, pvp FROM articulos2 ORDER BY ref_proveedor", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim readerMedida As MySqlDataReader
         Dim readerMedidaNum As MySqlDataReader
+        Dim readerColores As MySqlDataReader
         Dim dtable As New DataTable
         Dim dtableMedida As New DataTable
         Dim dtableMedidaNum As New DataTable
+        Dim dtableColores As New DataTable
         Dim readercli As MySqlDataReader
         Dim dtablecli As New DataTable
         Dim bind As New BindingSource()
         Dim bind2 As New BindingSource()
         Dim bind3 As New BindingSource()
         Dim bind4 As New BindingSource()
+        Dim bind5 As New BindingSource()
 
         readermy = consultfamilia.ExecuteReader
         dtable.Load(readermy, LoadOption.OverwriteChanges)
@@ -40,6 +44,9 @@ Public Class frArticulos
         readerMedidaNum = consultMedidasNum.ExecuteReader
         dtableMedidaNum.Load(readerMedidaNum, LoadOption.OverwriteChanges)
 
+        readerColores = consultColores.ExecuteReader
+        dtableColores.Load(readerColores, LoadOption.OverwriteChanges)
+
         readercli = consultacli.ExecuteReader
         dtablecli.Load(readercli, LoadOption.OverwriteChanges)
 
@@ -47,6 +54,7 @@ Public Class frArticulos
         bind2.DataSource = dtableMedida
         bind3.DataSource = dtablecli
         bind4.DataSource = dtableMedidaNum
+        bind5.DataSource = dtableColores
 
         dgArticulos.DataSource = bind3
         dgArticulos.EnableHeadersVisualStyles = False
@@ -92,6 +100,14 @@ Public Class frArticulos
         cbUnidad.DisplayMember = "unidades"
         cbUnidad.ValueMember = "unidadID"
 
+        cbMedidas.DataSource = bind4
+        cbMedidas.DisplayMember = "medida"
+        cbMedidas.ValueMember = "medidaID"
+
+        cbColores.DataSource = bind5
+        cbColores.DisplayMember = "colores"
+        cbColores.ValueMember = "colorID"
+
         conexionmy.Close()
     End Sub
 
@@ -99,7 +115,6 @@ Public Class frArticulos
         deshabilitarBotones()
         pnModelo.Visible = False
         pnTejidos.Visible = False
-        pnColores.Visible = False
 
         TabControl1.SelectTab(1)
         cmdNuevo.Enabled = True
@@ -137,7 +152,6 @@ Public Class frArticulos
         cmdLotes.Enabled = False
         btProveedor.Enabled = False
         btModelo.Enabled = False
-        btColor.Enabled = False
         btTejidos.Enabled = False
 
     End Sub
@@ -151,10 +165,7 @@ Public Class frArticulos
         txModelo.Text = ""
         txModeloID.Text = ""
         txTejido.Text = ""
-        txColor.Text = ""
-        txColorID.Text = ""
         txUbicacion.Text = ""
-        txMedida.Text = ""
         ckControlStock.Enabled = False
         txIva.Text = ""
         txCompra.Text = 0
@@ -212,7 +223,7 @@ Public Class frArticulos
             End If
 
             cmd.CommandType = System.Data.CommandType.Text
-            cmd.CommandText = "INSERT INTO articulos2 (ref_proveedor, referencia, grupoID, proveedorID, descripcion, modelo, tejido, familia, color, colorID, ubicacion, medida, unidad, control_stock, iva, precio_compra, dto_prov, porc_margen, euro_margen, pvp, stock, stock_min, stock_ini) VALUES ('" + txRefProv.Text + "' , '" + txCodigo.Text + "' , '" + txGrupo.Text + "' , '" + txNumPro.Text + "' , '" + txDescripcion.Text + "' , '" + txModelo.Text + "' , '" + txTejido.Text + "' , '" + cbFamilias.SelectedValue.ToString + "' , '" + txColor.Text + "' , '" + txColorID.Text + "' , '" + txUbicacion.Text + "' , '" + txMedida.Text + "' , '" + cbUnidad.SelectedValue.ToString + "' , '" + equiv + "' , '" + guardo_iva + "' , '" + guardo_compra + "' , '" + guardo_dto + "' , '" + guardo_margenpor + "' , '" + guardo_margeneur + "' , '" + guardo_precio + "' , '" + guardo_stock + "' , '" + guardo_stockmin + "' , '" + guardo_stockini + "')"
+            cmd.CommandText = "INSERT INTO articulos2 (ref_proveedor, referencia, grupoID, proveedorID, descripcion, modelo, tejido, familia, color, colorID, ubicacion, medida, unidad, control_stock, iva, precio_compra, dto_prov, porc_margen, euro_margen, pvp, stock, stock_min, stock_ini) VALUES ('" + txRefProv.Text + "' , '" + txCodigo.Text + "' , '" + txGrupo.Text + "' , '" + txNumPro.Text + "' , '" + txDescripcion.Text + "' , '" + txModelo.Text + "' , '" + txTejido.Text + "' , '" + cbFamilias.SelectedValue.ToString + "' , '" + cbColores.Text + "' , '" + cbColores.SelectedValue.ToString + "' , '" + txUbicacion.Text + "' , '" + cbMedidas.SelectedValue.ToString + "' , '" + cbUnidad.SelectedValue.ToString + "' , '" + equiv + "' , '" + guardo_iva + "' , '" + guardo_compra + "' , '" + guardo_dto + "' , '" + guardo_margenpor + "' , '" + guardo_margeneur + "' , '" + guardo_precio + "' , '" + guardo_stock + "' , '" + guardo_stockmin + "' , '" + guardo_stockini + "')"
 
             cmd.Connection = conexionmy
 
@@ -275,14 +286,14 @@ Public Class frArticulos
                                                 referencia = '" + txCodigo.Text + "',
                                                 grupoID = '" + txGrupo.Text + "', 
                                                 proveedorID = '" + txNumPro.Text + "',
-                                                medida= '" + txMedida.Text + "',
+                                                medida= '" + cbMedidas.SelectedValue.ToString + "',
                                                 tejido = '" + txTejido.Text + "',
                                                 modelo = '" + txModelo.Text + "',
                                                 familia = '" + cbFamilias.SelectedValue.ToString + "',
-                                                color = '" + txColor.Text + "',
-                                                colorID = '" + txColorID.Text + "',
+                                                color = '" + cbColores.Text + "',
+                                                colorID = '" + cbColores.SelectedValue.ToString + "',
                                                 ubicacion = '" + txUbicacion.Text + "',
-                                                medida = '" + txMedida.Text + "',
+                                                medida = '" + cbMedidas.SelectedValue.ToString + "',
                                                 unidad = '" + cbUnidad.SelectedValue.ToString + "',
                                                 control_stock = '" + equiv + "',
                                                 iva = '" + guardo_iva + "',
@@ -316,7 +327,7 @@ Public Class frArticulos
 
         conexionmy.Open()
 
-        Dim consultamod As New MySqlCommand("SELECT modeloID, modelos FROM modelos_lona", conexionmy)
+        Dim consultamod As New MySqlCommand("SELECT modeloID, modelos FROM modelos_lona ORDER BY modelos", conexionmy)
         Dim readermod As MySqlDataReader
         Dim dtablemod As New DataTable
         Dim bind4 As New BindingSource()
@@ -348,50 +359,7 @@ Public Class frArticulos
         conexionmy.Close()
 
     End Sub
-    Public Sub cargarColores()
-        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
-        conexionmy.Open()
-
-        Dim consultacolor As New MySqlCommand("SELECT colorID, colores FROM colores", conexionmy)
-        Dim readercolor As MySqlDataReader
-        Dim dtablecolor As New DataTable
-        Dim bind5 As New BindingSource()
-
-        readercolor = consultacolor.ExecuteReader
-        dtablecolor.Load(readercolor, LoadOption.OverwriteChanges)
-        bind5.DataSource = dtablecolor
-
-        DataGridView1.DataSource = bind5
-        DataGridView1.EnableHeadersVisualStyles = False
-        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
-        styCabeceras.BackColor = Color.Beige
-        styCabeceras.ForeColor = Color.Black
-        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
-        DataGridView1.ColumnHeadersDefaultCellStyle = styCabeceras
-
-        DataGridView1.Columns(0).HeaderText = "ID"
-        DataGridView1.Columns(0).Name = "Column21"
-        DataGridView1.Columns(0).FillWeight = 40
-        DataGridView1.Columns(0).MinimumWidth = 40
-        DataGridView1.Columns(1).HeaderText = "COLORES"
-        DataGridView1.Columns(1).Name = "Column22"
-        DataGridView1.Columns(1).FillWeight = 250
-        DataGridView1.Columns(1).MinimumWidth = 250
-
-        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        DataGridView1.Visible = True
-
-        conexionmy.Close()
-
-    End Sub
-
-    Private Sub btColor_Click(sender As Object, e As EventArgs) Handles btColor.Click
-
-        pnColores.Visible = True
-        cargarColores()
-
-    End Sub
 
     Private Sub btModelo_Click(sender As Object, e As EventArgs) Handles btModelo.Click
 
@@ -405,11 +373,6 @@ Public Class frArticulos
 
     End Sub
 
-    Private Sub btCloseCol_Click(sender As Object, e As EventArgs) Handles btCloseCol.Click
-        pnColores.Visible = False
-
-    End Sub
-
     Private Sub dgMods_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgMods.CellClick
         txModeloID.Text = dgMods.CurrentRow.Cells(0).Value
         txModelo.Text = dgMods.CurrentRow.Cells(1).Value
@@ -417,12 +380,7 @@ Public Class frArticulos
 
     End Sub
 
-    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
-        txColorID.Text = DataGridView1.CurrentRow.Cells(0).Value
-        txColor.Text = DataGridView1.CurrentRow.Cells(1).Value
-        pnColores.Visible = False
 
-    End Sub
 
     Private Sub cmdNuevo_Click(sender As Object, e As EventArgs) Handles cmdNuevo.Click
         limpiarFormulario()
@@ -434,7 +392,6 @@ Public Class frArticulos
         cmdLonas.Enabled = True
         btProveedor.Enabled = True
         btModelo.Enabled = False
-        btColor.Enabled = True
         btTejidos.Enabled = False
         GroupBox2.Enabled = False
 
