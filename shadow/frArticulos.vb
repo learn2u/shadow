@@ -413,7 +413,7 @@ Public Class frArticulos
 
         conexionmy.Open()
 
-        Dim consultacolor As New MySqlCommand("SELECT colorID, coloreslona FROM colores_lona", conexionmy)
+        Dim consultacolor As New MySqlCommand("SELECT colorID, coloreslona FROM colores_lona ORDER BY coloreslona", conexionmy)
         Dim readercolor As MySqlDataReader
         Dim dtablecolor As New DataTable
         Dim bind5 As New BindingSource()
