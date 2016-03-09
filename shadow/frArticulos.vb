@@ -14,18 +14,22 @@ Public Class frArticulos
         conexionmy.Open()
 
         Dim consultfamilia As New MySqlCommand("SELECT * FROM familias ORDER BY nombrefamilia", conexionmy)
-        Dim consultMedidas As New MySqlCommand("SELECT * FROM medidas ORDER BY medida", conexionmy)
+        Dim consultMedidas As New MySqlCommand("SELECT * FROM unidades ORDER BY unidades", conexionmy)
+        Dim consultMedidasNum As New MySqlCommand("SELECT * FROM medidas ORDER BY medida", conexionmy)
         Dim consultacli As New MySqlCommand("SELECT ref_proveedor, grupoID, descripcion, color, pvp FROM articulos2 ORDER BY ref_proveedor", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim readerMedida As MySqlDataReader
+        Dim readerMedidaNum As MySqlDataReader
         Dim dtable As New DataTable
         Dim dtableMedida As New DataTable
+        Dim dtableMedidaNum As New DataTable
         Dim readercli As MySqlDataReader
         Dim dtablecli As New DataTable
         Dim bind As New BindingSource()
         Dim bind2 As New BindingSource()
         Dim bind3 As New BindingSource()
+        Dim bind4 As New BindingSource()
 
         readermy = consultfamilia.ExecuteReader
         dtable.Load(readermy, LoadOption.OverwriteChanges)
@@ -33,12 +37,16 @@ Public Class frArticulos
         readerMedida = consultMedidas.ExecuteReader
         dtableMedida.Load(readerMedida, LoadOption.OverwriteChanges)
 
+        readerMedidaNum = consultMedidasNum.ExecuteReader
+        dtableMedidaNum.Load(readerMedidaNum, LoadOption.OverwriteChanges)
+
         readercli = consultacli.ExecuteReader
         dtablecli.Load(readercli, LoadOption.OverwriteChanges)
 
         bind.DataSource = dtable
         bind2.DataSource = dtableMedida
-        bind3.DataSource = dtablecli
+        bind3.DataSource =
+        bind4.DataSource = dtableMedidaNum
 
         dgArticulos.DataSource = bind3
         dgArticulos.EnableHeadersVisualStyles = False
@@ -81,8 +89,8 @@ Public Class frArticulos
         cbFamilias.ValueMember = "familiaID"
 
         cbUnidad.DataSource = bind2
-        cbUnidad.DisplayMember = "medida"
-        cbUnidad.ValueMember = "medidaID"
+        cbUnidad.DisplayMember = "unidades"
+        cbUnidad.ValueMember = "unidadID"
 
         conexionmy.Close()
     End Sub
@@ -364,12 +372,12 @@ Public Class frArticulos
 
         DataGridView1.Columns(0).HeaderText = "ID"
         DataGridView1.Columns(0).Name = "Column21"
-        DataGridView1.Columns(0).FillWeight = 30
-        DataGridView1.Columns(0).MinimumWidth = 30
+        DataGridView1.Columns(0).FillWeight = 40
+        DataGridView1.Columns(0).MinimumWidth = 40
         DataGridView1.Columns(1).HeaderText = "COLORES"
         DataGridView1.Columns(1).Name = "Column22"
-        DataGridView1.Columns(1).FillWeight = 260
-        DataGridView1.Columns(1).MinimumWidth = 260
+        DataGridView1.Columns(1).FillWeight = 250
+        DataGridView1.Columns(1).MinimumWidth = 250
 
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         DataGridView1.Visible = True
@@ -426,7 +434,7 @@ Public Class frArticulos
         cmdLonas.Enabled = True
         btProveedor.Enabled = True
         btModelo.Enabled = False
-        btColor.Enabled = False
+        btColor.Enabled = True
         btTejidos.Enabled = False
         GroupBox2.Enabled = False
 
@@ -510,7 +518,7 @@ Public Class frArticulos
 
     Private Sub btNuevaLinea_Click(sender As Object, e As EventArgs) Handles btNuevaLinea.Click
         dgLotes.Rows.Add()
-        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = txCodigo.Text
+        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = txRefProv.Text
         dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = txDescripcion.Text
         dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = ""
         dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = 0
@@ -523,5 +531,123 @@ Public Class frArticulos
 
     Private Sub btEliminarLinea_Click(sender As Object, e As EventArgs) Handles btEliminarLinea.Click
         dgLotes.Rows.RemoveAt(dgLotes.CurrentRow.Index)
+    End Sub
+
+    Private Sub dgArticulos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgArticulos.CellDoubleClick
+
+    End Sub
+
+    Private Sub txCodigo1_TextChanged(sender As Object, e As EventArgs) Handles txCodigo1.TextChanged
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+
+        conexionmy.Open()
+        Dim consultacli As New MySqlCommand("SELECT ref_proveedor, grupoID, descripcion, color, pvp FROM articulos2 WHERE ref_proveedor LIKE'" & txCodigo1.Text & "%'  ORDER BY ref_proveedor", conexionmy)
+
+        Dim readermy As MySqlDataReader
+        Dim dtable As New DataTable
+        Dim bind As New BindingSource()
+
+
+        readermy = consultacli.ExecuteReader
+        dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+        bind.DataSource = dtable
+
+
+        bind.DataSource = dtable
+        dgArticulos.DataSource = bind
+        dgArticulos.EnableHeadersVisualStyles = False
+        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+        styCabeceras.BackColor = Color.Beige
+        styCabeceras.ForeColor = Color.Black
+        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+        dgArticulos.ColumnHeadersDefaultCellStyle = styCabeceras
+
+        dgArticulos.Columns(0).HeaderText = "REF PROVEEDOR"
+        dgArticulos.Columns(0).Name = "Column1"
+        dgArticulos.Columns(0).FillWeight = 125
+        dgArticulos.Columns(0).MinimumWidth = 125
+        dgArticulos.Columns(1).HeaderText = "GRUPO"
+        dgArticulos.Columns(1).Name = "Column2"
+        dgArticulos.Columns(1).FillWeight = 75
+        dgArticulos.Columns(1).MinimumWidth = 75
+        dgArticulos.Columns(2).HeaderText = "DESCRIPCION"
+        dgArticulos.Columns(2).Name = "Column3"
+        dgArticulos.Columns(2).FillWeight = 350
+        dgArticulos.Columns(2).MinimumWidth = 350
+        dgArticulos.Columns(3).HeaderText = "COLOR"
+        dgArticulos.Columns(3).Name = "Column4"
+        dgArticulos.Columns(3).FillWeight = 175
+        dgArticulos.Columns(3).MinimumWidth = 175
+        dgArticulos.Columns(4).HeaderText = "PVP"
+        dgArticulos.Columns(4).Name = "Column5"
+        dgArticulos.Columns(4).FillWeight = 75
+        dgArticulos.Columns(4).MinimumWidth = 75
+        'gridcliente.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        'gridcliente.Columns(4).Visible = False
+        'gridcliente.Columns(5).Visible = False
+        'gridcliente.Columns(6).Visible = False
+        dgArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgArticulos.Visible = True
+
+        conexionmy.Close()
+    End Sub
+
+    Private Sub txArticulo_TextChanged(sender As Object, e As EventArgs) Handles txArticulo.TextChanged
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+
+        conexionmy.Open()
+        Dim consultacli As New MySqlCommand("SELECT ref_proveedor, grupoID, descripcion, color, pvp FROM articulos2 WHERE descripcion LIKE'" & txArticulo.Text & "%'  ORDER BY ref_proveedor", conexionmy)
+
+        Dim readermy As MySqlDataReader
+        Dim dtable As New DataTable
+        Dim bind As New BindingSource()
+
+
+        readermy = consultacli.ExecuteReader
+        dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+        bind.DataSource = dtable
+
+
+        bind.DataSource = dtable
+        dgArticulos.DataSource = bind
+        dgArticulos.EnableHeadersVisualStyles = False
+        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+        styCabeceras.BackColor = Color.Beige
+        styCabeceras.ForeColor = Color.Black
+        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+        dgArticulos.ColumnHeadersDefaultCellStyle = styCabeceras
+
+        dgArticulos.Columns(0).HeaderText = "REF PROVEEDOR"
+        dgArticulos.Columns(0).Name = "Column1"
+        dgArticulos.Columns(0).FillWeight = 125
+        dgArticulos.Columns(0).MinimumWidth = 125
+        dgArticulos.Columns(1).HeaderText = "GRUPO"
+        dgArticulos.Columns(1).Name = "Column2"
+        dgArticulos.Columns(1).FillWeight = 75
+        dgArticulos.Columns(1).MinimumWidth = 75
+        dgArticulos.Columns(2).HeaderText = "DESCRIPCION"
+        dgArticulos.Columns(2).Name = "Column3"
+        dgArticulos.Columns(2).FillWeight = 350
+        dgArticulos.Columns(2).MinimumWidth = 350
+        dgArticulos.Columns(3).HeaderText = "COLOR"
+        dgArticulos.Columns(3).Name = "Column4"
+        dgArticulos.Columns(3).FillWeight = 175
+        dgArticulos.Columns(3).MinimumWidth = 175
+        dgArticulos.Columns(4).HeaderText = "PVP"
+        dgArticulos.Columns(4).Name = "Column5"
+        dgArticulos.Columns(4).FillWeight = 75
+        dgArticulos.Columns(4).MinimumWidth = 75
+        'gridcliente.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        'gridcliente.Columns(4).Visible = False
+        'gridcliente.Columns(5).Visible = False
+        'gridcliente.Columns(6).Visible = False
+        dgArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgArticulos.Visible = True
+
+        conexionmy.Close()
     End Sub
 End Class

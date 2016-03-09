@@ -26,6 +26,10 @@ Partial Class frArticulos
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.txCodigo1 = New System.Windows.Forms.TextBox()
+        Me.txArticulo = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.dgArticulos = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.tsBotones = New System.Windows.Forms.ToolStrip()
@@ -153,6 +157,10 @@ Partial Class frArticulos
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.txCodigo1)
+        Me.TabPage1.Controls.Add(Me.txArticulo)
+        Me.TabPage1.Controls.Add(Me.Label5)
+        Me.TabPage1.Controls.Add(Me.Label13)
         Me.TabPage1.Controls.Add(Me.dgArticulos)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
@@ -162,13 +170,45 @@ Partial Class frArticulos
         Me.TabPage1.Text = "ARTICULOS"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'txCodigo1
+        '
+        Me.txCodigo1.Location = New System.Drawing.Point(103, 13)
+        Me.txCodigo1.Name = "txCodigo1"
+        Me.txCodigo1.Size = New System.Drawing.Size(630, 20)
+        Me.txCodigo1.TabIndex = 15
+        '
+        'txArticulo
+        '
+        Me.txArticulo.Location = New System.Drawing.Point(103, 46)
+        Me.txArticulo.Name = "txArticulo"
+        Me.txArticulo.Size = New System.Drawing.Size(630, 20)
+        Me.txArticulo.TabIndex = 13
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(33, 53)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(64, 13)
+        Me.Label5.TabIndex = 16
+        Me.Label5.Text = "ARTÍCULO:"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(33, 20)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(52, 13)
+        Me.Label13.TabIndex = 14
+        Me.Label13.Text = "CÓDIGO:"
+        '
         'dgArticulos
         '
         Me.dgArticulos.AllowUserToAddRows = False
         Me.dgArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgArticulos.Location = New System.Drawing.Point(6, 18)
+        Me.dgArticulos.Location = New System.Drawing.Point(6, 86)
         Me.dgArticulos.Name = "dgArticulos"
-        Me.dgArticulos.Size = New System.Drawing.Size(907, 527)
+        Me.dgArticulos.Size = New System.Drawing.Size(907, 459)
         Me.dgArticulos.TabIndex = 12
         '
         'TabPage2
@@ -572,6 +612,7 @@ Partial Class frArticulos
         Me.txTejidoID.Name = "txTejidoID"
         Me.txTejidoID.Size = New System.Drawing.Size(72, 20)
         Me.txTejidoID.TabIndex = 143
+        Me.txTejidoID.Visible = False
         '
         'btTejidos
         '
@@ -1081,6 +1122,7 @@ Partial Class frArticulos
         Me.Text = "ARTICULOS"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
         CType(Me.dgArticulos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.tsBotones.ResumeLayout(False)
@@ -1201,4 +1243,8 @@ Partial Class frArticulos
     Friend WithEvents ubicacion As DataGridViewTextBoxColumn
     Friend WithEvents btEliminarLinea As Button
     Friend WithEvents btNuevaLinea As Button
+    Friend WithEvents txCodigo1 As TextBox
+    Friend WithEvents txArticulo As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label13 As Label
 End Class
