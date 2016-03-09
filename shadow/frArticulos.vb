@@ -13,48 +13,21 @@ Public Class frArticulos
 
         conexionmy.Open()
 
-        Dim consultfamilia As New MySqlCommand("SELECT * FROM familias ORDER BY nombrefamilia", conexionmy)
-        Dim consultMedidas As New MySqlCommand("SELECT * FROM unidades ORDER BY unidades", conexionmy)
-        Dim consultMedidasNum As New MySqlCommand("SELECT * FROM medidas ORDER BY medida", conexionmy)
-        Dim consultColores As New MySqlCommand("SELECT * FROM colores ORDER BY colores", conexionmy)
         Dim consultacli As New MySqlCommand("SELECT ref_proveedor, grupoID, descripcion, color, pvp FROM articulos2 ORDER BY ref_proveedor", conexionmy)
 
-        Dim readermy As MySqlDataReader
-        Dim readerMedida As MySqlDataReader
-        Dim readerMedidaNum As MySqlDataReader
-        Dim readerColores As MySqlDataReader
-        Dim dtable As New DataTable
-        Dim dtableMedida As New DataTable
-        Dim dtableMedidaNum As New DataTable
-        Dim dtableColores As New DataTable
+
         Dim readercli As MySqlDataReader
         Dim dtablecli As New DataTable
-        Dim bind As New BindingSource()
-        Dim bind2 As New BindingSource()
+
         Dim bind3 As New BindingSource()
-        Dim bind4 As New BindingSource()
-        Dim bind5 As New BindingSource()
 
-        readermy = consultfamilia.ExecuteReader
-        dtable.Load(readermy, LoadOption.OverwriteChanges)
 
-        readerMedida = consultMedidas.ExecuteReader
-        dtableMedida.Load(readerMedida, LoadOption.OverwriteChanges)
-
-        readerMedidaNum = consultMedidasNum.ExecuteReader
-        dtableMedidaNum.Load(readerMedidaNum, LoadOption.OverwriteChanges)
-
-        readerColores = consultColores.ExecuteReader
-        dtableColores.Load(readerColores, LoadOption.OverwriteChanges)
 
         readercli = consultacli.ExecuteReader
         dtablecli.Load(readercli, LoadOption.OverwriteChanges)
 
-        bind.DataSource = dtable
-        bind2.DataSource = dtableMedida
+
         bind3.DataSource = dtablecli
-        bind4.DataSource = dtableMedidaNum
-        bind5.DataSource = dtableColores
 
         dgArticulos.DataSource = bind3
         dgArticulos.EnableHeadersVisualStyles = False
@@ -90,23 +63,6 @@ Public Class frArticulos
         'gridcliente.Columns(6).Visible = False
         dgArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgArticulos.Visible = True
-
-
-        cbFamilias.DataSource = bind
-        cbFamilias.DisplayMember = "nombrefamilia"
-        cbFamilias.ValueMember = "familiaID"
-
-        cbUnidad.DataSource = bind2
-        cbUnidad.DisplayMember = "unidades"
-        cbUnidad.ValueMember = "unidadID"
-
-        cbMedidas.DataSource = bind4
-        cbMedidas.DisplayMember = "medida"
-        cbMedidas.ValueMember = "medidaID"
-
-        cbColores.DataSource = bind5
-        cbColores.DisplayMember = "colores"
-        cbColores.ValueMember = "colorID"
 
         conexionmy.Close()
     End Sub
@@ -153,6 +109,7 @@ Public Class frArticulos
         btProveedor.Enabled = False
         btModelo.Enabled = False
         btTejidos.Enabled = False
+        cmdDuplicar.Enabled = False
 
     End Sub
     Public Sub limpiarFormulario()
@@ -166,7 +123,7 @@ Public Class frArticulos
         txModeloID.Text = ""
         txTejido.Text = ""
         txUbicacion.Text = ""
-        ckControlStock.Enabled = False
+        ckControlStock.Enabled = True
         txIva.Text = ""
         txCompra.Text = 0
         txDto.Text = 0
@@ -286,18 +243,19 @@ Public Class frArticulos
                                                 referencia = '" + txCodigo.Text + "',
                                                 grupoID = '" + txGrupo.Text + "', 
                                                 proveedorID = '" + txNumPro.Text + "',
-                                                medida= '" + cbMedidas.SelectedValue.ToString + "',
+                                                medidaID= '" + cbMedidas.SelectedValue.ToString + "',
+                                                medida = '" + cbMedidas.Text + "',
                                                 tejido = '" + txTejido.Text + "',
-                                                modelo = '" + txModelo.Text + "',
+                                                modelo = '" + txModeloID.Text + "',
                                                 familia = '" + cbFamilias.SelectedValue.ToString + "',
                                                 color = '" + cbColores.Text + "',
                                                 colorID = '" + cbColores.SelectedValue.ToString + "',
                                                 ubicacion = '" + txUbicacion.Text + "',
-                                                medida = '" + cbMedidas.SelectedValue.ToString + "',
                                                 unidad = '" + cbUnidad.SelectedValue.ToString + "',
+                                                ud_medida = '" + cbUnidad.Text + "',
                                                 control_stock = '" + equiv + "',
                                                 iva = '" + guardo_iva + "',
-                                                compra = '" + guardo_compra + "',
+                                                precio_compra = '" + guardo_compra + "',
                                                 dto_prov = '" + guardo_dto + "',
                                                 porc_margen = '" + guardo_margenpor + "',
                                                 euro_margen = '" + guardo_margeneur + "',
@@ -309,10 +267,12 @@ Public Class frArticulos
 
             MsgBox("Los datos del artículo se han actualizado correctamente")
             flagEditArti = False
-            Me.Close()
+            'Me.Close()
         End If
         TabControl2.SelectTab(0)
         TabControl1.SelectTab(0)
+        txCodigo1.Text = ""
+        txArticulo.Text = ""
         cargoArticulos()
 
     End Sub
@@ -390,10 +350,13 @@ Public Class frArticulos
         cmdFlechas.Enabled = False
         cmdLotes.Enabled = True
         cmdLonas.Enabled = True
+        cmdDuplicar.Enabled = False
         btProveedor.Enabled = True
         btModelo.Enabled = False
         btTejidos.Enabled = False
         GroupBox2.Enabled = False
+
+        cargoCombos()
 
         txRefProv.Focus()
 
@@ -495,6 +458,8 @@ Public Class frArticulos
         TabControl1.SelectTab(1)
         cargoDatos()
         cmdNuevo.Enabled = False
+        cmdGuardar.Enabled = True
+        cmdDuplicar.Enabled = True
 
         flagEditArti = True
     End Sub
@@ -631,13 +596,21 @@ Public Class frArticulos
         txCodigo.Text = rdr("referencia")
         txGrupo.Text = rdr("grupoID")
         txNumPro.Text = rdr("proveedorID")
-        cargoProveedior()
+        cargoProveedor()
+        cargoCombos()
         If rdr("familia") <> 7 Then
             GroupBox2.Enabled = False
         Else
             GroupBox2.Enabled = True
         End If
+        cargoFamilia(rdr("familia"))
         txDescripcion.Text = rdr("descripcion")
+        cbColores.Text = rdr("color")
+        'cbColores.ValueMember = rdr("colorID")
+        cbMedidas.Text = rdr("medida")
+        'cbMedidas.ValueMember = ("medidaID")
+        cbUnidad.Text = rdr("ud_medida")
+        'cbUnidad.ValueMember = rdr("unidad")
         txIva.Text = rdr("iva")
         txCompra.Text = rdr("precio_compra")
         txDto.Text = rdr("dto_prov")
@@ -649,10 +622,10 @@ Public Class frArticulos
         txMinimo.Text = rdr("stock_min")
         txInicial.Text = rdr("stock_ini")
 
-
         conexionmy.Close()
+
     End Sub
-    Public Sub cargoProveedior()
+    Public Sub cargoProveedor()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
         Dim cmd As New MySqlCommand
@@ -675,5 +648,172 @@ Public Class frArticulos
     Private Sub cmdCancelar_Click(sender As Object, e As EventArgs) Handles cmdCancelar.Click
         limpiarFormulario()
         TabControl1.SelectTab(0)
+        txCodigo1.Text = ""
+        txArticulo.Text = ""
+    End Sub
+    Public Sub cargoCombos()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+
+        conexionmy.Open()
+
+        Dim consultfamilia As New MySqlCommand("SELECT * FROM familias ORDER BY nombrefamilia", conexionmy)
+        Dim consultMedidas As New MySqlCommand("SELECT * FROM unidades ORDER BY unidades", conexionmy)
+        Dim consultMedidasNum As New MySqlCommand("SELECT * FROM medidas ORDER BY medida", conexionmy)
+        Dim consultColores As New MySqlCommand("SELECT * FROM colores ORDER BY colores", conexionmy)
+
+        Dim readermy As MySqlDataReader
+        Dim readerMedida As MySqlDataReader
+        Dim readerMedidaNum As MySqlDataReader
+        Dim readerColores As MySqlDataReader
+        Dim dtable As New DataTable
+        Dim dtableMedida As New DataTable
+        Dim dtableMedidaNum As New DataTable
+        Dim dtableColores As New DataTable
+
+        Dim bind As New BindingSource()
+        Dim bind2 As New BindingSource()
+        Dim bind4 As New BindingSource()
+        Dim bind5 As New BindingSource()
+
+        readermy = consultfamilia.ExecuteReader
+        dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+        readerMedida = consultMedidas.ExecuteReader
+        dtableMedida.Load(readerMedida, LoadOption.OverwriteChanges)
+
+        readerMedidaNum = consultMedidasNum.ExecuteReader
+        dtableMedidaNum.Load(readerMedidaNum, LoadOption.OverwriteChanges)
+
+        readerColores = consultColores.ExecuteReader
+        dtableColores.Load(readerColores, LoadOption.OverwriteChanges)
+
+        bind.DataSource = dtable
+        bind2.DataSource = dtableMedida
+        bind4.DataSource = dtableMedidaNum
+        bind5.DataSource = dtableColores
+
+        cbFamilias.DataSource = bind
+        cbFamilias.DisplayMember = "nombrefamilia"
+        cbFamilias.ValueMember = "familiaID"
+
+        cbUnidad.DataSource = bind2
+        cbUnidad.DisplayMember = "unidades"
+        cbUnidad.ValueMember = "unidadID"
+
+        cbMedidas.DataSource = bind4
+        cbMedidas.DisplayMember = "medida"
+        cbMedidas.ValueMember = "medidaID"
+
+        cbColores.DataSource = bind5
+        cbColores.DisplayMember = "colores"
+        cbColores.ValueMember = "colorID"
+
+        conexionmy.Close()
+
+    End Sub
+    Public Sub cargoFamilia(famCod As String)
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmd As New MySqlCommand
+
+        Dim rdr As MySqlDataReader
+
+        cmd = New MySqlCommand("SELECT * FROM familias WHERE familiaID = '" + famCod + "'", conexionmy)
+
+        cmd.CommandType = CommandType.Text
+        cmd.Connection = conexionmy
+        rdr = cmd.ExecuteReader
+
+
+        rdr.Read()
+
+        cbFamilias.Text = rdr("nombrefamilia")
+        'cbFamilias.ValueMember = rdr("familiaID")
+        conexionmy.Close()
+    End Sub
+
+    Private Sub cmdDuplicar_Click(sender As Object, e As EventArgs) Handles cmdDuplicar.Click
+
+        Dim respuesta As String
+        respuesta = MsgBox("Va a duplicar esta ficha de artículo ¿Está seguro?", vbYesNo)
+        If respuesta = vbYes Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim equiv As String
+
+            Dim cmd As New MySqlCommand
+            Dim cmdLastId As New MySqlCommand("SELECT LAST_INSERT_ID()  ", conexionmy)
+            Dim numid As Int32
+
+
+            Dim descuento As String = txDto.Text
+            Dim guardo_descuento As String = Replace(descuento, ",", ".")
+            Dim iva As String = txIva.Text
+            Dim guardo_iva As String = Replace(iva, ",", ".")
+            Dim compra As String = txCompra.Text
+            Dim guardo_compra As String = Replace(compra, ",", ".")
+            Dim dto As String = txDto.Text
+            Dim guardo_dto As String = Replace(dto, ",", ".")
+            Dim margenpor As String = txMargenPor.Text
+            Dim guardo_margenpor As String = Replace(margenpor, ",", ".")
+            Dim margeneur As String = txMargenEuro.Text
+            Dim guardo_margeneur As String = Replace(margeneur, ",", ".")
+            Dim precio As String = txPrecio.Text
+            Dim guardo_precio As String = Replace(precio, ",", ".")
+            Dim stock As String = txStock.Text
+            Dim guardo_stock As String = Replace(stock, ",", ".")
+
+            Dim stockmin As String = txMinimo.Text
+            Dim guardo_stockmin As String = Replace(stockmin, ",", ".")
+            Dim stockini As String = txInicial.Text
+            Dim guardo_stockini As String = Replace(stockini, ",", ".")
+
+
+
+            If ckControlStock.Checked = True Then
+                equiv = "S"
+            Else
+                equiv = "N"
+            End If
+
+            cmd.CommandType = System.Data.CommandType.Text
+            cmd.CommandText = "INSERT INTO articulos2 (ref_proveedor, referencia, grupoID, proveedorID, descripcion, modelo, tejido, familia, color, colorID, ubicacion, medida, unidad, control_stock, iva, precio_compra, dto_prov, porc_margen, euro_margen, pvp, stock, stock_min, stock_ini) VALUES ('" + txRefProv.Text + "' , '" + txCodigo.Text + "' , '" + txGrupo.Text + "' , '" + txNumPro.Text + "' , '" + txDescripcion.Text + "' , '" + txModelo.Text + "' , '" + txTejido.Text + "' , '" + cbFamilias.SelectedValue.ToString + "' , '" + cbColores.Text + "' , '" + cbColores.SelectedValue.ToString + "' , '" + txUbicacion.Text + "' , '" + cbMedidas.SelectedValue.ToString + "' , '" + cbUnidad.SelectedValue.ToString + "' , '" + equiv + "' , '" + guardo_iva + "' , '" + guardo_compra + "' , '" + guardo_dto + "' , '" + guardo_margenpor + "' , '" + guardo_margeneur + "' , '" + guardo_precio + "' , '" + guardo_stock + "' , '" + guardo_stockmin + "' , '" + guardo_stockini + "')"
+
+            cmd.Connection = conexionmy
+
+            cmd.ExecuteNonQuery()
+
+            numid = cmdLastId.ExecuteScalar()
+
+            'Guardo lotes
+            Dim cmdLinea As New MySqlCommand
+            Dim row As New DataGridViewRow
+            Dim lincant As String
+            Dim guardo_lincant As String
+
+
+            For Each row In dgLotes.Rows
+
+                lincant = Decimal.Parse(row.Cells(3).Value).ToString("0.00")
+                guardo_lincant = Replace(lincant, ",", ".")
+
+                cmdLinea.Connection = conexionmy
+                cmdLinea.CommandText = "INSERT INTO lotes (referencia, descripcion, lote, stock_inicial, ubicacion) VALUES ('" + row.Cells(0).Value + "', " + row.Cells(1).Value + ", '" + row.Cells(2).Value + "', '" + guardo_lincant + "', '" + row.Cells(4).Value + "')"
+
+                cmdLinea.ExecuteNonQuery()
+
+            Next
+
+            conexionmy.Close()
+
+            TabControl2.SelectTab(0)
+            TabControl1.SelectTab(0)
+            txCodigo1.Text = ""
+            txArticulo.Text = ""
+            cargoArticulos()
+        End If
+
+
     End Sub
 End Class

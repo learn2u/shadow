@@ -23,7 +23,7 @@ Partial Class frArticulos
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frArticulos))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.txCodigo1 = New System.Windows.Forms.TextBox()
@@ -206,6 +206,7 @@ Partial Class frArticulos
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.pnLotes)
         Me.TabPage2.Controls.Add(Me.tsBotones)
         Me.TabPage2.Controls.Add(Me.TabControl2)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
@@ -328,7 +329,6 @@ Partial Class frArticulos
         'TabPage4
         '
         Me.TabPage4.Controls.Add(Me.pnModelo)
-        Me.TabPage4.Controls.Add(Me.pnLotes)
         Me.TabPage4.Controls.Add(Me.pnTejidos)
         Me.TabPage4.Controls.Add(Me.cbColores)
         Me.TabPage4.Controls.Add(Me.cbMedidas)
@@ -435,9 +435,9 @@ Partial Class frArticulos
         Me.pnLotes.Controls.Add(Me.btNuevaLinea)
         Me.pnLotes.Controls.Add(Me.btCloseLotes)
         Me.pnLotes.Controls.Add(Me.dgLotes)
-        Me.pnLotes.Location = New System.Drawing.Point(27, 83)
+        Me.pnLotes.Location = New System.Drawing.Point(52, 49)
         Me.pnLotes.Name = "pnLotes"
-        Me.pnLotes.Size = New System.Drawing.Size(830, 320)
+        Me.pnLotes.Size = New System.Drawing.Size(830, 273)
         Me.pnLotes.TabIndex = 147
         Me.pnLotes.Visible = False
         '
@@ -478,7 +478,7 @@ Partial Class frArticulos
         Me.dgLotes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.referencia, Me.descripcion, Me.lote, Me.stock, Me.ubicacion})
         Me.dgLotes.Location = New System.Drawing.Point(10, 59)
         Me.dgLotes.Name = "dgLotes"
-        Me.dgLotes.Size = New System.Drawing.Size(809, 251)
+        Me.dgLotes.Size = New System.Drawing.Size(809, 203)
         Me.dgLotes.TabIndex = 0
         '
         'referencia
@@ -501,10 +501,10 @@ Partial Class frArticulos
         '
         'stock
         '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle5.Format = "N2"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.stock.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle23.Format = "N2"
+        DataGridViewCellStyle23.NullValue = Nothing
+        Me.stock.DefaultCellStyle = DataGridViewCellStyle23
         Me.stock.HeaderText = "STOCK"
         Me.stock.Name = "stock"
         Me.stock.Width = 75
@@ -518,7 +518,7 @@ Partial Class frArticulos
         'pnTejidos
         '
         Me.pnTejidos.Controls.Add(Me.grTejidos)
-        Me.pnTejidos.Location = New System.Drawing.Point(413, 220)
+        Me.pnTejidos.Location = New System.Drawing.Point(343, 42)
         Me.pnTejidos.Name = "pnTejidos"
         Me.pnTejidos.Size = New System.Drawing.Size(401, 186)
         Me.pnTejidos.TabIndex = 146
@@ -557,6 +557,8 @@ Partial Class frArticulos
         '
         'cbColores
         '
+        Me.cbColores.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbColores.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbColores.FormattingEnabled = True
         Me.cbColores.Location = New System.Drawing.Point(150, 256)
         Me.cbColores.Name = "cbColores"
@@ -565,6 +567,8 @@ Partial Class frArticulos
         '
         'cbMedidas
         '
+        Me.cbMedidas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbMedidas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbMedidas.FormattingEnabled = True
         Me.cbMedidas.Location = New System.Drawing.Point(150, 283)
         Me.cbMedidas.Name = "cbMedidas"
@@ -615,6 +619,8 @@ Partial Class frArticulos
         '
         'cbFamilias
         '
+        Me.cbFamilias.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbFamilias.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbFamilias.FormattingEnabled = True
         Me.cbFamilias.Location = New System.Drawing.Point(150, 226)
         Me.cbFamilias.Name = "cbFamilias"
@@ -713,6 +719,8 @@ Partial Class frArticulos
         '
         'cbTejido
         '
+        Me.cbTejido.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbTejido.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbTejido.FormattingEnabled = True
         Me.cbTejido.Items.AddRange(New Object() {"ACRILICO", "MICROPERFORADO", "PVC"})
         Me.cbTejido.Location = New System.Drawing.Point(81, 27)
@@ -902,6 +910,8 @@ Partial Class frArticulos
         '
         'cbUnidad
         '
+        Me.cbUnidad.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbUnidad.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbUnidad.FormattingEnabled = True
         Me.cbUnidad.Location = New System.Drawing.Point(362, 284)
         Me.cbUnidad.Name = "cbUnidad"
