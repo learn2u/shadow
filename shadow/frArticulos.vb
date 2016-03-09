@@ -45,7 +45,7 @@ Public Class frArticulos
 
         bind.DataSource = dtable
         bind2.DataSource = dtableMedida
-        bind3.DataSource =
+        bind3.DataSource = dtablecli
         bind4.DataSource = dtableMedidaNum
 
         dgArticulos.DataSource = bind3
