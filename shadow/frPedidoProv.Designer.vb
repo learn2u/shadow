@@ -94,17 +94,10 @@ Partial Class frPedidoProv
         Me.cmdPDF = New System.Windows.Forms.ToolStripButton()
         Me.cmdMail = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton7 = New System.Windows.Forms.ToolStripSeparator()
-        Me.cmdPedido = New System.Windows.Forms.ToolStripButton()
-        Me.cmdAlbaran = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.cmdToldos = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdCliente = New System.Windows.Forms.ToolStripSplitButton()
         Me.cmdNuevoCliente = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmdEditarCliente = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.cmdRentabilidad = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdLineas = New System.Windows.Forms.ToolStripSplitButton()
         Me.INSERTARToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ELIMINARToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -661,7 +654,7 @@ Partial Class frPedidoProv
         'tsBotones
         '
         Me.tsBotones.AutoSize = False
-        Me.tsBotones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdNuevo, Me.cmdGuardar, Me.cmdCancelar, Me.cmdDelete, Me.ToolStripButton2, Me.cmdImprimir, Me.cmdPDF, Me.cmdMail, Me.ToolStripButton7, Me.cmdPedido, Me.cmdAlbaran, Me.ToolStripSeparator2, Me.cmdToldos, Me.ToolStripButton4, Me.cmdCliente, Me.ToolStripSeparator1, Me.cmdRentabilidad, Me.ToolStripSeparator3, Me.cmdLineas, Me.ToolStripSeparator4, Me.cmdEntradas})
+        Me.tsBotones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdNuevo, Me.cmdGuardar, Me.cmdCancelar, Me.cmdDelete, Me.ToolStripButton2, Me.cmdImprimir, Me.cmdPDF, Me.cmdMail, Me.ToolStripButton7, Me.cmdCliente, Me.ToolStripSeparator1, Me.cmdLineas, Me.ToolStripSeparator4, Me.cmdEntradas})
         Me.tsBotones.Location = New System.Drawing.Point(3, 3)
         Me.tsBotones.Name = "tsBotones"
         Me.tsBotones.Size = New System.Drawing.Size(1207, 38)
@@ -725,54 +718,6 @@ Partial Class frPedidoProv
         Me.ToolStripButton7.Name = "ToolStripButton7"
         Me.ToolStripButton7.Size = New System.Drawing.Size(33, 30)
         '
-        'cmdPedido
-        '
-        Me.cmdPedido.AutoSize = False
-        Me.cmdPedido.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.cmdPedido.Image = CType(resources.GetObject("cmdPedido.Image"), System.Drawing.Image)
-        Me.cmdPedido.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.cmdPedido.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdPedido.Name = "cmdPedido"
-        Me.cmdPedido.Size = New System.Drawing.Size(33, 30)
-        Me.cmdPedido.Text = "ToolStripButton1"
-        Me.cmdPedido.ToolTipText = "Realizar Pedido"
-        '
-        'cmdAlbaran
-        '
-        Me.cmdAlbaran.AutoSize = False
-        Me.cmdAlbaran.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.cmdAlbaran.Image = CType(resources.GetObject("cmdAlbaran.Image"), System.Drawing.Image)
-        Me.cmdAlbaran.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.cmdAlbaran.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdAlbaran.Name = "cmdAlbaran"
-        Me.cmdAlbaran.Size = New System.Drawing.Size(33, 30)
-        Me.cmdAlbaran.Text = "ToolStripButton1"
-        Me.cmdAlbaran.ToolTipText = "Convertir a Albarán"
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.AutoSize = False
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(33, 30)
-        '
-        'cmdToldos
-        '
-        Me.cmdToldos.AutoSize = False
-        Me.cmdToldos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.cmdToldos.Image = CType(resources.GetObject("cmdToldos.Image"), System.Drawing.Image)
-        Me.cmdToldos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.cmdToldos.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdToldos.Name = "cmdToldos"
-        Me.cmdToldos.Size = New System.Drawing.Size(33, 30)
-        Me.cmdToldos.Text = "ToolStripButton1"
-        Me.cmdToldos.ToolTipText = "Toldos"
-        '
-        'ToolStripButton4
-        '
-        Me.ToolStripButton4.AutoSize = False
-        Me.ToolStripButton4.Name = "ToolStripButton4"
-        Me.ToolStripButton4.Size = New System.Drawing.Size(33, 30)
-        '
         'cmdCliente
         '
         Me.cmdCliente.AutoSize = False
@@ -789,13 +734,13 @@ Partial Class frPedidoProv
         'cmdNuevoCliente
         '
         Me.cmdNuevoCliente.Name = "cmdNuevoCliente"
-        Me.cmdNuevoCliente.Size = New System.Drawing.Size(113, 22)
+        Me.cmdNuevoCliente.Size = New System.Drawing.Size(152, 22)
         Me.cmdNuevoCliente.Text = "NUEVO"
         '
         'cmdEditarCliente
         '
         Me.cmdEditarCliente.Name = "cmdEditarCliente"
-        Me.cmdEditarCliente.Size = New System.Drawing.Size(113, 22)
+        Me.cmdEditarCliente.Size = New System.Drawing.Size(152, 22)
         Me.cmdEditarCliente.Text = "EDITAR"
         '
         'ToolStripSeparator1
@@ -803,24 +748,6 @@ Partial Class frPedidoProv
         Me.ToolStripSeparator1.AutoSize = False
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(33, 30)
-        '
-        'cmdRentabilidad
-        '
-        Me.cmdRentabilidad.AutoSize = False
-        Me.cmdRentabilidad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.cmdRentabilidad.Image = CType(resources.GetObject("cmdRentabilidad.Image"), System.Drawing.Image)
-        Me.cmdRentabilidad.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.cmdRentabilidad.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdRentabilidad.Name = "cmdRentabilidad"
-        Me.cmdRentabilidad.Size = New System.Drawing.Size(33, 30)
-        Me.cmdRentabilidad.Text = "ToolStripButton1"
-        Me.cmdRentabilidad.ToolTipText = "Rentabilidad"
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.AutoSize = False
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(33, 30)
         '
         'cmdLineas
         '
@@ -836,13 +763,13 @@ Partial Class frPedidoProv
         'INSERTARToolStripMenuItem
         '
         Me.INSERTARToolStripMenuItem.Name = "INSERTARToolStripMenuItem"
-        Me.INSERTARToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
+        Me.INSERTARToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.INSERTARToolStripMenuItem.Text = "INSERTAR"
         '
         'ELIMINARToolStripMenuItem
         '
         Me.ELIMINARToolStripMenuItem.Name = "ELIMINARToolStripMenuItem"
-        Me.ELIMINARToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
+        Me.ELIMINARToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ELIMINARToolStripMenuItem.Text = "ELIMINAR"
         '
         'ToolStripSeparator4
@@ -1357,17 +1284,10 @@ Partial Class frPedidoProv
     Friend WithEvents cmdPDF As ToolStripButton
     Friend WithEvents cmdMail As ToolStripButton
     Friend WithEvents ToolStripButton7 As ToolStripSeparator
-    Friend WithEvents cmdPedido As ToolStripButton
-    Friend WithEvents cmdAlbaran As ToolStripButton
-    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
-    Friend WithEvents cmdToldos As ToolStripButton
-    Friend WithEvents ToolStripButton4 As ToolStripSeparator
     Friend WithEvents cmdCliente As ToolStripSplitButton
     Friend WithEvents cmdNuevoCliente As ToolStripMenuItem
     Friend WithEvents cmdEditarCliente As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents cmdRentabilidad As ToolStripButton
-    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents cmdLineas As ToolStripSplitButton
     Friend WithEvents INSERTARToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ELIMINARToolStripMenuItem As ToolStripMenuItem

@@ -36,11 +36,7 @@ Public Class frPedidoProv
         cmdImprimir.Enabled = False
         cmdPDF.Enabled = False
         cmdMail.Enabled = False
-        cmdPedido.Enabled = False
-        cmdAlbaran.Enabled = False
-        cmdToldos.Enabled = False
         cmdCliente.Enabled = False
-        cmdRentabilidad.Enabled = False
         cmdLineas.Enabled = False
     End Sub
     Public Sub cargoTodosPedidos()

@@ -90,14 +90,14 @@ Partial Class frEmpresa
         Me.Label16 = New System.Windows.Forms.Label()
         Me.txServidor = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.btGuardar = New System.Windows.Forms.Button()
-        Me.btCancelar = New System.Windows.Forms.Button()
-        Me.btNueva = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.txPorcrec = New System.Windows.Forms.TextBox()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.txPorciva = New System.Windows.Forms.TextBox()
         Me.Label30 = New System.Windows.Forms.Label()
+        Me.btGuardar = New System.Windows.Forms.Button()
+        Me.btCancelar = New System.Windows.Forms.Button()
+        Me.btNueva = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -191,6 +191,7 @@ Partial Class frEmpresa
         Me.txNumero.Name = "txNumero"
         Me.txNumero.Size = New System.Drawing.Size(73, 20)
         Me.txNumero.TabIndex = 27
+        Me.txNumero.Visible = False
         '
         'Label12
         '
@@ -638,6 +639,7 @@ Partial Class frEmpresa
         Me.btCrearbd.TabIndex = 20
         Me.btCrearbd.Text = "Crear Base de Datos"
         Me.btCrearbd.UseVisualStyleBackColor = True
+        Me.btCrearbd.Visible = False
         '
         'txPrefijo
         '
@@ -645,6 +647,7 @@ Partial Class frEmpresa
         Me.txPrefijo.Name = "txPrefijo"
         Me.txPrefijo.Size = New System.Drawing.Size(209, 20)
         Me.txPrefijo.TabIndex = 18
+        Me.txPrefijo.Visible = False
         '
         'Label18
         '
@@ -654,6 +657,7 @@ Partial Class frEmpresa
         Me.Label18.Size = New System.Drawing.Size(78, 13)
         Me.Label18.TabIndex = 19
         Me.Label18.Text = "PREFIJO B.D.:"
+        Me.Label18.Visible = False
         '
         'txBasedatos
         '
@@ -719,33 +723,6 @@ Partial Class frEmpresa
         Me.Label17.TabIndex = 14
         Me.Label17.Text = "SERVIDOR:"
         '
-        'btGuardar
-        '
-        Me.btGuardar.Image = CType(resources.GetObject("btGuardar.Image"), System.Drawing.Image)
-        Me.btGuardar.Location = New System.Drawing.Point(391, 12)
-        Me.btGuardar.Name = "btGuardar"
-        Me.btGuardar.Size = New System.Drawing.Size(38, 38)
-        Me.btGuardar.TabIndex = 1
-        Me.btGuardar.UseVisualStyleBackColor = True
-        '
-        'btCancelar
-        '
-        Me.btCancelar.Image = CType(resources.GetObject("btCancelar.Image"), System.Drawing.Image)
-        Me.btCancelar.Location = New System.Drawing.Point(435, 12)
-        Me.btCancelar.Name = "btCancelar"
-        Me.btCancelar.Size = New System.Drawing.Size(38, 38)
-        Me.btCancelar.TabIndex = 2
-        Me.btCancelar.UseVisualStyleBackColor = True
-        '
-        'btNueva
-        '
-        Me.btNueva.Image = CType(resources.GetObject("btNueva.Image"), System.Drawing.Image)
-        Me.btNueva.Location = New System.Drawing.Point(347, 12)
-        Me.btNueva.Name = "btNueva"
-        Me.btNueva.Size = New System.Drawing.Size(38, 38)
-        Me.btNueva.TabIndex = 3
-        Me.btNueva.UseVisualStyleBackColor = True
-        '
         'TabPage4
         '
         Me.TabPage4.Controls.Add(Me.txPorcrec)
@@ -790,6 +767,33 @@ Partial Class frEmpresa
         Me.Label30.Size = New System.Drawing.Size(104, 13)
         Me.Label30.TabIndex = 20
         Me.Label30.Text = "PORCENTAJE  IVA:"
+        '
+        'btGuardar
+        '
+        Me.btGuardar.Image = CType(resources.GetObject("btGuardar.Image"), System.Drawing.Image)
+        Me.btGuardar.Location = New System.Drawing.Point(391, 12)
+        Me.btGuardar.Name = "btGuardar"
+        Me.btGuardar.Size = New System.Drawing.Size(38, 38)
+        Me.btGuardar.TabIndex = 1
+        Me.btGuardar.UseVisualStyleBackColor = True
+        '
+        'btCancelar
+        '
+        Me.btCancelar.Image = CType(resources.GetObject("btCancelar.Image"), System.Drawing.Image)
+        Me.btCancelar.Location = New System.Drawing.Point(435, 12)
+        Me.btCancelar.Name = "btCancelar"
+        Me.btCancelar.Size = New System.Drawing.Size(38, 38)
+        Me.btCancelar.TabIndex = 2
+        Me.btCancelar.UseVisualStyleBackColor = True
+        '
+        'btNueva
+        '
+        Me.btNueva.Image = CType(resources.GetObject("btNueva.Image"), System.Drawing.Image)
+        Me.btNueva.Location = New System.Drawing.Point(347, 12)
+        Me.btNueva.Name = "btNueva"
+        Me.btNueva.Size = New System.Drawing.Size(38, 38)
+        Me.btNueva.TabIndex = 3
+        Me.btNueva.UseVisualStyleBackColor = True
         '
         'frEmpresa
         '

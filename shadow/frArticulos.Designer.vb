@@ -23,7 +23,7 @@ Partial Class frArticulos
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frArticulos))
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.txCodigo1 = New System.Windows.Forms.TextBox()
@@ -32,6 +32,27 @@ Partial Class frArticulos
         Me.Label13 = New System.Windows.Forms.Label()
         Me.dgArticulos = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.pnLotes = New System.Windows.Forms.Panel()
+        Me.btGrabarLote = New System.Windows.Forms.Button()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.txUbicLote = New System.Windows.Forms.TextBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.txStockLote = New System.Windows.Forms.TextBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.txLoteLote = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.txDescLote = New System.Windows.Forms.TextBox()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.txRefLote = New System.Windows.Forms.TextBox()
+        Me.btEliminarLinea = New System.Windows.Forms.Button()
+        Me.btNuevaLinea = New System.Windows.Forms.Button()
+        Me.btCloseLotes = New System.Windows.Forms.Button()
+        Me.dgLotes = New System.Windows.Forms.DataGridView()
+        Me.referencia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lote = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.stock = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ubicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tsBotones = New System.Windows.Forms.ToolStrip()
         Me.cmdNuevo = New System.Windows.Forms.ToolStripButton()
         Me.cmdGuardar = New System.Windows.Forms.ToolStripButton()
@@ -42,22 +63,14 @@ Partial Class frArticulos
         Me.cmdFlechas = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdLonas = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.cmdDuplicar = New System.Windows.Forms.ToolStripButton()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.pnModelo = New System.Windows.Forms.Panel()
         Me.grModelo = New System.Windows.Forms.GroupBox()
         Me.dgMods = New System.Windows.Forms.DataGridView()
         Me.btCloseMod = New System.Windows.Forms.Button()
-        Me.pnLotes = New System.Windows.Forms.Panel()
-        Me.btEliminarLinea = New System.Windows.Forms.Button()
-        Me.btNuevaLinea = New System.Windows.Forms.Button()
-        Me.btCloseLotes = New System.Windows.Forms.Button()
-        Me.dgLotes = New System.Windows.Forms.DataGridView()
-        Me.referencia = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.lote = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.stock = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ubicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnTejidos = New System.Windows.Forms.Panel()
         Me.grTejidos = New System.Windows.Forms.GroupBox()
         Me.dgTejidos = New System.Windows.Forms.DataGridView()
@@ -118,20 +131,18 @@ Partial Class frArticulos
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.cmdDuplicar = New System.Windows.Forms.ToolStripButton()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
+        Me.pnLotes.SuspendLayout()
+        CType(Me.dgLotes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tsBotones.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.pnModelo.SuspendLayout()
         Me.grModelo.SuspendLayout()
         CType(Me.dgMods, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnLotes.SuspendLayout()
-        CType(Me.dgLotes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnTejidos.SuspendLayout()
         Me.grTejidos.SuspendLayout()
         CType(Me.dgTejidos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -217,6 +228,195 @@ Partial Class frArticulos
         Me.TabPage2.Text = "DATOS ARTICULO"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'pnLotes
+        '
+        Me.pnLotes.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.pnLotes.Controls.Add(Me.btGrabarLote)
+        Me.pnLotes.Controls.Add(Me.Label21)
+        Me.pnLotes.Controls.Add(Me.txUbicLote)
+        Me.pnLotes.Controls.Add(Me.Label20)
+        Me.pnLotes.Controls.Add(Me.txStockLote)
+        Me.pnLotes.Controls.Add(Me.Label19)
+        Me.pnLotes.Controls.Add(Me.txLoteLote)
+        Me.pnLotes.Controls.Add(Me.Label18)
+        Me.pnLotes.Controls.Add(Me.txDescLote)
+        Me.pnLotes.Controls.Add(Me.Label17)
+        Me.pnLotes.Controls.Add(Me.txRefLote)
+        Me.pnLotes.Controls.Add(Me.btEliminarLinea)
+        Me.pnLotes.Controls.Add(Me.btNuevaLinea)
+        Me.pnLotes.Controls.Add(Me.btCloseLotes)
+        Me.pnLotes.Controls.Add(Me.dgLotes)
+        Me.pnLotes.Location = New System.Drawing.Point(52, 49)
+        Me.pnLotes.Name = "pnLotes"
+        Me.pnLotes.Size = New System.Drawing.Size(830, 284)
+        Me.pnLotes.TabIndex = 147
+        Me.pnLotes.Visible = False
+        '
+        'btGrabarLote
+        '
+        Me.btGrabarLote.Location = New System.Drawing.Point(723, 250)
+        Me.btGrabarLote.Name = "btGrabarLote"
+        Me.btGrabarLote.Size = New System.Drawing.Size(96, 23)
+        Me.btGrabarLote.TabIndex = 137
+        Me.btGrabarLote.Text = "Grabar Lote"
+        Me.btGrabarLote.UseVisualStyleBackColor = True
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(678, 204)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(65, 13)
+        Me.Label21.TabIndex = 136
+        Me.Label21.Text = "UBICACIÓN"
+        '
+        'txUbicLote
+        '
+        Me.txUbicLote.Location = New System.Drawing.Point(671, 220)
+        Me.txUbicLote.Name = "txUbicLote"
+        Me.txUbicLote.Size = New System.Drawing.Size(148, 20)
+        Me.txUbicLote.TabIndex = 135
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(607, 204)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(43, 13)
+        Me.Label20.TabIndex = 134
+        Me.Label20.Text = "STOCK"
+        '
+        'txStockLote
+        '
+        Me.txStockLote.Location = New System.Drawing.Point(602, 220)
+        Me.txStockLote.Name = "txStockLote"
+        Me.txStockLote.Size = New System.Drawing.Size(62, 20)
+        Me.txStockLote.TabIndex = 133
+        Me.txStockLote.Text = "0"
+        Me.txStockLote.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(500, 205)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(35, 13)
+        Me.Label19.TabIndex = 132
+        Me.Label19.Text = "LOTE"
+        '
+        'txLoteLote
+        '
+        Me.txLoteLote.Location = New System.Drawing.Point(497, 220)
+        Me.txLoteLote.Name = "txLoteLote"
+        Me.txLoteLote.Size = New System.Drawing.Size(100, 20)
+        Me.txLoteLote.TabIndex = 131
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(145, 204)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(80, 13)
+        Me.Label18.TabIndex = 130
+        Me.Label18.Text = "DESCRIPCIÓN"
+        '
+        'txDescLote
+        '
+        Me.txDescLote.Location = New System.Drawing.Point(141, 220)
+        Me.txDescLote.Name = "txDescLote"
+        Me.txDescLote.Size = New System.Drawing.Size(350, 20)
+        Me.txDescLote.TabIndex = 129
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(12, 205)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(75, 13)
+        Me.Label17.TabIndex = 128
+        Me.Label17.Text = "REFERENCIA"
+        '
+        'txRefLote
+        '
+        Me.txRefLote.Location = New System.Drawing.Point(10, 220)
+        Me.txRefLote.Name = "txRefLote"
+        Me.txRefLote.Size = New System.Drawing.Size(124, 20)
+        Me.txRefLote.TabIndex = 127
+        '
+        'btEliminarLinea
+        '
+        Me.btEliminarLinea.BackgroundImage = CType(resources.GetObject("btEliminarLinea.BackgroundImage"), System.Drawing.Image)
+        Me.btEliminarLinea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btEliminarLinea.Location = New System.Drawing.Point(40, 8)
+        Me.btEliminarLinea.Name = "btEliminarLinea"
+        Me.btEliminarLinea.Size = New System.Drawing.Size(24, 23)
+        Me.btEliminarLinea.TabIndex = 126
+        Me.btEliminarLinea.UseVisualStyleBackColor = True
+        '
+        'btNuevaLinea
+        '
+        Me.btNuevaLinea.BackgroundImage = CType(resources.GetObject("btNuevaLinea.BackgroundImage"), System.Drawing.Image)
+        Me.btNuevaLinea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btNuevaLinea.Location = New System.Drawing.Point(10, 8)
+        Me.btNuevaLinea.Name = "btNuevaLinea"
+        Me.btNuevaLinea.Size = New System.Drawing.Size(24, 23)
+        Me.btNuevaLinea.TabIndex = 125
+        Me.btNuevaLinea.UseVisualStyleBackColor = True
+        '
+        'btCloseLotes
+        '
+        Me.btCloseLotes.BackgroundImage = CType(resources.GetObject("btCloseLotes.BackgroundImage"), System.Drawing.Image)
+        Me.btCloseLotes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btCloseLotes.Location = New System.Drawing.Point(795, 6)
+        Me.btCloseLotes.Name = "btCloseLotes"
+        Me.btCloseLotes.Size = New System.Drawing.Size(24, 23)
+        Me.btCloseLotes.TabIndex = 123
+        Me.btCloseLotes.UseVisualStyleBackColor = True
+        '
+        'dgLotes
+        '
+        Me.dgLotes.AllowUserToAddRows = False
+        Me.dgLotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgLotes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.referencia, Me.descripcion, Me.lote, Me.stock, Me.ubicacion})
+        Me.dgLotes.Location = New System.Drawing.Point(10, 39)
+        Me.dgLotes.Name = "dgLotes"
+        Me.dgLotes.Size = New System.Drawing.Size(809, 158)
+        Me.dgLotes.TabIndex = 0
+        '
+        'referencia
+        '
+        Me.referencia.HeaderText = "REFERENCIA"
+        Me.referencia.Name = "referencia"
+        Me.referencia.ReadOnly = True
+        Me.referencia.Width = 110
+        '
+        'descripcion
+        '
+        Me.descripcion.HeaderText = "DESCRIPCION"
+        Me.descripcion.Name = "descripcion"
+        Me.descripcion.Width = 330
+        '
+        'lote
+        '
+        Me.lote.HeaderText = "LOTE"
+        Me.lote.Name = "lote"
+        '
+        'stock
+        '
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle7.Format = "N2"
+        DataGridViewCellStyle7.NullValue = Nothing
+        Me.stock.DefaultCellStyle = DataGridViewCellStyle7
+        Me.stock.HeaderText = "STOCK"
+        Me.stock.Name = "stock"
+        Me.stock.Width = 75
+        '
+        'ubicacion
+        '
+        Me.ubicacion.HeaderText = "UBICACION"
+        Me.ubicacion.Name = "ubicacion"
+        Me.ubicacion.Width = 150
+        '
         'tsBotones
         '
         Me.tsBotones.AutoSize = False
@@ -279,7 +479,7 @@ Partial Class frArticulos
         Me.cmdLotes.Name = "cmdLotes"
         Me.cmdLotes.Size = New System.Drawing.Size(33, 30)
         Me.cmdLotes.Text = "ToolStripButton1"
-        Me.cmdLotes.ToolTipText = "Creación de lotes"
+        Me.cmdLotes.ToolTipText = "Creación / Consulta de lotes"
         '
         'ToolStripSeparator2
         '
@@ -316,6 +516,23 @@ Partial Class frArticulos
         Me.cmdLonas.Size = New System.Drawing.Size(33, 30)
         Me.cmdLonas.Text = "ToolStripButton1"
         Me.cmdLonas.ToolTipText = "Activar Lonas"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.AutoSize = False
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(33, 30)
+        '
+        'cmdDuplicar
+        '
+        Me.cmdDuplicar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.cmdDuplicar.Image = Global.shadow.My.Resources.Resources.interface24
+        Me.cmdDuplicar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.cmdDuplicar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdDuplicar.Name = "cmdDuplicar"
+        Me.cmdDuplicar.Size = New System.Drawing.Size(28, 35)
+        Me.cmdDuplicar.Text = "ToolStripButton1"
+        Me.cmdDuplicar.ToolTipText = "Duplicar Artículo"
         '
         'TabControl2
         '
@@ -427,93 +644,6 @@ Partial Class frArticulos
         Me.btCloseMod.Size = New System.Drawing.Size(24, 23)
         Me.btCloseMod.TabIndex = 122
         Me.btCloseMod.UseVisualStyleBackColor = True
-        '
-        'pnLotes
-        '
-        Me.pnLotes.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.pnLotes.Controls.Add(Me.btEliminarLinea)
-        Me.pnLotes.Controls.Add(Me.btNuevaLinea)
-        Me.pnLotes.Controls.Add(Me.btCloseLotes)
-        Me.pnLotes.Controls.Add(Me.dgLotes)
-        Me.pnLotes.Location = New System.Drawing.Point(52, 49)
-        Me.pnLotes.Name = "pnLotes"
-        Me.pnLotes.Size = New System.Drawing.Size(830, 273)
-        Me.pnLotes.TabIndex = 147
-        Me.pnLotes.Visible = False
-        '
-        'btEliminarLinea
-        '
-        Me.btEliminarLinea.BackgroundImage = CType(resources.GetObject("btEliminarLinea.BackgroundImage"), System.Drawing.Image)
-        Me.btEliminarLinea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btEliminarLinea.Location = New System.Drawing.Point(40, 16)
-        Me.btEliminarLinea.Name = "btEliminarLinea"
-        Me.btEliminarLinea.Size = New System.Drawing.Size(24, 23)
-        Me.btEliminarLinea.TabIndex = 126
-        Me.btEliminarLinea.UseVisualStyleBackColor = True
-        '
-        'btNuevaLinea
-        '
-        Me.btNuevaLinea.BackgroundImage = CType(resources.GetObject("btNuevaLinea.BackgroundImage"), System.Drawing.Image)
-        Me.btNuevaLinea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btNuevaLinea.Location = New System.Drawing.Point(10, 16)
-        Me.btNuevaLinea.Name = "btNuevaLinea"
-        Me.btNuevaLinea.Size = New System.Drawing.Size(24, 23)
-        Me.btNuevaLinea.TabIndex = 125
-        Me.btNuevaLinea.UseVisualStyleBackColor = True
-        '
-        'btCloseLotes
-        '
-        Me.btCloseLotes.BackgroundImage = CType(resources.GetObject("btCloseLotes.BackgroundImage"), System.Drawing.Image)
-        Me.btCloseLotes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btCloseLotes.Location = New System.Drawing.Point(795, 14)
-        Me.btCloseLotes.Name = "btCloseLotes"
-        Me.btCloseLotes.Size = New System.Drawing.Size(24, 23)
-        Me.btCloseLotes.TabIndex = 123
-        Me.btCloseLotes.UseVisualStyleBackColor = True
-        '
-        'dgLotes
-        '
-        Me.dgLotes.AllowUserToAddRows = False
-        Me.dgLotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgLotes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.referencia, Me.descripcion, Me.lote, Me.stock, Me.ubicacion})
-        Me.dgLotes.Location = New System.Drawing.Point(10, 59)
-        Me.dgLotes.Name = "dgLotes"
-        Me.dgLotes.Size = New System.Drawing.Size(809, 203)
-        Me.dgLotes.TabIndex = 0
-        '
-        'referencia
-        '
-        Me.referencia.HeaderText = "REFERENCIA"
-        Me.referencia.Name = "referencia"
-        Me.referencia.ReadOnly = True
-        Me.referencia.Width = 110
-        '
-        'descripcion
-        '
-        Me.descripcion.HeaderText = "DESCRIPCION"
-        Me.descripcion.Name = "descripcion"
-        Me.descripcion.Width = 330
-        '
-        'lote
-        '
-        Me.lote.HeaderText = "LOTE"
-        Me.lote.Name = "lote"
-        '
-        'stock
-        '
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle23.Format = "N2"
-        DataGridViewCellStyle23.NullValue = Nothing
-        Me.stock.DefaultCellStyle = DataGridViewCellStyle23
-        Me.stock.HeaderText = "STOCK"
-        Me.stock.Name = "stock"
-        Me.stock.Width = 75
-        '
-        'ubicacion
-        '
-        Me.ubicacion.HeaderText = "UBICACION"
-        Me.ubicacion.Name = "ubicacion"
-        Me.ubicacion.Width = 150
         '
         'pnTejidos
         '
@@ -1052,23 +1182,6 @@ Partial Class frArticulos
         Me.Label1.TabIndex = 46
         Me.Label1.Text = "DESCRIPCION:"
         '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.AutoSize = False
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(33, 30)
-        '
-        'cmdDuplicar
-        '
-        Me.cmdDuplicar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.cmdDuplicar.Image = Global.shadow.My.Resources.Resources.interface24
-        Me.cmdDuplicar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.cmdDuplicar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdDuplicar.Name = "cmdDuplicar"
-        Me.cmdDuplicar.Size = New System.Drawing.Size(28, 35)
-        Me.cmdDuplicar.Text = "ToolStripButton1"
-        Me.cmdDuplicar.ToolTipText = "Duplicar Artículo"
-        '
         'frArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1084,6 +1197,9 @@ Partial Class frArticulos
         Me.TabPage1.PerformLayout()
         CType(Me.dgArticulos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
+        Me.pnLotes.ResumeLayout(False)
+        Me.pnLotes.PerformLayout()
+        CType(Me.dgLotes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tsBotones.ResumeLayout(False)
         Me.tsBotones.PerformLayout()
         Me.TabControl2.ResumeLayout(False)
@@ -1092,8 +1208,6 @@ Partial Class frArticulos
         Me.pnModelo.ResumeLayout(False)
         Me.grModelo.ResumeLayout(False)
         CType(Me.dgMods, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnLotes.ResumeLayout(False)
-        CType(Me.dgLotes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnTejidos.ResumeLayout(False)
         Me.grTejidos.ResumeLayout(False)
         CType(Me.dgTejidos, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1199,4 +1313,15 @@ Partial Class frArticulos
     Friend WithEvents cbColores As ComboBox
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents cmdDuplicar As ToolStripButton
+    Friend WithEvents Label21 As Label
+    Friend WithEvents txUbicLote As TextBox
+    Friend WithEvents Label20 As Label
+    Friend WithEvents txStockLote As TextBox
+    Friend WithEvents Label19 As Label
+    Friend WithEvents txLoteLote As TextBox
+    Friend WithEvents Label18 As Label
+    Friend WithEvents txDescLote As TextBox
+    Friend WithEvents Label17 As Label
+    Friend WithEvents txRefLote As TextBox
+    Friend WithEvents btGrabarLote As Button
 End Class

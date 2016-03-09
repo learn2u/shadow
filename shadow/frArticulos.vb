@@ -5,8 +5,12 @@ Imports System.Globalization
 Imports System.ComponentModel
 Imports System.Xml
 Public Class frArticulos
-    Public flagEditArti As Boolean
-    Public flagLona As Boolean
+    Public Shared flagEditArti As Boolean
+    Public Shared flagLona As Boolean
+    Public Shared lineas As Int16
+    Public Shared flagEditLotes As Boolean
+
+
 
     Public Sub cargoArticulos()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
@@ -69,6 +73,8 @@ Public Class frArticulos
 
     Private Sub frArticulos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
+        ocultarLineaLote()
+
         pnModelo.Visible = False
         pnTejidos.Visible = False
 
@@ -364,6 +370,39 @@ Public Class frArticulos
 
     Private Sub cmdLotes_Click(sender As Object, e As EventArgs) Handles cmdLotes.Click
         pnLotes.Visible = True
+        If flagEditArti = True Then
+
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+            Dim cmdLinea As New MySqlCommand
+
+            cmdLinea = New MySqlCommand("SELECT * FROM lotes WHERE referencia = '" + txRefProv.Text + "' ORDER BY loteID", conexionmy)
+
+            cmdLinea.CommandType = CommandType.Text
+            cmdLinea.Connection = conexionmy
+
+            Dim rdrLin As MySqlDataReader
+            rdrLin = cmdLinea.ExecuteReader
+            If rdrLin.HasRows Then
+                Do While rdrLin.Read()
+                    lineas = lineas + 1
+                    dgLotes.Rows.Add()
+                    dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = rdrLin("referencia")
+                    dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = rdrLin("descripcion")
+                    dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = rdrLin("lote")
+                    dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = rdrLin("stock")
+                    dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(4).Value = rdrLin("ubicacion")
+                Loop
+            Else
+
+            End If
+
+            rdrLin.Close()
+            conexionmy.Close()
+
+        Else
+
+        End If
 
     End Sub
 
@@ -433,24 +472,42 @@ Public Class frArticulos
 
     Private Sub btCloseLotes_Click(sender As Object, e As EventArgs) Handles btCloseLotes.Click
         pnLotes.Visible = False
+        dgLotes.Rows.Clear()
+        flagEditLotes = False
 
     End Sub
 
     Private Sub btNuevaLinea_Click(sender As Object, e As EventArgs) Handles btNuevaLinea.Click
-        dgLotes.Rows.Add()
-        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = txRefProv.Text
-        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = txDescripcion.Text
-        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = ""
-        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = 0
-        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(4).Value = ""
 
-        dgLotes.Focus()
-        dgLotes.CurrentCell = dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2)
-        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Selected = True
+        If flagEditArti = True Then
+            flagEditLotes = True
+            txRefLote.Text = txRefProv.Text
+            txDescLote.Text = txDescripcion.Text
+            verLineaLote()
+            txLoteLote.Focus()
+
+        Else
+            dgLotes.Rows.Add()
+            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = txRefProv.Text
+            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = txDescripcion.Text
+            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = ""
+            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = 0
+            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(4).Value = ""
+
+            dgLotes.Focus()
+            dgLotes.CurrentCell = dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2)
+            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Selected = True
+        End If
+
     End Sub
 
     Private Sub btEliminarLinea_Click(sender As Object, e As EventArgs) Handles btEliminarLinea.Click
-        dgLotes.Rows.RemoveAt(dgLotes.CurrentRow.Index)
+        If flagEditArti = True Then
+            eliminarLote()
+        Else
+            dgLotes.Rows.RemoveAt(dgLotes.CurrentRow.Index)
+        End If
+
     End Sub
 
     Private Sub dgArticulos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgArticulos.CellDoubleClick
@@ -460,6 +517,7 @@ Public Class frArticulos
         cmdNuevo.Enabled = False
         cmdGuardar.Enabled = True
         cmdDuplicar.Enabled = True
+        cmdLotes.Enabled = True
 
         flagEditArti = True
     End Sub
@@ -815,5 +873,140 @@ Public Class frArticulos
         End If
 
 
+    End Sub
+    Public Sub verLineaLote()
+        Label17.Visible = True
+        Label18.Visible = True
+        Label19.Visible = True
+        Label20.Visible = True
+        Label21.Visible = True
+
+        txRefLote.Visible = True
+        txDescLote.Visible = True
+        txLoteLote.Visible = True
+        txStockLote.Visible = True
+        txUbicLote.Visible = True
+
+        btGrabarLote.Visible = True
+
+    End Sub
+    Public Sub ocultarLineaLote()
+        Label17.Visible = False
+        Label18.Visible = False
+        Label19.Visible = False
+        Label20.Visible = False
+        Label21.Visible = False
+
+        txRefLote.Visible = False
+        txDescLote.Visible = False
+        txLoteLote.Visible = False
+        txStockLote.Visible = False
+        txUbicLote.Visible = False
+
+        btGrabarLote.Visible = False
+    End Sub
+
+    Private Sub btGrabarLote_Click(sender As Object, e As EventArgs) Handles btGrabarLote.Click
+
+        Dim fecha As Date = Format(Today, "dd/MM/yyyy")
+        dgLotes.Rows.Add()
+        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = txRefProv.Text
+        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = txDescripcion.Text
+        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = txLoteLote.Text
+        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = txStockLote.Text
+        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(4).Value = txUbicLote.Text
+
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+
+        Dim cmdLinea As New MySqlCommand
+        Dim row As New DataGridViewRow
+        Dim lincant As String
+        Dim guardo_lincant As String
+
+        lincant = Decimal.Parse(txStockLote.Text).ToString("0.00")
+        guardo_lincant = Replace(lincant, ",", ".")
+
+        cmdLinea.Connection = conexionmy
+        cmdLinea.CommandText = "INSERT INTO lotes (referencia, descripcion, lote, stock, stock_inicial, stock_disp, fechaentrada, ubicacion) VALUES ('" + txRefLote.Text + "', '" + txDescLote.Text + "', '" + txLoteLote.Text + "', '" + guardo_lincant + "', '" + guardo_lincant + "', '" + guardo_lincant + "', '" + fecha.ToString("yyyy-MM-dd") + "', '" + txUbicLote.Text + "')"
+
+        cmdLinea.ExecuteNonQuery()
+
+        conexionmy.Close()
+
+        limpiarLineaLote()
+        ocultarLineaLote()
+
+    End Sub
+    Public Sub limpiarLineaLote()
+        txRefLote.Text = ""
+        txDescLote.Text = ""
+        txLoteLote.Text = ""
+        txStockLote.Text = 0
+        txUbicLote.Text = ""
+
+    End Sub
+
+    Private Sub txStockLote_Leave(sender As Object, e As EventArgs) Handles txStockLote.Leave
+        Dim vStock As String
+        vStock = Replace(txStockLote.Text, ".", ",")
+        txStockLote.Text = vStock
+    End Sub
+    Public Sub eliminarLote()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmdLinea As New MySqlCommand
+        Dim vLoteElim As String
+        vLoteElim = dgLotes.CurrentRow.Cells(2).Value.ToString
+        cmdLinea.Connection = conexionmy
+        cmdLinea.CommandText = "DELETE FROM lotes WHERE lote = '" + vLoteElim + "'"
+
+        cmdLinea.ExecuteNonQuery()
+
+        conexionmy.Close()
+        dgLotes.Rows.RemoveAt(dgLotes.CurrentRow.Index)
+    End Sub
+
+    Private Sub txCompra_Leave(sender As Object, e As EventArgs) Handles txCompra.Leave
+        Dim vCompra As String
+        vCompra = Replace(txCompra.Text, ".", ",")
+        txCompra.Text = vCompra
+    End Sub
+
+    Private Sub txDto_Leave(sender As Object, e As EventArgs) Handles txDto.Leave
+        Dim vDto As String
+        vDto = Replace(txDto.Text, ".", ",")
+        txDto.Text = vDto
+    End Sub
+
+    Private Sub txMargenPor_Leave(sender As Object, e As EventArgs) Handles txMargenPor.Leave
+        Dim vMargenp As String
+        vMargenp = Replace(txMargenPor.Text, ".", ",")
+        txMargenPor.Text = vMargenp
+    End Sub
+
+    Private Sub txMargenEuro_Leave(sender As Object, e As EventArgs) Handles txMargenEuro.Leave
+        Dim vMargeneu As String
+        vMargeneu = Replace(txMargenEuro.Text, ".", ",")
+        txMargenEuro.Text = vMargeneu
+    End Sub
+
+    Private Sub txPrecio_Leave(sender As Object, e As EventArgs) Handles txPrecio.Leave
+        Dim vPrecio As String
+        vPrecio = Replace(txPrecio.Text, ".", ",")
+        txPrecio.Text = vPrecio
+    End Sub
+
+    Private Sub txStock_Leave(sender As Object, e As EventArgs) Handles txStock.Leave
+        Dim vStock As String
+        vStock = Replace(txStock.Text, ".", ",")
+        txStock.Text = vStock
+        txInicial.Text = vStock
+    End Sub
+
+    Private Sub txMinimo_Leave(sender As Object, e As EventArgs) Handles txMinimo.Leave
+        Dim vMin As String
+        vMin = Replace(txMinimo.Text, ".", ",")
+        txMinimo.Text = vMin
     End Sub
 End Class

@@ -175,19 +175,43 @@ Public Class frPresupuestos
                 dtoLinea = dtoLinea + (Decimal.Parse(row2.Cells(9).Value) * Decimal.Parse(row2.Cells(8).Value)) / 100
             Next
         End If
+        If totalLinea < 1 Then
+            txImpBruto.Text = totalLinea.ToString("0.00")
+        Else
+            txImpBruto.Text = totalLinea.ToString("#,###.00")
+        End If
+        If dtoLinea < 1 Then
+            txImpDto.Text = dtoLinea.ToString("0.00")
+        Else
+            txImpDto.Text = dtoLinea.ToString("#,###.00")
+        End If
+        If (totalLinea - dtoLinea) < 1 Then
+            txImponible.Text = (totalLinea - dtoLinea).ToString("0.00")
+        Else
+            txImponible.Text = (totalLinea - dtoLinea).ToString("#,###.00")
+        End If
 
-        txImpBruto.Text = totalLinea.ToString("0.00")
-        txImpDto.Text = dtoLinea.ToString("0.00")
-        txImponible.Text = (totalLinea - dtoLinea).ToString("0.00")
         'ivaLinea = (Decimal.Parse(txImponible.Text) * Decimal.Parse(txIva.Text)) / 100
         ivaLinea = (Decimal.Parse(txImponible.Text) * 21) / 100
         If txRecargo.Text = "S" Then
             reclinea = (Decimal.Parse(txImponible.Text) * vRecargo) / 100
-            txImpRecargo.Text = reclinea.ToString("0.00")
-        End If
+            If reclinea < 1 Then
+                txImpRecargo.Text = reclinea.ToString("0.00")
+            Else
+                txImpRecargo.Text = reclinea.ToString("#,###.00")
+            End If
 
-        txImpIva.Text = ivaLinea.ToString("0.00")
-        txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea + reclinea).ToString("0.00")
+        End If
+        If ivaLinea < 1 Then
+            txImpIva.Text = ivaLinea.ToString("0.00")
+        Else
+            txImpIva.Text = ivaLinea.ToString("#,###.00")
+        End If
+        If (Decimal.Parse(txImponible.Text) + ivaLinea + reclinea) < 1 Then
+            txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea + reclinea).ToString("0.00")
+        Else
+            txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea + reclinea).ToString("#,###.00")
+        End If
 
     End Sub
     Public Sub actualizarLinea()
@@ -371,15 +395,15 @@ Public Class frPresupuestos
 
             cargoNumero()
 
-            Dim impbru As String = txImpBruto.Text
+            Dim impbru As String = Replace(txImpBruto.Text.ToString, ".", "")
             Dim guardo_impbru As String = Replace(impbru, ",", ".")
-            Dim impdto As String = txImpDto.Text
+            Dim impdto As String = Replace(txImpDto.Text.ToString, ".", "")
             Dim guardo_impdto As String = Replace(impdto, ",", ".")
-            Dim impiva As String = txImpIva.Text
+            Dim impiva As String = Replace(txImpIva.Text.ToString, ".", "")
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
-            Dim imptot As String = txTotalAlbaran.Text
+            Dim imptot As String = Replace(txTotalAlbaran.Text.ToString, ".", "")
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
-            Dim imprec As String = txImpRecargo.Text
+            Dim imprec As String = Replace(txImpRecargo.Text.ToString, ".", "")
             Dim guardo_imprec As String = Replace(imprec, ",", ".")
 
             Dim fecha As Date = txFecha.Text
@@ -474,15 +498,15 @@ Public Class frPresupuestos
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
 
-            Dim impbru As String = txImpBruto.Text
+            Dim impbru As String = Replace(txImpBruto.Text.ToString, ".", "")
             Dim guardo_impbru As String = Replace(impbru, ",", ".")
-            Dim impdto As String = txImpDto.Text
+            Dim impdto As String = Replace(txImpDto.Text.ToString, ".", "")
             Dim guardo_impdto As String = Replace(impdto, ",", ".")
-            Dim impiva As String = txImpIva.Text
+            Dim impiva As String = Replace(txImpIva.Text.ToString, ".", "")
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
-            Dim imptot As String = txTotalAlbaran.Text
+            Dim imptot As String = Replace(txTotalAlbaran.Text.ToString, ".", "")
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
-            Dim imprec As String = txImpRecargo.Text
+            Dim imprec As String = Replace(txImpRecargo.Text.ToString, ".", "")
             Dim guardo_imprec As String = Replace(imprec, ",", ".")
 
             Dim fecha As Date = txFecha.Text
