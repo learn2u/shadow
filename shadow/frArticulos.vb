@@ -491,7 +491,12 @@ Public Class frArticulos
     End Sub
 
     Private Sub dgArticulos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgArticulos.CellDoubleClick
+        txRefProv.Text = dgArticulos.CurrentRow.Cells("column1").Value.ToString
+        TabControl1.SelectTab(1)
+        cargoDatos()
+        cmdNuevo.Enabled = False
 
+        flagEditArti = True
     End Sub
 
     Private Sub txCodigo1_TextChanged(sender As Object, e As EventArgs) Handles txCodigo1.TextChanged
@@ -606,5 +611,69 @@ Public Class frArticulos
         dgArticulos.Visible = True
 
         conexionmy.Close()
+    End Sub
+    Public Sub cargoDatos()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmd As New MySqlCommand
+
+        Dim rdr As MySqlDataReader
+
+        cmd = New MySqlCommand("SELECT * FROM articulos2 WHERE ref_proveedor = '" + txRefProv.Text + "'", conexionmy)
+
+        cmd.CommandType = CommandType.Text
+        cmd.Connection = conexionmy
+        rdr = cmd.ExecuteReader
+
+
+        rdr.Read()
+
+        txCodigo.Text = rdr("referencia")
+        txGrupo.Text = rdr("grupoID")
+        txNumPro.Text = rdr("proveedorID")
+        cargoProveedior()
+        If rdr("familia") <> 7 Then
+            GroupBox2.Enabled = False
+        Else
+            GroupBox2.Enabled = True
+        End If
+        txDescripcion.Text = rdr("descripcion")
+        txIva.Text = rdr("iva")
+        txCompra.Text = rdr("precio_compra")
+        txDto.Text = rdr("dto_prov")
+        txMargenPor.Text = rdr("porc_margen")
+        txMargenEuro.Text = rdr("euro_margen")
+        txPrecio.Text = rdr("pvp")
+        txUbicacion.Text = rdr("ubicacion")
+        txStock.Text = rdr("stock")
+        txMinimo.Text = rdr("stock_min")
+        txInicial.Text = rdr("stock_ini")
+
+
+        conexionmy.Close()
+    End Sub
+    Public Sub cargoProveedior()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmd As New MySqlCommand
+
+        Dim rdr As MySqlDataReader
+
+        cmd = New MySqlCommand("SELECT proveedorID, nombrecom FROM proveedores WHERE proveedorID = '" + txNumPro.Text + "'", conexionmy)
+
+        cmd.CommandType = CommandType.Text
+        cmd.Connection = conexionmy
+        rdr = cmd.ExecuteReader
+
+
+        rdr.Read()
+
+        txProveedor.Text = rdr("nombrecom")
+        conexionmy.Close()
+    End Sub
+
+    Private Sub cmdCancelar_Click(sender As Object, e As EventArgs) Handles cmdCancelar.Click
+        limpiarFormulario()
+        TabControl1.SelectTab(0)
     End Sub
 End Class

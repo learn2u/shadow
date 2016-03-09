@@ -337,6 +337,7 @@
   <ItemGroup>
     <Content Include="conexion.xml" />
     <Content Include="imagenes\logo.png" />
+    <None Include="Resources\interface24.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">
