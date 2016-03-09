@@ -279,17 +279,17 @@ Public Class frPedido
             Next
         End If
 
-        txImpBruto.Text = totalLinea.ToString("0.00")
-        txImpDto.Text = dtoLinea.ToString("0.00")
-        txImponible.Text = (totalLinea - dtoLinea).ToString("0.00")
+        txImpBruto.Text = totalLinea.ToString("#,###.00")
+        txImpDto.Text = dtoLinea.ToString("#,###.00")
+        txImponible.Text = (totalLinea - dtoLinea).ToString("#,###.00")
         'ivaLinea = (Decimal.Parse(txImponible.Text) * Decimal.Parse(txIva.Text)) / 100
         ivaLinea = (Decimal.Parse(txImponible.Text) * 21) / 100
         If txRecargo.Text = "S" Then
             reclinea = (Decimal.Parse(txImponible.Text) * vRecargo) / 100
-            txImpRecargo.Text = reclinea.ToString("0.00")
+            txImpRecargo.Text = reclinea.ToString("#,###.00")
         End If
-        txImpIva.Text = ivaLinea.ToString("0.00")
-        txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea + reclinea).ToString("0.00")
+        txImpIva.Text = ivaLinea.ToString("#,###.00")
+        txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea + reclinea).ToString("#,###.00")
 
     End Sub
     Public Sub actualizarLinea()
@@ -816,7 +816,7 @@ Public Class frPedido
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
 
-            Dim cmdLastId As New MySqlCommand("SELECT referencia, stock_disp FROM articulos2 WHERE referencia = '" + codArti + "'", conexionmy)
+            Dim cmdLastId As New MySqlCommand("SELECT referencia, stock_disp FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
             Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
             reader.Read()
 
@@ -834,7 +834,7 @@ Public Class frPedido
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
 
-            Dim cmdLastId As New MySqlCommand("SELECT referencia, stock_disp FROM articulos2 WHERE referencia = '" + codArti + "'", conexionmy)
+            Dim cmdLastId As New MySqlCommand("SELECT referencia, stock_disp FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
             Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
             reader.Read()
 
@@ -945,7 +945,7 @@ Public Class frPedido
 
                 If (e.ColumnIndex = 4) Then
                     value1 = dgLineasPres1.CurrentRow.Cells(4).EditedFormattedValue.ToString
-                    value1 = value1.Replace(".", ",")
+                    'value1 = value1.Replace(".", ",")
                     If value1 <> "" Then
                         Dim cellValue As Decimal = CType(value1, Decimal)
                         dgLineasPres1.CurrentRow.Cells(4).Value = cellValue
@@ -953,7 +953,7 @@ Public Class frPedido
                 End If
                 If (e.ColumnIndex = 7) Then
                     value2 = dgLineasPres1.CurrentRow.Cells(7).EditedFormattedValue.ToString
-                    value2 = value2.Replace(".", ",")
+                    ' value2 = value2.Replace(".", ",")
                     If value2 <> "" Then
                         Dim cellValue As Decimal = CType(value2, Decimal)
                         dgLineasPres1.CurrentRow.Cells(7).Value = cellValue
@@ -961,7 +961,7 @@ Public Class frPedido
                 End If
                 If (e.ColumnIndex = 8) Then
                     value3 = dgLineasPres1.CurrentRow.Cells(8).EditedFormattedValue.ToString
-                    value3 = value3.Replace(".", ",")
+                    'value3 = value3.Replace(".", ",")
                     If value3 <> "" Then
                         Dim cellValue As Decimal = CType(value3, Decimal)
                         dgLineasPres1.CurrentRow.Cells(8).Value = cellValue
@@ -995,7 +995,7 @@ Public Class frPedido
             Else
                 If (e.ColumnIndex = 4) Then
                     value1 = dgLineasPres2.CurrentRow.Cells(4).EditedFormattedValue.ToString
-                    value1 = value1.Replace(".", ",")
+                    'value1 = value1.Replace(".", ",")
                     If value1 <> "" Then
                         Dim cellValue As Decimal = CType(value1, Decimal)
                         dgLineasPres2.CurrentRow.Cells(4).Value = cellValue
@@ -1003,7 +1003,7 @@ Public Class frPedido
                 End If
                 If (e.ColumnIndex = 7) Then
                     value2 = dgLineasPres2.CurrentRow.Cells(7).EditedFormattedValue.ToString
-                    value2 = value2.Replace(".", ",")
+                    'value2 = value2.Replace(".", ",")
                     If value2 <> "" Then
                         Dim cellValue As Decimal = CType(value2, Decimal)
                         dgLineasPres2.CurrentRow.Cells(7).Value = cellValue
@@ -1011,7 +1011,7 @@ Public Class frPedido
                 End If
                 If (e.ColumnIndex = 8) Then
                     value3 = dgLineasPres2.CurrentRow.Cells(8).EditedFormattedValue.ToString
-                    value3 = value3.Replace(".", ",")
+                    'value3 = value3.Replace(".", ",")
                     If value3 <> "" Then
                         Dim cellValue As Decimal = CType(value3, Decimal)
                         dgLineasPres2.CurrentRow.Cells(8).Value = cellValue

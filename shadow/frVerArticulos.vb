@@ -202,6 +202,7 @@ Public Class frVerArticulos
                 If frPresupuestos.flagEdit = "N" Then
                     frPresupuestos.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frPresupuestos.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frPresupuestos.dgLineasPres1.CurrentRow.Cells(4).Value = 1
                     frPresupuestos.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
                     frPresupuestos.dgLineasPres1.CurrentRow.Cells(6).Value = frPresupuestos.dgLineasPres1.CurrentRow.Cells(4).Value * frPresupuestos.dgLineasPres1.CurrentRow.Cells(5).Value
                     frPresupuestos.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
@@ -214,6 +215,7 @@ Public Class frVerArticulos
                 Else
                     frPresupuestos.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frPresupuestos.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frPresupuestos.dgLineasPres2.CurrentRow.Cells(4).Value = 1
                     frPresupuestos.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
                     frPresupuestos.dgLineasPres2.CurrentRow.Cells(6).Value = frPresupuestos.dgLineasPres2.CurrentRow.Cells(4).Value * frPresupuestos.dgLineasPres2.CurrentRow.Cells(5).Value
                     frPresupuestos.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
@@ -231,6 +233,7 @@ Public Class frVerArticulos
                 If frAlbaran.flagEdit = "N" Then
                     frAlbaran.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frAlbaran.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frAlbaran.dgLineasPres1.CurrentRow.Cells(4).Value = 1
                     frAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
                     frAlbaran.dgLineasPres1.CurrentRow.Cells(6).Value = frAlbaran.dgLineasPres1.CurrentRow.Cells(4).Value * frAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value
                     frAlbaran.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
@@ -243,6 +246,7 @@ Public Class frVerArticulos
                 Else
                     frAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frAlbaran.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frAlbaran.dgLineasPres2.CurrentRow.Cells(4).Value = 1
                     frAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
                     frAlbaran.dgLineasPres2.CurrentRow.Cells(6).Value = frAlbaran.dgLineasPres2.CurrentRow.Cells(4).Value * frAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value
                     frAlbaran.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
@@ -261,6 +265,7 @@ Public Class frVerArticulos
                 If frPedido.flagEdit = "N" Then
                     frPedido.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frPedido.dgLineasPres1.CurrentRow.Cells(4).Value = 1
                     frPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
                     frPedido.dgLineasPres1.CurrentRow.Cells(6).Value = frPedido.dgLineasPres1.CurrentRow.Cells(4).Value * frPedido.dgLineasPres1.CurrentRow.Cells(5).Value
                     frPedido.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
@@ -273,6 +278,7 @@ Public Class frVerArticulos
                 Else
                     frPedido.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frPedido.dgLineasPres2.CurrentRow.Cells(4).Value = 1
                     frPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
                     frPedido.dgLineasPres2.CurrentRow.Cells(6).Value = frPedido.dgLineasPres2.CurrentRow.Cells(4).Value * frPedido.dgLineasPres2.CurrentRow.Cells(5).Value
                     frPedido.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
@@ -291,6 +297,7 @@ Public Class frVerArticulos
                 If frFacturaManual.flagEdit = "N" Then
                     frFacturaManual.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frFacturaManual.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value = 1
                     frFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
                     frFacturaManual.dgLineasPres1.CurrentRow.Cells(6).Value = frFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value * frFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value
                     frFacturaManual.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
@@ -303,6 +310,7 @@ Public Class frVerArticulos
                 Else
                     frFacturaManual.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frFacturaManual.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value = 1
                     frFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
                     frFacturaManual.dgLineasPres2.CurrentRow.Cells(6).Value = frFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value * frFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value
                     frFacturaManual.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
@@ -320,6 +328,7 @@ Public Class frVerArticulos
                 If frPedidoProv.flagEdit = "N" Then
                     frPedidoProv.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frPedidoProv.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frPedidoProv.dgLineasPres1.CurrentRow.Cells(4).Value = 1
                     frPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
                     frPedidoProv.dgLineasPres1.CurrentRow.Cells(6).Value = frPedidoProv.dgLineasPres1.CurrentRow.Cells(4).Value * frPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value
                     frPedidoProv.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
@@ -332,6 +341,7 @@ Public Class frVerArticulos
                 Else
                     frPedidoProv.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frPedidoProv.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                    frPedidoProv.dgLineasPres2.CurrentRow.Cells(4).Value = 1
                     frPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
                     frPedidoProv.dgLineasPres2.CurrentRow.Cells(6).Value = frPedidoProv.dgLineasPres2.CurrentRow.Cells(4).Value * frPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value
                     frPedidoProv.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
