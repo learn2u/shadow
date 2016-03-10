@@ -88,7 +88,7 @@ Public Class frVerProveedores
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT nombre, descuento, proveedorID, cif FROM proveedores WHERE tipo = 'P'", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT nombre, descuento, proveedorID, cif, diapago, formatexto FROM proveedores WHERE tipo = 'P'", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable
@@ -114,6 +114,12 @@ Public Class frVerProveedores
         dgProvedores.Columns(3).HeaderText = "CIF"
         dgProvedores.Columns(3).Name = "cif"
         dgProvedores.Columns(3).Visible = False
+        dgProvedores.Columns(4).HeaderText = "DIA"
+        dgProvedores.Columns(4).Name = "diap"
+        dgProvedores.Columns(4).Visible = False
+        dgProvedores.Columns(5).HeaderText = "PAGO"
+        dgProvedores.Columns(5).Name = "formap"
+        dgProvedores.Columns(5).Visible = False
         dgProvedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
         conexionmy.Close()
@@ -125,6 +131,8 @@ Public Class frVerProveedores
             frGastos.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
             frGastos.txDni.Text = dgProvedores.CurrentRow.Cells("cif").Value
             frGastos.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
+            frGastos.txDiaspago.Text = dgProvedores.CurrentRow.Cells("diap").Value
+            frGastos.cbFormapago.Text = dgProvedores.CurrentRow.Cells("formap").Value
             Me.Hide()
         End If
         If formCli = "D" Then

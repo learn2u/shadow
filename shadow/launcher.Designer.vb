@@ -36,7 +36,6 @@ Partial Class launcher
         Me.ClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.COMPRASToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PedidosAProveedoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EntradasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProveedoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ALMACENToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArtículosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -118,7 +117,7 @@ Partial Class launcher
         '
         'COMPRASToolStripMenuItem
         '
-        Me.COMPRASToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PedidosAProveedoresToolStripMenuItem, Me.EntradasToolStripMenuItem, Me.ProveedoresToolStripMenuItem})
+        Me.COMPRASToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PedidosAProveedoresToolStripMenuItem, Me.ProveedoresToolStripMenuItem})
         Me.COMPRASToolStripMenuItem.Name = "COMPRASToolStripMenuItem"
         Me.COMPRASToolStripMenuItem.Size = New System.Drawing.Size(75, 20)
         Me.COMPRASToolStripMenuItem.Text = "COMPRAS"
@@ -126,19 +125,13 @@ Partial Class launcher
         'PedidosAProveedoresToolStripMenuItem
         '
         Me.PedidosAProveedoresToolStripMenuItem.Name = "PedidosAProveedoresToolStripMenuItem"
-        Me.PedidosAProveedoresToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.PedidosAProveedoresToolStripMenuItem.Text = "Pedidos a proveedores"
-        '
-        'EntradasToolStripMenuItem
-        '
-        Me.EntradasToolStripMenuItem.Name = "EntradasToolStripMenuItem"
-        Me.EntradasToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.EntradasToolStripMenuItem.Text = "Entradas"
+        Me.PedidosAProveedoresToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.PedidosAProveedoresToolStripMenuItem.Text = "Pedidos / Entradas a proveedores"
         '
         'ProveedoresToolStripMenuItem
         '
         Me.ProveedoresToolStripMenuItem.Name = "ProveedoresToolStripMenuItem"
-        Me.ProveedoresToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.ProveedoresToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.ProveedoresToolStripMenuItem.Text = "Proveedores"
         '
         'ALMACENToolStripMenuItem
@@ -201,7 +194,6 @@ Partial Class launcher
     Friend WithEvents ClientesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents COMPRASToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PedidosAProveedoresToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents EntradasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProveedoresToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ALMACENToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ArtículosToolStripMenuItem As ToolStripMenuItem

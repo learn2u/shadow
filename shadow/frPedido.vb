@@ -48,6 +48,7 @@ Public Class frPedido
     Public Sub cargoTodosPedidos()
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
         conexionmy.Open()
+
         Dim consultamy As New MySqlCommand("SELECT pedido_cab.num_pedido, 
                                                     pedido_cab.referencia,
                                                     pedido_cab.fecha, 
@@ -59,57 +60,59 @@ Public Class frPedido
                                                     clientes.clienteID 
                                             FROM pedido_cab INNER JOIN clientes ON pedido_cab.clienteID=clientes.clienteID WHERE eliminado = 'N' ORDER BY pedido_cab.num_pedido DESC", conexionmy)
 
-        Dim readermy As MySqlDataReader
-        Dim dtable As New DataTable
-        Dim bind As New BindingSource()
+            Dim readermy As MySqlDataReader
+            Dim dtable As New DataTable
+            Dim bind As New BindingSource()
 
 
-        readermy = consultamy.ExecuteReader
-        dtable.Load(readermy, LoadOption.OverwriteChanges)
+            readermy = consultamy.ExecuteReader
+            dtable.Load(readermy, LoadOption.OverwriteChanges)
 
-        bind.DataSource = dtable
+            bind.DataSource = dtable
 
-        dgPedidos.DataSource = bind
-        dgPedidos.EnableHeadersVisualStyles = False
-        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
-        styCabeceras.BackColor = Color.Beige
-        styCabeceras.ForeColor = Color.Black
-        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
-        dgPedidos.ColumnHeadersDefaultCellStyle = styCabeceras
+            dgPedidos.DataSource = bind
+            dgPedidos.EnableHeadersVisualStyles = False
+            Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+            styCabeceras.BackColor = Color.Beige
+            styCabeceras.ForeColor = Color.Black
+            styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+            dgPedidos.ColumnHeadersDefaultCellStyle = styCabeceras
 
-        dgPedidos.Columns(0).HeaderText = "NUMERO"
-        dgPedidos.Columns(0).Name = "Column1"
-        dgPedidos.Columns(0).FillWeight = 90
-        dgPedidos.Columns(0).MinimumWidth = 90
-        dgPedidos.Columns(1).HeaderText = "REFERENCIA"
-        dgPedidos.Columns(1).Name = "Column2"
-        dgPedidos.Columns(1).FillWeight = 190
-        dgPedidos.Columns(1).MinimumWidth = 190
-        dgPedidos.Columns(2).HeaderText = "FECHA"
-        dgPedidos.Columns(2).Name = "Column3"
-        dgPedidos.Columns(2).FillWeight = 90
-        dgPedidos.Columns(2).MinimumWidth = 90
-        dgPedidos.Columns(3).HeaderText = "CLIENTE"
-        dgPedidos.Columns(3).Name = "Column4"
-        dgPedidos.Columns(3).FillWeight = 300
-        dgPedidos.Columns(3).MinimumWidth = 300
-        dgPedidos.Columns(4).HeaderText = "IMPORTE"
-        dgPedidos.Columns(4).Name = "Column5"
-        dgPedidos.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        dgPedidos.Columns(4).FillWeight = 90
-        dgPedidos.Columns(4).MinimumWidth = 90
-        dgPedidos.Columns(5).HeaderText = "TOTAL"
-        dgPedidos.Columns(5).Name = "Column6"
-        dgPedidos.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        dgPedidos.Columns(5).FillWeight = 90
-        dgPedidos.Columns(5).MinimumWidth = 90
-        dgPedidos.Columns(6).Visible = False
-        dgPedidos.Columns(7).Visible = False
-        dgPedidos.Columns(8).Visible = False
-        dgPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        dgPedidos.Visible = True
+            dgPedidos.Columns(0).HeaderText = "NUMERO"
+            dgPedidos.Columns(0).Name = "Column1"
+            dgPedidos.Columns(0).FillWeight = 90
+            dgPedidos.Columns(0).MinimumWidth = 90
+            dgPedidos.Columns(1).HeaderText = "REFERENCIA"
+            dgPedidos.Columns(1).Name = "Column2"
+            dgPedidos.Columns(1).FillWeight = 190
+            dgPedidos.Columns(1).MinimumWidth = 190
+            dgPedidos.Columns(2).HeaderText = "FECHA"
+            dgPedidos.Columns(2).Name = "Column3"
+            dgPedidos.Columns(2).FillWeight = 90
+            dgPedidos.Columns(2).MinimumWidth = 90
+            dgPedidos.Columns(3).HeaderText = "CLIENTE"
+            dgPedidos.Columns(3).Name = "Column4"
+            dgPedidos.Columns(3).FillWeight = 300
+            dgPedidos.Columns(3).MinimumWidth = 300
+            dgPedidos.Columns(4).HeaderText = "IMPORTE"
+            dgPedidos.Columns(4).Name = "Column5"
+            dgPedidos.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgPedidos.Columns(4).FillWeight = 90
+            dgPedidos.Columns(4).MinimumWidth = 90
+            dgPedidos.Columns(5).HeaderText = "TOTAL"
+            dgPedidos.Columns(5).Name = "Column6"
+            dgPedidos.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgPedidos.Columns(5).FillWeight = 90
+            dgPedidos.Columns(5).MinimumWidth = 90
+            dgPedidos.Columns(6).Visible = False
+            dgPedidos.Columns(7).Visible = False
+            dgPedidos.Columns(8).Visible = False
+            dgPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dgPedidos.Visible = True
+            conexionmy.Close()
 
-        conexionmy.Close()
+
+
     End Sub
     Public Sub limpiarFormulario()
         txtNumpres.Text = ""
@@ -1357,4 +1360,5 @@ Public Class frPedido
         End If
 
     End Sub
+
 End Class

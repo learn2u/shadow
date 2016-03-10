@@ -79,7 +79,7 @@ Public Class launcher
         frPedidoProv.Show()
     End Sub
 
-    Private Sub EntradasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EntradasToolStripMenuItem.Click
+    Private Sub EntradasToolStripMenuItem_Click(sender As Object, e As EventArgs)
 
     End Sub
 

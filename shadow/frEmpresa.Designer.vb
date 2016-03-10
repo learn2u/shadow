@@ -165,6 +165,7 @@ Partial Class frEmpresa
         Me.btBuscar.TabIndex = 31
         Me.btBuscar.Text = "Buscar"
         Me.btBuscar.UseVisualStyleBackColor = True
+        Me.btBuscar.Visible = False
         '
         'txDescripcion
         '
@@ -794,6 +795,7 @@ Partial Class frEmpresa
         Me.btNueva.Size = New System.Drawing.Size(38, 38)
         Me.btNueva.TabIndex = 3
         Me.btNueva.UseVisualStyleBackColor = True
+        Me.btNueva.Visible = False
         '
         'frEmpresa
         '

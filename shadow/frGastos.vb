@@ -39,11 +39,7 @@ Public Class frGastos
         cmdImprimir.Enabled = False
         cmdPDF.Enabled = False
         cmdMail.Enabled = False
-        cmdPedido.Enabled = False
-        cmdAlbaran.Enabled = False
-        cmdToldos.Enabled = False
         cmdCliente.Enabled = False
-        cmdRentabilidad.Enabled = False
         cmdLineas.Enabled = False
     End Sub
     Public Sub cargoTodosGastos()
@@ -269,6 +265,9 @@ Public Class frGastos
         ivaLinea = (Decimal.Parse(txImponible.Text) * 21) / 100
         txImpIva.Text = ivaLinea.ToString("0.00")
         txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea).ToString("0.00")
+        If ckRetencion.Checked = True Then
+            mostrarRetencion()
+        End If
 
     End Sub
     Public Sub actualizarLinea()
@@ -420,7 +419,7 @@ Public Class frGastos
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO gastos_cab (num_gasto, proveedorID, empresaID, usuarioID, fecha, fraproveedor, pagado, exento, ivaincluido, epigrafeID, epigrafe, retencion, totalretencion, formaID, formapago, diaspago, totalbruto, totaldto, totaliva, totalgasto, totalrecargo) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + txEmpresa.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txFraProv.Text + "', '" + vPagado + "', '" + vExento + "', '" + vIvainc + "', " + cbEstado.SelectedValue.ToString + ", '" + cbEstado.Text + "', '" + guardo_porcretencion + "', '" + guardo_impretencion + "', " + cbFormapago.SelectedValue.ToString + ", '" + cbFormapago.Text + "', '" + txDiaspago.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', '" + guardo_imprecargo + "')", conexionmy)
+            Dim cmd As New MySqlCommand("INSERT INTO gastos_cab (num_gasto, proveedorID, empresaID, usuarioID, fecha, fraproveedor, pagado, exento, ivaincluido, retiene, epigrafeID, epigrafe, retencion, totalretencion, formaID, formapago, diaspago, totalbruto, totaldto, totaliva, totalgasto, totalrecargo) VALUES (" + txtNumpres.Text + ", " + txNumcli.Text + ", " + txEmpresa.Text + ", " + txUsuario.Text + ", '" + fecha.ToString("yyyy-MM-dd") + "',  '" + txFraProv.Text + "', '" + vPagado + "', '" + vExento + "', '" + vIvainc + "', '" + vRetencion + "', " + cbEstado.SelectedValue.ToString + ", '" + cbEstado.Text + "', '" + guardo_porcretencion + "', '" + guardo_impretencion + "', " + cbFormapago.SelectedValue.ToString + ", '" + cbFormapago.Text + "', '" + txDiaspago.Text + "', '" + guardo_impbru + "', '" + guardo_impdto + "',  '" + guardo_impiva + "', '" + guardo_imptot + "', '" + guardo_imprecargo + "')", conexionmy)
             cmd.ExecuteNonQuery()
 
             Dim cmdActualizar As New MySqlCommand("UPDATE configuracion SET num_gasto = '" + txtNumpres.Text + "'", conexionmy)
@@ -537,7 +536,7 @@ Public Class frGastos
             'Guardo cabecera y actualizo número de presupuesto
 
 
-            Dim cmd As New MySqlCommand("UPDATE gastos_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', proveedorID = " + txNumcli.Text + ", totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalgasto = '" + guardo_imptot + "' WHERE num_gasto = " + txtNumpres.Text + "", conexionmy)
+            Dim cmd As New MySqlCommand("UPDATE gastos_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', proveedorID = " + txNumcli.Text + ", pagado = '" + vPagado + "',  ivaincluido = '" + vIvainc + "', exento = '" + vExento + "', retiene = '" + vRetencion + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalgasto = '" + guardo_imptot + "', retencion = '" + guardo_porcretencion + "', totalretencion = '" + guardo_impretencion + "' WHERE num_gasto = " + txtNumpres.Text + "", conexionmy)
             cmd.ExecuteNonQuery()
 
 
@@ -667,6 +666,13 @@ Public Class frGastos
             ckIva.Checked = True
         Else
             ckIva.Checked = False
+        End If
+        If rdrCab("retiene") = "S" Then
+            ckRetencion.Checked = True
+            txPorcRet.Text = rdrCab("retencion")
+            txPorcRet.Visible = True
+        Else
+            ckRetencion.Checked = False
         End If
 
 
@@ -1160,18 +1166,7 @@ Public Class frGastos
     End Sub
 
     Private Sub txPorcRet_Leave(sender As Object, e As EventArgs) Handles txPorcRet.Leave
-        Dim vRetencion As Decimal = 0
-        Dim vTotalMinusRetencion As Decimal = 0
-        Dim vPorc As Decimal
-
-
-        vRetencion = (Decimal.Parse(txImponible.Text) * Decimal.Parse(txPorcRet.Text)) / 100
-        vTotalMinusRetencion = Decimal.Parse(txTotalAlbaran.Text) - vRetencion
-
-        txImpRetencion.Text = vRetencion.ToString("0.00")
-        txTotalAlbaran.Text = vTotalMinusRetencion.ToString("0.00")
-        vPorc = txPorcRet.Text
-        txPorcRet.Text = vPorc.ToString("0.00")
+        recalcularTotales()
     End Sub
 
     Private Sub ckPagado_CheckedChanged(sender As Object, e As EventArgs) Handles ckPagado.CheckedChanged
@@ -1224,9 +1219,6 @@ Public Class frGastos
         cmdGuardar.Enabled = True
         cmdCancelar.Enabled = True
         cmdCliente.Enabled = True
-        cmdPedido.Enabled = True
-        cmdAlbaran.Enabled = True
-
 
         txtNumpres.Text = dgPedidos.CurrentRow.Cells("Column1").Value.ToString
         tabPresupuestos.SelectTab(1)
@@ -1271,5 +1263,19 @@ Public Class frGastos
         rdrLin.Close()
         conexionmy.Close()
 
+    End Sub
+    Public Sub mostrarRetencion()
+        Dim vRetencion As Decimal = 0
+        Dim vTotalMinusRetencion As Decimal = 0
+        Dim vPorc As Decimal
+
+
+        vRetencion = (Decimal.Parse(txImponible.Text) * Decimal.Parse(txPorcRet.Text)) / 100
+        vTotalMinusRetencion = Decimal.Parse(txTotalAlbaran.Text) - vRetencion
+
+        txImpRetencion.Text = vRetencion.ToString("0.00")
+        txTotalAlbaran.Text = vTotalMinusRetencion.ToString("0.00")
+        vPorc = txPorcRet.Text
+        txPorcRet.Text = vPorc.ToString("0.00")
     End Sub
 End Class

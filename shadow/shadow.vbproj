@@ -109,6 +109,12 @@
     <Compile Include="frCrearLotes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frEntradasProv.Designer.vb">
+      <DependentUpon>frEntradasProv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frEntradasProv.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frProveedor.Designer.vb">
       <DependentUpon>frProveedor.vb</DependentUpon>
     </Compile>
@@ -253,6 +259,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frCrearLotes.resx">
       <DependentUpon>frCrearLotes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frEntradasProv.resx">
+      <DependentUpon>frEntradasProv.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frProveedor.resx">
       <DependentUpon>frProveedor.vb</DependentUpon>
