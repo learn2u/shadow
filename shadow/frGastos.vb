@@ -16,6 +16,7 @@ Public Class frGastos
     Public Shared vTotal As String
     Public Shared fechadiapago As Date
     Public Shared newLinea As String = "N"
+    Public Shared editNumber As String = "N"
     Private Sub frGastos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
 
@@ -226,16 +227,18 @@ Public Class frGastos
         newLinea = "N"
     End Sub
     Public Sub renumerar()
-        lineas = 1
+        lineas = 0
         If flagEdit = "N" Then
             For Each row As DataGridViewRow In dgLineasPres1.Rows
-                row.Cells(0).Value = lineas
                 lineas = lineas + 1
+                row.Cells(0).Value = lineas
+
             Next
         Else
             For Each row As DataGridViewRow In dgLineasPres2.Rows
-                row.Cells(0).Value = lineas
                 lineas = lineas + 1
+                row.Cells(0).Value = lineas
+
             Next
         End If
 
@@ -258,13 +261,36 @@ Public Class frGastos
             Next
         End If
 
-        txImpBruto.Text = totalLinea.ToString("0.00")
-        txImpDto.Text = dtoLinea.ToString("0.00")
-        txImponible.Text = (totalLinea - dtoLinea).ToString("0.00")
+        If totalLinea < 1 Then
+            txImpBruto.Text = totalLinea.ToString("0.00")
+        Else
+            txImpBruto.Text = totalLinea.ToString("#,###.00")
+        End If
+        If dtoLinea < 1 Then
+            txImpDto.Text = dtoLinea.ToString("0.00")
+        Else
+            txImpDto.Text = dtoLinea.ToString("#,###.00")
+        End If
+        If (totalLinea - dtoLinea) < 1 Then
+            txImponible.Text = (totalLinea - dtoLinea).ToString("0.00")
+        Else
+            txImponible.Text = (totalLinea - dtoLinea).ToString("#,###.00")
+        End If
+
         'ivaLinea = (Decimal.Parse(txImponible.Text) * Decimal.Parse(txIva.Text)) / 100
         ivaLinea = (Decimal.Parse(txImponible.Text) * 21) / 100
-        txImpIva.Text = ivaLinea.ToString("0.00")
-        txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea).ToString("0.00")
+
+        If ivaLinea < 1 Then
+            txImpIva.Text = ivaLinea.ToString("0.00")
+        Else
+            txImpIva.Text = ivaLinea.ToString("#,###.00")
+        End If
+        If (Decimal.Parse(txImponible.Text) + ivaLinea) < 1 Then
+            txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea).ToString("0.00")
+        Else
+            txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea).ToString("#,###.00")
+        End If
+
         If ckRetencion.Checked = True Then
             mostrarRetencion()
         End If
@@ -370,19 +396,19 @@ Public Class frGastos
         If flagEdit = "N" Then
             cargoNumero()
 
-            Dim impbru As String = txImpBruto.Text
+            Dim impbru As String = Replace(txImpBruto.Text.ToString, ".", "")
             Dim guardo_impbru As String = Replace(impbru, ",", ".")
-            Dim impdto As String = txImpDto.Text
+            Dim impdto As String = Replace(txImpDto.Text.ToString, ".", "")
             Dim guardo_impdto As String = Replace(impdto, ",", ".")
-            Dim impiva As String = txImpIva.Text
+            Dim impiva As String = Replace(txImpIva.Text.ToString, ".", "")
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
-            Dim imptot As String = txTotalAlbaran.Text
+            Dim imptot As String = Replace(txTotalAlbaran.Text.ToString, ".", "")
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
-            Dim imprecargo As String = txImpRecargo.Text
+            Dim imprecargo As String = Replace(txImpRecargo.Text.ToString, ".", "")
             Dim guardo_imprecargo As String = Replace(imprecargo, ",", ".")
-            Dim impretencion As String = txImpRetencion.Text
+            Dim impretencion As String = Replace(txImpRetencion.Text.ToString, ".", "")
             Dim guardo_impretencion As String = Replace(impretencion, ",", ".")
-            Dim porcretencion As String = txPorcRet.Text
+            Dim porcretencion As String = Replace(txPorcRet.Text.ToString, ".", "")
             Dim guardo_porcretencion As String = Replace(porcretencion, ",", ".")
 
             Dim fecha As Date = txFecha.Text
@@ -487,19 +513,19 @@ Public Class frGastos
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
 
-            Dim impbru As String = txImpBruto.Text
+            Dim impbru As String = Replace(txImpBruto.Text.ToString, ".", "")
             Dim guardo_impbru As String = Replace(impbru, ",", ".")
-            Dim impdto As String = txImpDto.Text
+            Dim impdto As String = Replace(txImpDto.Text.ToString, ".", "")
             Dim guardo_impdto As String = Replace(impdto, ",", ".")
-            Dim impiva As String = txImpIva.Text
+            Dim impiva As String = Replace(txImpIva.Text.ToString, ".", "")
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
-            Dim imptot As String = txTotalAlbaran.Text
+            Dim imptot As String = Replace(txTotalAlbaran.Text.ToString, ".", "")
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
-            Dim imprecargo As String = txImpRecargo.Text
+            Dim imprecargo As String = Replace(txImpRecargo.Text.ToString, ".", "")
             Dim guardo_imprecargo As String = Replace(imprecargo, ",", ".")
-            Dim impretencion As String = txImpRetencion.Text
+            Dim impretencion As String = Replace(txImpRetencion.Text.ToString, ".", "")
             Dim guardo_impretencion As String = Replace(impretencion, ",", ".")
-            Dim porcretencion As String = txPorcRet.Text
+            Dim porcretencion As String = Replace(txPorcRet.Text.ToString, ".", "")
             Dim guardo_porcretencion As String = Replace(porcretencion, ",", ".")
 
             Dim fecha As Date = txFecha.Text
@@ -861,28 +887,41 @@ Public Class frGastos
             Else
 
                 If (e.ColumnIndex = 3) Then
-                    value1 = dgLineasPres1.CurrentRow.Cells(3).EditedFormattedValue.ToString
-                    value1 = value1.Replace(".", ",")
+                    If editNumber = "S" Then
+                        value1 = dgLineasPres2.CurrentRow.Cells(3).EditedFormattedValue.ToString
+                        value1 = value1.Replace(".", ",")
+                    Else
+                        value1 = Replace(dgLineasPres2.CurrentRow.Cells(3).EditedFormattedValue.ToString, ".", "")
+                    End If
                     If value1 <> "" Then
                         Dim cellValue As Decimal = CType(value1, Decimal)
                         dgLineasPres1.CurrentRow.Cells(3).Value = cellValue
                     End If
                 End If
                 If (e.ColumnIndex = 4) Then
-                    value2 = dgLineasPres1.CurrentRow.Cells(4).EditedFormattedValue.ToString
-                    value2 = value2.Replace(".", ",")
+                    If editNumber = "S" Then
+                        value2 = dgLineasPres2.CurrentRow.Cells(4).EditedFormattedValue.ToString
+                        value2 = value2.Replace(".", ",")
+                    Else
+                        value2 = Replace(dgLineasPres2.CurrentRow.Cells(4).EditedFormattedValue.ToString, ".", "")
+                    End If
                     If value2 <> "" Then
                         Dim cellValue As Decimal = CType(value2, Decimal)
                         dgLineasPres1.CurrentRow.Cells(4).Value = cellValue
                     End If
                 End If
                 If (e.ColumnIndex = 5) Then
-                    value3 = dgLineasPres1.CurrentRow.Cells(5).EditedFormattedValue.ToString
-                    value3 = value3.Replace(".", ",")
+                    If editNumber = "S" Then
+                        value3 = dgLineasPres2.CurrentRow.Cells(5).EditedFormattedValue.ToString
+                        value3 = value3.Replace(".", ",")
+                    Else
+                        value3 = Replace(dgLineasPres2.CurrentRow.Cells(5).EditedFormattedValue.ToString, ".", "")
+                    End If
                     If value3 <> "" Then
                         Dim cellValue As Decimal = CType(value3, Decimal)
                         dgLineasPres1.CurrentRow.Cells(5).Value = cellValue
                     End If
+                    editNumber = "N"
                 End If
             End If
         End If
@@ -1277,5 +1316,11 @@ Public Class frGastos
         txTotalAlbaran.Text = vTotalMinusRetencion.ToString("0.00")
         vPorc = txPorcRet.Text
         txPorcRet.Text = vPorc.ToString("0.00")
+    End Sub
+
+    Private Sub dgLineasPres2_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles dgLineasPres2.CellBeginEdit
+        If (e.ColumnIndex = 3) Or (e.ColumnIndex = 4) Or (e.ColumnIndex = 5) Then
+            editNumber = "S"
+        End If
     End Sub
 End Class

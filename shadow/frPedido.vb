@@ -15,6 +15,7 @@ Public Class frPedido
     Public Shared serieIni As String
     Public Shared newLinea As String = "N"
     Public Shared editNumber As String = "N"
+
     Private Sub frPedido_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
 
