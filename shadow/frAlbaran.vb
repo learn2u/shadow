@@ -476,15 +476,15 @@ Public Class frAlbaran
         If flagEdit = "N" Then
             cargoNumero()
 
-            Dim impbru As String = txImpBruto.Text
+            Dim impbru As String = Replace(txImpBruto.Text.ToString, ".", "")
             Dim guardo_impbru As String = Replace(impbru, ",", ".")
-            Dim impdto As String = txImpDto.Text
+            Dim impdto As String = Replace(txImpDto.Text.ToString, ".", "")
             Dim guardo_impdto As String = Replace(impdto, ",", ".")
-            Dim impiva As String = txImpIva.Text
+            Dim impiva As String = Replace(txImpIva.Text.ToString, ".", "")
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
-            Dim imptot As String = txTotalAlbaran.Text
+            Dim imptot As String = Replace(txTotalAlbaran.Text.ToString, ".", "")
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
-            Dim imprec As String = txImpRecargo.Text
+            Dim imprec As String = Replace(txImpRecargo.Text.ToString, ".", "")
             Dim guardo_imprec As String = Replace(imprec, ",", ".")
 
             Dim fecha As Date = txFecha.Text
@@ -589,15 +589,15 @@ Public Class frAlbaran
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
 
-            Dim impbru As String = txImpBruto.Text
+            Dim impbru As String = Replace(txImpBruto.Text.ToString, ".", "")
             Dim guardo_impbru As String = Replace(impbru, ",", ".")
-            Dim impdto As String = txImpDto.Text
+            Dim impdto As String = Replace(txImpDto.Text.ToString, ".", "")
             Dim guardo_impdto As String = Replace(impdto, ",", ".")
-            Dim impiva As String = txImpIva.Text
+            Dim impiva As String = Replace(txImpIva.Text.ToString, ".", "")
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
-            Dim imptot As String = txTotalAlbaran.Text
+            Dim imptot As String = Replace(txTotalAlbaran.Text.ToString, ".", "")
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
-            Dim imprec As String = txImpRecargo.Text
+            Dim imprec As String = Replace(txImpRecargo.Text.ToString, ".", "")
             Dim guardo_imprec As String = Replace(imprec, ",", ".")
 
             Dim fecha As Date = txFecha.Text
