@@ -28,7 +28,8 @@ Public Class frPresupuestos
             'dgLineasPres2.Enabled = False
         End If
 
-        cargoTodosPresupuestos()
+        GroupBox5.Visible = False
+
 
     End Sub
 
@@ -348,6 +349,7 @@ Public Class frPresupuestos
         dgLineasPres1.Visible = True
         dgLineasPres1.Enabled = True
         cbEstado.Text = "PENDIENTE"
+        cbEstado.Enabled = True
         txFecha.Text = Format(Today, "ddMMyyyy")
         txReferenciapres.Focus()
 
@@ -725,7 +727,7 @@ Public Class frPresupuestos
             cmdPedido.Enabled = False
             cmdAlbaran.Enabled = False
         End If
-
+        cbEstado.Enabled = False
         rdrCab.Close()
 
 
@@ -1317,6 +1319,228 @@ Public Class frPresupuestos
     Private Sub dgLineasPres2_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles dgLineasPres2.CellBeginEdit
         If (e.ColumnIndex = 4) Or (e.ColumnIndex = 7) Or (e.ColumnIndex = 8) Then
             editNumber = "S"
+        End If
+    End Sub
+    Public Sub cargoPresupPendientes()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+        conexionmy.Open()
+        Dim consultamy As New MySqlCommand("SELECT presupuesto_cab.num_presupuesto, 
+                                                    presupuesto_cab.referencia,
+                                                    presupuesto_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    presupuesto_cab.totalbruto, 
+                                                    presupuesto_cab.totalpresupuesto, 
+                                                    presupuesto_cab.clienteID,
+                                                    presupuesto_cab.eliminado, 
+                                                    clientes.clienteID 
+                                            FROM presupuesto_cab INNER JOIN clientes ON presupuesto_cab.clienteID=clientes.clienteID WHERE estado = 'P' ORDER BY presupuesto_cab.num_presupuesto DESC", conexionmy)
+
+        Dim readermy As MySqlDataReader
+        Dim dtable As New DataTable
+        Dim bind As New BindingSource()
+
+
+        readermy = consultamy.ExecuteReader
+        dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+        bind.DataSource = dtable
+
+        dgPresupuestos.DataSource = bind
+        dgPresupuestos.EnableHeadersVisualStyles = False
+        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+        styCabeceras.BackColor = Color.Beige
+        styCabeceras.ForeColor = Color.Black
+        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+        dgPresupuestos.ColumnHeadersDefaultCellStyle = styCabeceras
+
+        dgPresupuestos.Columns(0).HeaderText = "NUMERO"
+        dgPresupuestos.Columns(0).Name = "Column1"
+        dgPresupuestos.Columns(0).FillWeight = 90
+        dgPresupuestos.Columns(0).MinimumWidth = 90
+        dgPresupuestos.Columns(1).HeaderText = "REFERENCIA"
+        dgPresupuestos.Columns(1).Name = "Column2"
+        dgPresupuestos.Columns(1).FillWeight = 190
+        dgPresupuestos.Columns(1).MinimumWidth = 190
+        dgPresupuestos.Columns(2).HeaderText = "FECHA"
+        dgPresupuestos.Columns(2).Name = "Column3"
+        dgPresupuestos.Columns(2).FillWeight = 90
+        dgPresupuestos.Columns(2).MinimumWidth = 90
+        dgPresupuestos.Columns(3).HeaderText = "CLIENTE"
+        dgPresupuestos.Columns(3).Name = "Column4"
+        dgPresupuestos.Columns(3).FillWeight = 300
+        dgPresupuestos.Columns(3).MinimumWidth = 300
+        dgPresupuestos.Columns(4).HeaderText = "IMPORTE"
+        dgPresupuestos.Columns(4).Name = "Column5"
+        dgPresupuestos.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        dgPresupuestos.Columns(4).FillWeight = 90
+        dgPresupuestos.Columns(4).MinimumWidth = 90
+        dgPresupuestos.Columns(5).HeaderText = "TOTAL"
+        dgPresupuestos.Columns(5).Name = "Column6"
+        dgPresupuestos.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        dgPresupuestos.Columns(5).FillWeight = 90
+        dgPresupuestos.Columns(5).MinimumWidth = 90
+        dgPresupuestos.Columns(6).Visible = False
+        dgPresupuestos.Columns(7).Visible = False
+        dgPresupuestos.Columns(8).Visible = False
+        dgPresupuestos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgPresupuestos.Visible = True
+
+        conexionmy.Close()
+    End Sub
+
+    Private Sub rbPendientes_CheckedChanged(sender As Object, e As EventArgs) Handles rbPendientes.CheckedChanged
+        If rbPendientes.Checked = True Then
+            cargoPresupPendientes()
+        End If
+    End Sub
+
+    Private Sub rbAceptados_CheckedChanged(sender As Object, e As EventArgs) Handles rbAceptados.CheckedChanged
+        If rbAceptados.Checked = True Then
+            cargoPresupPedidos()
+        End If
+    End Sub
+    Public Sub cargoPresupPedidos()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+        conexionmy.Open()
+        Dim consultamy As New MySqlCommand("SELECT presupuesto_cab.num_presupuesto, 
+                                                    presupuesto_cab.referencia,
+                                                    presupuesto_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    presupuesto_cab.totalbruto, 
+                                                    presupuesto_cab.totalpresupuesto, 
+                                                    presupuesto_cab.clienteID,
+                                                    presupuesto_cab.eliminado, 
+                                                    clientes.clienteID 
+                                            FROM presupuesto_cab INNER JOIN clientes ON presupuesto_cab.clienteID=clientes.clienteID WHERE estado = 'D' ORDER BY presupuesto_cab.num_presupuesto DESC", conexionmy)
+
+        Dim readermy As MySqlDataReader
+        Dim dtable As New DataTable
+        Dim bind As New BindingSource()
+
+
+        readermy = consultamy.ExecuteReader
+        dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+        bind.DataSource = dtable
+
+        dgPresupuestos.DataSource = bind
+        dgPresupuestos.EnableHeadersVisualStyles = False
+        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+        styCabeceras.BackColor = Color.Beige
+        styCabeceras.ForeColor = Color.Black
+        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+        dgPresupuestos.ColumnHeadersDefaultCellStyle = styCabeceras
+
+        dgPresupuestos.Columns(0).HeaderText = "NUMERO"
+        dgPresupuestos.Columns(0).Name = "Column1"
+        dgPresupuestos.Columns(0).FillWeight = 90
+        dgPresupuestos.Columns(0).MinimumWidth = 90
+        dgPresupuestos.Columns(1).HeaderText = "REFERENCIA"
+        dgPresupuestos.Columns(1).Name = "Column2"
+        dgPresupuestos.Columns(1).FillWeight = 190
+        dgPresupuestos.Columns(1).MinimumWidth = 190
+        dgPresupuestos.Columns(2).HeaderText = "FECHA"
+        dgPresupuestos.Columns(2).Name = "Column3"
+        dgPresupuestos.Columns(2).FillWeight = 90
+        dgPresupuestos.Columns(2).MinimumWidth = 90
+        dgPresupuestos.Columns(3).HeaderText = "CLIENTE"
+        dgPresupuestos.Columns(3).Name = "Column4"
+        dgPresupuestos.Columns(3).FillWeight = 300
+        dgPresupuestos.Columns(3).MinimumWidth = 300
+        dgPresupuestos.Columns(4).HeaderText = "IMPORTE"
+        dgPresupuestos.Columns(4).Name = "Column5"
+        dgPresupuestos.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        dgPresupuestos.Columns(4).FillWeight = 90
+        dgPresupuestos.Columns(4).MinimumWidth = 90
+        dgPresupuestos.Columns(5).HeaderText = "TOTAL"
+        dgPresupuestos.Columns(5).Name = "Column6"
+        dgPresupuestos.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        dgPresupuestos.Columns(5).FillWeight = 90
+        dgPresupuestos.Columns(5).MinimumWidth = 90
+        dgPresupuestos.Columns(6).Visible = False
+        dgPresupuestos.Columns(7).Visible = False
+        dgPresupuestos.Columns(8).Visible = False
+        dgPresupuestos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgPresupuestos.Visible = True
+
+        conexionmy.Close()
+    End Sub
+    Public Sub cargoPresupAlbaranes()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+        conexionmy.Open()
+        Dim consultamy As New MySqlCommand("SELECT presupuesto_cab.num_presupuesto, 
+                                                    presupuesto_cab.referencia,
+                                                    presupuesto_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    presupuesto_cab.totalbruto, 
+                                                    presupuesto_cab.totalpresupuesto, 
+                                                    presupuesto_cab.clienteID,
+                                                    presupuesto_cab.eliminado, 
+                                                    clientes.clienteID 
+                                            FROM presupuesto_cab INNER JOIN clientes ON presupuesto_cab.clienteID=clientes.clienteID WHERE estado = 'B' ORDER BY presupuesto_cab.num_presupuesto DESC", conexionmy)
+
+        Dim readermy As MySqlDataReader
+        Dim dtable As New DataTable
+        Dim bind As New BindingSource()
+
+
+        readermy = consultamy.ExecuteReader
+        dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+        bind.DataSource = dtable
+
+        dgPresupuestos.DataSource = bind
+        dgPresupuestos.EnableHeadersVisualStyles = False
+        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+        styCabeceras.BackColor = Color.Beige
+        styCabeceras.ForeColor = Color.Black
+        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+        dgPresupuestos.ColumnHeadersDefaultCellStyle = styCabeceras
+
+        dgPresupuestos.Columns(0).HeaderText = "NUMERO"
+        dgPresupuestos.Columns(0).Name = "Column1"
+        dgPresupuestos.Columns(0).FillWeight = 90
+        dgPresupuestos.Columns(0).MinimumWidth = 90
+        dgPresupuestos.Columns(1).HeaderText = "REFERENCIA"
+        dgPresupuestos.Columns(1).Name = "Column2"
+        dgPresupuestos.Columns(1).FillWeight = 190
+        dgPresupuestos.Columns(1).MinimumWidth = 190
+        dgPresupuestos.Columns(2).HeaderText = "FECHA"
+        dgPresupuestos.Columns(2).Name = "Column3"
+        dgPresupuestos.Columns(2).FillWeight = 90
+        dgPresupuestos.Columns(2).MinimumWidth = 90
+        dgPresupuestos.Columns(3).HeaderText = "CLIENTE"
+        dgPresupuestos.Columns(3).Name = "Column4"
+        dgPresupuestos.Columns(3).FillWeight = 300
+        dgPresupuestos.Columns(3).MinimumWidth = 300
+        dgPresupuestos.Columns(4).HeaderText = "IMPORTE"
+        dgPresupuestos.Columns(4).Name = "Column5"
+        dgPresupuestos.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        dgPresupuestos.Columns(4).FillWeight = 90
+        dgPresupuestos.Columns(4).MinimumWidth = 90
+        dgPresupuestos.Columns(5).HeaderText = "TOTAL"
+        dgPresupuestos.Columns(5).Name = "Column6"
+        dgPresupuestos.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        dgPresupuestos.Columns(5).FillWeight = 90
+        dgPresupuestos.Columns(5).MinimumWidth = 90
+        dgPresupuestos.Columns(6).Visible = False
+        dgPresupuestos.Columns(7).Visible = False
+        dgPresupuestos.Columns(8).Visible = False
+        dgPresupuestos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgPresupuestos.Visible = True
+
+        conexionmy.Close()
+    End Sub
+
+    Private Sub rbAlbaranes_CheckedChanged(sender As Object, e As EventArgs) Handles rbAlbaranes.CheckedChanged
+        If rbAlbaranes.Checked = True Then
+            cargoPresupAlbaranes()
+        End If
+    End Sub
+
+    Private Sub rbTodos_CheckedChanged(sender As Object, e As EventArgs) Handles rbTodos.CheckedChanged
+        If rbTodos.Checked = True Then
+            cargoTodosPresupuestos()
         End If
     End Sub
 End Class

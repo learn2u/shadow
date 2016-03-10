@@ -23,20 +23,20 @@ Partial Class frPresupuestos
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frPresupuestos))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle85 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle86 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle87 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle88 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle89 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle90 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle91 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle92 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle93 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle94 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle95 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle96 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle97 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle98 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.tabPresupuestos = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -144,6 +144,7 @@ Partial Class frPresupuestos
         Me.Columna8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Columna9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.rbAlbaranes = New System.Windows.Forms.RadioButton()
         Me.tabPresupuestos.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -205,7 +206,7 @@ Partial Class frPresupuestos
         Me.GroupBox5.Controls.Add(Me.txCliente)
         Me.GroupBox5.Controls.Add(Me.txDesde)
         Me.GroupBox5.Controls.Add(Me.Label35)
-        Me.GroupBox5.Location = New System.Drawing.Point(3, 137)
+        Me.GroupBox5.Location = New System.Drawing.Point(3, 165)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(280, 316)
         Me.GroupBox5.TabIndex = 3
@@ -330,13 +331,14 @@ Partial Class frPresupuestos
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.rbAlbaranes)
         Me.GroupBox4.Controls.Add(Me.rbAceptados)
         Me.GroupBox4.Controls.Add(Me.rbPendientes)
         Me.GroupBox4.Controls.Add(Me.rbTodos)
         Me.GroupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.GroupBox4.Location = New System.Drawing.Point(3, 17)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(280, 104)
+        Me.GroupBox4.Size = New System.Drawing.Size(280, 142)
         Me.GroupBox4.TabIndex = 0
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "ESTADO"
@@ -346,9 +348,9 @@ Partial Class frPresupuestos
         Me.rbAceptados.AutoSize = True
         Me.rbAceptados.Location = New System.Drawing.Point(6, 74)
         Me.rbAceptados.Name = "rbAceptados"
-        Me.rbAceptados.Size = New System.Drawing.Size(90, 17)
+        Me.rbAceptados.Size = New System.Drawing.Size(83, 17)
         Me.rbAceptados.TabIndex = 2
-        Me.rbAceptados.Text = "ACEPTADOS"
+        Me.rbAceptados.Text = "A PEDIDOS"
         Me.rbAceptados.UseVisualStyleBackColor = True
         '
         'rbPendientes
@@ -364,18 +366,17 @@ Partial Class frPresupuestos
         'rbTodos
         '
         Me.rbTodos.AutoSize = True
-        Me.rbTodos.Checked = True
         Me.rbTodos.Location = New System.Drawing.Point(6, 28)
         Me.rbTodos.Name = "rbTodos"
         Me.rbTodos.Size = New System.Drawing.Size(63, 17)
         Me.rbTodos.TabIndex = 0
-        Me.rbTodos.TabStop = True
         Me.rbTodos.Text = "TODOS"
         Me.rbTodos.UseVisualStyleBackColor = True
         '
         'dgPresupuestos
         '
         Me.dgPresupuestos.AllowUserToAddRows = False
+        Me.dgPresupuestos.BackgroundColor = System.Drawing.Color.White
         Me.dgPresupuestos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgPresupuestos.Location = New System.Drawing.Point(300, 6)
         Me.dgPresupuestos.Name = "dgPresupuestos"
@@ -625,7 +626,7 @@ Partial Class frPresupuestos
         'cbEstado
         '
         Me.cbEstado.FormattingEnabled = True
-        Me.cbEstado.Items.AddRange(New Object() {"PENDIENTE", "ACEPTADO", "RECHAZADO"})
+        Me.cbEstado.Items.AddRange(New Object() {"PENDIENTE", "CONVERTIDO A PEDIDO", "CONVERTIDO A ALBARAN"})
         Me.cbEstado.Location = New System.Drawing.Point(789, 59)
         Me.cbEstado.Name = "cbEstado"
         Me.cbEstado.Size = New System.Drawing.Size(221, 21)
@@ -833,7 +834,7 @@ Partial Class frPresupuestos
         'cmdNuevoCliente
         '
         Me.cmdNuevoCliente.Name = "cmdNuevoCliente"
-        Me.cmdNuevoCliente.Size = New System.Drawing.Size(113, 22)
+        Me.cmdNuevoCliente.Size = New System.Drawing.Size(152, 22)
         Me.cmdNuevoCliente.Text = "NUEVO"
         '
         'cmdEditarCliente
@@ -932,10 +933,10 @@ Partial Class frPresupuestos
         '
         'Column3
         '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle1.Format = "N2"
-        DataGridViewCellStyle1.NullValue = "1"
-        Me.Column3.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle85.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle85.Format = "N2"
+        DataGridViewCellStyle85.NullValue = "1"
+        Me.Column3.DefaultCellStyle = DataGridViewCellStyle85
         Me.Column3.HeaderText = "CANTIDAD"
         Me.Column3.Name = "Column3"
         Me.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -943,10 +944,10 @@ Partial Class frPresupuestos
         '
         'Column4
         '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle2.Format = "N2"
-        DataGridViewCellStyle2.NullValue = "0"
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle86.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle86.Format = "N2"
+        DataGridViewCellStyle86.NullValue = "0"
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle86
         Me.Column4.HeaderText = "ANC/LAR"
         Me.Column4.Name = "Column4"
         Me.Column4.ReadOnly = True
@@ -955,10 +956,10 @@ Partial Class frPresupuestos
         '
         'Column5
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle3.Format = "N2"
-        DataGridViewCellStyle3.NullValue = "0"
-        Me.Column5.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle87.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle87.Format = "N2"
+        DataGridViewCellStyle87.NullValue = "0"
+        Me.Column5.DefaultCellStyle = DataGridViewCellStyle87
         Me.Column5.HeaderText = "M2/ML"
         Me.Column5.Name = "Column5"
         Me.Column5.ReadOnly = True
@@ -967,10 +968,10 @@ Partial Class frPresupuestos
         '
         'Column6
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle4.Format = "N2"
-        DataGridViewCellStyle4.NullValue = "0"
-        Me.Column6.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle88.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle88.Format = "N2"
+        DataGridViewCellStyle88.NullValue = "0"
+        Me.Column6.DefaultCellStyle = DataGridViewCellStyle88
         Me.Column6.HeaderText = "PRECIO"
         Me.Column6.Name = "Column6"
         Me.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -978,10 +979,10 @@ Partial Class frPresupuestos
         '
         'Column7
         '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle5.Format = "N2"
-        DataGridViewCellStyle5.NullValue = "0"
-        Me.Column7.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle89.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle89.Format = "N2"
+        DataGridViewCellStyle89.NullValue = "0"
+        Me.Column7.DefaultCellStyle = DataGridViewCellStyle89
         Me.Column7.HeaderText = "DTO"
         Me.Column7.Name = "Column7"
         Me.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -989,10 +990,10 @@ Partial Class frPresupuestos
         '
         'Column8
         '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle6.Format = "N2"
-        DataGridViewCellStyle6.NullValue = "0"
-        Me.Column8.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle90.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle90.Format = "N2"
+        DataGridViewCellStyle90.NullValue = "0"
+        Me.Column8.DefaultCellStyle = DataGridViewCellStyle90
         Me.Column8.HeaderText = "IMPORTE"
         Me.Column8.Name = "Column8"
         Me.Column8.ReadOnly = True
@@ -1000,10 +1001,10 @@ Partial Class frPresupuestos
         '
         'Column9
         '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle7.Format = "N2"
-        DataGridViewCellStyle7.NullValue = "0"
-        Me.Column9.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle91.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle91.Format = "N2"
+        DataGridViewCellStyle91.NullValue = "0"
+        Me.Column9.DefaultCellStyle = DataGridViewCellStyle91
         Me.Column9.HeaderText = "TOTAL"
         Me.Column9.Name = "Column9"
         Me.Column9.ReadOnly = True
@@ -1129,10 +1130,10 @@ Partial Class frPresupuestos
         '
         'Columna3
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle8.Format = "N2"
-        DataGridViewCellStyle8.NullValue = "0"
-        Me.Columna3.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle92.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle92.Format = "N2"
+        DataGridViewCellStyle92.NullValue = "0"
+        Me.Columna3.DefaultCellStyle = DataGridViewCellStyle92
         Me.Columna3.HeaderText = "CANTIDAD"
         Me.Columna3.Name = "Columna3"
         Me.Columna3.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -1141,10 +1142,10 @@ Partial Class frPresupuestos
         '
         'Columna4
         '
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle9.Format = "N2"
-        DataGridViewCellStyle9.NullValue = "0"
-        Me.Columna4.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle93.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle93.Format = "N2"
+        DataGridViewCellStyle93.NullValue = "0"
+        Me.Columna4.DefaultCellStyle = DataGridViewCellStyle93
         Me.Columna4.HeaderText = "ANC/LAR"
         Me.Columna4.Name = "Columna4"
         Me.Columna4.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -1153,10 +1154,10 @@ Partial Class frPresupuestos
         '
         'Columna5
         '
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle10.Format = "N2"
-        DataGridViewCellStyle10.NullValue = "0"
-        Me.Columna5.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle94.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle94.Format = "N2"
+        DataGridViewCellStyle94.NullValue = "0"
+        Me.Columna5.DefaultCellStyle = DataGridViewCellStyle94
         Me.Columna5.HeaderText = "M2/ML"
         Me.Columna5.Name = "Columna5"
         Me.Columna5.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -1165,10 +1166,10 @@ Partial Class frPresupuestos
         '
         'Columna6
         '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle11.Format = "N2"
-        DataGridViewCellStyle11.NullValue = "0"
-        Me.Columna6.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle95.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle95.Format = "N2"
+        DataGridViewCellStyle95.NullValue = "0"
+        Me.Columna6.DefaultCellStyle = DataGridViewCellStyle95
         Me.Columna6.HeaderText = "PRECIO"
         Me.Columna6.Name = "Columna6"
         Me.Columna6.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -1177,10 +1178,10 @@ Partial Class frPresupuestos
         '
         'Columna7
         '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle12.Format = "N2"
-        DataGridViewCellStyle12.NullValue = "0"
-        Me.Columna7.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle96.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle96.Format = "N2"
+        DataGridViewCellStyle96.NullValue = "0"
+        Me.Columna7.DefaultCellStyle = DataGridViewCellStyle96
         Me.Columna7.HeaderText = "DTO"
         Me.Columna7.Name = "Columna7"
         Me.Columna7.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -1189,10 +1190,10 @@ Partial Class frPresupuestos
         '
         'Columna8
         '
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle13.Format = "N2"
-        DataGridViewCellStyle13.NullValue = "0"
-        Me.Columna8.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle97.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle97.Format = "N2"
+        DataGridViewCellStyle97.NullValue = "0"
+        Me.Columna8.DefaultCellStyle = DataGridViewCellStyle97
         Me.Columna8.HeaderText = "IMPORTE"
         Me.Columna8.Name = "Columna8"
         Me.Columna8.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -1200,10 +1201,10 @@ Partial Class frPresupuestos
         '
         'Columna9
         '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle14.Format = "N2"
-        DataGridViewCellStyle14.NullValue = "0"
-        Me.Columna9.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle98.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle98.Format = "N2"
+        DataGridViewCellStyle98.NullValue = "0"
+        Me.Columna9.DefaultCellStyle = DataGridViewCellStyle98
         Me.Columna9.HeaderText = "TOTAL"
         Me.Columna9.Name = "Columna9"
         Me.Columna9.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -1214,6 +1215,16 @@ Partial Class frPresupuestos
         Me.Column11.HeaderText = "LOTE"
         Me.Column11.Name = "Column11"
         Me.Column11.Visible = False
+        '
+        'rbAlbaranes
+        '
+        Me.rbAlbaranes.AutoSize = True
+        Me.rbAlbaranes.Location = New System.Drawing.Point(6, 97)
+        Me.rbAlbaranes.Name = "rbAlbaranes"
+        Me.rbAlbaranes.Size = New System.Drawing.Size(99, 17)
+        Me.rbAlbaranes.TabIndex = 3
+        Me.rbAlbaranes.Text = "A ALBARANES"
+        Me.rbAlbaranes.UseVisualStyleBackColor = True
         '
         'frPresupuestos
         '
@@ -1350,4 +1361,5 @@ Partial Class frPresupuestos
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents btArticulo As DataGridViewButtonColumn
     Friend WithEvents linea As DataGridViewTextBoxColumn
+    Friend WithEvents rbAlbaranes As RadioButton
 End Class
