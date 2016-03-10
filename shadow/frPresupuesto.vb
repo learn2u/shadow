@@ -1313,4 +1313,10 @@ Public Class frPresupuestos
         cmdDelete.Enabled = True
         recalcularTotales()
     End Sub
+
+    Private Sub dgLineasPres2_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles dgLineasPres2.CellBeginEdit
+        If (e.ColumnIndex = 4) Or (e.ColumnIndex = 7) Or (e.ColumnIndex = 8) Then
+            editNumber = "S"
+        End If
+    End Sub
 End Class
