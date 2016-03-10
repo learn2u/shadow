@@ -749,7 +749,12 @@ Public Class frPedidoProv
         rdrCab = cmdCab.ExecuteReader
         rdrCab.Read()
         txFecha.Text = rdrCab("fecha")
-        txFechaEntrega.Text = rdrCab("fechaentrega")
+        If rdrCab("fechaentrega") = "00:00:0" Then
+            txFechaEntrega.Text = "  /  /"
+        Else
+            txFechaEntrega.Text = rdrCab("fechaentrega")
+        End If
+
         txNumcli.Text = rdrCab("proveedorID")
         txReferenciapres.Text = rdrCab("referencia")
         txAlbaranPro.Text = rdrCab("albaranpro")
