@@ -10,6 +10,7 @@ Public Class frPresupuestos
     Public Shared pos As Integer
     Public Shared flagEdit As String = "N"
     Public Shared newLinea As String = "N"
+    Public Shared editNumber As String = "N"
 
     Private Sub frPresupuestos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -142,16 +143,18 @@ Public Class frPresupuestos
 
     End Sub
     Public Sub renumerar()
-        lineas = 1
+        lineas = 0
         If flagEdit = "N" Then
             For Each row As DataGridViewRow In dgLineasPres1.Rows
-                row.Cells(0).Value = lineas
                 lineas = lineas + 1
+                row.Cells(0).Value = lineas
+
             Next
         Else
             For Each row As DataGridViewRow In dgLineasPres2.Rows
-                row.Cells(0).Value = lineas
                 lineas = lineas + 1
+                row.Cells(0).Value = lineas
+
             Next
         End If
 
@@ -311,12 +314,12 @@ Public Class frPresupuestos
             renumerar()
             recalcularTotales()
         End If
-        If dgLineasPres1.RowCount = 0 Then
-            lineas = 0
-        End If
-        If dgLineasPres2.RowCount = 0 Then
-            lineas = 0
-        End If
+        'If dgLineasPres1.RowCount = 0 Then
+        ' lineas = 0
+        ' End If
+        ' If dgLineasPres2.RowCount = 0 Then
+        ' lineas = 0
+        ' End If
     End Sub
     Public Sub deshabilitarBotones()
         cmdGuardar.Enabled = False
@@ -974,28 +977,44 @@ Public Class frPresupuestos
                 Exit Sub
             Else
                 If (e.ColumnIndex = 4) Then
-                    value1 = dgLineasPres2.CurrentRow.Cells(4).EditedFormattedValue.ToString
-                    value1 = value1.Replace(".", ",")
+
+                    If editNumber = "S" Then
+                        value1 = dgLineasPres2.CurrentRow.Cells(4).EditedFormattedValue.ToString
+                        value1 = value1.Replace(".", ",")
+                    Else
+                        value1 = Replace(dgLineasPres2.CurrentRow.Cells(4).EditedFormattedValue.ToString, ".", "")
+                    End If
                     If value1 <> "" Then
                         Dim cellValue As Decimal = CType(value1, Decimal)
                         dgLineasPres2.CurrentRow.Cells(4).Value = cellValue
                     End If
+                    editNumber = "N"
                 End If
                 If (e.ColumnIndex = 7) Then
-                    value2 = dgLineasPres2.CurrentRow.Cells(7).EditedFormattedValue.ToString
-                    value2 = value2.Replace(".", ",")
+                    If editNumber = "S" Then
+                        value2 = dgLineasPres2.CurrentRow.Cells(7).EditedFormattedValue.ToString
+                        value2 = value2.Replace(".", ",")
+                    Else
+                        value2 = Replace(dgLineasPres2.CurrentRow.Cells(7).EditedFormattedValue.ToString, ".", "")
+                    End If
                     If value2 <> "" Then
                         Dim cellValue As Decimal = CType(value2, Decimal)
                         dgLineasPres2.CurrentRow.Cells(7).Value = cellValue
                     End If
+                    editNumber = "N"
                 End If
                 If (e.ColumnIndex = 8) Then
-                    value3 = dgLineasPres2.CurrentRow.Cells(8).EditedFormattedValue.ToString
-                    value3 = value3.Replace(".", ",")
+                    If editNumber = "S" Then
+                        value3 = dgLineasPres2.CurrentRow.Cells(8).EditedFormattedValue.ToString
+                        value3 = value3.Replace(".", ",")
+                    Else
+                        value3 = Replace(dgLineasPres2.CurrentRow.Cells(8).EditedFormattedValue.ToString, ".", "")
+                    End If
                     If value3 <> "" Then
                         Dim cellValue As Decimal = CType(value3, Decimal)
                         dgLineasPres2.CurrentRow.Cells(8).Value = cellValue
                     End If
+                    editNumber = "N"
                 End If
             End If
         End If
