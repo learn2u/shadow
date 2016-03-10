@@ -186,7 +186,7 @@ Public Class frArticulos
             End If
 
             cmd.CommandType = System.Data.CommandType.Text
-            cmd.CommandText = "INSERT INTO articulos2 (ref_proveedor, referencia, grupoID, proveedorID, descripcion, modelo, tejido, familia, color, colorID, ubicacion, medida, unidad, control_stock, iva, precio_compra, dto_prov, porc_margen, euro_margen, pvp, stock, stock_min, stock_ini) VALUES ('" + txRefProv.Text + "' , '" + txCodigo.Text + "' , '" + txGrupo.Text + "' , '" + txNumPro.Text + "' , '" + txDescripcion.Text + "' , '" + txModelo.Text + "' , '" + txTejido.Text + "' , '" + cbFamilias.SelectedValue.ToString + "' , '" + cbColores.Text + "' , '" + cbColores.SelectedValue.ToString + "' , '" + txUbicacion.Text + "' , '" + cbMedidas.SelectedValue.ToString + "' , '" + cbUnidad.SelectedValue.ToString + "' , '" + equiv + "' , '" + guardo_iva + "' , '" + guardo_compra + "' , '" + guardo_dto + "' , '" + guardo_margenpor + "' , '" + guardo_margeneur + "' , '" + guardo_precio + "' , '" + guardo_stock + "' , '" + guardo_stockmin + "' , '" + guardo_stockini + "')"
+            cmd.CommandText = "INSERT INTO articulos2 (ref_proveedor, referencia, grupoID, proveedorID, descripcion, modelo, tejido, familia, color, colorID, ubicacion, medida, medidaID, unidad, ud_medida, control_stock, iva, precio_compra, dto_prov, porc_margen, euro_margen, pvp, stock, stock_min, stock_ini) VALUES ('" + txRefProv.Text + "' , '" + txCodigo.Text + "' , '" + txGrupo.Text + "' , '" + txNumPro.Text + "' , '" + txDescripcion.Text + "' , '" + txModelo.Text + "' , '" + txTejido.Text + "' , '" + cbFamilias.SelectedValue.ToString + "' , '" + cbColores.Text + "' , '" + cbColores.SelectedValue.ToString + "' , '" + txUbicacion.Text + "' , '" + cbMedidas.Text + "' , '" + cbMedidas.SelectedValue.ToString + "' , '" + cbUnidad.SelectedValue.ToString + "' , '" + cbUnidad.Text + "' , '" + equiv + "' , '" + guardo_iva + "' , '" + guardo_compra + "' , '" + guardo_dto + "' , '" + guardo_margenpor + "' , '" + guardo_margeneur + "' , '" + guardo_precio + "' , '" + guardo_stock + "' , '" + guardo_stockmin + "' , '" + guardo_stockini + "')"
 
             cmd.Connection = conexionmy
 
@@ -214,7 +214,7 @@ Public Class frArticulos
             Next
 
             conexionmy.Close()
-            Me.Hide()
+            'Me.Hide()
         Else
 
             Dim descuento As String = txDto.Text
@@ -518,6 +518,8 @@ Public Class frArticulos
         cmdGuardar.Enabled = True
         cmdDuplicar.Enabled = True
         cmdLotes.Enabled = True
+        cmdCancelar.Enabled = True
+
 
         flagEditArti = True
     End Sub
@@ -704,6 +706,8 @@ Public Class frArticulos
     End Sub
 
     Private Sub cmdCancelar_Click(sender As Object, e As EventArgs) Handles cmdCancelar.Click
+        deshabilitarBotones()
+        cmdNuevo.Enabled = True
         limpiarFormulario()
         TabControl1.SelectTab(0)
         txCodigo1.Text = ""
