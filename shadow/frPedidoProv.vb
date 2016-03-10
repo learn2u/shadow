@@ -15,6 +15,7 @@ Public Class frPedidoProv
     Public Shared serieIni As String
     Public Shared estadoLinea As String = "N"
     Public Shared newLinea As String = "N"
+    Public Shared editNumber As String = "N"
     Private Sub frPedidoProv_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
 
@@ -235,16 +236,18 @@ Public Class frPedidoProv
         newLinea = "N"
     End Sub
     Public Sub renumerar()
-        lineas = 1
+        lineas = 0
         If flagEdit = "N" Then
             For Each row As DataGridViewRow In dgLineasPres1.Rows
-                row.Cells(0).Value = lineas
                 lineas = lineas + 1
+                row.Cells(0).Value = lineas
+
             Next
         Else
             For Each row As DataGridViewRow In dgLineasPres2.Rows
-                row.Cells(0).Value = lineas
                 lineas = lineas + 1
+                row.Cells(0).Value = lineas
+
             Next
         End If
 
@@ -267,14 +270,35 @@ Public Class frPedidoProv
             Next
         End If
 
-        txImpBruto.Text = totalLinea.ToString("0.00")
-        txImpDto.Text = dtoLinea.ToString("0.00")
-        txImponible.Text = (totalLinea - dtoLinea).ToString("0.00")
+        If totalLinea < 1 Then
+            txImpBruto.Text = totalLinea.ToString("0.00")
+        Else
+            txImpBruto.Text = totalLinea.ToString("#,###.00")
+        End If
+        If dtoLinea < 1 Then
+            txImpDto.Text = dtoLinea.ToString("0.00")
+        Else
+            txImpDto.Text = dtoLinea.ToString("#,###.00")
+        End If
+        If (totalLinea - dtoLinea) < 1 Then
+            txImponible.Text = (totalLinea - dtoLinea).ToString("0.00")
+        Else
+            txImponible.Text = (totalLinea - dtoLinea).ToString("#,###.00")
+        End If
+
         'ivaLinea = (Decimal.Parse(txImponible.Text) * Decimal.Parse(txIva.Text)) / 100
         ivaLinea = (Decimal.Parse(txImponible.Text) * 21) / 100
-        txImpIva.Text = ivaLinea.ToString("0.00")
-        txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea).ToString("0.00")
 
+        If ivaLinea < 1 Then
+            txImpIva.Text = ivaLinea.ToString("0.00")
+        Else
+            txImpIva.Text = ivaLinea.ToString("#,###.00")
+        End If
+        If (Decimal.Parse(txImponible.Text) + ivaLinea) < 1 Then
+            txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea).ToString("0.00")
+        Else
+            txTotalAlbaran.Text = (Decimal.Parse(txImponible.Text) + ivaLinea).ToString("#,###.00")
+        End If
     End Sub
     Public Sub actualizarLinea()
         If flagEdit = "N" Then
@@ -445,13 +469,13 @@ Public Class frPedidoProv
         If flagEdit = "N" Then
             cargoNumero()
 
-            Dim impbru As String = txImpBruto.Text
+            Dim impbru As String = Replace(txImpBruto.Text.ToString, ".", "")
             Dim guardo_impbru As String = Replace(impbru, ",", ".")
-            Dim impdto As String = txImpDto.Text
+            Dim impdto As String = Replace(txImpDto.Text.ToString, ".", "")
             Dim guardo_impdto As String = Replace(impdto, ",", ".")
-            Dim impiva As String = txImpIva.Text
+            Dim impiva As String = Replace(txImpIva.Text.ToString, ".", "")
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
-            Dim imptot As String = txTotalAlbaran.Text
+            Dim imptot As String = Replace(txTotalAlbaran.Text.ToString, ".", "")
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
 
             Dim fecha As Date = txFecha.Text
@@ -557,13 +581,13 @@ Public Class frPedidoProv
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
 
-            Dim impbru As String = txImpBruto.Text
+            Dim impbru As String = Replace(txImpBruto.Text.ToString, ".", "")
             Dim guardo_impbru As String = Replace(impbru, ",", ".")
-            Dim impdto As String = txImpDto.Text
+            Dim impdto As String = Replace(txImpDto.Text.ToString, ".", "")
             Dim guardo_impdto As String = Replace(impdto, ",", ".")
-            Dim impiva As String = txImpIva.Text
+            Dim impiva As String = Replace(txImpIva.Text.ToString, ".", "")
             Dim guardo_impiva As String = Replace(impiva, ",", ".")
-            Dim imptot As String = txTotalAlbaran.Text
+            Dim imptot As String = Replace(txTotalAlbaran.Text.ToString, ".", "")
             Dim guardo_imptot As String = Replace(imptot, ",", ".")
 
             Dim fecha As Date = txFecha.Text
@@ -864,14 +888,14 @@ Public Class frPedidoProv
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock_disponible FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock_disp FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
         Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
         reader.Read()
 
         Dim stock As String = (reader.GetString(1) - unidades).ToString
         reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock_disponible = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock_disp = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
         cmdActualizo.ExecuteNonQuery()
 
         conexionmy.Close()
@@ -881,14 +905,14 @@ Public Class frPedidoProv
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
         conexionmy.Open()
 
-        Dim cmdLastId As New MySqlCommand("SELECT referencia, stock_disponible FROM articulos WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock_disp FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
         Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
         reader.Read()
 
         Dim stock As String = (reader.GetString(1) + unidades).ToString
         reader.Close()
 
-        Dim cmdActualizo As New MySqlCommand("UPDATE articulos SET stock_disponible = '" + stock + "' WHERE referencia = '" + codArti + "'", conexionmy)
+        Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock_disp = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
         cmdActualizo.ExecuteNonQuery()
 
         conexionmy.Close()
@@ -951,5 +975,121 @@ Public Class frPedidoProv
         rdrArt.Close()
 
         conexionmy.Close()
+    End Sub
+
+    Private Sub dgLineasPres1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres1.CellValueChanged
+        If newLinea = "N" Then
+            Dim value1 As String = ""
+            Dim value2 As String = ""
+            Dim value3 As String = ""
+            If dgLineasPres1.CurrentCell Is Nothing Then
+                Exit Sub
+            Else
+
+                If (e.ColumnIndex = 4) Then
+                    value1 = dgLineasPres1.CurrentRow.Cells(4).EditedFormattedValue.ToString
+                    value1 = value1.Replace(".", ",")
+                    If value1 <> "" Then
+                        Dim cellValue As Decimal = CType(value1, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(4).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 7) Then
+                    value2 = dgLineasPres1.CurrentRow.Cells(7).EditedFormattedValue.ToString
+                    value2 = value2.Replace(".", ",")
+                    If value2 <> "" Then
+                        Dim cellValue As Decimal = CType(value2, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(7).Value = cellValue
+                    End If
+                End If
+                If (e.ColumnIndex = 8) Then
+                    value3 = dgLineasPres1.CurrentRow.Cells(8).EditedFormattedValue.ToString
+                    value3 = value3.Replace(".", ",")
+                    If value3 <> "" Then
+                        Dim cellValue As Decimal = CType(value3, Decimal)
+                        dgLineasPres1.CurrentRow.Cells(8).Value = cellValue
+                    End If
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub dgLineasPres2_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgLineasPres2.CellValueChanged
+        If newLinea = "N" Then
+            Dim value1 As String = ""
+            Dim value2 As String = ""
+            Dim value3 As String = ""
+            If dgLineasPres2.CurrentCell Is Nothing Then
+                Exit Sub
+            Else
+                If (e.ColumnIndex = 4) Then
+
+                    If editNumber = "S" Then
+                        value1 = dgLineasPres2.CurrentRow.Cells(4).EditedFormattedValue.ToString
+                        value1 = value1.Replace(".", ",")
+                    Else
+                        value1 = Replace(dgLineasPres2.CurrentRow.Cells(4).EditedFormattedValue.ToString, ".", "")
+                    End If
+                    If value1 <> "" Then
+                        Dim cellValue As Decimal = CType(value1, Decimal)
+                        dgLineasPres2.CurrentRow.Cells(4).Value = cellValue
+                    End If
+                    editNumber = "N"
+                End If
+                If (e.ColumnIndex = 7) Then
+                    If editNumber = "S" Then
+                        value2 = dgLineasPres2.CurrentRow.Cells(7).EditedFormattedValue.ToString
+                        value2 = value2.Replace(".", ",")
+                    Else
+                        value2 = Replace(dgLineasPres2.CurrentRow.Cells(7).EditedFormattedValue.ToString, ".", "")
+                    End If
+                    If value2 <> "" Then
+                        Dim cellValue As Decimal = CType(value2, Decimal)
+                        dgLineasPres2.CurrentRow.Cells(7).Value = cellValue
+                    End If
+                    editNumber = "N"
+                End If
+                If (e.ColumnIndex = 8) Then
+                    If editNumber = "S" Then
+                        value3 = dgLineasPres2.CurrentRow.Cells(8).EditedFormattedValue.ToString
+                        value3 = value3.Replace(".", ",")
+                    Else
+                        value3 = Replace(dgLineasPres2.CurrentRow.Cells(8).EditedFormattedValue.ToString, ".", "")
+                    End If
+                    If value3 <> "" Then
+                        Dim cellValue As Decimal = CType(value3, Decimal)
+                        dgLineasPres2.CurrentRow.Cells(8).Value = cellValue
+                    End If
+                    editNumber = "N"
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub dgLineasPres2_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles dgLineasPres2.CellBeginEdit
+        If (e.ColumnIndex = 4) Or (e.ColumnIndex = 7) Or (e.ColumnIndex = 8) Then
+            editNumber = "S"
+        End If
+    End Sub
+
+    Private Sub dgPedidos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgPedidos.CellDoubleClick
+        limpiarFormulario()
+        cmdLineas.Enabled = True
+        cmdGuardar.Enabled = True
+        cmdCancelar.Enabled = True
+        cmdCliente.Enabled = True
+
+        txtNumpres.Text = dgPedidos.CurrentRow.Cells("Column1").Value.ToString
+        tabPresupuestos.SelectTab(1)
+        flagEdit = "S"
+        dgLineasPres1.Visible = False
+        dgLineasPres2.Visible = True
+        dgLineasPres2.Rows.Clear()
+
+
+        cargoPedido()
+        cargoLineas()
+        cmdDelete.Enabled = True
+        recalcularTotales()
     End Sub
 End Class
