@@ -1094,6 +1094,8 @@ Public Class frPresupuestos
             Dim guardo_linimporte As String
             Dim lintotal As String
             Dim guardo_lintotal As String
+            Dim arti As String
+            Dim vLote As String
 
             For Each row In dgLineasPres2.Rows
 
@@ -1122,10 +1124,19 @@ Public Class frPresupuestos
                 lintotal = row.Cells(10).Value.ToString
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
+                arti = row.Cells(2).Value
+
                 cmdLinea.Connection = conexionmy
                 cmdLinea.CommandText = "INSERT INTO pedido_linea (num_pedido, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
 
                 cmdLinea.ExecuteNonQuery()
+
+                If row.Cells(11).Value = "" Then
+                    descontarStockPedido(arti, lincant)
+                Else
+                    vLote = row.Cells(11).Value
+                    descontarStockPedidoLote(vLote, lincant)
+                End If
 
                 'conexionmy.Close()
 
@@ -1200,6 +1211,8 @@ Public Class frPresupuestos
             Dim guardo_linimporte As String
             Dim lintotal As String
             Dim guardo_lintotal As String
+            Dim arti As String
+            Dim vLote As String
 
             For Each row In dgLineasPres2.Rows
 
@@ -1228,10 +1241,19 @@ Public Class frPresupuestos
                 lintotal = row.Cells(10).Value.ToString
                 guardo_lintotal = Replace(lintotal, ",", ".")
 
+                arti = row.Cells(2).Value
+
                 cmdLinea.Connection = conexionmy
                 cmdLinea.CommandText = "INSERT INTO albaran_linea (num_albaran, linea, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, importe, totalinea, lote) VALUES ('" + txtNumpres.Text + "', " + row.Cells(0).Value.ToString + ", '" + row.Cells(2).Value + "', '" + row.Cells(3).Value + "', '" + guardo_lincant + "', '" + guardo_linancho + "', '" + guardo_linmetros + "', '" + guardo_linprec + "', '" + guardo_lindto + "', '" + guardo_liniva + "', '" + guardo_linimporte + "', '" + guardo_lintotal + "', '" + row.Cells(11).Value + "')"
 
                 cmdLinea.ExecuteNonQuery()
+
+                If row.Cells(11).Value = "" Then
+                    descontarStockAlbaran(arti, lincant)
+                Else
+                    vLote = row.Cells(11).Value
+                    descontarStockAlbaranLote(vLote, lincant)
+                End If
 
             Next
 
@@ -1539,6 +1561,114 @@ Public Class frPresupuestos
     Private Sub rbTodos_CheckedChanged(sender As Object, e As EventArgs) Handles rbTodos.CheckedChanged
         If rbTodos.Checked = True Then
             cargoTodosPresupuestos()
+        End If
+    End Sub
+    Private Sub descontarStockPedido(codArti As String, unidades As Decimal)
+        If codArti <> "" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock_disp FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
+            Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+            reader.Read()
+
+            Dim stock As String = (reader.GetString(1) - unidades).ToString
+            reader.Close()
+
+            Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock_disp = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
+            cmdActualizo.ExecuteNonQuery()
+
+            conexionmy.Close()
+        End If
+    End Sub
+    Private Sub aumentarStockPedido(codArti As String, unidades As Decimal)
+        If codArti <> "" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock_disp FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
+            Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+            reader.Read()
+
+            Dim stock As String = (reader.GetString(1) + unidades).ToString
+            reader.Close()
+
+            Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock_disp = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
+            cmdActualizo.ExecuteNonQuery()
+
+            conexionmy.Close()
+        End If
+    End Sub
+    Private Sub descontarStockPedidoLote(codArti As String, unidades As Decimal)
+        If codArti <> "" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock_disp, lote FROM lotes WHERE lote = '" + codArti + "'", conexionmy)
+            Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+            reader.Read()
+
+            Dim stock As String = (reader.GetString(1) - unidades).ToString
+            reader.Close()
+
+            Dim cmdActualizo As New MySqlCommand("UPDATE lotes SET stock = '" + stock + "' WHERE lote = '" + codArti + "'", conexionmy)
+            cmdActualizo.ExecuteNonQuery()
+
+            conexionmy.Close()
+        End If
+    End Sub
+    Private Sub aumentarStockPedidoLote(codArti As String, unidades As Decimal)
+        If codArti <> "" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock_disp, lote FROM lotes WHERE lote = '" + codArti + "'", conexionmy)
+            Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+            reader.Read()
+
+            Dim stock As String = (reader.GetString(1) + unidades).ToString
+            reader.Close()
+
+            Dim cmdActualizo As New MySqlCommand("UPDATE lotes SET stock = '" + stock + "' WHERE lote = '" + codArti + "'", conexionmy)
+            cmdActualizo.ExecuteNonQuery()
+
+            conexionmy.Close()
+        End If
+    End Sub
+    Private Sub descontarStockAlbaran(codArti As String, unidades As Decimal)
+        If codArti <> "" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock FROM articulos2 WHERE ref_proveedor = '" + codArti + "'", conexionmy)
+            Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+            reader.Read()
+
+            Dim stock As String = (reader.GetString(1) - unidades).ToString
+            reader.Close()
+
+            Dim cmdActualizo As New MySqlCommand("UPDATE articulos2 SET stock = '" + stock + "' WHERE ref_proveedor = '" + codArti + "'", conexionmy)
+            cmdActualizo.ExecuteNonQuery()
+
+            conexionmy.Close()
+        End If
+    End Sub
+    Private Sub descontarStockAlbaranLote(codArti As String, unidades As Decimal)
+        If codArti <> "" Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+
+            Dim cmdLastId As New MySqlCommand("SELECT ref_proveedor, stock, lote FROM lotes WHERE lote = '" + codArti + "'", conexionmy)
+            Dim reader As MySqlDataReader = cmdLastId.ExecuteReader()
+            reader.Read()
+
+            Dim stock As String = (reader.GetString(1) - unidades).ToString
+            reader.Close()
+
+            Dim cmdActualizo As New MySqlCommand("UPDATE lotes SET stock = '" + stock + "' WHERE lote = '" + codArti + "'", conexionmy)
+            cmdActualizo.ExecuteNonQuery()
+
+            conexionmy.Close()
         End If
     End Sub
 End Class
