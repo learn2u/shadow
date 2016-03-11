@@ -1139,8 +1139,6 @@ Public Class frPresupuestos
             Dim cmdEliminar As New MySqlCommand("UPDATE presupuesto_cab SET estado = 'D' WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
             cmdEliminar.ExecuteNonQuery()
 
-            'Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM presupuesto_linea WHERE num_presupuesto = '" + txNumpresBk.Text + "'", conexionmy)
-            'cmdEliminarLineas.ExecuteNonQuery()
 
             conexionmy.Close()
             deshabilitarBotones()

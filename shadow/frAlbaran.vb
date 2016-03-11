@@ -32,7 +32,10 @@ Public Class frAlbaran
             dgLineasPres2.Visible = True
         End If
 
-        cargoTodosAlbaranes()
+        'cargoTodosAlbaranes()
+        GroupBox5.Visible = False
+
+
     End Sub
     Public Sub deshabilitarBotones()
         cmdGuardar.Enabled = False
@@ -448,6 +451,7 @@ Public Class frAlbaran
         dgLineasPres1.Enabled = True
         cbSerie.Text = "S1"
         cbEstado.Text = "NO FACTURADO"
+        cbEstado.Enabled = True
         txFecha.Text = Format(Today, "ddMMyyyy")
         txReferenciapres.Focus()
     End Sub
@@ -771,6 +775,7 @@ Public Class frAlbaran
             cbEstado.Text = "NO FACTURADO"
         Else
             cbEstado.Text = "FACTURADO"
+            cmdAlbaran.Enabled = False
         End If
         cbEstado.Enabled = False
 
@@ -1237,11 +1242,8 @@ Public Class frAlbaran
 
             'Borro la cabecera y las lineas del presupuesto
 
-            'Dim cmdEliminar As New MySqlCommand("DELETE FROM albaran_cab WHERE num_albaran = '" + txNumpresBk.Text + "'", conexionmy)
-            'cmdEliminar.ExecuteNonQuery()
-
-            'Dim cmdEliminarLineas As New MySqlCommand("DELETE FROM albaran_linea WHERE num_albaran = '" + txNumpresBk.Text + "'", conexionmy)
-            'cmdEliminarLineas.ExecuteNonQuery()
+            Dim cmdEliminar As New MySqlCommand("UPDATE albaran_cab SET facturado = 'S' WHERE num_albaran = '" + txNumpresBk.Text + "'", conexionmy)
+            cmdEliminar.ExecuteNonQuery()
 
             conexionmy.Close()
             deshabilitarBotones()
@@ -1485,6 +1487,84 @@ Public Class frAlbaran
     Private Sub dgLineasPres2_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles dgLineasPres2.CellBeginEdit
         If (e.ColumnIndex = 4) Or (e.ColumnIndex = 7) Or (e.ColumnIndex = 8) Then
             editNumber = "S"
+        End If
+    End Sub
+    Public Sub cargoAlbaFactura()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+        conexionmy.Open()
+        Dim consultamy As New MySqlCommand("SELECT albaran_cab.num_albaran, 
+                                                    albaran_cab.referencia,
+                                                    albaran_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    albaran_cab.totalbruto, 
+                                                    albaran_cab.totalalbaran, 
+                                                    albaran_cab.clienteID,
+                                                    albaran_cab.facturado, 
+                                                    clientes.clienteID
+                                            FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.clienteID WHERE facturado = 'S' ORDER BY albaran_cab.num_albaran DESC", conexionmy)
+
+        Dim readermy As MySqlDataReader
+        Dim dtable As New DataTable
+        Dim bind As New BindingSource()
+
+
+        readermy = consultamy.ExecuteReader
+        dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+        bind.DataSource = dtable
+
+        dgAlbaranes.DataSource = bind
+        dgAlbaranes.EnableHeadersVisualStyles = False
+        Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+        styCabeceras.BackColor = Color.Beige
+        styCabeceras.ForeColor = Color.Black
+        styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+        dgAlbaranes.ColumnHeadersDefaultCellStyle = styCabeceras
+
+        dgAlbaranes.Columns(0).HeaderText = "NUMERO"
+        dgAlbaranes.Columns(0).Name = "Column1"
+        dgAlbaranes.Columns(0).FillWeight = 90
+        dgAlbaranes.Columns(0).MinimumWidth = 90
+        dgAlbaranes.Columns(1).HeaderText = "REFERENCIA"
+        dgAlbaranes.Columns(1).Name = "Column2"
+        dgAlbaranes.Columns(1).FillWeight = 190
+        dgAlbaranes.Columns(1).MinimumWidth = 190
+        dgAlbaranes.Columns(2).HeaderText = "FECHA"
+        dgAlbaranes.Columns(2).Name = "Column3"
+        dgAlbaranes.Columns(2).FillWeight = 90
+        dgAlbaranes.Columns(2).MinimumWidth = 90
+        dgAlbaranes.Columns(3).HeaderText = "CLIENTE"
+        dgAlbaranes.Columns(3).Name = "Column4"
+        dgAlbaranes.Columns(3).FillWeight = 300
+        dgAlbaranes.Columns(3).MinimumWidth = 300
+        dgAlbaranes.Columns(4).HeaderText = "IMPORTE"
+        dgAlbaranes.Columns(4).Name = "Column5"
+        dgAlbaranes.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        dgAlbaranes.Columns(4).FillWeight = 90
+        dgAlbaranes.Columns(4).MinimumWidth = 90
+        dgAlbaranes.Columns(5).HeaderText = "TOTAL"
+        dgAlbaranes.Columns(5).Name = "Column6"
+        dgAlbaranes.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        dgAlbaranes.Columns(5).FillWeight = 90
+        dgAlbaranes.Columns(5).MinimumWidth = 90
+        dgAlbaranes.Columns(6).Visible = False
+        dgAlbaranes.Columns(7).Visible = False
+        dgAlbaranes.Columns(8).Visible = False
+        dgAlbaranes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgAlbaranes.Visible = True
+
+        conexionmy.Close()
+    End Sub
+
+    Private Sub rbTodos_CheckedChanged(sender As Object, e As EventArgs) Handles rbTodos.CheckedChanged
+        If rbTodos.Checked = True Then
+            cargoTodosAlbaranes()
+        End If
+    End Sub
+
+    Private Sub rbPendientes_CheckedChanged(sender As Object, e As EventArgs) Handles rbPendientes.CheckedChanged
+        If rbPendientes.Checked = True Then
+            cargoAlbaFactura()
         End If
     End Sub
 End Class
