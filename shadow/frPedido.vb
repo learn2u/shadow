@@ -859,7 +859,7 @@ Public Class frPedido
         recalcularTotales()
 
     End Sub
-    Public Sub descontarStock(codArti As String, unidades As Decimal)
+    Private Sub descontarStock(codArti As String, unidades As Decimal)
         If codArti <> "" Then
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
@@ -877,7 +877,7 @@ Public Class frPedido
             conexionmy.Close()
         End If
     End Sub
-    Public Sub aumentarStock(codArti As String, unidades As Decimal)
+    Private Sub aumentarStock(codArti As String, unidades As Decimal)
         If codArti <> "" Then
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
