@@ -250,8 +250,6 @@ Public Class frPedidoProv
 
             Next
         End If
-
-
     End Sub
     Public Sub recalcularTotales()
         Dim totalLinea As Decimal = 0

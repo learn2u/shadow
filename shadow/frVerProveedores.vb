@@ -149,4 +149,26 @@ Public Class frVerProveedores
             Me.Hide()
         End If
     End Sub
+
+    Private Sub txProveedor_KeyDown(sender As Object, e As KeyEventArgs) Handles txProveedor.KeyDown
+        Dim address As Point = Me.dgProvedores.CurrentCellAddress
+        If e.KeyCode = Keys.Down Then
+            If address.Y < Me.dgProvedores.RowCount - 1 Then
+                address.Y += 1
+            End If
+
+            Me.dgProvedores.CurrentCell = Me.dgProvedores(address.X, address.Y)
+        End If
+        If e.KeyCode = Keys.Up Then
+            If address.Y <> 0 Then
+                address.Y -= 1
+            End If
+
+            Me.dgProvedores.CurrentCell = Me.dgProvedores(address.X, address.Y)
+        End If
+
+        If e.KeyCode = Keys.Enter Then
+            MsgBox(dgProvedores.CurrentRow.Cells(3).Value)
+        End If
+    End Sub
 End Class

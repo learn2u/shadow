@@ -30,7 +30,6 @@ Public Class frPedido
             dgLineasPres2.Visible = True
         End If
 
-        'cargoTodosPedidos()
 
         GroupBox5.Visible = False
 

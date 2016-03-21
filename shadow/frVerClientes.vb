@@ -341,4 +341,26 @@ Public Class frVerClientes
         End If
 
     End Sub
+
+    Private Sub txCliente_KeyDown(sender As Object, e As KeyEventArgs) Handles txCliente.KeyDown
+        Dim address As Point = Me.dgClientes.CurrentCellAddress
+        If e.KeyCode = Keys.Down Then
+            If address.Y < Me.dgClientes.RowCount - 1 Then
+                address.Y += 1
+            End If
+
+            Me.dgClientes.CurrentCell = Me.dgClientes(address.X, address.Y)
+        End If
+        If e.KeyCode = Keys.Up Then
+            If address.Y <> 0 Then
+                address.Y -= 1
+            End If
+
+            Me.dgClientes.CurrentCell = Me.dgClientes(address.X, address.Y)
+        End If
+
+        If e.KeyCode = Keys.Enter Then
+            MsgBox(dgClientes.CurrentRow.Cells(3).Value)
+        End If
+    End Sub
 End Class

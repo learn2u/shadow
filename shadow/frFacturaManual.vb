@@ -34,8 +34,6 @@ Public Class frFacturaManual
             dgLineasPres2.Visible = True
         End If
 
-        'cargoTodasFacturas()
-
         GroupBox5.Visible = False
 
     End Sub
