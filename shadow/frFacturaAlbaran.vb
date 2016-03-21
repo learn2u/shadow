@@ -167,10 +167,13 @@ Public Class frFacturaAlbaran
 
     End Sub
     Public Sub cargoAlbaranFecha()
+
+        Dim fec1 As Date = txFechaD.Text
+        Dim fec2 As Date = txFechaH.Text
         Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
 
         conexionmy.Open()
-        Dim consultamy As New MySqlCommand("SELECT albaran_cab.num_albaran, albaran_cab.fecha, clientes.nombre, albaran_cab.totalalbaran, albaran_cab.facturado, albaran_cab.clienteID, clientes.clienteID FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.clienteID WHERE albaran_cab.fecha BETWEEN '" & txFechaD.Text & "' AND '" & txFechaH.Text & "' AND albaran_cab.facturado ='N' ", conexionmy)
+        Dim consultamy As New MySqlCommand("SELECT albaran_cab.num_albaran, albaran_cab.fecha, clientes.nombre, albaran_cab.totalalbaran, albaran_cab.facturado, albaran_cab.clienteID, clientes.clienteID FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.clienteID WHERE DATE(albaran_cab.fecha) BETWEEN '" & fec1.ToString("yyyy-MM-dd") & "' AND '" & fec2.ToString("yyyy-MM-dd") & "' AND albaran_cab.facturado ='N' ", conexionmy)
 
         Dim readermy As MySqlDataReader
         Dim dtable As New DataTable

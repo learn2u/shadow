@@ -55,6 +55,7 @@ Partial Class frPresupuestos
         Me.txDesde = New System.Windows.Forms.MaskedTextBox()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.rbAlbaranes = New System.Windows.Forms.RadioButton()
         Me.rbAceptados = New System.Windows.Forms.RadioButton()
         Me.rbPendientes = New System.Windows.Forms.RadioButton()
         Me.rbTodos = New System.Windows.Forms.RadioButton()
@@ -144,7 +145,6 @@ Partial Class frPresupuestos
         Me.Columna8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Columna9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.rbAlbaranes = New System.Windows.Forms.RadioButton()
         Me.tabPresupuestos.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -277,10 +277,10 @@ Partial Class frPresupuestos
         '
         Me.txHasta.BackColor = System.Drawing.Color.White
         Me.txHasta.Location = New System.Drawing.Point(185, 185)
-        Me.txHasta.Mask = "00/00/00"
+        Me.txHasta.Mask = "00/00/0000"
         Me.txHasta.Name = "txHasta"
         Me.txHasta.Size = New System.Drawing.Size(72, 20)
-        Me.txHasta.TabIndex = 14
+        Me.txHasta.TabIndex = 11
         Me.txHasta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.txHasta.ValidatingType = GetType(Date)
         '
@@ -313,7 +313,7 @@ Partial Class frPresupuestos
         '
         Me.txDesde.BackColor = System.Drawing.Color.White
         Me.txDesde.Location = New System.Drawing.Point(58, 185)
-        Me.txDesde.Mask = "00/00/00"
+        Me.txDesde.Mask = "00/00/0000"
         Me.txDesde.Name = "txDesde"
         Me.txDesde.Size = New System.Drawing.Size(72, 20)
         Me.txDesde.TabIndex = 10
@@ -342,6 +342,16 @@ Partial Class frPresupuestos
         Me.GroupBox4.TabIndex = 0
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "ESTADO"
+        '
+        'rbAlbaranes
+        '
+        Me.rbAlbaranes.AutoSize = True
+        Me.rbAlbaranes.Location = New System.Drawing.Point(6, 97)
+        Me.rbAlbaranes.Name = "rbAlbaranes"
+        Me.rbAlbaranes.Size = New System.Drawing.Size(99, 17)
+        Me.rbAlbaranes.TabIndex = 3
+        Me.rbAlbaranes.Text = "A ALBARANES"
+        Me.rbAlbaranes.UseVisualStyleBackColor = True
         '
         'rbAceptados
         '
@@ -834,7 +844,7 @@ Partial Class frPresupuestos
         'cmdNuevoCliente
         '
         Me.cmdNuevoCliente.Name = "cmdNuevoCliente"
-        Me.cmdNuevoCliente.Size = New System.Drawing.Size(152, 22)
+        Me.cmdNuevoCliente.Size = New System.Drawing.Size(113, 22)
         Me.cmdNuevoCliente.Text = "NUEVO"
         '
         'cmdEditarCliente
@@ -1215,16 +1225,6 @@ Partial Class frPresupuestos
         Me.Column11.HeaderText = "LOTE"
         Me.Column11.Name = "Column11"
         Me.Column11.Visible = False
-        '
-        'rbAlbaranes
-        '
-        Me.rbAlbaranes.AutoSize = True
-        Me.rbAlbaranes.Location = New System.Drawing.Point(6, 97)
-        Me.rbAlbaranes.Name = "rbAlbaranes"
-        Me.rbAlbaranes.Size = New System.Drawing.Size(99, 17)
-        Me.rbAlbaranes.TabIndex = 3
-        Me.rbAlbaranes.Text = "A ALBARANES"
-        Me.rbAlbaranes.UseVisualStyleBackColor = True
         '
         'frPresupuestos
         '

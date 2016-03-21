@@ -33,7 +33,9 @@ Public Class frAlbaran
         End If
 
         'cargoTodosAlbaranes()
-        GroupBox5.Visible = False
+        'GroupBox5.Visible = False
+        btBuscar.Visible = False
+
 
 
     End Sub
@@ -1563,6 +1565,355 @@ Public Class frAlbaran
     Private Sub rbPendientes_CheckedChanged(sender As Object, e As EventArgs) Handles rbPendientes.CheckedChanged
         If rbPendientes.Checked = True Then
             cargoAlbaFactura()
+        End If
+    End Sub
+
+    Private Sub txCliente_KeyDown(sender As Object, e As KeyEventArgs) Handles txCliente.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+            conexionmy.Open()
+            Dim consultamy As New MySqlCommand("SELECT albaran_cab.num_albaran, 
+                                                    albaran_cab.referencia,
+                                                    albaran_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    albaran_cab.totalbruto, 
+                                                    albaran_cab.totalalbaran, 
+                                                    albaran_cab.clienteID,
+                                                    albaran_cab.eliminado, 
+                                                    clientes.clienteID
+                                            FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.clienteID WHERE clientes.nombre LIKE'%" & txCliente.Text & "%' ORDER BY albaran_cab.num_albaran DESC", conexionmy)
+
+            Dim readermy As MySqlDataReader
+            Dim dtable As New DataTable
+            Dim bind As New BindingSource()
+
+
+            readermy = consultamy.ExecuteReader
+            dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+            bind.DataSource = dtable
+
+            dgAlbaranes.DataSource = bind
+            dgAlbaranes.EnableHeadersVisualStyles = False
+            Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+            styCabeceras.BackColor = Color.Beige
+            styCabeceras.ForeColor = Color.Black
+            styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+            dgAlbaranes.ColumnHeadersDefaultCellStyle = styCabeceras
+
+            dgAlbaranes.Columns(0).HeaderText = "NUMERO"
+            dgAlbaranes.Columns(0).Name = "Column1"
+            dgAlbaranes.Columns(0).FillWeight = 90
+            dgAlbaranes.Columns(0).MinimumWidth = 90
+            dgAlbaranes.Columns(1).HeaderText = "REFERENCIA"
+            dgAlbaranes.Columns(1).Name = "Column2"
+            dgAlbaranes.Columns(1).FillWeight = 190
+            dgAlbaranes.Columns(1).MinimumWidth = 190
+            dgAlbaranes.Columns(2).HeaderText = "FECHA"
+            dgAlbaranes.Columns(2).Name = "Column3"
+            dgAlbaranes.Columns(2).FillWeight = 90
+            dgAlbaranes.Columns(2).MinimumWidth = 90
+            dgAlbaranes.Columns(3).HeaderText = "CLIENTE"
+            dgAlbaranes.Columns(3).Name = "Column4"
+            dgAlbaranes.Columns(3).FillWeight = 300
+            dgAlbaranes.Columns(3).MinimumWidth = 300
+            dgAlbaranes.Columns(4).HeaderText = "IMPORTE"
+            dgAlbaranes.Columns(4).Name = "Column5"
+            dgAlbaranes.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgAlbaranes.Columns(4).FillWeight = 90
+            dgAlbaranes.Columns(4).MinimumWidth = 90
+            dgAlbaranes.Columns(5).HeaderText = "TOTAL"
+            dgAlbaranes.Columns(5).Name = "Column6"
+            dgAlbaranes.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgAlbaranes.Columns(5).FillWeight = 90
+            dgAlbaranes.Columns(5).MinimumWidth = 90
+            dgAlbaranes.Columns(6).Visible = False
+            dgAlbaranes.Columns(7).Visible = False
+            dgAlbaranes.Columns(8).Visible = False
+            dgAlbaranes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dgAlbaranes.Visible = True
+
+            conexionmy.Close()
+        End If
+    End Sub
+
+    Private Sub txNumero_KeyDown(sender As Object, e As KeyEventArgs) Handles txNumero.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+            conexionmy.Open()
+            Dim consultamy As New MySqlCommand("SELECT albaran_cab.num_albaran, 
+                                                    albaran_cab.referencia,
+                                                    albaran_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    albaran_cab.totalbruto, 
+                                                    albaran_cab.totalalbaran, 
+                                                    albaran_cab.clienteID,
+                                                    albaran_cab.eliminado, 
+                                                    clientes.clienteID
+                                            FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.clienteID WHERE albaran_cab.num_albaran LIKE '" & txNumero.Text & "%' ORDER BY albaran_cab.num_albaran DESC", conexionmy)
+
+            Dim readermy As MySqlDataReader
+            Dim dtable As New DataTable
+            Dim bind As New BindingSource()
+
+
+            readermy = consultamy.ExecuteReader
+            dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+            bind.DataSource = dtable
+
+            dgAlbaranes.DataSource = bind
+            dgAlbaranes.EnableHeadersVisualStyles = False
+            Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+            styCabeceras.BackColor = Color.Beige
+            styCabeceras.ForeColor = Color.Black
+            styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+            dgAlbaranes.ColumnHeadersDefaultCellStyle = styCabeceras
+
+            dgAlbaranes.Columns(0).HeaderText = "NUMERO"
+            dgAlbaranes.Columns(0).Name = "Column1"
+            dgAlbaranes.Columns(0).FillWeight = 90
+            dgAlbaranes.Columns(0).MinimumWidth = 90
+            dgAlbaranes.Columns(1).HeaderText = "REFERENCIA"
+            dgAlbaranes.Columns(1).Name = "Column2"
+            dgAlbaranes.Columns(1).FillWeight = 190
+            dgAlbaranes.Columns(1).MinimumWidth = 190
+            dgAlbaranes.Columns(2).HeaderText = "FECHA"
+            dgAlbaranes.Columns(2).Name = "Column3"
+            dgAlbaranes.Columns(2).FillWeight = 90
+            dgAlbaranes.Columns(2).MinimumWidth = 90
+            dgAlbaranes.Columns(3).HeaderText = "CLIENTE"
+            dgAlbaranes.Columns(3).Name = "Column4"
+            dgAlbaranes.Columns(3).FillWeight = 300
+            dgAlbaranes.Columns(3).MinimumWidth = 300
+            dgAlbaranes.Columns(4).HeaderText = "IMPORTE"
+            dgAlbaranes.Columns(4).Name = "Column5"
+            dgAlbaranes.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgAlbaranes.Columns(4).FillWeight = 90
+            dgAlbaranes.Columns(4).MinimumWidth = 90
+            dgAlbaranes.Columns(5).HeaderText = "TOTAL"
+            dgAlbaranes.Columns(5).Name = "Column6"
+            dgAlbaranes.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgAlbaranes.Columns(5).FillWeight = 90
+            dgAlbaranes.Columns(5).MinimumWidth = 90
+            dgAlbaranes.Columns(6).Visible = False
+            dgAlbaranes.Columns(7).Visible = False
+            dgAlbaranes.Columns(8).Visible = False
+            dgAlbaranes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dgAlbaranes.Visible = True
+
+            conexionmy.Close()
+        End If
+    End Sub
+
+    Private Sub txReferencia_KeyDown(sender As Object, e As KeyEventArgs) Handles txReferencia.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+            conexionmy.Open()
+            Dim consultamy As New MySqlCommand("SELECT albaran_cab.num_albaran, 
+                                                    albaran_cab.referencia,
+                                                    albaran_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    albaran_cab.totalbruto, 
+                                                    albaran_cab.totalalbaran, 
+                                                    albaran_cab.clienteID,
+                                                    albaran_cab.eliminado, 
+                                                    clientes.clienteID
+                                            FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.clienteID WHERE albaran_cab.referencia LIKE'%" & txReferencia.Text & "%' ORDER BY albaran_cab.num_albaran DESC", conexionmy)
+
+            Dim readermy As MySqlDataReader
+            Dim dtable As New DataTable
+            Dim bind As New BindingSource()
+
+
+            readermy = consultamy.ExecuteReader
+            dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+            bind.DataSource = dtable
+
+            dgAlbaranes.DataSource = bind
+            dgAlbaranes.EnableHeadersVisualStyles = False
+            Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+            styCabeceras.BackColor = Color.Beige
+            styCabeceras.ForeColor = Color.Black
+            styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+            dgAlbaranes.ColumnHeadersDefaultCellStyle = styCabeceras
+
+            dgAlbaranes.Columns(0).HeaderText = "NUMERO"
+            dgAlbaranes.Columns(0).Name = "Column1"
+            dgAlbaranes.Columns(0).FillWeight = 90
+            dgAlbaranes.Columns(0).MinimumWidth = 90
+            dgAlbaranes.Columns(1).HeaderText = "REFERENCIA"
+            dgAlbaranes.Columns(1).Name = "Column2"
+            dgAlbaranes.Columns(1).FillWeight = 190
+            dgAlbaranes.Columns(1).MinimumWidth = 190
+            dgAlbaranes.Columns(2).HeaderText = "FECHA"
+            dgAlbaranes.Columns(2).Name = "Column3"
+            dgAlbaranes.Columns(2).FillWeight = 90
+            dgAlbaranes.Columns(2).MinimumWidth = 90
+            dgAlbaranes.Columns(3).HeaderText = "CLIENTE"
+            dgAlbaranes.Columns(3).Name = "Column4"
+            dgAlbaranes.Columns(3).FillWeight = 300
+            dgAlbaranes.Columns(3).MinimumWidth = 300
+            dgAlbaranes.Columns(4).HeaderText = "IMPORTE"
+            dgAlbaranes.Columns(4).Name = "Column5"
+            dgAlbaranes.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgAlbaranes.Columns(4).FillWeight = 90
+            dgAlbaranes.Columns(4).MinimumWidth = 90
+            dgAlbaranes.Columns(5).HeaderText = "TOTAL"
+            dgAlbaranes.Columns(5).Name = "Column6"
+            dgAlbaranes.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgAlbaranes.Columns(5).FillWeight = 90
+            dgAlbaranes.Columns(5).MinimumWidth = 90
+            dgAlbaranes.Columns(6).Visible = False
+            dgAlbaranes.Columns(7).Visible = False
+            dgAlbaranes.Columns(8).Visible = False
+            dgAlbaranes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dgAlbaranes.Visible = True
+
+            conexionmy.Close()
+        End If
+    End Sub
+
+    Private Sub txHasta_KeyDown(sender As Object, e As KeyEventArgs) Handles txHasta.KeyDown
+        If e.KeyCode = Keys.Enter Then
+
+            Dim fec1 As Date = txDesde.Text
+            Dim fec2 As Date = txHasta.Text
+
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+            conexionmy.Open()
+            Dim consultamy As New MySqlCommand("SELECT albaran_cab.num_albaran, 
+                                                    albaran_cab.referencia,
+                                                    albaran_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    albaran_cab.totalbruto, 
+                                                    albaran_cab.totalalbaran, 
+                                                    albaran_cab.clienteID,
+                                                    albaran_cab.eliminado, 
+                                                    clientes.clienteID
+                                            FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.clienteID WHERE DATE(albaran_cab.fecha) BETWEEN '" & fec1.ToString("yyyy-MM-dd") & "' AND '" & fec2.ToString("yyyy-MM-dd") & "' ORDER BY albaran_cab.num_albaran DESC", conexionmy)
+
+            Dim readermy As MySqlDataReader
+            Dim dtable As New DataTable
+            Dim bind As New BindingSource()
+
+
+            readermy = consultamy.ExecuteReader
+            dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+            bind.DataSource = dtable
+
+            dgAlbaranes.DataSource = bind
+            dgAlbaranes.EnableHeadersVisualStyles = False
+            Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+            styCabeceras.BackColor = Color.Beige
+            styCabeceras.ForeColor = Color.Black
+            styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+            dgAlbaranes.ColumnHeadersDefaultCellStyle = styCabeceras
+
+            dgAlbaranes.Columns(0).HeaderText = "NUMERO"
+            dgAlbaranes.Columns(0).Name = "Column1"
+            dgAlbaranes.Columns(0).FillWeight = 90
+            dgAlbaranes.Columns(0).MinimumWidth = 90
+            dgAlbaranes.Columns(1).HeaderText = "REFERENCIA"
+            dgAlbaranes.Columns(1).Name = "Column2"
+            dgAlbaranes.Columns(1).FillWeight = 190
+            dgAlbaranes.Columns(1).MinimumWidth = 190
+            dgAlbaranes.Columns(2).HeaderText = "FECHA"
+            dgAlbaranes.Columns(2).Name = "Column3"
+            dgAlbaranes.Columns(2).FillWeight = 90
+            dgAlbaranes.Columns(2).MinimumWidth = 90
+            dgAlbaranes.Columns(3).HeaderText = "CLIENTE"
+            dgAlbaranes.Columns(3).Name = "Column4"
+            dgAlbaranes.Columns(3).FillWeight = 300
+            dgAlbaranes.Columns(3).MinimumWidth = 300
+            dgAlbaranes.Columns(4).HeaderText = "IMPORTE"
+            dgAlbaranes.Columns(4).Name = "Column5"
+            dgAlbaranes.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgAlbaranes.Columns(4).FillWeight = 90
+            dgAlbaranes.Columns(4).MinimumWidth = 90
+            dgAlbaranes.Columns(5).HeaderText = "TOTAL"
+            dgAlbaranes.Columns(5).Name = "Column6"
+            dgAlbaranes.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgAlbaranes.Columns(5).FillWeight = 90
+            dgAlbaranes.Columns(5).MinimumWidth = 90
+            dgAlbaranes.Columns(6).Visible = False
+            dgAlbaranes.Columns(7).Visible = False
+            dgAlbaranes.Columns(8).Visible = False
+            dgAlbaranes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dgAlbaranes.Visible = True
+
+            conexionmy.Close()
+        End If
+    End Sub
+
+    Private Sub txGeneral_KeyDown(sender As Object, e As KeyEventArgs) Handles txGeneral.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+            conexionmy.Open()
+            Dim consultamy As New MySqlCommand("SELECT albaran_cab.num_albaran, 
+                                                    albaran_cab.referencia,
+                                                    albaran_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    albaran_cab.totalbruto, 
+                                                    albaran_cab.totalalbaran, 
+                                                    albaran_cab.clienteID,
+                                                    albaran_cab.eliminado, 
+                                                    clientes.clienteID
+                                            FROM albaran_cab INNER JOIN clientes ON albaran_cab.clienteID=clientes.clienteID WHERE albaran_cab.referencia LIKE'%" & txReferencia.Text & "%' ORDER BY albaran_cab.num_albaran DESC", conexionmy)
+
+            Dim readermy As MySqlDataReader
+            Dim dtable As New DataTable
+            Dim bind As New BindingSource()
+
+
+            readermy = consultamy.ExecuteReader
+            dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+            bind.DataSource = dtable
+
+            dgAlbaranes.DataSource = bind
+            dgAlbaranes.EnableHeadersVisualStyles = False
+            Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+            styCabeceras.BackColor = Color.Beige
+            styCabeceras.ForeColor = Color.Black
+            styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+            dgAlbaranes.ColumnHeadersDefaultCellStyle = styCabeceras
+
+            dgAlbaranes.Columns(0).HeaderText = "NUMERO"
+            dgAlbaranes.Columns(0).Name = "Column1"
+            dgAlbaranes.Columns(0).FillWeight = 90
+            dgAlbaranes.Columns(0).MinimumWidth = 90
+            dgAlbaranes.Columns(1).HeaderText = "REFERENCIA"
+            dgAlbaranes.Columns(1).Name = "Column2"
+            dgAlbaranes.Columns(1).FillWeight = 190
+            dgAlbaranes.Columns(1).MinimumWidth = 190
+            dgAlbaranes.Columns(2).HeaderText = "FECHA"
+            dgAlbaranes.Columns(2).Name = "Column3"
+            dgAlbaranes.Columns(2).FillWeight = 90
+            dgAlbaranes.Columns(2).MinimumWidth = 90
+            dgAlbaranes.Columns(3).HeaderText = "CLIENTE"
+            dgAlbaranes.Columns(3).Name = "Column4"
+            dgAlbaranes.Columns(3).FillWeight = 300
+            dgAlbaranes.Columns(3).MinimumWidth = 300
+            dgAlbaranes.Columns(4).HeaderText = "IMPORTE"
+            dgAlbaranes.Columns(4).Name = "Column5"
+            dgAlbaranes.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgAlbaranes.Columns(4).FillWeight = 90
+            dgAlbaranes.Columns(4).MinimumWidth = 90
+            dgAlbaranes.Columns(5).HeaderText = "TOTAL"
+            dgAlbaranes.Columns(5).Name = "Column6"
+            dgAlbaranes.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgAlbaranes.Columns(5).FillWeight = 90
+            dgAlbaranes.Columns(5).MinimumWidth = 90
+            dgAlbaranes.Columns(6).Visible = False
+            dgAlbaranes.Columns(7).Visible = False
+            dgAlbaranes.Columns(8).Visible = False
+            dgAlbaranes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dgAlbaranes.Visible = True
+
+            conexionmy.Close()
         End If
     End Sub
 End Class
