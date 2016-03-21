@@ -34,7 +34,9 @@ Public Class frFacturaManual
             dgLineasPres2.Visible = True
         End If
 
-        GroupBox5.Visible = False
+        'GroupBox5.Visible = False
+        btBuscar.Visible = False
+
 
     End Sub
     Public Sub deshabilitarBotones()
@@ -1884,6 +1886,355 @@ Public Class frFacturaManual
     Private Sub rbAutomaticas_CheckedChanged(sender As Object, e As EventArgs) Handles rbAutomaticas.CheckedChanged
         If rbAutomaticas.Checked = True Then
             cargoFactuAuto()
+        End If
+    End Sub
+
+    Private Sub txCliente_KeyDown(sender As Object, e As KeyEventArgs) Handles txCliente.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+            conexionmy.Open()
+            Dim consultamy As New MySqlCommand("SELECT factura_cab.num_factura, 
+                                                    factura_cab.referencia,
+                                                    factura_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    factura_cab.totalbruto, 
+                                                    factura_cab.totalfactura, 
+                                                    factura_cab.clienteID,
+                                                    factura_cab.eliminado, 
+                                                    clientes.clienteID
+                                            FROM factura_cab INNER JOIN clientes ON factura_cab.clienteID=clientes.clienteID WHERE clientes.nombre LIKE'%" & txCliente.Text & "%' ORDER BY factura_cab.num_factura DESC", conexionmy)
+
+            Dim readermy As MySqlDataReader
+            Dim dtable As New DataTable
+            Dim bind As New BindingSource()
+
+
+            readermy = consultamy.ExecuteReader
+            dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+            bind.DataSource = dtable
+
+            dgFacturas.DataSource = bind
+            dgFacturas.EnableHeadersVisualStyles = False
+            Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+            styCabeceras.BackColor = Color.Beige
+            styCabeceras.ForeColor = Color.Black
+            styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+            dgFacturas.ColumnHeadersDefaultCellStyle = styCabeceras
+
+            dgFacturas.Columns(0).HeaderText = "NUMERO"
+            dgFacturas.Columns(0).Name = "Column1"
+            dgFacturas.Columns(0).FillWeight = 90
+            dgFacturas.Columns(0).MinimumWidth = 90
+            dgFacturas.Columns(1).HeaderText = "REFERENCIA"
+            dgFacturas.Columns(1).Name = "Column2"
+            dgFacturas.Columns(1).FillWeight = 190
+            dgFacturas.Columns(1).MinimumWidth = 190
+            dgFacturas.Columns(2).HeaderText = "FECHA"
+            dgFacturas.Columns(2).Name = "Column3"
+            dgFacturas.Columns(2).FillWeight = 90
+            dgFacturas.Columns(2).MinimumWidth = 90
+            dgFacturas.Columns(3).HeaderText = "CLIENTE"
+            dgFacturas.Columns(3).Name = "Column4"
+            dgFacturas.Columns(3).FillWeight = 300
+            dgFacturas.Columns(3).MinimumWidth = 300
+            dgFacturas.Columns(4).HeaderText = "IMPORTE"
+            dgFacturas.Columns(4).Name = "Column5"
+            dgFacturas.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgFacturas.Columns(4).FillWeight = 90
+            dgFacturas.Columns(4).MinimumWidth = 90
+            dgFacturas.Columns(5).HeaderText = "TOTAL"
+            dgFacturas.Columns(5).Name = "Column6"
+            dgFacturas.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgFacturas.Columns(5).FillWeight = 90
+            dgFacturas.Columns(5).MinimumWidth = 90
+            dgFacturas.Columns(6).Visible = False
+            dgFacturas.Columns(7).Visible = False
+            dgFacturas.Columns(8).Visible = False
+            dgFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dgFacturas.Visible = True
+
+            conexionmy.Close()
+        End If
+    End Sub
+
+    Private Sub txNumero_KeyDown(sender As Object, e As KeyEventArgs) Handles txNumero.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+            conexionmy.Open()
+            Dim consultamy As New MySqlCommand("SELECT factura_cab.num_factura, 
+                                                    factura_cab.referencia,
+                                                    factura_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    factura_cab.totalbruto, 
+                                                    factura_cab.totalfactura, 
+                                                    factura_cab.clienteID,
+                                                    factura_cab.eliminado, 
+                                                    clientes.clienteID
+                                            FROM factura_cab INNER JOIN clientes ON factura_cab.clienteID=clientes.clienteID WHERE factura_cab.num_factura LIKE '" & txNumero.Text & "%' ORDER BY factura_cab.num_factura DESC", conexionmy)
+
+            Dim readermy As MySqlDataReader
+            Dim dtable As New DataTable
+            Dim bind As New BindingSource()
+
+
+            readermy = consultamy.ExecuteReader
+            dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+            bind.DataSource = dtable
+
+            dgFacturas.DataSource = bind
+            dgFacturas.EnableHeadersVisualStyles = False
+            Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+            styCabeceras.BackColor = Color.Beige
+            styCabeceras.ForeColor = Color.Black
+            styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+            dgFacturas.ColumnHeadersDefaultCellStyle = styCabeceras
+
+            dgFacturas.Columns(0).HeaderText = "NUMERO"
+            dgFacturas.Columns(0).Name = "Column1"
+            dgFacturas.Columns(0).FillWeight = 90
+            dgFacturas.Columns(0).MinimumWidth = 90
+            dgFacturas.Columns(1).HeaderText = "REFERENCIA"
+            dgFacturas.Columns(1).Name = "Column2"
+            dgFacturas.Columns(1).FillWeight = 190
+            dgFacturas.Columns(1).MinimumWidth = 190
+            dgFacturas.Columns(2).HeaderText = "FECHA"
+            dgFacturas.Columns(2).Name = "Column3"
+            dgFacturas.Columns(2).FillWeight = 90
+            dgFacturas.Columns(2).MinimumWidth = 90
+            dgFacturas.Columns(3).HeaderText = "CLIENTE"
+            dgFacturas.Columns(3).Name = "Column4"
+            dgFacturas.Columns(3).FillWeight = 300
+            dgFacturas.Columns(3).MinimumWidth = 300
+            dgFacturas.Columns(4).HeaderText = "IMPORTE"
+            dgFacturas.Columns(4).Name = "Column5"
+            dgFacturas.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgFacturas.Columns(4).FillWeight = 90
+            dgFacturas.Columns(4).MinimumWidth = 90
+            dgFacturas.Columns(5).HeaderText = "TOTAL"
+            dgFacturas.Columns(5).Name = "Column6"
+            dgFacturas.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgFacturas.Columns(5).FillWeight = 90
+            dgFacturas.Columns(5).MinimumWidth = 90
+            dgFacturas.Columns(6).Visible = False
+            dgFacturas.Columns(7).Visible = False
+            dgFacturas.Columns(8).Visible = False
+            dgFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dgFacturas.Visible = True
+
+            conexionmy.Close()
+        End If
+    End Sub
+
+    Private Sub txReferencia_KeyDown(sender As Object, e As KeyEventArgs) Handles txReferencia.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+            conexionmy.Open()
+            Dim consultamy As New MySqlCommand("SELECT factura_cab.num_factura, 
+                                                    factura_cab.referencia,
+                                                    factura_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    factura_cab.totalbruto, 
+                                                    factura_cab.totalfactura, 
+                                                    factura_cab.clienteID,
+                                                    factura_cab.eliminado, 
+                                                    clientes.clienteID
+                                            FROM factura_cab INNER JOIN clientes ON factura_cab.clienteID=clientes.clienteID WHERE factura_cab.referencia LIKE'%" & txReferencia.Text & "%' ORDER BY factura_cab.num_factura DESC", conexionmy)
+
+            Dim readermy As MySqlDataReader
+            Dim dtable As New DataTable
+            Dim bind As New BindingSource()
+
+
+            readermy = consultamy.ExecuteReader
+            dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+            bind.DataSource = dtable
+
+            dgFacturas.DataSource = bind
+            dgFacturas.EnableHeadersVisualStyles = False
+            Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+            styCabeceras.BackColor = Color.Beige
+            styCabeceras.ForeColor = Color.Black
+            styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+            dgFacturas.ColumnHeadersDefaultCellStyle = styCabeceras
+
+            dgFacturas.Columns(0).HeaderText = "NUMERO"
+            dgFacturas.Columns(0).Name = "Column1"
+            dgFacturas.Columns(0).FillWeight = 90
+            dgFacturas.Columns(0).MinimumWidth = 90
+            dgFacturas.Columns(1).HeaderText = "REFERENCIA"
+            dgFacturas.Columns(1).Name = "Column2"
+            dgFacturas.Columns(1).FillWeight = 190
+            dgFacturas.Columns(1).MinimumWidth = 190
+            dgFacturas.Columns(2).HeaderText = "FECHA"
+            dgFacturas.Columns(2).Name = "Column3"
+            dgFacturas.Columns(2).FillWeight = 90
+            dgFacturas.Columns(2).MinimumWidth = 90
+            dgFacturas.Columns(3).HeaderText = "CLIENTE"
+            dgFacturas.Columns(3).Name = "Column4"
+            dgFacturas.Columns(3).FillWeight = 300
+            dgFacturas.Columns(3).MinimumWidth = 300
+            dgFacturas.Columns(4).HeaderText = "IMPORTE"
+            dgFacturas.Columns(4).Name = "Column5"
+            dgFacturas.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgFacturas.Columns(4).FillWeight = 90
+            dgFacturas.Columns(4).MinimumWidth = 90
+            dgFacturas.Columns(5).HeaderText = "TOTAL"
+            dgFacturas.Columns(5).Name = "Column6"
+            dgFacturas.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgFacturas.Columns(5).FillWeight = 90
+            dgFacturas.Columns(5).MinimumWidth = 90
+            dgFacturas.Columns(6).Visible = False
+            dgFacturas.Columns(7).Visible = False
+            dgFacturas.Columns(8).Visible = False
+            dgFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dgFacturas.Visible = True
+
+            conexionmy.Close()
+        End If
+    End Sub
+
+    Private Sub txHasta_KeyDown(sender As Object, e As KeyEventArgs) Handles txHasta.KeyDown
+        If e.KeyCode = Keys.Enter Then
+
+            Dim fec1 As Date = txDesde.Text
+            Dim fec2 As Date = txHasta.Text
+
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+            conexionmy.Open()
+            Dim consultamy As New MySqlCommand("SELECT factura_cab.num_factura, 
+                                                    factura_cab.referencia,
+                                                    factura_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    factura_cab.totalbruto, 
+                                                    factura_cab.totalfactura, 
+                                                    factura_cab.clienteID,
+                                                    factura_cab.eliminado, 
+                                                    clientes.clienteID
+                                            FROM factura_cab INNER JOIN clientes ON factura_cab.clienteID=clientes.clienteID WHERE DATE(factura_cab.fecha) BETWEEN '" & fec1.ToString("yyyy-MM-dd") & "' AND '" & fec2.ToString("yyyy-MM-dd") & "' ORDER BY factura_cab.num_factura DESC", conexionmy)
+
+            Dim readermy As MySqlDataReader
+            Dim dtable As New DataTable
+            Dim bind As New BindingSource()
+
+
+            readermy = consultamy.ExecuteReader
+            dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+            bind.DataSource = dtable
+
+            dgFacturas.DataSource = bind
+            dgFacturas.EnableHeadersVisualStyles = False
+            Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+            styCabeceras.BackColor = Color.Beige
+            styCabeceras.ForeColor = Color.Black
+            styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+            dgFacturas.ColumnHeadersDefaultCellStyle = styCabeceras
+
+            dgFacturas.Columns(0).HeaderText = "NUMERO"
+            dgFacturas.Columns(0).Name = "Column1"
+            dgFacturas.Columns(0).FillWeight = 90
+            dgFacturas.Columns(0).MinimumWidth = 90
+            dgFacturas.Columns(1).HeaderText = "REFERENCIA"
+            dgFacturas.Columns(1).Name = "Column2"
+            dgFacturas.Columns(1).FillWeight = 190
+            dgFacturas.Columns(1).MinimumWidth = 190
+            dgFacturas.Columns(2).HeaderText = "FECHA"
+            dgFacturas.Columns(2).Name = "Column3"
+            dgFacturas.Columns(2).FillWeight = 90
+            dgFacturas.Columns(2).MinimumWidth = 90
+            dgFacturas.Columns(3).HeaderText = "CLIENTE"
+            dgFacturas.Columns(3).Name = "Column4"
+            dgFacturas.Columns(3).FillWeight = 300
+            dgFacturas.Columns(3).MinimumWidth = 300
+            dgFacturas.Columns(4).HeaderText = "IMPORTE"
+            dgFacturas.Columns(4).Name = "Column5"
+            dgFacturas.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgFacturas.Columns(4).FillWeight = 90
+            dgFacturas.Columns(4).MinimumWidth = 90
+            dgFacturas.Columns(5).HeaderText = "TOTAL"
+            dgFacturas.Columns(5).Name = "Column6"
+            dgFacturas.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgFacturas.Columns(5).FillWeight = 90
+            dgFacturas.Columns(5).MinimumWidth = 90
+            dgFacturas.Columns(6).Visible = False
+            dgFacturas.Columns(7).Visible = False
+            dgFacturas.Columns(8).Visible = False
+            dgFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dgFacturas.Visible = True
+
+            conexionmy.Close()
+        End If
+    End Sub
+
+    Private Sub txGeneral_KeyDown(sender As Object, e As KeyEventArgs) Handles txGeneral.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos + "; Convert Zero Datetime=True")
+            conexionmy.Open()
+            Dim consultamy As New MySqlCommand("SELECT factura_cab.num_factura, 
+                                                    factura_cab.referencia,
+                                                    factura_cab.fecha, 
+                                                    clientes.nombre, 
+                                                    factura_cab.totalbruto, 
+                                                    factura_cab.totalfactura, 
+                                                    factura_cab.clienteID,
+                                                    factura_cab.eliminado, 
+                                                    clientes.clienteID
+                                            FROM factura_cab INNER JOIN clientes ON factura_cab.clienteID=clientes.clienteID WHERE factura_cab.referencia LIKE'%" & txReferencia.Text & "%' ORDER BY factura_cab.num_factura DESC", conexionmy)
+
+            Dim readermy As MySqlDataReader
+            Dim dtable As New DataTable
+            Dim bind As New BindingSource()
+
+
+            readermy = consultamy.ExecuteReader
+            dtable.Load(readermy, LoadOption.OverwriteChanges)
+
+            bind.DataSource = dtable
+
+            dgFacturas.DataSource = bind
+            dgFacturas.EnableHeadersVisualStyles = False
+            Dim styCabeceras As DataGridViewCellStyle = New DataGridViewCellStyle()
+            styCabeceras.BackColor = Color.Beige
+            styCabeceras.ForeColor = Color.Black
+            styCabeceras.Font = New Font("Verdana", 9, FontStyle.Bold)
+            dgFacturas.ColumnHeadersDefaultCellStyle = styCabeceras
+
+            dgFacturas.Columns(0).HeaderText = "NUMERO"
+            dgFacturas.Columns(0).Name = "Column1"
+            dgFacturas.Columns(0).FillWeight = 90
+            dgFacturas.Columns(0).MinimumWidth = 90
+            dgFacturas.Columns(1).HeaderText = "REFERENCIA"
+            dgFacturas.Columns(1).Name = "Column2"
+            dgFacturas.Columns(1).FillWeight = 190
+            dgFacturas.Columns(1).MinimumWidth = 190
+            dgFacturas.Columns(2).HeaderText = "FECHA"
+            dgFacturas.Columns(2).Name = "Column3"
+            dgFacturas.Columns(2).FillWeight = 90
+            dgFacturas.Columns(2).MinimumWidth = 90
+            dgFacturas.Columns(3).HeaderText = "CLIENTE"
+            dgFacturas.Columns(3).Name = "Column4"
+            dgFacturas.Columns(3).FillWeight = 300
+            dgFacturas.Columns(3).MinimumWidth = 300
+            dgFacturas.Columns(4).HeaderText = "IMPORTE"
+            dgFacturas.Columns(4).Name = "Column5"
+            dgFacturas.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgFacturas.Columns(4).FillWeight = 90
+            dgFacturas.Columns(4).MinimumWidth = 90
+            dgFacturas.Columns(5).HeaderText = "TOTAL"
+            dgFacturas.Columns(5).Name = "Column6"
+            dgFacturas.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgFacturas.Columns(5).FillWeight = 90
+            dgFacturas.Columns(5).MinimumWidth = 90
+            dgFacturas.Columns(6).Visible = False
+            dgFacturas.Columns(7).Visible = False
+            dgFacturas.Columns(8).Visible = False
+            dgFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dgFacturas.Visible = True
+
+            conexionmy.Close()
         End If
     End Sub
 End Class

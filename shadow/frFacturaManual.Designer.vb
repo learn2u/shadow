@@ -77,6 +77,8 @@ Partial Class frFacturaManual
         Me.txDesde = New System.Windows.Forms.MaskedTextBox()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.rbAutomaticas = New System.Windows.Forms.RadioButton()
+        Me.rbManual = New System.Windows.Forms.RadioButton()
         Me.rbPendientes = New System.Windows.Forms.RadioButton()
         Me.rbTodos = New System.Windows.Forms.RadioButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -158,8 +160,6 @@ Partial Class frFacturaManual
         Me.dgFacturas = New System.Windows.Forms.DataGridView()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.tabPresupuestos = New System.Windows.Forms.TabControl()
-        Me.rbManual = New System.Windows.Forms.RadioButton()
-        Me.rbAutomaticas = New System.Windows.Forms.RadioButton()
         Me.Panel4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -484,10 +484,10 @@ Partial Class frFacturaManual
         '
         Me.txHasta.BackColor = System.Drawing.Color.White
         Me.txHasta.Location = New System.Drawing.Point(185, 185)
-        Me.txHasta.Mask = "00/00/00"
+        Me.txHasta.Mask = "00/00/0000"
         Me.txHasta.Name = "txHasta"
         Me.txHasta.Size = New System.Drawing.Size(72, 20)
-        Me.txHasta.TabIndex = 14
+        Me.txHasta.TabIndex = 11
         Me.txHasta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.txHasta.ValidatingType = GetType(Date)
         '
@@ -520,7 +520,7 @@ Partial Class frFacturaManual
         '
         Me.txDesde.BackColor = System.Drawing.Color.White
         Me.txDesde.Location = New System.Drawing.Point(58, 185)
-        Me.txDesde.Mask = "00/00/00"
+        Me.txDesde.Mask = "00/00/0000"
         Me.txDesde.Name = "txDesde"
         Me.txDesde.Size = New System.Drawing.Size(72, 20)
         Me.txDesde.TabIndex = 10
@@ -549,6 +549,26 @@ Partial Class frFacturaManual
         Me.GroupBox4.TabIndex = 0
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "ESTADO"
+        '
+        'rbAutomaticas
+        '
+        Me.rbAutomaticas.AutoSize = True
+        Me.rbAutomaticas.Location = New System.Drawing.Point(6, 97)
+        Me.rbAutomaticas.Name = "rbAutomaticas"
+        Me.rbAutomaticas.Size = New System.Drawing.Size(129, 17)
+        Me.rbAutomaticas.TabIndex = 3
+        Me.rbAutomaticas.Text = "DESDE ALBARANES"
+        Me.rbAutomaticas.UseVisualStyleBackColor = True
+        '
+        'rbManual
+        '
+        Me.rbManual.AutoSize = True
+        Me.rbManual.Location = New System.Drawing.Point(6, 74)
+        Me.rbManual.Name = "rbManual"
+        Me.rbManual.Size = New System.Drawing.Size(70, 17)
+        Me.rbManual.TabIndex = 2
+        Me.rbManual.Text = "MANUAL"
+        Me.rbManual.UseVisualStyleBackColor = True
         '
         'rbPendientes
         '
@@ -1355,26 +1375,6 @@ Partial Class frFacturaManual
         Me.tabPresupuestos.Size = New System.Drawing.Size(1221, 565)
         Me.tabPresupuestos.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.tabPresupuestos.TabIndex = 2
-        '
-        'rbManual
-        '
-        Me.rbManual.AutoSize = True
-        Me.rbManual.Location = New System.Drawing.Point(6, 74)
-        Me.rbManual.Name = "rbManual"
-        Me.rbManual.Size = New System.Drawing.Size(70, 17)
-        Me.rbManual.TabIndex = 2
-        Me.rbManual.Text = "MANUAL"
-        Me.rbManual.UseVisualStyleBackColor = True
-        '
-        'rbAutomaticas
-        '
-        Me.rbAutomaticas.AutoSize = True
-        Me.rbAutomaticas.Location = New System.Drawing.Point(6, 97)
-        Me.rbAutomaticas.Name = "rbAutomaticas"
-        Me.rbAutomaticas.Size = New System.Drawing.Size(129, 17)
-        Me.rbAutomaticas.TabIndex = 3
-        Me.rbAutomaticas.Text = "DESDE ALBARANES"
-        Me.rbAutomaticas.UseVisualStyleBackColor = True
         '
         'frFacturaManual
         '
