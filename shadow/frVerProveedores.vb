@@ -168,7 +168,28 @@ Public Class frVerProveedores
         End If
 
         If e.KeyCode = Keys.Enter Then
-            MsgBox(dgProvedores.CurrentRow.Cells(3).Value)
+            If formCli = "G" Then
+                frGastos.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
+                frGastos.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+                frGastos.txDni.Text = dgProvedores.CurrentRow.Cells("cif").Value
+                frGastos.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
+                frGastos.txDiaspago.Text = dgProvedores.CurrentRow.Cells("diap").Value
+                frGastos.cbFormapago.Text = dgProvedores.CurrentRow.Cells("formap").Value
+                Me.Hide()
+            End If
+            If formCli = "D" Then
+                frPedidoProv.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
+                frPedidoProv.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+                frPedidoProv.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
+                Me.Hide()
+                frPedidoProv.recalcularDescuentos()
+            End If
+            If formCli = "A" Then
+                frArticulos.txNumPro.Text = dgProvedores.CurrentRow.Cells("cod").Value
+                frArticulos.txProveedor.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+                frArticulos.txDto.Text = dgProvedores.CurrentRow.Cells("dto").Value
+                Me.Hide()
+            End If
         End If
     End Sub
 End Class

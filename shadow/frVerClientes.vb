@@ -360,7 +360,50 @@ Public Class frVerClientes
         End If
 
         If e.KeyCode = Keys.Enter Then
-            MsgBox(dgClientes.CurrentRow.Cells(3).Value)
+            mostrarEmergente(dgClientes.CurrentRow.Cells("cod").Value)
+            If formCli = "P" Then
+                frPresupuestos.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+                frPresupuestos.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+                frPresupuestos.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+                frPresupuestos.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+                frPresupuestos.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+                Me.Hide()
+                frPresupuestos.recalcularDescuentos()
+                cargoEnvios()
+            End If
+            If formCli = "A" Then
+                frAlbaran.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+                frAlbaran.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+                frAlbaran.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+                frAlbaran.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+                frAlbaran.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+                Me.Hide()
+                frAlbaran.recalcularDescuentos()
+                cargoEnvios()
+            End If
+
+            If formCli = "D" Then
+                frPedido.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+                frPedido.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+                frPedido.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+                frPedido.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+                frPedido.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+                Me.Hide()
+                frPedido.recalcularDescuentos()
+                cargoEnvios()
+            End If
+
+            If formCli = "F" Then
+                frFacturaManual.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+                frFacturaManual.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+                frFacturaManual.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+                frFacturaManual.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+                frFacturaManual.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+                Me.Hide()
+                frFacturaManual.recalcularDescuentos()
+                cargoEnvios()
+                cargoFormapagoCliente()
+            End If
         End If
     End Sub
 End Class
