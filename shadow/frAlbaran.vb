@@ -17,6 +17,7 @@ Public Class frAlbaran
     Public Shared posicion As Integer
     Public Shared newLinea As String = "N"
     Public Shared editNumber As String = "N"
+    Public Shared artiLote As String
 
     Private Sub frAlbaran_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         deshabilitarBotones()
@@ -418,13 +419,15 @@ Public Class frAlbaran
             'Cargo los datos de la linea para el control de stocks
             If dgLineasPres2.CurrentRow.Cells(11).Value = "" Then
                 artiEdit = dgLineasPres2.CurrentRow.Cells(2).Value
+                artiLote = "N"
             Else
                 artiEdit = dgLineasPres2.CurrentRow.Cells(11).Value
+                artiLote = "S"
             End If
 
             cantIni = Decimal.Parse(dgLineasPres2.CurrentRow.Cells(4).Value)
             cantFin = 0
-            lineasEdit.Add(New lineasEditadas() With {.codigoArt = artiEdit, .cantAntes = cantIni, .cantDespues = cantFin})
+            lineasEdit.Add(New lineasEditadas() With {.codigoArt = artiEdit, .cantAntes = cantIni, .cantDespues = cantFin, .esLote = artiLote})
 
             dgLineasPres2.Rows.RemoveAt(dgLineasPres2.CurrentRow.Index)
             renumerar()
@@ -699,11 +702,11 @@ Public Class frAlbaran
 
             If lineasEdit.Count > 0 Then
                 For Each itemlineas As lineasEditadas In lineasEdit
-                    If row.Cells(11).Value = "" Then
+                    If itemlineas.esLote = "N" Then
                         aumentarStock(itemlineas.codigoArt, itemlineas.cantAntes)
                         descontarStock(itemlineas.codigoArt, itemlineas.cantDespues)
                     Else
-                        vLote = row.Cells(11).Value
+                        'vLote = row.Cells(11).Value
                         aumentarStockLote(itemlineas.codigoArt, itemlineas.cantAntes)
                         descontarStockLote(itemlineas.codigoArt, itemlineas.cantDespues)
                     End If
@@ -1472,12 +1475,14 @@ Public Class frAlbaran
 
         Dim row As New DataGridViewRow
         For Each row In dgLineasPres2.Rows
-            artiEdit = row.Cells(2).Value
-            cantIni = Decimal.Parse(row.Cells(4).Value)
 
             If row.Cells(11).Value = "" Then
+                artiEdit = row.Cells(2).Value
+                cantIni = Decimal.Parse(row.Cells(4).Value)
                 aumentarStock(artiEdit, cantIni)
             Else
+                artiEdit = row.Cells(11).Value
+                cantIni = Decimal.Parse(row.Cells(4).Value)
                 aumentarStockLote(artiEdit, cantIni)
             End If
         Next
