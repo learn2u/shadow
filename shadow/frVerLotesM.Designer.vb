@@ -30,9 +30,9 @@ Partial Class frVerLotesM
         '
         Me.dgLotes.AllowUserToAddRows = False
         Me.dgLotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgLotes.Location = New System.Drawing.Point(12, 12)
+        Me.dgLotes.Location = New System.Drawing.Point(12, 89)
         Me.dgLotes.Name = "dgLotes"
-        Me.dgLotes.Size = New System.Drawing.Size(495, 451)
+        Me.dgLotes.Size = New System.Drawing.Size(495, 374)
         Me.dgLotes.TabIndex = 2
         '
         'frVerLotesM
