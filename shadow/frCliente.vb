@@ -132,7 +132,7 @@ Public Class frCliente
                                                 cuentabancaria = '" + txCCC.Text + "',
                                                 iban = '" + txIBAN.Text + "',
                                                 bic = '" + txBIC.Text + "',
-                                                fechaalta = '" + fecha + "',
+                                                fechaalta = '" + fecha.ToString("yyyy-MM-dd") + "',
                                                 horario = '" + txHorario.Text + "',
                                                 mensaje = '" + txEmergente.Text + "',
                                                 libre1 = '" + txLibre1.Text + "',
@@ -153,7 +153,7 @@ Public Class frCliente
             End If
             MsgBox("Los datos del cliente se han actualizado correctamente")
             flagEditCli = False
-            Me.Close()
+            'Me.Close()
         End If
         TabControl2.SelectTab(0)
         TabControl1.SelectTab(0)
@@ -455,6 +455,8 @@ Public Class frCliente
         TabControl1.SelectTab(1)
         cargoDatos()
         cmdNuevo.Enabled = False
+        cmdGuardar.Enabled = True
+
 
         flagEditCli = True
     End Sub
