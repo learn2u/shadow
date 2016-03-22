@@ -23,7 +23,7 @@ Partial Class frArticulos
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frArticulos))
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.txCodigo1 = New System.Windows.Forms.TextBox()
@@ -131,6 +131,9 @@ Partial Class frArticulos
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.txFiltroLotes = New System.Windows.Forms.TextBox()
+        Me.txBakLote = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -230,7 +233,10 @@ Partial Class frArticulos
         '
         'pnLotes
         '
-        Me.pnLotes.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.pnLotes.BackColor = System.Drawing.Color.LightGoldenrodYellow
+        Me.pnLotes.Controls.Add(Me.txBakLote)
+        Me.pnLotes.Controls.Add(Me.Label22)
+        Me.pnLotes.Controls.Add(Me.txFiltroLotes)
         Me.pnLotes.Controls.Add(Me.btGrabarLote)
         Me.pnLotes.Controls.Add(Me.Label21)
         Me.pnLotes.Controls.Add(Me.txUbicLote)
@@ -248,13 +254,13 @@ Partial Class frArticulos
         Me.pnLotes.Controls.Add(Me.dgLotes)
         Me.pnLotes.Location = New System.Drawing.Point(52, 49)
         Me.pnLotes.Name = "pnLotes"
-        Me.pnLotes.Size = New System.Drawing.Size(830, 284)
+        Me.pnLotes.Size = New System.Drawing.Size(830, 415)
         Me.pnLotes.TabIndex = 147
         Me.pnLotes.Visible = False
         '
         'btGrabarLote
         '
-        Me.btGrabarLote.Location = New System.Drawing.Point(723, 250)
+        Me.btGrabarLote.Location = New System.Drawing.Point(723, 375)
         Me.btGrabarLote.Name = "btGrabarLote"
         Me.btGrabarLote.Size = New System.Drawing.Size(96, 23)
         Me.btGrabarLote.TabIndex = 137
@@ -264,7 +270,7 @@ Partial Class frArticulos
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(678, 204)
+        Me.Label21.Location = New System.Drawing.Point(678, 329)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(65, 13)
         Me.Label21.TabIndex = 136
@@ -272,7 +278,7 @@ Partial Class frArticulos
         '
         'txUbicLote
         '
-        Me.txUbicLote.Location = New System.Drawing.Point(671, 220)
+        Me.txUbicLote.Location = New System.Drawing.Point(671, 345)
         Me.txUbicLote.Name = "txUbicLote"
         Me.txUbicLote.Size = New System.Drawing.Size(148, 20)
         Me.txUbicLote.TabIndex = 135
@@ -280,7 +286,7 @@ Partial Class frArticulos
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(607, 204)
+        Me.Label20.Location = New System.Drawing.Point(607, 329)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(43, 13)
         Me.Label20.TabIndex = 134
@@ -288,7 +294,7 @@ Partial Class frArticulos
         '
         'txStockLote
         '
-        Me.txStockLote.Location = New System.Drawing.Point(602, 220)
+        Me.txStockLote.Location = New System.Drawing.Point(602, 345)
         Me.txStockLote.Name = "txStockLote"
         Me.txStockLote.Size = New System.Drawing.Size(62, 20)
         Me.txStockLote.TabIndex = 133
@@ -298,7 +304,7 @@ Partial Class frArticulos
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(500, 205)
+        Me.Label19.Location = New System.Drawing.Point(500, 330)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(35, 13)
         Me.Label19.TabIndex = 132
@@ -306,7 +312,7 @@ Partial Class frArticulos
         '
         'txLoteLote
         '
-        Me.txLoteLote.Location = New System.Drawing.Point(497, 220)
+        Me.txLoteLote.Location = New System.Drawing.Point(497, 345)
         Me.txLoteLote.Name = "txLoteLote"
         Me.txLoteLote.Size = New System.Drawing.Size(100, 20)
         Me.txLoteLote.TabIndex = 131
@@ -314,7 +320,7 @@ Partial Class frArticulos
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(145, 204)
+        Me.Label18.Location = New System.Drawing.Point(145, 329)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(80, 13)
         Me.Label18.TabIndex = 130
@@ -322,7 +328,7 @@ Partial Class frArticulos
         '
         'txDescLote
         '
-        Me.txDescLote.Location = New System.Drawing.Point(141, 220)
+        Me.txDescLote.Location = New System.Drawing.Point(141, 345)
         Me.txDescLote.Name = "txDescLote"
         Me.txDescLote.Size = New System.Drawing.Size(350, 20)
         Me.txDescLote.TabIndex = 129
@@ -330,7 +336,7 @@ Partial Class frArticulos
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(12, 205)
+        Me.Label17.Location = New System.Drawing.Point(12, 330)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(75, 13)
         Me.Label17.TabIndex = 128
@@ -338,7 +344,7 @@ Partial Class frArticulos
         '
         'txRefLote
         '
-        Me.txRefLote.Location = New System.Drawing.Point(10, 220)
+        Me.txRefLote.Location = New System.Drawing.Point(10, 345)
         Me.txRefLote.Name = "txRefLote"
         Me.txRefLote.Size = New System.Drawing.Size(124, 20)
         Me.txRefLote.TabIndex = 127
@@ -378,9 +384,9 @@ Partial Class frArticulos
         Me.dgLotes.AllowUserToAddRows = False
         Me.dgLotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgLotes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.referencia, Me.descripcion, Me.lote, Me.stock, Me.ubicacion})
-        Me.dgLotes.Location = New System.Drawing.Point(10, 39)
+        Me.dgLotes.Location = New System.Drawing.Point(10, 77)
         Me.dgLotes.Name = "dgLotes"
-        Me.dgLotes.Size = New System.Drawing.Size(809, 158)
+        Me.dgLotes.Size = New System.Drawing.Size(809, 236)
         Me.dgLotes.TabIndex = 0
         '
         'referencia
@@ -403,10 +409,10 @@ Partial Class frArticulos
         '
         'stock
         '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle7.Format = "N2"
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.stock.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.stock.DefaultCellStyle = DataGridViewCellStyle3
         Me.stock.HeaderText = "STOCK"
         Me.stock.Name = "stock"
         Me.stock.Width = 75
@@ -1182,6 +1188,30 @@ Partial Class frArticulos
         Me.Label1.TabIndex = 46
         Me.Label1.Text = "DESCRIPCION:"
         '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(129, 54)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(42, 13)
+        Me.Label22.TabIndex = 139
+        Me.Label22.Text = "LOTES"
+        '
+        'txFiltroLotes
+        '
+        Me.txFiltroLotes.Location = New System.Drawing.Point(178, 47)
+        Me.txFiltroLotes.Name = "txFiltroLotes"
+        Me.txFiltroLotes.Size = New System.Drawing.Size(570, 20)
+        Me.txFiltroLotes.TabIndex = 138
+        '
+        'txBakLote
+        '
+        Me.txBakLote.Location = New System.Drawing.Point(496, 373)
+        Me.txBakLote.Name = "txBakLote"
+        Me.txBakLote.Size = New System.Drawing.Size(100, 20)
+        Me.txBakLote.TabIndex = 140
+        Me.txBakLote.Visible = False
+        '
         'frArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1324,4 +1354,7 @@ Partial Class frArticulos
     Friend WithEvents Label17 As Label
     Friend WithEvents txRefLote As TextBox
     Friend WithEvents btGrabarLote As Button
+    Friend WithEvents Label22 As Label
+    Friend WithEvents txFiltroLotes As TextBox
+    Friend WithEvents txBakLote As TextBox
 End Class

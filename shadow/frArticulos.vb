@@ -9,6 +9,7 @@ Public Class frArticulos
     Public Shared flagLona As Boolean
     Public Shared lineas As Int16
     Public Shared flagEditLotes As Boolean
+    Public Shared flagModifLote As Boolean = False
 
 
 
@@ -942,35 +943,61 @@ Public Class frArticulos
     End Sub
 
     Private Sub btGrabarLote_Click(sender As Object, e As EventArgs) Handles btGrabarLote.Click
+        If flagModifLote = True Then
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
 
-        Dim fecha As Date = Format(Today, "dd/MM/yyyy")
-        dgLotes.Rows.Add()
-        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = txRefProv.Text
-        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = txDescripcion.Text
-        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = txLoteLote.Text
-        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = txStockLote.Text
-        dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(4).Value = txUbicLote.Text
+            Dim cmdLinea As New MySqlCommand
+            Dim row As New DataGridViewRow
+            Dim lincant As String
+            Dim guardo_lincant As String
 
-        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
-        conexionmy.Open()
+            lincant = Decimal.Parse(txStockLote.Text).ToString("0.00")
+            guardo_lincant = Replace(lincant, ",", ".")
 
-        Dim cmdLinea As New MySqlCommand
-        Dim row As New DataGridViewRow
-        Dim lincant As String
-        Dim guardo_lincant As String
+            cmdLinea.Connection = conexionmy
+            cmdLinea.CommandText = "UPDATE lotes SET referencia = '" + txRefLote.Text + "', descripcion = '" + txDescLote.Text + "', lote = '" + txLoteLote.Text + "', stock = '" + guardo_lincant + "', stock_disp = '" + guardo_lincant + "', ubicacion = '" + txUbicLote.Text + "' WHERE lote = '" + txBakLote.Text + "'"
+            cmdLinea.ExecuteNonQuery()
 
-        lincant = Decimal.Parse(txStockLote.Text).ToString("0.00")
-        guardo_lincant = Replace(lincant, ",", ".")
+            conexionmy.Close()
 
-        cmdLinea.Connection = conexionmy
-        cmdLinea.CommandText = "INSERT INTO lotes (referencia, descripcion, lote, stock, stock_inicial, stock_disp, fechaentrada, ubicacion) VALUES ('" + txRefLote.Text + "', '" + txDescLote.Text + "', '" + txLoteLote.Text + "', '" + guardo_lincant + "', '" + guardo_lincant + "', '" + guardo_lincant + "', '" + fecha.ToString("yyyy-MM-dd") + "', '" + txUbicLote.Text + "')"
+            limpiarLineaLote()
+            ocultarLineaLote()
+            flagModifLote = False
+            dgLotes.Rows.Clear()
+            cargarLotes()
 
-        cmdLinea.ExecuteNonQuery()
+        Else
+            Dim fecha As Date = Format(Today, "dd/MM/yyyy")
+            dgLotes.Rows.Add()
+            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = txRefProv.Text
+            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = txDescripcion.Text
+            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = txLoteLote.Text
+            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = txStockLote.Text
+            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(4).Value = txUbicLote.Text
 
-        conexionmy.Close()
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
 
-        limpiarLineaLote()
-        ocultarLineaLote()
+            Dim cmdLinea As New MySqlCommand
+            Dim row As New DataGridViewRow
+            Dim lincant As String
+            Dim guardo_lincant As String
+
+            lincant = Decimal.Parse(txStockLote.Text).ToString("0.00")
+            guardo_lincant = Replace(lincant, ",", ".")
+
+            cmdLinea.Connection = conexionmy
+            cmdLinea.CommandText = "INSERT INTO lotes (referencia, descripcion, lote, stock, stock_inicial, stock_disp, fechaentrada, ubicacion) VALUES ('" + txRefLote.Text + "', '" + txDescLote.Text + "', '" + txLoteLote.Text + "', '" + guardo_lincant + "', '" + guardo_lincant + "', '" + guardo_lincant + "', '" + fecha.ToString("yyyy-MM-dd") + "', '" + txUbicLote.Text + "')"
+
+            cmdLinea.ExecuteNonQuery()
+
+            conexionmy.Close()
+
+            limpiarLineaLote()
+            ocultarLineaLote()
+        End If
+
 
     End Sub
     Public Sub limpiarLineaLote()
@@ -1043,5 +1070,78 @@ Public Class frArticulos
         Dim vMin As String
         vMin = Replace(txMinimo.Text, ".", ",")
         txMinimo.Text = vMin
+    End Sub
+
+    Private Sub dgLotes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgLotes.CellDoubleClick
+        flagModifLote = True
+        verLineaLote()
+        txRefLote.Text = dgLotes.CurrentRow.Cells(0).Value
+        txDescLote.Text = dgLotes.CurrentRow.Cells(1).Value
+        txLoteLote.Text = dgLotes.CurrentRow.Cells(2).Value
+        txBakLote.Text = dgLotes.CurrentRow.Cells(2).Value
+        txStockLote.Text = dgLotes.CurrentRow.Cells(3).Value
+        txUbicLote.Text = dgLotes.CurrentRow.Cells(4).Value
+    End Sub
+    Private Sub cargarLotes()
+        ocultarLineaLote()
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmdLinea As New MySqlCommand
+
+        cmdLinea = New MySqlCommand("SELECT * FROM lotes WHERE referencia = '" + txRefProv.Text + "' ORDER BY loteID", conexionmy)
+
+        cmdLinea.CommandType = CommandType.Text
+        cmdLinea.Connection = conexionmy
+
+        Dim rdrLin As MySqlDataReader
+        rdrLin = cmdLinea.ExecuteReader
+        If rdrLin.HasRows Then
+            Do While rdrLin.Read()
+                lineas = lineas + 1
+                dgLotes.Rows.Add()
+                dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = rdrLin("referencia")
+                dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = rdrLin("descripcion")
+                dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = rdrLin("lote")
+                dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = rdrLin("stock")
+                dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(4).Value = rdrLin("ubicacion")
+            Loop
+        Else
+
+        End If
+
+        rdrLin.Close()
+        conexionmy.Close()
+    End Sub
+
+    Private Sub txFiltroLotes_TextChanged(sender As Object, e As EventArgs) Handles txFiltroLotes.TextChanged
+        dgLotes.Rows.Clear()
+
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmdLinea As New MySqlCommand
+
+        cmdLinea = New MySqlCommand("SELECT * FROM lotes WHERE referencia = '" + txRefProv.Text + "' AND lote LIKE '%" & txFiltroLotes.Text & "%' ORDER BY loteID", conexionmy)
+
+        cmdLinea.CommandType = CommandType.Text
+        cmdLinea.Connection = conexionmy
+
+        Dim rdrLin As MySqlDataReader
+        rdrLin = cmdLinea.ExecuteReader
+        If rdrLin.HasRows Then
+            Do While rdrLin.Read()
+                lineas = lineas + 1
+                dgLotes.Rows.Add()
+                dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = rdrLin("referencia")
+                dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = rdrLin("descripcion")
+                dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = rdrLin("lote")
+                dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = rdrLin("stock")
+                dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(4).Value = rdrLin("ubicacion")
+            Loop
+        Else
+
+        End If
+
+        rdrLin.Close()
+        conexionmy.Close()
     End Sub
 End Class
