@@ -196,8 +196,8 @@ Public Class frVerArticulos
     End Sub
 
     Private Sub dgArticulos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgArticulos.CellDoubleClick
-        If dgArticulos.CurrentRow.Cells("fam").Value = 7 And formArti <> "P" Then
-            frVerLotes.vReferencia = dgArticulos.CurrentRow.Cells("referen").Value
+        If dgArticulos.CurrentRow.Cells("fam").Value = 7 Or dgArticulos.CurrentRow.Cells("fam").Value = 4 And formArti <> "P" Then
+            frVerLotes.vReferencia = dgArticulos.CurrentRow.Cells("refpro").Value
             frVerLotes.vPrecio = dgArticulos.CurrentRow.Cells("prec").Value
             frVerLotes.vIva = dgArticulos.CurrentRow.Cells("porciva").Value
             frVerLotes.Show()
