@@ -371,7 +371,7 @@ Public Class frArticulos
     Private Sub cmdLotes_Click(sender As Object, e As EventArgs) Handles cmdLotes.Click
         pnLotes.Visible = True
         If flagEditArti = True Then
-
+            ocultarLineaLote()
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
             Dim cmdLinea As New MySqlCommand
@@ -401,7 +401,34 @@ Public Class frArticulos
             conexionmy.Close()
 
         Else
+            ocultarLineaLote()
+            Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+            conexionmy.Open()
+            Dim cmdLinea As New MySqlCommand
 
+            cmdLinea = New MySqlCommand("SELECT * FROM lotes WHERE referencia = '" + txRefProv.Text + "' ORDER BY loteID", conexionmy)
+
+            cmdLinea.CommandType = CommandType.Text
+            cmdLinea.Connection = conexionmy
+
+            Dim rdrLin As MySqlDataReader
+            rdrLin = cmdLinea.ExecuteReader
+            If rdrLin.HasRows Then
+                Do While rdrLin.Read()
+                    lineas = lineas + 1
+                    dgLotes.Rows.Add()
+                    dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = rdrLin("referencia")
+                    dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = rdrLin("descripcion")
+                    dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = rdrLin("lote")
+                    dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = rdrLin("stock")
+                    dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(4).Value = rdrLin("ubicacion")
+                Loop
+            Else
+
+            End If
+
+            rdrLin.Close()
+            conexionmy.Close()
         End If
 
     End Sub
@@ -487,16 +514,20 @@ Public Class frArticulos
             txLoteLote.Focus()
 
         Else
-            dgLotes.Rows.Add()
-            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = txRefProv.Text
-            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = txDescripcion.Text
-            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = ""
-            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = 0
-            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(4).Value = ""
+            'dgLotes.Rows.Add()
+            'dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(0).Value = txRefProv.Text
+            'dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(1).Value = txDescripcion.Text
+            'dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Value = ""
+            'dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(3).Value = 0
+            'dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(4).Value = ""
 
-            dgLotes.Focus()
-            dgLotes.CurrentCell = dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2)
-            dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Selected = True
+            'dgLotes.Focus()
+            'dgLotes.CurrentCell = dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2)
+            'dgLotes.Rows(dgLotes.Rows.Count - 1).Cells(2).Selected = True
+            txRefLote.Text = txRefProv.Text
+            txDescLote.Text = txDescripcion.Text
+            verLineaLote()
+            txLoteLote.Focus()
         End If
 
     End Sub
