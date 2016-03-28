@@ -5,7 +5,6 @@ Imports System.Globalization
 Imports System.ComponentModel
 Imports System.Xml
 Public Class launcher
-
     Private Sub launcher_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim documento As XmlDocument
         Dim nodelist As XmlNodeList
@@ -61,30 +60,15 @@ Public Class launcher
     End Sub
 
     Private Sub PresupuestosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresupuestosToolStripMenuItem.Click
-        'frPresupuestos.Show()
-        'Dim newMdiPresupuestos As New frPresupuestos
-        newMdiPresupuesto.MdiParent = Me
-        newMdiPresupuesto.Dock = DockStyle.Fill
-        newMdiPresupuesto.Show()
-
+        muestroPresupuestos()
     End Sub
 
     Private Sub PedidosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PedidosToolStripMenuItem.Click
-        'frPedido.Show()
-        'Dim newMdiPedidos As New frPedido
-        newMdiPedido.MdiParent = Me
-        newMdiPedido.Dock = DockStyle.Fill
-        newMdiPedido.Show()
-
+        muestroPedidos()
     End Sub
 
     Private Sub AlbaranesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AlbaranesToolStripMenuItem.Click
-        'frAlbaran.Show()
-        'Dim newMdiAlbaran As New frAlbaran
-        newMdiAlbaran.MdiParent = Me
-        newMdiAlbaran.Dock = DockStyle.Fill
-        newMdiAlbaran.Show()
-
+        muestroAlbaranes()
     End Sub
 
     Private Sub FacturaciónManualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaciónManualToolStripMenuItem.Click
@@ -152,5 +136,42 @@ Public Class launcher
         newMdiGasto.Dock = DockStyle.Fill
         newMdiGasto.Show()
 
+    End Sub
+    Public Sub muestroPresupuestos()
+        If newMdiPresupuesto Is Nothing Then
+            newMdiPresupuesto.MdiParent = Me
+            newMdiPresupuesto.Dock = DockStyle.Fill
+            newMdiPresupuesto.Show()
+        Else
+            newMdiPresupuesto = New frPresupuestos
+            newMdiPresupuesto.MdiParent = Me
+            newMdiPresupuesto.Dock = DockStyle.Fill
+            newMdiPresupuesto.Show()
+        End If
+
+    End Sub
+    Public Sub muestroAlbaranes()
+        If newMdiAlbaran Is Nothing Then
+            newMdiAlbaran.MdiParent = Me
+            newMdiAlbaran.Dock = DockStyle.Fill
+            newMdiAlbaran.Show()
+        Else
+            newMdiAlbaran = New frAlbaran
+            newMdiAlbaran.MdiParent = Me
+            newMdiAlbaran.Dock = DockStyle.Fill
+            newMdiAlbaran.Show()
+        End If
+    End Sub
+    Public Sub muestroPedidos()
+        If newMdiPedido Is Nothing Then
+            newMdiPedido.MdiParent = Me
+            newMdiPedido.Dock = DockStyle.Fill
+            newMdiPedido.Show()
+        Else
+            newMdiPedido = New frPedido
+            newMdiPedido.MdiParent = Me
+            newMdiPedido.Dock = DockStyle.Fill
+            newMdiPedido.Show()
+        End If
     End Sub
 End Class
