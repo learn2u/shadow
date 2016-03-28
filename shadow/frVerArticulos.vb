@@ -207,8 +207,13 @@ Public Class frVerArticulos
                     newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                    newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                    newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value
+                    If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                        newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value
+                    Else
+                        newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                        newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                    End If
                     newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                     newMdiPresupuesto.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                     newMdiPresupuesto.dgLineasPres1.CurrentCell = newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4)
@@ -220,8 +225,13 @@ Public Class frVerArticulos
                     newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                    newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                    newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value
+                    If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                        newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value
+                    Else
+                        newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                        newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                    End If
                     newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                     newMdiPresupuesto.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                     newMdiPresupuesto.dgLineasPres2.CurrentCell = newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4)
@@ -238,8 +248,13 @@ Public Class frVerArticulos
                     newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                    newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                    newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value
+                    If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                        newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value
+                    Else
+                        newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                        newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                    End If
                     newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                     newMdiAlbaran.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                     newMdiAlbaran.dgLineasPres1.CurrentCell = newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4)
@@ -251,8 +266,13 @@ Public Class frVerArticulos
                     newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                    newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                    newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value
+                    If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                        newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value
+                    Else
+                        newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                        newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                    End If
                     newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                     newMdiAlbaran.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                     newMdiAlbaran.dgLineasPres2.CurrentCell = newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4)
@@ -270,8 +290,13 @@ Public Class frVerArticulos
                     newMdiPedido.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     newMdiPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     newMdiPedido.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                    newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                    newMdiPedido.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value
+                    If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value
+                    Else
+                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                    End If
                     newMdiPedido.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                     newMdiPedido.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                     newMdiPedido.dgLineasPres1.CurrentCell = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4)
@@ -283,8 +308,13 @@ Public Class frVerArticulos
                     newMdiPedido.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     newMdiPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     newMdiPedido.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                    newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                    newMdiPedido.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value
+                    If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value
+                    Else
+                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                    End If
                     newMdiPedido.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                     newMdiPedido.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                     newMdiPedido.dgLineasPres2.CurrentCell = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4)
@@ -302,8 +332,13 @@ Public Class frVerArticulos
                     newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                    newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                    newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value
+                    If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value
+                    Else
+                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                    End If
                     newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                     newMdiFacturaManual.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                     newMdiFacturaManual.dgLineasPres1.CurrentCell = newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4)
@@ -315,8 +350,13 @@ Public Class frVerArticulos
                     newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                    newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                    newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value
+                    If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value
+                    Else
+                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                    End If
                     newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                     newMdiFacturaManual.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                     newMdiFacturaManual.dgLineasPres2.CurrentCell = newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4)
@@ -333,8 +373,13 @@ Public Class frVerArticulos
                     newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                    newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                    newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value
+                    If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                        newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value
+                    Else
+                        newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                        newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                    End If
                     newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                     newMdiPedidoProv.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                     newMdiPedidoProv.dgLineasPres1.CurrentCell = newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(4)
@@ -346,8 +391,13 @@ Public Class frVerArticulos
                     newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                     newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                    newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                    newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value
+                    If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                        newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value
+                    Else
+                        newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                        newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                    End If
                     newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                     newMdiPedidoProv.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                     newMdiPedidoProv.dgLineasPres2.CurrentCell = newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(4)
@@ -394,8 +444,13 @@ Public Class frVerArticulos
                         newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                        newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                            newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiPresupuesto.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiPresupuesto.dgLineasPres1.CurrentCell = newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4)
@@ -407,8 +462,13 @@ Public Class frVerArticulos
                         newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                        newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                            newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiPresupuesto.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiPresupuesto.dgLineasPres2.CurrentCell = newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4)
@@ -425,8 +485,13 @@ Public Class frVerArticulos
                         newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                        newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                            newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiAlbaran.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiAlbaran.dgLineasPres1.CurrentCell = newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4)
@@ -438,8 +503,13 @@ Public Class frVerArticulos
                         newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                        newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                            newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiAlbaran.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiAlbaran.dgLineasPres2.CurrentCell = newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4)
@@ -457,8 +527,13 @@ Public Class frVerArticulos
                         newMdiPedido.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiPedido.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiPedido.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                            newMdiPedido.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiPedido.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiPedido.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiPedido.dgLineasPres1.CurrentCell = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4)
@@ -470,8 +545,13 @@ Public Class frVerArticulos
                         newMdiPedido.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiPedido.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiPedido.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                            newMdiPedido.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiPedido.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiPedido.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiPedido.dgLineasPres2.CurrentCell = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4)
@@ -489,8 +569,13 @@ Public Class frVerArticulos
                         newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                            newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiFacturaManual.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiFacturaManual.dgLineasPres1.CurrentCell = newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4)
@@ -502,8 +587,13 @@ Public Class frVerArticulos
                         newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                            newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiFacturaManual.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiFacturaManual.dgLineasPres2.CurrentCell = newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4)
@@ -520,8 +610,13 @@ Public Class frVerArticulos
                         newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                        newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                            newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiPedidoProv.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiPedidoProv.dgLineasPres1.CurrentCell = newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(4)
@@ -533,8 +628,13 @@ Public Class frVerArticulos
                         newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                        newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                            newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiPedidoProv.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiPedidoProv.dgLineasPres2.CurrentCell = newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(4)
@@ -582,8 +682,13 @@ Public Class frVerArticulos
                         newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                        newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                            newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiPresupuesto.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiPresupuesto.dgLineasPres1.CurrentCell = newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4)
@@ -595,8 +700,13 @@ Public Class frVerArticulos
                         newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                        newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                            newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiPresupuesto.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiPresupuesto.dgLineasPres2.CurrentCell = newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4)
@@ -613,8 +723,13 @@ Public Class frVerArticulos
                         newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                        newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                            newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiAlbaran.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiAlbaran.dgLineasPres1.CurrentCell = newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4)
@@ -626,8 +741,13 @@ Public Class frVerArticulos
                         newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                        newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                            newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiAlbaran.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiAlbaran.dgLineasPres2.CurrentCell = newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4)
@@ -645,8 +765,13 @@ Public Class frVerArticulos
                         newMdiPedido.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiPedido.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiPedido.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                            newMdiPedido.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiPedido.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiPedido.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiPedido.dgLineasPres1.CurrentCell = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4)
@@ -658,8 +783,13 @@ Public Class frVerArticulos
                         newMdiPedido.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiPedido.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiPedido.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                            newMdiPedido.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiPedido.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiPedido.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiPedido.dgLineasPres2.CurrentCell = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4)
@@ -677,8 +807,13 @@ Public Class frVerArticulos
                         newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                            newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiFacturaManual.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiFacturaManual.dgLineasPres1.CurrentCell = newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4)
@@ -690,8 +825,13 @@ Public Class frVerArticulos
                         newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                            newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiFacturaManual.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiFacturaManual.dgLineasPres2.CurrentCell = newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4)
@@ -708,8 +848,13 @@ Public Class frVerArticulos
                         newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                        newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                            newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiPedidoProv.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiPedidoProv.dgLineasPres1.CurrentCell = newMdiPedidoProv.dgLineasPres1.CurrentRow.Cells(4)
@@ -721,8 +866,13 @@ Public Class frVerArticulos
                         newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                         newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
                         newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                        newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value
+                        If dgArticulos.CurrentRow.Cells("fam").Value = 3 Or dgArticulos.CurrentRow.Cells("fam").Value = 7 Then
+                            newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                            newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value
+                        Else
+                            newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                            newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(6).Value = 0
+                        End If
                         newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
                         newMdiPedidoProv.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
                         newMdiPedidoProv.dgLineasPres2.CurrentCell = newMdiPedidoProv.dgLineasPres2.CurrentRow.Cells(4)
