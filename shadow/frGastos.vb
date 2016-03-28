@@ -109,7 +109,7 @@ Public Class frGastos
         txFraProv.Text = ""
         txClientepres.Text = ""
         txDtocli.Text = ""
-        txIva.Text = ""
+        txIva.Text = "21.00"
         'cbEstado.Text = "SUELDOS Y SALARIOS"
         ckPagado.Checked = False
         ckExento.Checked = False

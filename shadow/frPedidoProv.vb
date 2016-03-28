@@ -112,7 +112,7 @@ Public Class frPedidoProv
         txClientepres.Text = ""
         txFechaEntrega.Text = ""
         txDtocli.Text = ""
-        txIva.Text = ""
+        txIva.Text = "21.00"
         cbEstado.Text = ""
         txObserva.Text = ""
         txImpBruto.Text = 0

@@ -127,25 +127,25 @@ Public Class frVerProveedores
 
     Private Sub dgProvedores_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgProvedores.CellDoubleClick
         If formCli = "G" Then
-            frGastos.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
-            frGastos.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
-            frGastos.txDni.Text = dgProvedores.CurrentRow.Cells("cif").Value
-            frGastos.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
-            frGastos.txDiaspago.Text = dgProvedores.CurrentRow.Cells("diap").Value
-            frGastos.cbFormapago.Text = dgProvedores.CurrentRow.Cells("formap").Value
+            newMdiGasto.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
+            newMdiGasto.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+            newMdiGasto.txDni.Text = dgProvedores.CurrentRow.Cells("cif").Value
+            newMdiGasto.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
+            newMdiGasto.txDiaspago.Text = dgProvedores.CurrentRow.Cells("diap").Value
+            newMdiGasto.cbFormapago.Text = dgProvedores.CurrentRow.Cells("formap").Value
             Me.Close()
         End If
         If formCli = "D" Then
-            frPedidoProv.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
-            frPedidoProv.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
-            frPedidoProv.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
+            newMdiPedidoProv.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
+            newMdiPedidoProv.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+            newMdiPedidoProv.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
             Me.Close()
-            frPedidoProv.recalcularDescuentos()
+            newMdiPedidoProv.recalcularDescuentos()
         End If
         If formCli = "A" Then
-            frArticulos.txNumPro.Text = dgProvedores.CurrentRow.Cells("cod").Value
-            frArticulos.txProveedor.Text = dgProvedores.CurrentRow.Cells("cliente").Value
-            frArticulos.txDto.Text = dgProvedores.CurrentRow.Cells("dto").Value
+            newMdiArticulos.txNumPro.Text = dgProvedores.CurrentRow.Cells("cod").Value
+            newMdiArticulos.txProveedor.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+            newMdiArticulos.txDto.Text = dgProvedores.CurrentRow.Cells("dto").Value
             Me.Close()
         End If
     End Sub
@@ -169,26 +169,26 @@ Public Class frVerProveedores
 
         If e.KeyCode = Keys.Enter Then
             If formCli = "G" Then
-                frGastos.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
-                frGastos.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
-                frGastos.txDni.Text = dgProvedores.CurrentRow.Cells("cif").Value
-                frGastos.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
-                frGastos.txDiaspago.Text = dgProvedores.CurrentRow.Cells("diap").Value
-                frGastos.cbFormapago.Text = dgProvedores.CurrentRow.Cells("formap").Value
-                Me.Hide()
+                newMdiGasto.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
+                newMdiGasto.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+                newMdiGasto.txDni.Text = dgProvedores.CurrentRow.Cells("cif").Value
+                newMdiGasto.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
+                newMdiGasto.txDiaspago.Text = dgProvedores.CurrentRow.Cells("diap").Value
+                newMdiGasto.cbFormapago.Text = dgProvedores.CurrentRow.Cells("formap").Value
+                Me.Close()
             End If
             If formCli = "D" Then
-                frPedidoProv.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
-                frPedidoProv.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
-                frPedidoProv.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
-                Me.Hide()
-                frPedidoProv.recalcularDescuentos()
+                newMdiPedidoProv.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
+                newMdiPedidoProv.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+                newMdiPedidoProv.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
+                Me.Close()
+                newMdiPedidoProv.recalcularDescuentos()
             End If
             If formCli = "A" Then
-                frArticulos.txNumPro.Text = dgProvedores.CurrentRow.Cells("cod").Value
-                frArticulos.txProveedor.Text = dgProvedores.CurrentRow.Cells("cliente").Value
-                frArticulos.txDto.Text = dgProvedores.CurrentRow.Cells("dto").Value
-                Me.Hide()
+                newMdiArticulos.txNumPro.Text = dgProvedores.CurrentRow.Cells("cod").Value
+                newMdiArticulos.txProveedor.Text = dgProvedores.CurrentRow.Cells("cliente").Value
+                newMdiArticulos.txDto.Text = dgProvedores.CurrentRow.Cells("dto").Value
+                Me.Close()
             End If
         End If
     End Sub
