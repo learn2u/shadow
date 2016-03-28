@@ -320,24 +320,24 @@ Public Class frVerClientes
         End If
 
         If formCli = "D" Then
-            frPedido.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
-            frPedido.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
-            frPedido.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
-            frPedido.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
-            frPedido.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+            newMdiPedido.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+            newMdiPedido.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+            newMdiPedido.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+            newMdiPedido.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+            newMdiPedido.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
             Me.Close()
-            frPedido.recalcularDescuentos()
+            newMdiPedido.recalcularDescuentos()
             cargoEnvios()
         End If
 
         If formCli = "F" Then
-            frFacturaManual.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
-            frFacturaManual.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
-            frFacturaManual.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
-            frFacturaManual.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
-            frFacturaManual.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+            newMdiFacturaManual.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+            newMdiFacturaManual.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+            newMdiFacturaManual.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+            newMdiFacturaManual.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+            newMdiFacturaManual.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
             Me.Close()
-            frFacturaManual.recalcularDescuentos()
+            newMdiFacturaManual.recalcularDescuentos()
             cargoEnvios()
             cargoFormapagoCliente()
         End If
@@ -369,7 +369,7 @@ Public Class frVerClientes
                 newMdiPresupuesto.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
                 newMdiPresupuesto.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
                 newMdiPresupuesto.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
-                Me.Hide()
+                Me.Close()
                 newMdiPresupuesto.recalcularDescuentos()
                 cargoEnvios()
             End If
@@ -379,7 +379,7 @@ Public Class frVerClientes
                 newMdiAlbaran.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
                 newMdiAlbaran.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
                 newMdiAlbaran.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
-                Me.Hide()
+                Me.Close()
                 newMdiAlbaran.recalcularDescuentos()
                 cargoEnvios()
             End If
@@ -390,7 +390,7 @@ Public Class frVerClientes
                 newMdiPedido.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
                 newMdiPedido.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
                 newMdiPedido.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
-                Me.Hide()
+                Me.Close()
                 newMdiPedido.recalcularDescuentos()
                 cargoEnvios()
             End If
@@ -401,7 +401,7 @@ Public Class frVerClientes
                 newMdiFacturaManual.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
                 newMdiFacturaManual.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
                 newMdiFacturaManual.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
-                Me.Hide()
+                Me.Close()
                 newMdiFacturaManual.recalcularDescuentos()
                 cargoEnvios()
                 cargoFormapagoCliente()
