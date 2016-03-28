@@ -133,20 +133,20 @@ Public Class frVerProveedores
             frGastos.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
             frGastos.txDiaspago.Text = dgProvedores.CurrentRow.Cells("diap").Value
             frGastos.cbFormapago.Text = dgProvedores.CurrentRow.Cells("formap").Value
-            Me.Hide()
+            Me.Close()
         End If
         If formCli = "D" Then
             frPedidoProv.txNumcli.Text = dgProvedores.CurrentRow.Cells("cod").Value
             frPedidoProv.txClientepres.Text = dgProvedores.CurrentRow.Cells("cliente").Value
             frPedidoProv.txDtocli.Text = dgProvedores.CurrentRow.Cells("dto").Value
-            Me.Hide()
+            Me.Close()
             frPedidoProv.recalcularDescuentos()
         End If
         If formCli = "A" Then
             frArticulos.txNumPro.Text = dgProvedores.CurrentRow.Cells("cod").Value
             frArticulos.txProveedor.Text = dgProvedores.CurrentRow.Cells("cliente").Value
             frArticulos.txDto.Text = dgProvedores.CurrentRow.Cells("dto").Value
-            Me.Hide()
+            Me.Close()
         End If
     End Sub
 

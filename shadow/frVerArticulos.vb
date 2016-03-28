@@ -215,7 +215,7 @@ Public Class frVerArticulos
                     frPresupuestos.dgLineasPres1.BeginEdit(True)
                     txArticulo.Text = ""
                     Me.txArticulo.Focus()
-                    Me.Hide()
+                    Me.Close()
                 Else
                     frPresupuestos.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frPresupuestos.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
@@ -230,7 +230,7 @@ Public Class frVerArticulos
                     frPresupuestos.recalcularTotales()
                     txArticulo.Text = ""
                     Me.txArticulo.Focus()
-                    Me.Hide()
+                    Me.Close()
                 End If
             End If
             If formArti = "A" Then
@@ -246,7 +246,7 @@ Public Class frVerArticulos
                     frAlbaran.dgLineasPres1.BeginEdit(True)
                     txArticulo.Text = ""
                     Me.txArticulo.Focus()
-                    Me.Hide()
+                    Me.Close()
                 Else
                     frAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frAlbaran.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
@@ -261,7 +261,7 @@ Public Class frVerArticulos
                     frAlbaran.recalcularTotales()
                     txArticulo.Text = ""
                     Me.txArticulo.Focus()
-                    Me.Hide()
+                    Me.Close()
                 End If
             End If
 
@@ -278,7 +278,7 @@ Public Class frVerArticulos
                     frPedido.dgLineasPres1.BeginEdit(True)
                     txArticulo.Text = ""
                     Me.txArticulo.Focus()
-                    Me.Hide()
+                    Me.Close()
                 Else
                     frPedido.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
@@ -293,7 +293,7 @@ Public Class frVerArticulos
                     frPedido.recalcularTotales()
                     txArticulo.Text = ""
                     Me.txArticulo.Focus()
-                    Me.Hide()
+                    Me.Close()
                 End If
             End If
 
@@ -310,7 +310,7 @@ Public Class frVerArticulos
                     frFacturaManual.dgLineasPres1.BeginEdit(True)
                     txArticulo.Text = ""
                     Me.txArticulo.Focus()
-                    Me.Hide()
+                    Me.Close()
                 Else
                     frFacturaManual.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frFacturaManual.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
@@ -325,7 +325,7 @@ Public Class frVerArticulos
                     frFacturaManual.recalcularTotales()
                     txArticulo.Text = ""
                     Me.txArticulo.Focus()
-                    Me.Hide()
+                    Me.Close()
                 End If
             End If
             If formArti = "R" Then
@@ -341,7 +341,7 @@ Public Class frVerArticulos
                     frPedidoProv.dgLineasPres1.BeginEdit(True)
                     txArticulo.Text = ""
                     Me.txArticulo.Focus()
-                    Me.Hide()
+                    Me.Close()
                 Else
                     frPedidoProv.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
                     frPedidoProv.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
@@ -356,7 +356,7 @@ Public Class frVerArticulos
                     frPedidoProv.recalcularTotales()
                     txArticulo.Text = ""
                     Me.txArticulo.Focus()
-                    Me.Hide()
+                    Me.Close()
                 End If
             End If
         End If

@@ -65,7 +65,7 @@ Public Class frVerLotes
                 frPresupuestos.dgLineasPres1.CurrentCell = frPresupuestos.dgLineasPres1.CurrentRow.Cells(4)
                 frPresupuestos.dgLineasPres1.BeginEdit(True)
 
-                Me.Hide()
+                Me.Close()
             Else
                 frPresupuestos.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
                 frPresupuestos.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
@@ -78,7 +78,7 @@ Public Class frVerLotes
                 frPresupuestos.actualizarLinea()
                 frPresupuestos.recalcularTotales()
 
-                Me.Hide()
+                Me.Close()
             End If
         End If
         If formArti = "A" Then
@@ -92,7 +92,7 @@ Public Class frVerLotes
                 frAlbaran.dgLineasPres1.CurrentCell = frAlbaran.dgLineasPres1.CurrentRow.Cells(4)
                 frAlbaran.dgLineasPres1.BeginEdit(True)
 
-                Me.Hide()
+                Me.Close()
             Else
                 frAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
                 frAlbaran.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
@@ -105,7 +105,7 @@ Public Class frVerLotes
                 frAlbaran.actualizarLinea()
                 frAlbaran.recalcularTotales()
 
-                Me.Hide()
+                Me.Close()
             End If
         End If
 
@@ -120,7 +120,7 @@ Public Class frVerLotes
                 frPedido.dgLineasPres1.CurrentCell = frPedido.dgLineasPres1.CurrentRow.Cells(4)
                 frPedido.dgLineasPres1.BeginEdit(True)
 
-                Me.Hide()
+                Me.Close()
             Else
                 frPedido.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
                 frPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
@@ -133,7 +133,7 @@ Public Class frVerLotes
                 frPedido.actualizarLinea()
                 frPedido.recalcularTotales()
 
-                Me.Hide()
+                Me.Close()
             End If
         End If
     End Sub

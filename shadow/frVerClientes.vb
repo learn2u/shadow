@@ -302,7 +302,7 @@ Public Class frVerClientes
             frPresupuestos.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
             frPresupuestos.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
             frPresupuestos.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
-            Me.Hide()
+            Me.Close()
             frPresupuestos.recalcularDescuentos()
             cargoEnvios()
         End If
@@ -312,7 +312,7 @@ Public Class frVerClientes
             frAlbaran.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
             frAlbaran.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
             frAlbaran.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
-            Me.Hide()
+            Me.Close()
             frAlbaran.recalcularDescuentos()
             cargoEnvios()
         End If
@@ -323,7 +323,7 @@ Public Class frVerClientes
             frPedido.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
             frPedido.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
             frPedido.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
-            Me.Hide()
+            Me.Close()
             frPedido.recalcularDescuentos()
             cargoEnvios()
         End If
@@ -334,7 +334,7 @@ Public Class frVerClientes
             frFacturaManual.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
             frFacturaManual.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
             frFacturaManual.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
-            Me.Hide()
+            Me.Close()
             frFacturaManual.recalcularDescuentos()
             cargoEnvios()
             cargoFormapagoCliente()
