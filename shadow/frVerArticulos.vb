@@ -383,7 +383,7 @@ Public Class frVerArticulos
         End If
 
         If e.KeyCode = Keys.Enter Then
-            If dgArticulos.CurrentRow.Cells("fam").Value = 7 And formArti <> "P" Then
+            If dgArticulos.CurrentRow.Cells("fam").Value = 7 Or dgArticulos.CurrentRow.Cells("fam").Value = 4 And formArti <> "P" Then
                 frVerLotes.vReferencia = dgArticulos.CurrentRow.Cells("referen").Value
                 frVerLotes.vPrecio = dgArticulos.CurrentRow.Cells("prec").Value
                 frVerLotes.vIva = dgArticulos.CurrentRow.Cells("porciva").Value
@@ -454,30 +454,30 @@ Public Class frVerArticulos
 
                 If formArti = "D" Then
                     If frPedido.flagEdit = "N" Then
-                        frPedido.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
-                        frPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
-                        frPedido.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                        frPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        frPedido.dgLineasPres1.CurrentRow.Cells(6).Value = frPedido.dgLineasPres1.CurrentRow.Cells(4).Value * frPedido.dgLineasPres1.CurrentRow.Cells(5).Value
-                        frPedido.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
-                        frPedido.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
-                        frPedido.dgLineasPres1.CurrentCell = frPedido.dgLineasPres1.CurrentRow.Cells(4)
-                        frPedido.dgLineasPres1.BeginEdit(True)
+                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
+                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(4).Value = 1
+                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value
+                        newMdiPedido.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
+                        newMdiPedido.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
+                        newMdiPedido.dgLineasPres1.CurrentCell = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4)
+                        newMdiPedido.dgLineasPres1.BeginEdit(True)
                         txArticulo.Text = ""
                         Me.txArticulo.Focus()
                         Me.Close()
                     Else
-                        frPedido.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
-                        frPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
-                        frPedido.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                        frPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        frPedido.dgLineasPres2.CurrentRow.Cells(6).Value = frPedido.dgLineasPres2.CurrentRow.Cells(4).Value * frPedido.dgLineasPres2.CurrentRow.Cells(5).Value
-                        frPedido.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
-                        frPedido.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
-                        frPedido.dgLineasPres2.CurrentCell = frPedido.dgLineasPres2.CurrentRow.Cells(4)
-                        frPedido.dgLineasPres2.BeginEdit(True)
-                        frPedido.actualizarLinea()
-                        frPedido.recalcularTotales()
+                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
+                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(4).Value = 1
+                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value
+                        newMdiPedido.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
+                        newMdiPedido.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
+                        newMdiPedido.dgLineasPres2.CurrentCell = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4)
+                        newMdiPedido.dgLineasPres2.BeginEdit(True)
+                        newMdiPedido.actualizarLinea()
+                        newMdiPedido.recalcularTotales()
                         txArticulo.Text = ""
                         Me.txArticulo.Focus()
                         Me.Close()
@@ -486,30 +486,30 @@ Public Class frVerArticulos
 
                 If formArti = "F" Then
                     If frFacturaManual.flagEdit = "N" Then
-                        frFacturaManual.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
-                        frFacturaManual.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
-                        frFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                        frFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        frFacturaManual.dgLineasPres1.CurrentRow.Cells(6).Value = frFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value * frFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value
-                        frFacturaManual.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
-                        frFacturaManual.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
-                        frFacturaManual.dgLineasPres1.CurrentCell = frFacturaManual.dgLineasPres1.CurrentRow.Cells(4)
-                        frFacturaManual.dgLineasPres1.BeginEdit(True)
+                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
+                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value = 1
+                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(5).Value
+                        newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
+                        newMdiFacturaManual.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
+                        newMdiFacturaManual.dgLineasPres1.CurrentCell = newMdiFacturaManual.dgLineasPres1.CurrentRow.Cells(4)
+                        newMdiFacturaManual.dgLineasPres1.BeginEdit(True)
                         txArticulo.Text = ""
                         Me.txArticulo.Focus()
                         Me.Close()
                     Else
-                        frFacturaManual.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
-                        frFacturaManual.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
-                        frFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                        frFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
-                        frFacturaManual.dgLineasPres2.CurrentRow.Cells(6).Value = frFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value * frFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value
-                        frFacturaManual.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
-                        frFacturaManual.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
-                        frFacturaManual.dgLineasPres2.CurrentCell = frFacturaManual.dgLineasPres2.CurrentRow.Cells(4)
-                        frFacturaManual.dgLineasPres2.BeginEdit(True)
-                        frFacturaManual.actualizarLinea()
-                        frFacturaManual.recalcularTotales()
+                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(2).Value = dgArticulos.CurrentRow.Cells("refpro").Value
+                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(3).Value = dgArticulos.CurrentRow.Cells("descrip").Value
+                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value = 1
+                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value = dgArticulos.CurrentRow.Cells("longitud").Value / 100
+                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(6).Value = newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4).Value * newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(5).Value
+                        newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(7).Value = dgArticulos.CurrentRow.Cells("prec").Value
+                        newMdiFacturaManual.txIva.Text = dgArticulos.CurrentRow.Cells("porciva").Value
+                        newMdiFacturaManual.dgLineasPres2.CurrentCell = newMdiFacturaManual.dgLineasPres2.CurrentRow.Cells(4)
+                        newMdiFacturaManual.dgLineasPres2.BeginEdit(True)
+                        newMdiFacturaManual.actualizarLinea()
+                        newMdiFacturaManual.recalcularTotales()
                         txArticulo.Text = ""
                         Me.txArticulo.Focus()
                         Me.Close()
@@ -571,7 +571,7 @@ Public Class frVerArticulos
         End If
 
         If e.KeyCode = Keys.Enter Then
-            If dgArticulos.CurrentRow.Cells("fam").Value = 7 And formArti <> "P" Then
+            If dgArticulos.CurrentRow.Cells("fam").Value = 7 Or dgArticulos.CurrentRow.Cells("fam").Value = 4 And formArti <> "P" Then
                 frVerLotes.vReferencia = dgArticulos.CurrentRow.Cells("referen").Value
                 frVerLotes.vPrecio = dgArticulos.CurrentRow.Cells("prec").Value
                 frVerLotes.vIva = dgArticulos.CurrentRow.Cells("porciva").Value
