@@ -128,7 +128,7 @@ Public Class frFacturaManual
         txAgente.Text = ""
         txRecargo.Text = ""
         txDtocli.Text = ""
-        txIva.Text = ""
+        txIva.Text = "21.00"
         cbEnvio.Text = ""
         txObserva.Text = ""
         txImpBruto.Text = 0

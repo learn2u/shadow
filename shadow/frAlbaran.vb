@@ -129,7 +129,7 @@ Public Class frAlbaran
         txClientepres.Text = ""
         txAgente.Text = ""
         txDtocli.Text = ""
-        txIva.Text = ""
+        txIva.Text = "21.00"
         cbEstado.Text = ""
         cbEnvio.Text = ""
         txObserva.Text = ""
@@ -496,6 +496,7 @@ Public Class frAlbaran
 
             Dim fecha As Date = txFecha.Text
 
+
             'Guardo cabecera y actualizo número de presupuesto
             Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
             conexionmy.Open()
@@ -608,11 +609,17 @@ Public Class frAlbaran
             Dim guardo_imprec As String = Replace(imprec, ",", ".")
 
             Dim fecha As Date = txFecha.Text
+            Dim vEstado As String
+            If cbEstado.Text = "FACTURADO" Then
+                vEstado = "F"
+            Else
+                vEstado = "N"
+            End If
 
             'Guardo cabecera y actualizo número de presupuesto
 
             If vSerie = serieIni Then
-                Dim cmd As New MySqlCommand("UPDATE albaran_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', bultos = '" + txBultos.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalrecargo = '" + guardo_imprec + "', totalalbaran = '" + guardo_imptot + "', serie = '" + vSerie + "' WHERE num_albaran = " + txtNumpres.Text + "", conexionmy)
+                Dim cmd As New MySqlCommand("UPDATE albaran_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', bultos = '" + txBultos.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalrecargo = '" + guardo_imprec + "', totalalbaran = '" + guardo_imptot + "', serie = '" + vSerie + "', facturado = '" + vEstado + "' WHERE num_albaran = " + txtNumpres.Text + "", conexionmy)
                 cmd.ExecuteNonQuery()
 
             Else
@@ -780,7 +787,7 @@ Public Class frAlbaran
             cbEstado.Text = "FACTURADO"
             cmdAlbaran.Enabled = False
         End If
-        cbEstado.Enabled = False
+        cbEstado.Enabled = True
 
 
         rdrCab.Close()

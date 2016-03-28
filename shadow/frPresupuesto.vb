@@ -382,7 +382,7 @@ Public Class frPresupuestos
         txAgente.Text = ""
         txRecargo.Text = ""
         txDtocli.Text = ""
-        txIva.Text = ""
+        txIva.Text = "21.00"
         cbEstado.Text = ""
         cbEnvio.Text = ""
         txObserva.Text = ""
@@ -417,10 +417,10 @@ Public Class frPresupuestos
             Dim vEstado As String
             If cbEstado.Text = "PENDIENTE" Then
                 vEstado = "P"
-            ElseIf cbEstado.Text = "ACEPTADO" Then
-                vEstado = "A"
+            ElseIf cbEstado.Text = "CONVERTIDO A PEDIDO" Then
+                vEstado = "C"
             Else
-                vEstado = "R"
+                vEstado = "A"
             End If
 
             'Guardo cabecera y actualizo número de presupuesto
@@ -520,15 +520,15 @@ Public Class frPresupuestos
             Dim vEstado As String
             If cbEstado.Text = "PENDIENTE" Then
                 vEstado = "P"
-            ElseIf cbEstado.Text = "ACEPTADO" Then
-                vEstado = "A"
+            ElseIf cbEstado.Text = "CONVERTIDO A PEDIDO" Then
+                vEstado = "C"
             Else
-                vEstado = "R"
+                vEstado = "A"
             End If
 
             'Guardo cabecera y actualizo número de presupuesto
 
-            Dim cmd As New MySqlCommand("UPDATE presupuesto_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalrecargo = '" + guardo_imprec + "', totalpresupuesto = '" + guardo_imptot + "' WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
+            Dim cmd As New MySqlCommand("UPDATE presupuesto_cab SET fecha = '" + fecha.ToString("yyyy-MM-dd") + "', clienteID = " + txNumcli.Text + ", agenteID = " + txAgente.Text + ", referencia = '" + txReferenciapres.Text + "', observaciones = '" + txObserva.Text + "', estado = '" + vEstado + "', totalbruto = '" + guardo_impbru + "', totaldto = '" + guardo_impdto + "', totaliva = '" + guardo_impiva + "', totalrecargo = '" + guardo_imprec + "', totalpresupuesto = '" + guardo_imptot + "' WHERE num_presupuesto = '" + txtNumpres.Text + "'", conexionmy)
             cmd.ExecuteNonQuery()
 
 
@@ -715,21 +715,21 @@ Public Class frPresupuestos
         txObserva.Text = rdrCab("observaciones")
         If rdrCab("estado") = "P" Then
             cbEstado.Text = "PENDIENTE"
-        ElseIf rdrCab("estado") = "A" Then
-            cbEstado.Text = "ACEPTADO"
-        ElseIf rdrCab("estado") = "R" Then
-            cbEstado.Text = "RECHAZADO"
+            'ElseIf rdrCab("estado") = "A" Then
+            '    cbEstado.Text = "ACEPTADO"
+            'ElseIf rdrCab("estado") = "R" Then
+            '    cbEstado.Text = "RECHAZADO"
         End If
-        If rdrCab("estado") = "D" Then
+        If rdrCab("estado") = "R" Then
             cbEstado.Text = "CONVERTIDO A PEDIDO"
             cmdPedido.Enabled = False
         End If
-        If rdrCab("estado") = "B" Then
+        If rdrCab("estado") = "A" Then
             cbEstado.Text = "CONVERTIDO A ALBARAN"
             cmdPedido.Enabled = False
             cmdAlbaran.Enabled = False
         End If
-        cbEstado.Enabled = False
+        cbEstado.Enabled = True
         rdrCab.Close()
 
 

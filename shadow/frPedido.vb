@@ -129,7 +129,7 @@ Public Class frPedido
         txAgente.Text = ""
         txRecargo.Text = ""
         txDtocli.Text = ""
-        txIva.Text = ""
+        txIva.Text = "21.00"
         cbEstado.Text = ""
         cbEnvio.Text = ""
         txObserva.Text = ""
@@ -486,8 +486,12 @@ Public Class frPedido
             Dim vEstado As String
             If cbEstado.Text = "PENDIENTE" Then
                 vEstado = "P"
-            Else
+            ElseIf cbEstado.Text = "ENVIADO" Then
                 vEstado = "E"
+            ElseIf cbEstado.Text = "CONVERTIDO A ALBARAN" Then
+                vEstado = "A"
+            Else
+                vEstado = "F"
             End If
 
             'Guardo cabecera y actualizo número de presupuesto
@@ -592,8 +596,12 @@ Public Class frPedido
             Dim vEstado As String
             If cbEstado.Text = "PENDIENTE" Then
                 vEstado = "P"
-            Else
+            ElseIf cbEstado.Text = "ENVIADO" Then
                 vEstado = "E"
+            ElseIf cbEstado.Text = "CONVERTIDO A ALBARAN" Then
+                vEstado = "A"
+            Else
+                vEstado = "F"
             End If
 
             'Guardo cabecera y actualizo número de presupuesto
@@ -728,7 +736,7 @@ Public Class frPedido
         If rdrCab("estado") = "P" Then
             cbEstado.Text = "PENDIENTE"
         End If
-        If rdrCab("estado") = "B" Then
+        If rdrCab("estado") = "A" Then
             cbEstado.Text = "CONVERTIDO A ALBARAN"
             cmdAlbaran.Enabled = False
         End If
@@ -740,7 +748,7 @@ Public Class frPedido
             cmdAlbaran.Enabled = False
             cmdPedido.Enabled = False
         End If
-        cbEstado.Enabled = False
+        cbEstado.Enabled = True
 
         rdrCab.Close()
 
