@@ -109,7 +109,7 @@ Public Class frVerClientes
     End Sub
     Public Sub cargoEnvios()
         If formCli = "P" Then
-            frPresupuestos.cbEnvio.ResetText()
+            newMdiPresupuesto.cbEnvio.ResetText()
 
             Dim cn As MySqlConnection
             Dim cm As MySqlCommand
@@ -119,7 +119,7 @@ Public Class frVerClientes
             cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
             cn.Open()
-            cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & frPresupuestos.txNumcli.Text & "'", cn)
+            cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & newMdiPresupuesto.txNumcli.Text & "'", cn)
 
 
             cm.CommandType = CommandType.Text
@@ -130,14 +130,14 @@ Public Class frVerClientes
             da.Fill(ds)
 
 
-            frPresupuestos.cbEnvio.DataSource = ds.Tables(0)
-            frPresupuestos.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
-            frPresupuestos.cbEnvio.ValueMember = "envioID"
+            newMdiPresupuesto.cbEnvio.DataSource = ds.Tables(0)
+            newMdiPresupuesto.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
+            newMdiPresupuesto.cbEnvio.ValueMember = "envioID"
 
             cn.Close()
         End If
         If formCli = "A" Then
-            frAlbaran.cbEnvio.ResetText()
+            newMdiAlbaran.cbEnvio.ResetText()
 
             Dim cn As MySqlConnection
             Dim cm As MySqlCommand
@@ -147,7 +147,7 @@ Public Class frVerClientes
             cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
             cn.Open()
-            cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & frAlbaran.txNumcli.Text & "'", cn)
+            cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & newMdiAlbaran.txNumcli.Text & "'", cn)
 
 
             cm.CommandType = CommandType.Text
@@ -158,14 +158,14 @@ Public Class frVerClientes
             da.Fill(ds)
 
 
-            frAlbaran.cbEnvio.DataSource = ds.Tables(0)
-            frAlbaran.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
-            frAlbaran.cbEnvio.ValueMember = "envioID"
+            newMdiAlbaran.cbEnvio.DataSource = ds.Tables(0)
+            newMdiAlbaran.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
+            newMdiAlbaran.cbEnvio.ValueMember = "envioID"
 
             cn.Close()
         End If
         If formCli = "D" Then
-            frPedido.cbEnvio.ResetText()
+            newMdiPedido.cbEnvio.ResetText()
 
             Dim cn As MySqlConnection
             Dim cm As MySqlCommand
@@ -175,7 +175,7 @@ Public Class frVerClientes
             cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
             cn.Open()
-            cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & frPedido.txNumcli.Text & "'", cn)
+            cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & newMdiPedido.txNumcli.Text & "'", cn)
 
 
             cm.CommandType = CommandType.Text
@@ -186,15 +186,15 @@ Public Class frVerClientes
             da.Fill(ds)
 
 
-            frPedido.cbEnvio.DataSource = ds.Tables(0)
-            frPedido.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
-            frPedido.cbEnvio.ValueMember = "envioID"
+            newMdiPedido.cbEnvio.DataSource = ds.Tables(0)
+            newMdiPedido.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
+            newMdiPedido.cbEnvio.ValueMember = "envioID"
 
             cn.Close()
         End If
 
         If formCli = "F" Then
-            frFacturaManual.cbEnvio.ResetText()
+            newMdiFacturaManual.cbEnvio.ResetText()
 
             Dim cn As MySqlConnection
             Dim cm As MySqlCommand
@@ -204,7 +204,7 @@ Public Class frVerClientes
             cn = New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
 
             cn.Open()
-            cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & frFacturaManual.txNumcli.Text & "'", cn)
+            cm = New MySqlCommand("SELECT envioID, clienteID, localidad, provincia, concat_ws(' - ',cpostal, domicilio) AS direccion FROM envios WHERE clienteID = '" & newMdiFacturaManual.txNumcli.Text & "'", cn)
 
 
             cm.CommandType = CommandType.Text
@@ -215,9 +215,9 @@ Public Class frVerClientes
             da.Fill(ds)
 
 
-            frFacturaManual.cbEnvio.DataSource = ds.Tables(0)
-            frFacturaManual.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
-            frFacturaManual.cbEnvio.ValueMember = "envioID"
+            newMdiFacturaManual.cbEnvio.DataSource = ds.Tables(0)
+            newMdiFacturaManual.cbEnvio.DisplayMember = ds.Tables(0).Columns("direccion").ToString
+            newMdiFacturaManual.cbEnvio.ValueMember = "envioID"
 
             cn.Close()
         End If
@@ -230,7 +230,7 @@ Public Class frVerClientes
 
         Dim rdr As MySqlDataReader
 
-        cmd = New MySqlCommand("SELECT * FROM clientes WHERE clienteID = '" + frFacturaManual.txNumcli.Text + "'", conexionmy)
+        cmd = New MySqlCommand("SELECT * FROM clientes WHERE clienteID = '" + newMdiFacturaManual.txNumcli.Text + "'", conexionmy)
 
         cmd.CommandType = CommandType.Text
         cmd.Connection = conexionmy
@@ -239,34 +239,34 @@ Public Class frVerClientes
 
         rdr.Read()
 
-        frFacturaManual.txDiapago.Text = rdr("diapago")
+        newMdiFacturaManual.txDiapago.Text = rdr("diapago")
         cargoFormaPago()
 
         Dim vForma As Integer = 0
         vForma = rdr("formapago")
         Select Case vForma
             Case 1
-                frFacturaManual.cbFormapago.SelectedIndex = 0
+                newMdiFacturaManual.cbFormapago.SelectedIndex = 0
             Case 2
-                frFacturaManual.cbFormapago.SelectedIndex = 1
+                newMdiFacturaManual.cbFormapago.SelectedIndex = 1
             Case 3
-                frFacturaManual.cbFormapago.SelectedIndex = 2
+                newMdiFacturaManual.cbFormapago.SelectedIndex = 2
             Case 4
-                frFacturaManual.cbFormapago.SelectedIndex = 3
+                newMdiFacturaManual.cbFormapago.SelectedIndex = 3
             Case 5
-                frFacturaManual.cbFormapago.SelectedIndex = 4
+                newMdiFacturaManual.cbFormapago.SelectedIndex = 4
             Case 6
-                frFacturaManual.cbFormapago.SelectedIndex = 5
+                newMdiFacturaManual.cbFormapago.SelectedIndex = 5
             Case 7
-                frFacturaManual.cbFormapago.SelectedIndex = 6
+                newMdiFacturaManual.cbFormapago.SelectedIndex = 6
             Case 8
-                frFacturaManual.cbFormapago.SelectedIndex = 7
+                newMdiFacturaManual.cbFormapago.SelectedIndex = 7
             Case 9
-                frFacturaManual.cbFormapago.SelectedIndex = 8
+                newMdiFacturaManual.cbFormapago.SelectedIndex = 8
         End Select
     End Sub
     Public Sub cargoFormaPago()
-        frFacturaManual.cbFormapago.ResetText()
+        newMdiFacturaManual.cbFormapago.ResetText()
 
         Dim cn As MySqlConnection
         Dim cm As MySqlCommand
@@ -287,9 +287,9 @@ Public Class frVerClientes
         da.Fill(ds)
 
 
-        frFacturaManual.cbFormapago.DataSource = ds.Tables(0)
-        frFacturaManual.cbFormapago.DisplayMember = ds.Tables(0).Columns("formapago").ToString
-        frFacturaManual.cbFormapago.ValueMember = "formaID"
+        newMdiFacturaManual.cbFormapago.DataSource = ds.Tables(0)
+        newMdiFacturaManual.cbFormapago.DisplayMember = ds.Tables(0).Columns("formapago").ToString
+        newMdiFacturaManual.cbFormapago.ValueMember = "formaID"
 
         cn.Close()
     End Sub
@@ -297,23 +297,25 @@ Public Class frVerClientes
     Private Sub dgClientes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgClientes.CellDoubleClick
         mostrarEmergente(dgClientes.CurrentRow.Cells("cod").Value)
         If formCli = "P" Then
-            frPresupuestos.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
-            frPresupuestos.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
-            frPresupuestos.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
-            frPresupuestos.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
-            frPresupuestos.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+            newMdiPresupuesto.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+            newMdiPresupuesto.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+            newMdiPresupuesto.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+            newMdiPresupuesto.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+            newMdiPresupuesto.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
             Me.Close()
-            frPresupuestos.recalcularDescuentos()
+            newMdiPresupuesto.recalcularDescuentos()
             cargoEnvios()
         End If
         If formCli = "A" Then
-            frAlbaran.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
-            frAlbaran.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
-            frAlbaran.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
-            frAlbaran.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
-            frAlbaran.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+
+            newMdiAlbaran.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+            newMdiAlbaran.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+            newMdiAlbaran.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+            newMdiAlbaran.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+            newMdiAlbaran.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+
             Me.Close()
-            frAlbaran.recalcularDescuentos()
+            newMdiAlbaran.recalcularDescuentos()
             cargoEnvios()
         End If
 
@@ -362,45 +364,45 @@ Public Class frVerClientes
         If e.KeyCode = Keys.Enter Then
             mostrarEmergente(dgClientes.CurrentRow.Cells("cod").Value)
             If formCli = "P" Then
-                frPresupuestos.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
-                frPresupuestos.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
-                frPresupuestos.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
-                frPresupuestos.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
-                frPresupuestos.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+                newMdiPresupuesto.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+                newMdiPresupuesto.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+                newMdiPresupuesto.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+                newMdiPresupuesto.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+                newMdiPresupuesto.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
                 Me.Hide()
-                frPresupuestos.recalcularDescuentos()
+                newMdiPresupuesto.recalcularDescuentos()
                 cargoEnvios()
             End If
             If formCli = "A" Then
-                frAlbaran.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
-                frAlbaran.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
-                frAlbaran.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
-                frAlbaran.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
-                frAlbaran.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+                newMdiAlbaran.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+                newMdiAlbaran.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+                newMdiAlbaran.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+                newMdiAlbaran.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+                newMdiAlbaran.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
                 Me.Hide()
-                frAlbaran.recalcularDescuentos()
+                newMdiAlbaran.recalcularDescuentos()
                 cargoEnvios()
             End If
 
             If formCli = "D" Then
-                frPedido.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
-                frPedido.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
-                frPedido.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
-                frPedido.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
-                frPedido.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+                newMdiPedido.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+                newMdiPedido.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+                newMdiPedido.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+                newMdiPedido.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+                newMdiPedido.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
                 Me.Hide()
-                frPedido.recalcularDescuentos()
+                newMdiPedido.recalcularDescuentos()
                 cargoEnvios()
             End If
 
             If formCli = "F" Then
-                frFacturaManual.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
-                frFacturaManual.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
-                frFacturaManual.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
-                frFacturaManual.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
-                frFacturaManual.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
+                newMdiFacturaManual.txNumcli.Text = dgClientes.CurrentRow.Cells("cod").Value
+                newMdiFacturaManual.txClientepres.Text = dgClientes.CurrentRow.Cells("cliente").Value
+                newMdiFacturaManual.txAgente.Text = dgClientes.CurrentRow.Cells("agent").Value
+                newMdiFacturaManual.txDtocli.Text = dgClientes.CurrentRow.Cells("dto").Value
+                newMdiFacturaManual.txRecargo.Text = dgClientes.CurrentRow.Cells("recargo").Value
                 Me.Hide()
-                frFacturaManual.recalcularDescuentos()
+                newMdiFacturaManual.recalcularDescuentos()
                 cargoEnvios()
                 cargoFormapagoCliente()
             End If

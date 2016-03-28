@@ -57,15 +57,15 @@ Public Class frVerLotesM
     Private Sub dgLotes_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgLotes.CellClick
         If formArti = "D" Then
 
-            frPedido.dgLineasPres2.CurrentRow.Cells(11).Value = dgLotes.CurrentRow.Cells("lote").Value
+            newMdiPedido.dgLineasPres2.CurrentRow.Cells(11).Value = dgLotes.CurrentRow.Cells("lote").Value
 
-            Me.Hide()
+            Me.Close()
         End If
         If formArti = "A" Then
 
-            frAlbaran.dgLineasPres2.CurrentRow.Cells(11).Value = dgLotes.CurrentRow.Cells("lote").Value
+            newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(11).Value = dgLotes.CurrentRow.Cells("lote").Value
 
-            Me.Hide()
+            Me.Close()
         End If
 
     End Sub

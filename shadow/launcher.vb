@@ -45,7 +45,7 @@ Public Class launcher
 
     Private Sub ConfiguraciónEmpresaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfiguraciónEmpresaToolStripMenuItem.Click
         'frEmpresa.Show()
-        Dim newMdiEmpresa As New frEmpresa
+        'Dim newMdiEmpresa As New frEmpresa
         newMdiEmpresa.MdiParent = Me
         newMdiEmpresa.Dock = DockStyle.Fill
         newMdiEmpresa.Show()
@@ -54,33 +54,33 @@ Public Class launcher
 
     Private Sub ConfiguraciónMySQLToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfiguraciónMySQLToolStripMenuItem.Click
         'frConfiguracion.Show()
-        Dim newMdiConfiguración As New frConfiguracion
-        newMdiConfiguración.MdiParent = Me
-        newMdiConfiguración.Dock = DockStyle.Fill
-        newMdiConfiguración.Show()
+        'Dim newMdiConfiguración As New frConfiguracion
+        newMdiConfiguracion.MdiParent = Me
+        newMdiConfiguracion.Dock = DockStyle.Fill
+        newMdiConfiguracion.Show()
     End Sub
 
     Private Sub PresupuestosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresupuestosToolStripMenuItem.Click
         'frPresupuestos.Show()
-        Dim newMdiPresupuestos As New frPresupuestos
-        newMdiPresupuestos.MdiParent = Me
-        newMdiPresupuestos.Dock = DockStyle.Fill
-        newMdiPresupuestos.Show()
+        'Dim newMdiPresupuestos As New frPresupuestos
+        newMdiPresupuesto.MdiParent = Me
+        newMdiPresupuesto.Dock = DockStyle.Fill
+        newMdiPresupuesto.Show()
 
     End Sub
 
     Private Sub PedidosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PedidosToolStripMenuItem.Click
         'frPedido.Show()
-        Dim newMdiPedidos As New frPedido
-        newMdiPedidos.MdiParent = Me
-        newMdiPedidos.Dock = DockStyle.Fill
-        newMdiPedidos.Show()
+        'Dim newMdiPedidos As New frPedido
+        newMdiPedido.MdiParent = Me
+        newMdiPedido.Dock = DockStyle.Fill
+        newMdiPedido.Show()
 
     End Sub
 
     Private Sub AlbaranesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AlbaranesToolStripMenuItem.Click
         'frAlbaran.Show()
-        Dim newMdiAlbaran As New frAlbaran
+        'Dim newMdiAlbaran As New frAlbaran
         newMdiAlbaran.MdiParent = Me
         newMdiAlbaran.Dock = DockStyle.Fill
         newMdiAlbaran.Show()
@@ -89,7 +89,7 @@ Public Class launcher
 
     Private Sub FacturaciónManualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaciónManualToolStripMenuItem.Click
         'frFacturaManual.Show()
-        Dim newMdiFacturaManual As New frFacturaManual
+        'Dim newMdiFacturaManual As New frFacturaManual
         newMdiFacturaManual.MdiParent = Me
         newMdiFacturaManual.Dock = DockStyle.Fill
         newMdiFacturaManual.Show()
@@ -98,7 +98,7 @@ Public Class launcher
 
     Private Sub FacturarAlbaranesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturarAlbaranesToolStripMenuItem.Click
         'frFacturaAlbaran.Show()
-        Dim newMdiFacturaAlbaran As New frFacturaAlbaran
+        'Dim newMdiFacturaAlbaran As New frFacturaAlbaran
         newMdiFacturaAlbaran.MdiParent = Me
         newMdiFacturaAlbaran.Dock = DockStyle.Fill
         newMdiFacturaAlbaran.Show()
@@ -107,16 +107,16 @@ Public Class launcher
 
     Private Sub ClientesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClientesToolStripMenuItem.Click
         'frCliente.Show()
-        Dim newMdiClientes As New frCliente
-        newMdiClientes.MdiParent = Me
-        newMdiClientes.Dock = DockStyle.Fill
-        newMdiClientes.Show()
+        'Dim newMdiClientes As New frCliente
+        newMdiCliente.MdiParent = Me
+        newMdiCliente.Dock = DockStyle.Fill
+        newMdiCliente.Show()
 
     End Sub
 
     Private Sub PedidosAProveedoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PedidosAProveedoresToolStripMenuItem.Click
         'frPedidoProv.Show()
-        Dim newMdiPedidoProv As New frPedidoProv
+        'Dim newMdiPedidoProv As New frPedidoProv
         newMdiPedidoProv.MdiParent = Me
         newMdiPedidoProv.Dock = DockStyle.Fill
         newMdiPedidoProv.Show()
@@ -129,7 +129,7 @@ Public Class launcher
 
     Private Sub ProveedoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProveedoresToolStripMenuItem.Click
         'frProveedor.Show()
-        Dim newMdiProveedor As New frProveedor
+        'Dim newMdiProveedor As New frProveedor
         newMdiProveedor.MdiParent = Me
         newMdiProveedor.Dock = DockStyle.Fill
         newMdiProveedor.Show()
@@ -138,7 +138,7 @@ Public Class launcher
 
     Private Sub ArtículosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ArtículosToolStripMenuItem.Click
         'frArticulos.Show()
-        Dim newMdiArticulos As New frArticulos
+        'Dim newMdiArticulos As New frArticulos
         newMdiArticulos.MdiParent = Me
         newMdiArticulos.Dock = DockStyle.Fill
         newMdiArticulos.Show()
@@ -147,10 +147,10 @@ Public Class launcher
 
     Private Sub GastosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GastosToolStripMenuItem.Click
         'frGastos.Show()
-        Dim newMdiGastos As New frGastos
-        newMdiGastos.MdiParent = Me
-        newMdiGastos.Dock = DockStyle.Fill
-        newMdiGastos.Show()
+        'Dim newMdiGastos As New frGastos
+        newMdiGasto.MdiParent = Me
+        newMdiGasto.Dock = DockStyle.Fill
+        newMdiGasto.Show()
 
     End Sub
 End Class

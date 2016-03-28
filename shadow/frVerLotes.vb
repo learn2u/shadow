@@ -56,54 +56,54 @@ Public Class frVerLotes
         vLote = dgLotes.CurrentRow.Cells("lote").Value
         If formArti = "P" Then
             If frPresupuestos.flagEdit = "N" Then
-                frPresupuestos.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
-                frPresupuestos.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
-                'frPresupuestos.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
-                frPresupuestos.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
-                frPresupuestos.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
-                frPresupuestos.txIva.Text = vIva
-                frPresupuestos.dgLineasPres1.CurrentCell = frPresupuestos.dgLineasPres1.CurrentRow.Cells(4)
-                frPresupuestos.dgLineasPres1.BeginEdit(True)
+                newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
+                newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
+                'newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
+                newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
+                newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
+                newMdiPresupuesto.txIva.Text = vIva
+                newMdiPresupuesto.dgLineasPres1.CurrentCell = newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4)
+                newMdiPresupuesto.dgLineasPres1.BeginEdit(True)
 
                 Me.Close()
             Else
-                frPresupuestos.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
-                frPresupuestos.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
-                'frPresupuestos.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
-                frPresupuestos.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
-                frPresupuestos.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
-                frPresupuestos.txIva.Text = vIva
-                frPresupuestos.dgLineasPres2.CurrentCell = frPresupuestos.dgLineasPres2.CurrentRow.Cells(4)
-                frPresupuestos.dgLineasPres2.BeginEdit(True)
-                frPresupuestos.actualizarLinea()
-                frPresupuestos.recalcularTotales()
+                newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
+                newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
+                'newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
+                newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
+                newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
+                newMdiPresupuesto.txIva.Text = vIva
+                newMdiPresupuesto.dgLineasPres2.CurrentCell = newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(4)
+                newMdiPresupuesto.dgLineasPres2.BeginEdit(True)
+                newMdiPresupuesto.actualizarLinea()
+                newMdiPresupuesto.recalcularTotales()
 
                 Me.Close()
             End If
         End If
         If formArti = "A" Then
             If frAlbaran.flagEdit = "N" Then
-                frAlbaran.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
-                frAlbaran.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
-                'frAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
-                frAlbaran.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
-                frAlbaran.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
-                frAlbaran.txIva.Text = vIva
-                frAlbaran.dgLineasPres1.CurrentCell = frAlbaran.dgLineasPres1.CurrentRow.Cells(4)
-                frAlbaran.dgLineasPres1.BeginEdit(True)
+                newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
+                newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
+                'newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
+                newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
+                newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
+                newMdiAlbaran.txIva.Text = vIva
+                newMdiAlbaran.dgLineasPres1.CurrentCell = newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4)
+                newMdiAlbaran.dgLineasPres1.BeginEdit(True)
 
                 Me.Close()
             Else
-                frAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
-                frAlbaran.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
-                'frAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
-                frAlbaran.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
-                frAlbaran.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
-                frAlbaran.txIva.Text = vIva
-                frAlbaran.dgLineasPres2.CurrentCell = frAlbaran.dgLineasPres2.CurrentRow.Cells(4)
-                frAlbaran.dgLineasPres2.BeginEdit(True)
-                frAlbaran.actualizarLinea()
-                frAlbaran.recalcularTotales()
+                newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
+                newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
+                'newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
+                newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
+                newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
+                newMdiAlbaran.txIva.Text = vIva
+                newMdiAlbaran.dgLineasPres2.CurrentCell = newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4)
+                newMdiAlbaran.dgLineasPres2.BeginEdit(True)
+                newMdiAlbaran.actualizarLinea()
+                newMdiAlbaran.recalcularTotales()
 
                 Me.Close()
             End If
@@ -111,27 +111,27 @@ Public Class frVerLotes
 
         If formArti = "D" Then
             If frPedido.flagEdit = "N" Then
-                frPedido.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
-                frPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
-                'frPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
-                frPedido.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
-                frPedido.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
-                frPedido.txIva.Text = vIva
-                frPedido.dgLineasPres1.CurrentCell = frPedido.dgLineasPres1.CurrentRow.Cells(4)
-                frPedido.dgLineasPres1.BeginEdit(True)
+                newMdiPedido.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
+                newMdiPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
+                'newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
+                newMdiPedido.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
+                newMdiPedido.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
+                newMdiPedido.txIva.Text = vIva
+                newMdiPedido.dgLineasPres1.CurrentCell = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4)
+                newMdiPedido.dgLineasPres1.BeginEdit(True)
 
                 Me.Close()
             Else
-                frPedido.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
-                frPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
-                'frPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
-                frPedido.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
-                frPedido.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
-                frPedido.txIva.Text = vIva
-                frPedido.dgLineasPres2.CurrentCell = frPedido.dgLineasPres2.CurrentRow.Cells(4)
-                frPedido.dgLineasPres2.BeginEdit(True)
-                frPedido.actualizarLinea()
-                frPedido.recalcularTotales()
+                newMdiPedido.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
+                newMdiPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
+                'newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
+                newMdiPedido.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
+                newMdiPedido.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
+                newMdiPedido.txIva.Text = vIva
+                newMdiPedido.dgLineasPres2.CurrentCell = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4)
+                newMdiPedido.dgLineasPres2.BeginEdit(True)
+                newMdiPedido.actualizarLinea()
+                newMdiPedido.recalcularTotales()
 
                 Me.Close()
             End If
@@ -201,84 +201,84 @@ Public Class frVerLotes
             vLote = dgLotes.CurrentRow.Cells("lote").Value
             If formArti = "P" Then
                 If frPresupuestos.flagEdit = "N" Then
-                    frPresupuestos.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
-                    frPresupuestos.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
-                    'frPresupuestos.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
-                    frPresupuestos.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
-                    frPresupuestos.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
-                    frPresupuestos.txIva.Text = vIva
-                    frPresupuestos.dgLineasPres1.CurrentCell = frPresupuestos.dgLineasPres1.CurrentRow.Cells(4)
-                    frPresupuestos.dgLineasPres1.BeginEdit(True)
+                    newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
+                    newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
+                    'newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
+                    newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
+                    newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
+                    newMdiPresupuesto.txIva.Text = vIva
+                    newMdiPresupuesto.dgLineasPres1.CurrentCell = newMdiPresupuesto.dgLineasPres1.CurrentRow.Cells(4)
+                    newMdiPresupuesto.dgLineasPres1.BeginEdit(True)
 
-                    Me.Hide()
+                    Me.Close()
                 Else
-                    frPresupuestos.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
-                    frPresupuestos.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
-                    'frPresupuestos.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
-                    frPresupuestos.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
-                    frPresupuestos.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
-                    frPresupuestos.txIva.Text = vIva
-                    frPresupuestos.dgLineasPres2.CurrentCell = frPresupuestos.dgLineasPres2.CurrentRow.Cells(4)
-                    frPresupuestos.dgLineasPres2.BeginEdit(True)
-                    frPresupuestos.actualizarLinea()
-                    frPresupuestos.recalcularTotales()
+                    newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
+                    newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
+                    'newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
+                    newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
+                    newMdiPresupuesto.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
+                    newMdiPresupuesto.txIva.Text = vIva
+                    newMdiPresupuesto.dgLineasPres2.CurrentCell = frPresupuestos.dgLineasPres2.CurrentRow.Cells(4)
+                    newMdiPresupuesto.dgLineasPres2.BeginEdit(True)
+                    newMdiPresupuesto.actualizarLinea()
+                    newMdiPresupuesto.recalcularTotales()
 
-                    Me.Hide()
+                    Me.Close()
                 End If
             End If
             If formArti = "A" Then
                 If frAlbaran.flagEdit = "N" Then
-                    frAlbaran.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
-                    frAlbaran.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
-                    'frAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
-                    frAlbaran.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
-                    frAlbaran.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
-                    frAlbaran.txIva.Text = vIva
-                    frAlbaran.dgLineasPres1.CurrentCell = frAlbaran.dgLineasPres1.CurrentRow.Cells(4)
-                    frAlbaran.dgLineasPres1.BeginEdit(True)
+                    newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
+                    newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
+                    'newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
+                    newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
+                    newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
+                    newMdiAlbaran.txIva.Text = vIva
+                    newMdiAlbaran.dgLineasPres1.CurrentCell = newMdiAlbaran.dgLineasPres1.CurrentRow.Cells(4)
+                    newMdiAlbaran.dgLineasPres1.BeginEdit(True)
 
-                    Me.Hide()
+                    Me.Close()
                 Else
-                    frAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
-                    frAlbaran.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
-                    'frAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
-                    frAlbaran.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
-                    frAlbaran.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
-                    frAlbaran.txIva.Text = vIva
-                    frAlbaran.dgLineasPres2.CurrentCell = frAlbaran.dgLineasPres2.CurrentRow.Cells(4)
-                    frAlbaran.dgLineasPres2.BeginEdit(True)
-                    frAlbaran.actualizarLinea()
-                    frAlbaran.recalcularTotales()
+                    newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
+                    newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
+                    'newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
+                    newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
+                    newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
+                    newMdiAlbaran.txIva.Text = vIva
+                    newMdiAlbaran.dgLineasPres2.CurrentCell = newMdiAlbaran.dgLineasPres2.CurrentRow.Cells(4)
+                    newMdiAlbaran.dgLineasPres2.BeginEdit(True)
+                    newMdiAlbaran.actualizarLinea()
+                    newMdiAlbaran.recalcularTotales()
 
-                    Me.Hide()
+                    Me.Close()
                 End If
             End If
 
             If formArti = "D" Then
                 If frPedido.flagEdit = "N" Then
-                    frPedido.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
-                    frPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
-                    'frPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
-                    frPedido.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
-                    frPedido.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
-                    frPedido.txIva.Text = vIva
-                    frPedido.dgLineasPres1.CurrentCell = frPedido.dgLineasPres1.CurrentRow.Cells(4)
-                    frPedido.dgLineasPres1.BeginEdit(True)
+                    newMdiPedido.dgLineasPres1.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
+                    newMdiPedido.dgLineasPres1.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
+                    'newMdiPedido.dgLineasPres1.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
+                    newMdiPedido.dgLineasPres1.CurrentRow.Cells(7).Value = vPrecio
+                    newMdiPedido.dgLineasPres1.CurrentRow.Cells(11).Value = vLote
+                    newMdiPedido.txIva.Text = vIva
+                    newMdiPedido.dgLineasPres1.CurrentCell = newMdiPedido.dgLineasPres1.CurrentRow.Cells(4)
+                    newMdiPedido.dgLineasPres1.BeginEdit(True)
 
-                    Me.Hide()
+                    Me.Close()
                 Else
-                    frPedido.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
-                    frPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
-                    'frPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
-                    frPedido.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
-                    frPedido.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
-                    frPedido.txIva.Text = vIva
-                    frPedido.dgLineasPres2.CurrentCell = frPedido.dgLineasPres2.CurrentRow.Cells(4)
-                    frPedido.dgLineasPres2.BeginEdit(True)
-                    frPedido.actualizarLinea()
-                    frPedido.recalcularTotales()
+                    newMdiPedido.dgLineasPres2.CurrentRow.Cells(2).Value = dgLotes.CurrentRow.Cells("referen").Value
+                    newMdiPedido.dgLineasPres2.CurrentRow.Cells(3).Value = dgLotes.CurrentRow.Cells("descrip").Value
+                    'newMdiPedido.dgLineasPres2.CurrentRow.Cells(5).Value = dgLotes.CurrentRow.Cells("longitud").Value
+                    newMdiPedido.dgLineasPres2.CurrentRow.Cells(7).Value = vPrecio
+                    newMdiPedido.dgLineasPres2.CurrentRow.Cells(11).Value = vLote
+                    newMdiPedido.txIva.Text = vIva
+                    newMdiPedido.dgLineasPres2.CurrentCell = newMdiPedido.dgLineasPres2.CurrentRow.Cells(4)
+                    newMdiPedido.dgLineasPres2.BeginEdit(True)
+                    newMdiPedido.actualizarLinea()
+                    newMdiPedido.recalcularTotales()
 
-                    Me.Hide()
+                    Me.Close()
                 End If
             End If
         End If
