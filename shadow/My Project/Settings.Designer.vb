@@ -57,7 +57,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;database=remaycadata")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;database=tolsepro")>  _
         Public ReadOnly Property tolseproMySQLConnection() As String
             Get
                 Return CType(Me("tolseproMySQLConnection"),String)

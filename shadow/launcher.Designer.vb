@@ -170,6 +170,7 @@ Partial Class launcher
         Me.ClientSize = New System.Drawing.Size(907, 518)
         Me.Controls.Add(Me.MenuStrip1)
         Me.DoubleBuffered = True
+        Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "launcher"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

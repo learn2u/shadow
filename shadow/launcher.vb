@@ -44,11 +44,20 @@ Public Class launcher
     End Sub
 
     Private Sub ConfiguraciónEmpresaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfiguraciónEmpresaToolStripMenuItem.Click
-        frEmpresa.Show()
+        'frEmpresa.Show()
+        Dim newMdiEmpresa As New frEmpresa
+        newMdiEmpresa.MdiParent = Me
+        newMdiEmpresa.Dock = DockStyle.Fill
+        newMdiEmpresa.Show()
+
     End Sub
 
     Private Sub ConfiguraciónMySQLToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfiguraciónMySQLToolStripMenuItem.Click
-        frConfiguracion.Show()
+        'frConfiguracion.Show()
+        Dim newMdiConfiguración As New frConfiguracion
+        newMdiConfiguración.MdiParent = Me
+        newMdiConfiguración.Dock = DockStyle.Fill
+        newMdiConfiguración.Show()
     End Sub
 
     Private Sub PresupuestosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresupuestosToolStripMenuItem.Click

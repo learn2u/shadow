@@ -135,6 +135,7 @@ Partial Class frConfiguracion
         Me.Name = "frConfiguracion"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CONFIGURACIÓN MYSQL"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
