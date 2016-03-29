@@ -103,6 +103,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Envios.vb" />
+    <Compile Include="Form2.Designer.vb">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frCrearLotes.Designer.vb">
       <DependentUpon>frCrearLotes.vb</DependentUpon>
     </Compile>
@@ -257,6 +263,9 @@
     <Compile Include="vtosEditados.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frCrearLotes.resx">
       <DependentUpon>frCrearLotes.vb</DependentUpon>
     </EmbeddedResource>
