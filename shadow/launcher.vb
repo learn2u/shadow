@@ -43,20 +43,11 @@ Public Class launcher
     End Sub
 
     Private Sub ConfiguraciónEmpresaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfiguraciónEmpresaToolStripMenuItem.Click
-        'frEmpresa.Show()
-        'Dim newMdiEmpresa As New frEmpresa
-        newMdiEmpresa.MdiParent = Me
-        newMdiEmpresa.Dock = DockStyle.Fill
-        newMdiEmpresa.Show()
-
+        muestroEmpresa()
     End Sub
 
     Private Sub ConfiguraciónMySQLToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfiguraciónMySQLToolStripMenuItem.Click
-        'frConfiguracion.Show()
-        'Dim newMdiConfiguración As New frConfiguracion
-        newMdiConfiguracion.MdiParent = Me
-        newMdiConfiguracion.Dock = DockStyle.Fill
-        newMdiConfiguracion.Show()
+        muestroConfiguracion()
     End Sub
 
     Private Sub PresupuestosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PresupuestosToolStripMenuItem.Click
@@ -72,39 +63,19 @@ Public Class launcher
     End Sub
 
     Private Sub FacturaciónManualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaciónManualToolStripMenuItem.Click
-        'frFacturaManual.Show()
-        'Dim newMdiFacturaManual As New frFacturaManual
-        newMdiFacturaManual.MdiParent = Me
-        newMdiFacturaManual.Dock = DockStyle.Fill
-        newMdiFacturaManual.Show()
-
+        muestroFacturaManual()
     End Sub
 
     Private Sub FacturarAlbaranesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturarAlbaranesToolStripMenuItem.Click
-        'frFacturaAlbaran.Show()
-        'Dim newMdiFacturaAlbaran As New frFacturaAlbaran
-        newMdiFacturaAlbaran.MdiParent = Me
-        newMdiFacturaAlbaran.Dock = DockStyle.Fill
-        newMdiFacturaAlbaran.Show()
-
+        muestroFacturaAlbaranes()
     End Sub
 
     Private Sub ClientesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClientesToolStripMenuItem.Click
-        'frCliente.Show()
-        'Dim newMdiClientes As New frCliente
-        newMdiCliente.MdiParent = Me
-        newMdiCliente.Dock = DockStyle.Fill
-        newMdiCliente.Show()
-
+        muestroClientes()
     End Sub
 
     Private Sub PedidosAProveedoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PedidosAProveedoresToolStripMenuItem.Click
-        'frPedidoProv.Show()
-        'Dim newMdiPedidoProv As New frPedidoProv
-        newMdiPedidoProv.MdiParent = Me
-        newMdiPedidoProv.Dock = DockStyle.Fill
-        newMdiPedidoProv.Show()
-
+        muestroPedidoProv()
     End Sub
 
     Private Sub EntradasToolStripMenuItem_Click(sender As Object, e As EventArgs)
@@ -112,30 +83,15 @@ Public Class launcher
     End Sub
 
     Private Sub ProveedoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProveedoresToolStripMenuItem.Click
-        'frProveedor.Show()
-        'Dim newMdiProveedor As New frProveedor
-        newMdiProveedor.MdiParent = Me
-        newMdiProveedor.Dock = DockStyle.Fill
-        newMdiProveedor.Show()
-
+        muestroProveedor()
     End Sub
 
     Private Sub ArtículosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ArtículosToolStripMenuItem.Click
-        'frArticulos.Show()
-        'Dim newMdiArticulos As New frArticulos
-        newMdiArticulos.MdiParent = Me
-        newMdiArticulos.Dock = DockStyle.Fill
-        newMdiArticulos.Show()
-
+        muestroArticulos()
     End Sub
 
     Private Sub GastosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GastosToolStripMenuItem.Click
-        'frGastos.Show()
-        'Dim newMdiGastos As New frGastos
-        newMdiGasto.MdiParent = Me
-        newMdiGasto.Dock = DockStyle.Fill
-        newMdiGasto.Show()
-
+        muestroGastos()
     End Sub
     Public Sub muestroPresupuestos()
         If newMdiPresupuesto Is Nothing Then
@@ -172,6 +128,114 @@ Public Class launcher
             newMdiPedido.MdiParent = Me
             newMdiPedido.Dock = DockStyle.Fill
             newMdiPedido.Show()
+        End If
+    End Sub
+    Public Sub muestroEmpresa()
+        If newMdiEmpresa Is Nothing Then
+            newMdiEmpresa.MdiParent = Me
+            newMdiEmpresa.Dock = DockStyle.Fill
+            newMdiEmpresa.Show()
+        Else
+            newMdiEmpresa = New frEmpresa
+            newMdiEmpresa.MdiParent = Me
+            newMdiEmpresa.Dock = DockStyle.Fill
+            newMdiEmpresa.Show()
+        End If
+    End Sub
+    Public Sub muestroConfiguracion()
+        If newMdiConfiguracion Is Nothing Then
+            newMdiConfiguracion.MdiParent = Me
+            newMdiConfiguracion.Dock = DockStyle.Fill
+            newMdiConfiguracion.Show()
+        Else
+            newMdiConfiguracion = New frConfiguracion
+            newMdiConfiguracion.MdiParent = Me
+            newMdiConfiguracion.Dock = DockStyle.Fill
+            newMdiConfiguracion.Show()
+        End If
+    End Sub
+    Public Sub muestroFacturaManual()
+        If newMdiFacturaManual Is Nothing Then
+            newMdiFacturaManual.MdiParent = Me
+            newMdiFacturaManual.Dock = DockStyle.Fill
+            newMdiFacturaManual.Show()
+        Else
+            newMdiFacturaManual = New frFacturaManual
+            newMdiFacturaManual.MdiParent = Me
+            newMdiFacturaManual.Dock = DockStyle.Fill
+            newMdiFacturaManual.Show()
+        End If
+    End Sub
+    Public Sub muestroFacturaAlbaranes()
+        If newMdiFacturaAlbaran Is Nothing Then
+            newMdiFacturaAlbaran.MdiParent = Me
+            newMdiFacturaAlbaran.Dock = DockStyle.Fill
+            newMdiFacturaAlbaran.Show()
+        Else
+            newMdiFacturaAlbaran = New frFacturaAlbaran
+            newMdiFacturaAlbaran.MdiParent = Me
+            newMdiFacturaAlbaran.Dock = DockStyle.Fill
+            newMdiFacturaAlbaran.Show()
+        End If
+    End Sub
+    Public Sub muestroClientes()
+        If newMdiCliente Is Nothing Then
+            newMdiCliente.MdiParent = Me
+            newMdiCliente.Dock = DockStyle.Fill
+            newMdiCliente.Show()
+        Else
+            newMdiCliente = New frCliente
+            newMdiCliente.MdiParent = Me
+            newMdiCliente.Dock = DockStyle.Fill
+            newMdiCliente.Show()
+        End If
+    End Sub
+    Public Sub muestroPedidoProv()
+        If newMdiPedidoProv Is Nothing Then
+            newMdiPedidoProv.MdiParent = Me
+            newMdiPedidoProv.Dock = DockStyle.Fill
+            newMdiPedidoProv.Show()
+        Else
+            newMdiPedidoProv = New frPedidoProv
+            newMdiPedidoProv.MdiParent = Me
+            newMdiPedidoProv.Dock = DockStyle.Fill
+            newMdiPedidoProv.Show()
+        End If
+    End Sub
+    Public Sub muestroProveedor()
+        If newMdiProveedor Is Nothing Then
+            newMdiProveedor.MdiParent = Me
+            newMdiProveedor.Dock = DockStyle.Fill
+            newMdiProveedor.Show()
+        Else
+            newMdiProveedor = New frProveedor
+            newMdiProveedor.MdiParent = Me
+            newMdiProveedor.Dock = DockStyle.Fill
+            newMdiProveedor.Show()
+        End If
+    End Sub
+    Public Sub muestroArticulos()
+        If newMdiArticulos Is Nothing Then
+            newMdiArticulos.MdiParent = Me
+            newMdiArticulos.Dock = DockStyle.Fill
+            newMdiArticulos.Show()
+        Else
+            newMdiArticulos = New frArticulos
+            newMdiArticulos.MdiParent = Me
+            newMdiArticulos.Dock = DockStyle.Fill
+            newMdiArticulos.Show()
+        End If
+    End Sub
+    Public Sub muestroGastos()
+        If newMdiGasto Is Nothing Then
+            newMdiGasto.MdiParent = Me
+            newMdiGasto.Dock = DockStyle.Fill
+            newMdiGasto.Show()
+        Else
+            newMdiGasto = New frGastos
+            newMdiGasto.MdiParent = Me
+            newMdiGasto.Dock = DockStyle.Fill
+            newMdiGasto.Show()
         End If
     End Sub
 End Class
