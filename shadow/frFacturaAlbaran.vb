@@ -5,6 +5,7 @@ Imports System.Globalization
 Imports System.ComponentModel
 Imports System.Xml
 Public Class frFacturaAlbaran
+    Public Shared linea As Int16
     Private Sub frFacturaAlbaran_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dgClientes.Visible = False
         cargoClientesMy()
@@ -154,7 +155,7 @@ Public Class frFacturaAlbaran
 
         If selectedRowCount > 0 Then
             Dim contador As Integer
-
+            cargoNumero()
             For contador = 0 To selectedRowCount - 1
                 albaranes(contador) = dgAlbaranes.SelectedRows(contador).Cells(0).Value
                 Dim numAlb As Integer
@@ -294,6 +295,7 @@ Public Class frFacturaAlbaran
 
 
         If selectedRowCount = 0 Then
+            cargoNumero()
             For Each row In dgAlbaranes.Rows
                 Dim numAlb As Integer
                 numAlb = row.Cells(0).Value
@@ -367,9 +369,11 @@ Public Class frFacturaAlbaran
         rdrAlb = cmdAlb.ExecuteReader
         rdrAlb.Read()
 
+
+
         If rdrAlb.HasRows = True Then
 
-            cargoNumero()
+            'cargoNumero()
             Dim vFecha As Date = txFechaFra.Text
             Dim vCliente As String = rdrAlb("clienteID").ToString
             Dim vEnvio As String = rdrAlb("envioID").ToString
@@ -395,6 +399,7 @@ Public Class frFacturaAlbaran
             cmdLinea.CommandText = "INSERT INTO factura_linea (num_factura, articuloID, descripcion, cantidad, precio, descuento, ivalinea, totalinea, linea) VALUES (" + txNumero.Text + " , '99999' , '" + vDescrip + "', 1, '" + vBruto + "', '" + vDto + "', '" + vIva + "', '" + vTotal + "', 1)"
             cmdLinea.Connection = conexionmy
             cmdLinea.ExecuteNonQuery()
+            graboLineas(vAlb)
         Else
             'Por si no encuentra el albaran
             MsgBox("Albarán no disponible en la base de datos")
@@ -412,7 +417,34 @@ Public Class frFacturaAlbaran
         conexionmy.Close()
 
     End Sub
-    Public Sub graboLineas()
+    Public Sub graboLineas(nAlba As Integer)
+        linea = 1
+        Dim conexionmy As New MySqlConnection("server=" + vServidor + "; User ID=" + vUsuario + "; database=" + vBasedatos)
+        conexionmy.Open()
+        Dim cmdAlb As New MySqlCommand
+        Dim cmd As New MySqlCommand
+        cmd.CommandType = System.Data.CommandType.Text
+
+        Dim rdrAlb As MySqlDataReader
+        cmdAlb = New MySqlCommand("SELECT * FROM albaran_linea WHERE num_albaran = '" & nAlba & "'", conexionmy)
+
+
+        cmdAlb.CommandType = CommandType.Text
+        cmdAlb.Connection = conexionmy
+        rdrAlb = cmdAlb.ExecuteReader
+        rdrAlb.Read()
+        If rdrAlb.HasRows Then
+            Do While rdrAlb.Read()
+
+                linea = linea + 1
+                Dim cmdLinea As New MySqlCommand
+                cmdLinea.CommandType = System.Data.CommandType.Text
+                cmdLinea.CommandText = "INSERT INTO factura_linea (num_factura, codigo, descripcion, cantidad, ancho_largo, m2_ml, precio, descuento, ivalinea, totalinea, linea, lote) VALUES (" + txNumero.Text + " , '" + rdrAlb("codigo") + "' , '" + rdrAlb("descripcion") + "', '" + rdrAlb("cantidad") + "', '" + rdrAlb("cantidad") + "', '" + rdrAlb("ancho_largo") + "', '" + rdrAlb("m2_ml") + "', '" + rdrAlb("precio") + "', '" + rdrAlb("descuento") + "', '" + rdrAlb("ivalinea") + "', '" + rdrAlb("totalinea") + "', '" + linea + "', '" + rdrAlb("lote") + "')"
+                cmdLinea.Connection = conexionmy
+                cmdLinea.ExecuteNonQuery()
+
+            Loop
+        End If
 
     End Sub
 End Class
