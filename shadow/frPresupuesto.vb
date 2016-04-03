@@ -852,20 +852,28 @@ Public Class frPresupuestos
             If flagEdit = "N" Then
                 dgLineasPres1.CurrentRow.Cells(3).Value = rdrArt("descripcion")
                 dgLineasPres1.CurrentRow.Cells(4).Value = 1
-                dgLineasPres1.CurrentRow.Cells(5).Value = rdrArt("medidaID") / 100
+                If rdrArt("familia") = 3 Or rdrArt("familia") = 7 Then
+                    dgLineasPres1.CurrentRow.Cells(5).Value = rdrArt("medidaID") / 100
+                Else
+                    dgLineasPres1.CurrentRow.Cells(5).Value = 0
+                End If
                 dgLineasPres1.CurrentRow.Cells(6).Value = dgLineasPres1.CurrentRow.Cells(4).Value * dgLineasPres1.CurrentRow.Cells(5).Value
-                dgLineasPres1.CurrentRow.Cells(7).Value = rdrArt("pvp")
-                dgLineasPres1.CurrentRow.Cells(8).Value = txDtocli.Text
-                dgLineasPres1.CurrentRow.Cells(9).Value = 0
-                dgLineasPres1.CurrentRow.Cells(10).Value = 0
-                dgLineasPres1.CurrentRow.Cells(11).Value = ""
-                txIva.Text = rdrArt("iva")
-                'dgLineasPres1.CurrentCell = dgLineasPres1.CurrentRow.Cells(4)
-                'dgLineasPres1.BeginEdit(True)
-            Else
-                dgLineasPres2.CurrentRow.Cells(3).Value = rdrArt("descripcion")
+                    dgLineasPres1.CurrentRow.Cells(7).Value = rdrArt("pvp")
+                    dgLineasPres1.CurrentRow.Cells(8).Value = txDtocli.Text
+                    dgLineasPres1.CurrentRow.Cells(9).Value = 0
+                    dgLineasPres1.CurrentRow.Cells(10).Value = 0
+                    dgLineasPres1.CurrentRow.Cells(11).Value = ""
+                    txIva.Text = rdrArt("iva")
+                    'dgLineasPres1.CurrentCell = dgLineasPres1.CurrentRow.Cells(4)
+                    'dgLineasPres1.BeginEdit(True)
+                Else
+                    dgLineasPres2.CurrentRow.Cells(3).Value = rdrArt("descripcion")
                 dgLineasPres2.CurrentRow.Cells(4).Value = 1
-                dgLineasPres2.CurrentRow.Cells(5).Value = rdrArt("medidaID") / 100
+                If rdrArt("familia") = 3 Or rdrArt("familia") = 7 Then
+                    dgLineasPres2.CurrentRow.Cells(5).Value = rdrArt("medidaID") / 100
+                Else
+                    dgLineasPres2.CurrentRow.Cells(5).Value = 0
+                End If
                 dgLineasPres2.CurrentRow.Cells(6).Value = dgLineasPres2.CurrentRow.Cells(4).Value * dgLineasPres2.CurrentRow.Cells(5).Value
                 dgLineasPres2.CurrentRow.Cells(7).Value = rdrArt("pvp")
                 dgLineasPres2.CurrentRow.Cells(8).Value = txDtocli.Text
@@ -2112,5 +2120,7 @@ Public Class frPresupuestos
 
         Me.ReportViewer1.RefreshReport()
     End Sub
+
+
 End Class
 
