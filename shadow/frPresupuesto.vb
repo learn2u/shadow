@@ -12,6 +12,7 @@ Public Class frPresupuestos
     Public Shared newLinea As String = "N"
     Public Shared editNumber As String = "N"
     Public numero_impresion As Integer
+    Public codigo_cliente_impresion As Integer
 
     Private Sub frPresupuestos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -2108,11 +2109,12 @@ Public Class frPresupuestos
     Private Sub cmdImprimir_Click(sender As Object, e As EventArgs) Handles cmdImprimir.Click
         tabPresupuestos.SelectedTab = TabPage3
         numero_impresion = CInt(txtNumpres.Text)
+        codigo_cliente_impresion = CInt(txNumcli.Text)
         'GroupBox5.Visible = False
         btBuscar.Visible = False
-        Me.clientesTableAdapter.Fill(Me.dsPresupuesto.clientes)
+        Me.clientesTableAdapter.Fill(Me.dsPresupuesto.clientes, codigo_cliente_impresion)
         'TODO: esta línea de código carga datos en la tabla 'dsPresupuesto.presupuesto_cab' Puede moverla o quitarla según sea necesario.
-        Me.presupuesto_cabTableAdapter.Fill(Me.dsPresupuesto.presupuesto_cab)
+        Me.presupuesto_cabTableAdapter.Fill(Me.dsPresupuesto.presupuesto_cab, numero_impresion)
         'TODO: esta línea de código carga datos en la tabla 'dsPresupuesto.presupuesto_linea' Puede moverla o quitarla según sea necesario.
         Me.presupuesto_lineaTableAdapter.Fill(Me.dsPresupuesto.presupuesto_linea, numero_impresion)
         'TODO: esta línea de código carga datos en la tabla 'dsPresupuesto.DataTable1' P
