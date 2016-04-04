@@ -719,6 +719,8 @@ Partial Public Class dsPresupuesto
         
         Private columntotalpresupuesto As Global.System.Data.DataColumn
         
+        Private columntotalbruto As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -827,6 +829,14 @@ Partial Public Class dsPresupuesto
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property totalbrutoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntotalbruto
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -863,9 +873,9 @@ Partial Public Class dsPresupuesto
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function Addpresupuesto_cabRow(ByVal num_presupuesto As Integer, ByVal clienteID As Integer, ByVal fecha As Date, ByVal referencia As String, ByVal observaciones As String, ByVal totaldto As Decimal, ByVal totaliva As Decimal, ByVal totalrecargo As Decimal, ByVal totalpresupuesto As Decimal) As presupuesto_cabRow
+        Public Overloads Function Addpresupuesto_cabRow(ByVal num_presupuesto As Integer, ByVal clienteID As Integer, ByVal fecha As Date, ByVal referencia As String, ByVal observaciones As String, ByVal totaldto As Decimal, ByVal totaliva As Decimal, ByVal totalrecargo As Decimal, ByVal totalpresupuesto As Decimal, ByVal totalbruto As Decimal) As presupuesto_cabRow
             Dim rowpresupuesto_cabRow As presupuesto_cabRow = CType(Me.NewRow,presupuesto_cabRow)
-            Dim columnValuesArray() As Object = New Object() {num_presupuesto, clienteID, fecha, referencia, observaciones, totaldto, totaliva, totalrecargo, totalpresupuesto}
+            Dim columnValuesArray() As Object = New Object() {num_presupuesto, clienteID, fecha, referencia, observaciones, totaldto, totaliva, totalrecargo, totalpresupuesto, totalbruto}
             rowpresupuesto_cabRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowpresupuesto_cabRow)
             Return rowpresupuesto_cabRow
@@ -903,6 +913,7 @@ Partial Public Class dsPresupuesto
             Me.columntotaliva = MyBase.Columns("totaliva")
             Me.columntotalrecargo = MyBase.Columns("totalrecargo")
             Me.columntotalpresupuesto = MyBase.Columns("totalpresupuesto")
+            Me.columntotalbruto = MyBase.Columns("totalbruto")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -926,6 +937,8 @@ Partial Public Class dsPresupuesto
             MyBase.Columns.Add(Me.columntotalrecargo)
             Me.columntotalpresupuesto = New Global.System.Data.DataColumn("totalpresupuesto", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columntotalpresupuesto)
+            Me.columntotalbruto = New Global.System.Data.DataColumn("totalbruto", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntotalbruto)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnnum_presupuesto}, true))
             Me.columnnum_presupuesto.AllowDBNull = false
             Me.columnnum_presupuesto.Unique = true
@@ -1754,6 +1767,21 @@ Partial Public Class dsPresupuesto
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property totalbruto() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablepresupuesto_cab.totalbrutoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'totalbruto' de la tabla 'presupuesto_cab' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepresupuesto_cab.totalbrutoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsfechaNull() As Boolean
             Return Me.IsNull(Me.tablepresupuesto_cab.fechaColumn)
         End Function
@@ -1834,6 +1862,18 @@ Partial Public Class dsPresupuesto
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SettotalpresupuestoNull()
             Me(Me.tablepresupuesto_cab.totalpresupuestoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IstotalbrutoNull() As Boolean
+            Return Me.IsNull(Me.tablepresupuesto_cab.totalbrutoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SettotalbrutoNull()
+            Me(Me.tablepresupuesto_cab.totalbrutoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -2622,17 +2662,26 @@ Namespace dsPresupuestoTableAdapters
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT `clienteID`, `nombrecom`, `direccion`, `cpostal`, `poblacion`, `provincia`"& _ 
-                ", `cif` FROM `clientes`"
+            Me._commandCollection(0).CommandText = "SELECT        clienteID, nombrecom, direccion, cpostal, poblacion, provincia, cif"& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            clientes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (clienteID = @codigo_cliente_impresion)"& _ 
+                ""
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@codigo_cliente_impresion"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "clienteID"
+            Me._commandCollection(0).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As dsPresupuesto.clientesDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As dsPresupuesto.clientesDataTable, ByVal codigo_cliente_impresion As Integer) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(codigo_cliente_impresion,Integer)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -2644,8 +2693,9 @@ Namespace dsPresupuestoTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As dsPresupuesto.clientesDataTable
+        Public Overloads Overridable Function GetData(ByVal codigo_cliente_impresion As Integer) As dsPresupuesto.clientesDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(codigo_cliente_impresion,Integer)
             Dim dataTable As dsPresupuesto.clientesDataTable = New dsPresupuesto.clientesDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -2972,6 +3022,7 @@ Namespace dsPresupuestoTableAdapters
             tableMapping.ColumnMappings.Add("totaliva", "totaliva")
             tableMapping.ColumnMappings.Add("totalrecargo", "totalrecargo")
             tableMapping.ColumnMappings.Add("totalpresupuesto", "totalpresupuesto")
+            tableMapping.ColumnMappings.Add("totalbruto", "totalbruto")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -2980,7 +3031,8 @@ Namespace dsPresupuestoTableAdapters
                 "referencia` IS NULL) OR (`referencia` = @p6)) AND ((@p7 = 1 AND `totaldto` IS NU"& _ 
                 "LL) OR (`totaldto` = @p8)) AND ((@p9 = 1 AND `totaliva` IS NULL) OR (`totaliva` "& _ 
                 "= @p10)) AND ((@p11 = 1 AND `totalrecargo` IS NULL) OR (`totalrecargo` = @p12)) "& _ 
-                "AND ((@p13 = 1 AND `totalpresupuesto` IS NULL) OR (`totalpresupuesto` = @p14)))"
+                "AND ((@p13 = 1 AND `totalpresupuesto` IS NULL) OR (`totalpresupuesto` = @p14)) A"& _ 
+                "ND ((@p15 = 1 AND `totalbruto` IS NULL) OR (`totalbruto` = @p16)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p1"
@@ -3100,11 +3152,28 @@ Namespace dsPresupuestoTableAdapters
             param.SourceColumn = "totalpresupuesto"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p15"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "totalbruto"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p16"
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.IsNullable = true
+            param.SourceColumn = "totalbruto"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `presupuesto_cab` (`num_presupuesto`, `clienteID`, `fecha`, `referenc"& _ 
                 "ia`, `observaciones`, `totaldto`, `totaliva`, `totalrecargo`, `totalpresupuesto`"& _ 
-                ") VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)"
+                ", `totalbruto`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p1"
@@ -3168,17 +3237,25 @@ Namespace dsPresupuestoTableAdapters
             param.IsNullable = true
             param.SourceColumn = "totalpresupuesto"
             Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p10"
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.IsNullable = true
+            param.SourceColumn = "totalbruto"
+            Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE `presupuesto_cab` SET `num_presupuesto` = @p1, `clienteID` = @p2, `fecha` "& _ 
                 "= @p3, `referencia` = @p4, `observaciones` = @p5, `totaldto` = @p6, `totaliva` ="& _ 
-                " @p7, `totalrecargo` = @p8, `totalpresupuesto` = @p9 WHERE ((`num_presupuesto` ="& _ 
-                " @p10) AND (`clienteID` = @p11) AND ((@p12 = 1 AND `fecha` IS NULL) OR (`fecha` "& _ 
-                "= @p13)) AND ((@p14 = 1 AND `referencia` IS NULL) OR (`referencia` = @p15)) AND "& _ 
-                "((@p16 = 1 AND `totaldto` IS NULL) OR (`totaldto` = @p17)) AND ((@p18 = 1 AND `t"& _ 
-                "otaliva` IS NULL) OR (`totaliva` = @p19)) AND ((@p20 = 1 AND `totalrecargo` IS N"& _ 
-                "ULL) OR (`totalrecargo` = @p21)) AND ((@p22 = 1 AND `totalpresupuesto` IS NULL) "& _ 
-                "OR (`totalpresupuesto` = @p23)))"
+                " @p7, `totalrecargo` = @p8, `totalpresupuesto` = @p9, `totalbruto` = @p10 WHERE "& _ 
+                "((`num_presupuesto` = @p11) AND (`clienteID` = @p12) AND ((@p13 = 1 AND `fecha` "& _ 
+                "IS NULL) OR (`fecha` = @p14)) AND ((@p15 = 1 AND `referencia` IS NULL) OR (`refe"& _ 
+                "rencia` = @p16)) AND ((@p17 = 1 AND `totaldto` IS NULL) OR (`totaldto` = @p18)) "& _ 
+                "AND ((@p19 = 1 AND `totaliva` IS NULL) OR (`totaliva` = @p20)) AND ((@p21 = 1 AN"& _ 
+                "D `totalrecargo` IS NULL) OR (`totalrecargo` = @p22)) AND ((@p23 = 1 AND `totalp"& _ 
+                "resupuesto` IS NULL) OR (`totalpresupuesto` = @p24)) AND ((@p25 = 1 AND `totalbr"& _ 
+                "uto` IS NULL) OR (`totalbruto` = @p26)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p1"
@@ -3244,6 +3321,13 @@ Namespace dsPresupuestoTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p10"
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.IsNullable = true
+            param.SourceColumn = "totalbruto"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p11"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -3251,7 +3335,7 @@ Namespace dsPresupuestoTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p11"
+            param.ParameterName = "@p12"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -3259,7 +3343,7 @@ Namespace dsPresupuestoTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p12"
+            param.ParameterName = "@p13"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -3268,7 +3352,7 @@ Namespace dsPresupuestoTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p13"
+            param.ParameterName = "@p14"
             param.DbType = Global.System.Data.DbType.[Date]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Date]
             param.IsNullable = true
@@ -3276,7 +3360,7 @@ Namespace dsPresupuestoTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p14"
+            param.ParameterName = "@p15"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -3285,7 +3369,7 @@ Namespace dsPresupuestoTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p15"
+            param.ParameterName = "@p16"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.IsNullable = true
@@ -3293,33 +3377,33 @@ Namespace dsPresupuestoTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p16"
+            param.ParameterName = "@p17"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
             param.SourceColumn = "totaldto"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p17"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "totaldto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p18"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
-            param.SourceColumn = "totaliva"
+            param.SourceColumn = "totaldto"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p19"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "totaliva"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p20"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
@@ -3327,24 +3411,24 @@ Namespace dsPresupuestoTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p20"
+            param.ParameterName = "@p21"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
             param.SourceColumn = "totalrecargo"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p21"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "totalrecargo"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p22"
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.IsNullable = true
+            param.SourceColumn = "totalrecargo"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p23"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
@@ -3353,11 +3437,28 @@ Namespace dsPresupuestoTableAdapters
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p23"
+            param.ParameterName = "@p24"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
             param.IsNullable = true
             param.SourceColumn = "totalpresupuesto"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p25"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "totalbruto"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p26"
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
+            param.IsNullable = true
+            param.SourceColumn = "totalbruto"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
         End Sub
@@ -3376,17 +3477,25 @@ Namespace dsPresupuestoTableAdapters
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        num_presupuesto, clienteID, fecha, referencia, observaciones, total"& _ 
-                "dto, totaliva, totalrecargo, totalpresupuesto"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            presupuesto_cab"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
-                "WHERE        (num_presupuesto = 72)"
+                "dto, totaliva, totalrecargo, totalpresupuesto, totalbruto"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            presu"& _ 
+                "puesto_cab"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (num_presupuesto = @numero_impresion)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@numero_impresion"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "num_presupuesto"
+            Me._commandCollection(0).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As dsPresupuesto.presupuesto_cabDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As dsPresupuesto.presupuesto_cabDataTable, ByVal numero_impresion As Integer) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(numero_impresion,Integer)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -3398,8 +3507,9 @@ Namespace dsPresupuestoTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As dsPresupuesto.presupuesto_cabDataTable
+        Public Overloads Overridable Function GetData(ByVal numero_impresion As Integer) As dsPresupuesto.presupuesto_cabDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(numero_impresion,Integer)
             Dim dataTable As dsPresupuesto.presupuesto_cabDataTable = New dsPresupuesto.presupuesto_cabDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -3437,7 +3547,7 @@ Namespace dsPresupuestoTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal p1 As Integer, ByVal p2 As Integer, ByVal p4 As Global.System.Nullable(Of Date), ByVal p6 As String, ByVal p8 As Global.System.Nullable(Of Decimal), ByVal p10 As Global.System.Nullable(Of Decimal), ByVal p12 As Global.System.Nullable(Of Decimal), ByVal p14 As Global.System.Nullable(Of Decimal)) As Integer
+        Public Overloads Overridable Function Delete(ByVal p1 As Integer, ByVal p2 As Integer, ByVal p4 As Global.System.Nullable(Of Date), ByVal p6 As String, ByVal p8 As Global.System.Nullable(Of Decimal), ByVal p10 As Global.System.Nullable(Of Decimal), ByVal p12 As Global.System.Nullable(Of Decimal), ByVal p14 As Global.System.Nullable(Of Decimal), ByVal p16 As Global.System.Nullable(Of Decimal)) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(p1,Integer)
             Me.Adapter.DeleteCommand.Parameters(1).Value = CType(p2,Integer)
             If (p4.HasValue = true) Then
@@ -3482,6 +3592,13 @@ Namespace dsPresupuestoTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(13).Value = Global.System.DBNull.Value
             End If
+            If (p16.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(p16.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -3501,7 +3618,7 @@ Namespace dsPresupuestoTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal p1 As Integer, ByVal p2 As Integer, ByVal p3 As Global.System.Nullable(Of Date), ByVal p4 As String, ByVal p5 As String, ByVal p6 As Global.System.Nullable(Of Decimal), ByVal p7 As Global.System.Nullable(Of Decimal), ByVal p8 As Global.System.Nullable(Of Decimal), ByVal p9 As Global.System.Nullable(Of Decimal)) As Integer
+        Public Overloads Overridable Function Insert(ByVal p1 As Integer, ByVal p2 As Integer, ByVal p3 As Global.System.Nullable(Of Date), ByVal p4 As String, ByVal p5 As String, ByVal p6 As Global.System.Nullable(Of Decimal), ByVal p7 As Global.System.Nullable(Of Decimal), ByVal p8 As Global.System.Nullable(Of Decimal), ByVal p9 As Global.System.Nullable(Of Decimal), ByVal p10 As Global.System.Nullable(Of Decimal)) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(p1,Integer)
             Me.Adapter.InsertCommand.Parameters(1).Value = CType(p2,Integer)
             If (p3.HasValue = true) Then
@@ -3539,6 +3656,11 @@ Namespace dsPresupuestoTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
+            If (p10.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(p10.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -3568,14 +3690,16 @@ Namespace dsPresupuestoTableAdapters
                     ByVal p7 As Global.System.Nullable(Of Decimal),  _
                     ByVal p8 As Global.System.Nullable(Of Decimal),  _
                     ByVal p9 As Global.System.Nullable(Of Decimal),  _
-                    ByVal p10 As Integer,  _
+                    ByVal p10 As Global.System.Nullable(Of Decimal),  _
                     ByVal p11 As Integer,  _
-                    ByVal p13 As Global.System.Nullable(Of Date),  _
-                    ByVal p15 As String,  _
-                    ByVal p17 As Global.System.Nullable(Of Decimal),  _
-                    ByVal p19 As Global.System.Nullable(Of Decimal),  _
-                    ByVal p21 As Global.System.Nullable(Of Decimal),  _
-                    ByVal p23 As Global.System.Nullable(Of Decimal)) As Integer
+                    ByVal p12 As Integer,  _
+                    ByVal p14 As Global.System.Nullable(Of Date),  _
+                    ByVal p16 As String,  _
+                    ByVal p18 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p20 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p22 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p24 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p26 As Global.System.Nullable(Of Decimal)) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(p1,Integer)
             Me.Adapter.UpdateCommand.Parameters(1).Value = CType(p2,Integer)
             If (p3.HasValue = true) Then
@@ -3613,49 +3737,61 @@ Namespace dsPresupuestoTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(p10,Integer)
+            If (p10.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(p10.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+            End If
             Me.Adapter.UpdateCommand.Parameters(10).Value = CType(p11,Integer)
-            If (p13.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(p13.Value,Date)
+            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(p12,Integer)
+            If (p14.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(p14.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             End If
-            If (p15 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+            If (p16 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(p15,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(p16,String)
             End If
-            If (p17.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(p17.Value,Decimal)
+            If (p18.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(p18.Value,Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             End If
-            If (p19.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(p19.Value,Decimal)
+            If (p20.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(p20.Value,Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             End If
-            If (p21.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(p21.Value,Decimal)
+            If (p22.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(p22.Value,Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             End If
-            If (p23.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(p23.Value,Decimal)
+            If (p24.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(p24.Value,Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
+            End If
+            If (p26.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(p26.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -3685,15 +3821,17 @@ Namespace dsPresupuestoTableAdapters
                     ByVal p7 As Global.System.Nullable(Of Decimal),  _
                     ByVal p8 As Global.System.Nullable(Of Decimal),  _
                     ByVal p9 As Global.System.Nullable(Of Decimal),  _
-                    ByVal p10 As Integer,  _
+                    ByVal p10 As Global.System.Nullable(Of Decimal),  _
                     ByVal p11 As Integer,  _
-                    ByVal p13 As Global.System.Nullable(Of Date),  _
-                    ByVal p15 As String,  _
-                    ByVal p17 As Global.System.Nullable(Of Decimal),  _
-                    ByVal p19 As Global.System.Nullable(Of Decimal),  _
-                    ByVal p21 As Global.System.Nullable(Of Decimal),  _
-                    ByVal p23 As Global.System.Nullable(Of Decimal)) As Integer
-            Return Me.Update(p10, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p13, p15, p17, p19, p21, p23)
+                    ByVal p12 As Integer,  _
+                    ByVal p14 As Global.System.Nullable(Of Date),  _
+                    ByVal p16 As String,  _
+                    ByVal p18 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p20 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p22 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p24 As Global.System.Nullable(Of Decimal),  _
+                    ByVal p26 As Global.System.Nullable(Of Decimal)) As Integer
+            Return Me.Update(p11, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p14, p16, p18, p20, p22, p24, p26)
         End Function
     End Class
     
