@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="tolseproMySQLConnection" IsAppSettingsProperty="true" Modifier="Assembly" Name="tolseproMySQLConnection (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.shadow.My.MySettings.GlobalReference.Default.tolseproMySQLConnection" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="tolseproMySQLConnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="tolseproMySQLConnection (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.shadow.My.MySettings.GlobalReference.Default.tolseproMySQLConnection" Provider="MySql.Data.MySqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="clientesTableAdapter" GeneratorDataComponentClassName="clientesTableAdapter" Name="clientes" UserDataComponentName="clientesTableAdapter">
@@ -214,7 +214,7 @@ WHERE        (num_presupuesto = @numero_impresion)</CommandText>
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="presupuesto_cab" msprop:Generator_TableClassName="presupuesto_cabDataTable" msprop:Generator_TableVarName="tablepresupuesto_cab" msprop:Generator_TablePropName="presupuesto_cab" msprop:Generator_RowDeletingName="presupuesto_cabRowDeleting" msprop:Generator_RowChangingName="presupuesto_cabRowChanging" msprop:Generator_RowEvHandlerName="presupuesto_cabRowChangeEventHandler" msprop:Generator_RowDeletedName="presupuesto_cabRowDeleted" msprop:Generator_UserTableName="presupuesto_cab" msprop:Generator_RowChangedName="presupuesto_cabRowChanged" msprop:Generator_RowEvArgName="presupuesto_cabRowChangeEvent" msprop:Generator_RowClassName="presupuesto_cabRow">
+  <xs:element name="presupuesto_cab" msprop:Generator_TableClassName="presupuesto_cabDataTable" msprop:Generator_TableVarName="tablepresupuesto_cab" msprop:Generator_RowChangedName="presupuesto_cabRowChanged" msprop:Generator_TablePropName="presupuesto_cab" msprop:Generator_RowDeletingName="presupuesto_cabRowDeleting" msprop:Generator_RowChangingName="presupuesto_cabRowChanging" msprop:Generator_RowEvHandlerName="presupuesto_cabRowChangeEventHandler" msprop:Generator_RowDeletedName="presupuesto_cabRowDeleted" msprop:Generator_RowClassName="presupuesto_cabRow" msprop:Generator_UserTableName="presupuesto_cab" msprop:Generator_RowEvArgName="presupuesto_cabRowChangeEvent">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="num_presupuesto" msprop:Generator_ColumnVarNameInTable="columnnum_presupuesto" msprop:Generator_ColumnPropNameInRow="num_presupuesto" msprop:Generator_ColumnPropNameInTable="num_presupuestoColumn" msprop:Generator_UserColumnName="num_presupuesto" type="xs:int" />
@@ -246,7 +246,7 @@ WHERE        (num_presupuesto = @numero_impresion)</CommandText>
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element ref="presupuesto_cab" />
-        <xs:element name="clientes" msprop:Generator_TableClassName="clientesDataTable" msprop:Generator_TableVarName="tableclientes" msprop:Generator_TablePropName="clientes" msprop:Generator_RowDeletingName="clientesRowDeleting" msprop:Generator_RowChangingName="clientesRowChanging" msprop:Generator_RowEvHandlerName="clientesRowChangeEventHandler" msprop:Generator_RowDeletedName="clientesRowDeleted" msprop:Generator_UserTableName="clientes" msprop:Generator_RowChangedName="clientesRowChanged" msprop:Generator_RowEvArgName="clientesRowChangeEvent" msprop:Generator_RowClassName="clientesRow">
+        <xs:element name="clientes" msprop:Generator_TableClassName="clientesDataTable" msprop:Generator_TableVarName="tableclientes" msprop:Generator_RowChangedName="clientesRowChanged" msprop:Generator_TablePropName="clientes" msprop:Generator_RowDeletingName="clientesRowDeleting" msprop:Generator_RowChangingName="clientesRowChanging" msprop:Generator_RowEvHandlerName="clientesRowChangeEventHandler" msprop:Generator_RowDeletedName="clientesRowDeleted" msprop:Generator_RowClassName="clientesRow" msprop:Generator_UserTableName="clientes" msprop:Generator_RowEvArgName="clientesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="clienteID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnclienteID" msprop:Generator_ColumnPropNameInRow="clienteID" msprop:Generator_ColumnPropNameInTable="clienteIDColumn" msprop:Generator_UserColumnName="clienteID" type="xs:int" />
@@ -295,7 +295,7 @@ WHERE        (num_presupuesto = @numero_impresion)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="presupuesto_linea" msprop:Generator_TableClassName="presupuesto_lineaDataTable" msprop:Generator_TableVarName="tablepresupuesto_linea" msprop:Generator_TablePropName="presupuesto_linea" msprop:Generator_RowDeletingName="presupuesto_lineaRowDeleting" msprop:Generator_RowChangingName="presupuesto_lineaRowChanging" msprop:Generator_RowEvHandlerName="presupuesto_lineaRowChangeEventHandler" msprop:Generator_RowDeletedName="presupuesto_lineaRowDeleted" msprop:Generator_UserTableName="presupuesto_linea" msprop:Generator_RowChangedName="presupuesto_lineaRowChanged" msprop:Generator_RowEvArgName="presupuesto_lineaRowChangeEvent" msprop:Generator_RowClassName="presupuesto_lineaRow">
+        <xs:element name="presupuesto_linea" msprop:Generator_TableClassName="presupuesto_lineaDataTable" msprop:Generator_TableVarName="tablepresupuesto_linea" msprop:Generator_RowChangedName="presupuesto_lineaRowChanged" msprop:Generator_TablePropName="presupuesto_linea" msprop:Generator_RowDeletingName="presupuesto_lineaRowDeleting" msprop:Generator_RowChangingName="presupuesto_lineaRowChanging" msprop:Generator_RowEvHandlerName="presupuesto_lineaRowChangeEventHandler" msprop:Generator_RowDeletedName="presupuesto_lineaRowDeleted" msprop:Generator_RowClassName="presupuesto_lineaRow" msprop:Generator_UserTableName="presupuesto_linea" msprop:Generator_RowEvArgName="presupuesto_lineaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="codigo" msprop:Generator_ColumnVarNameInTable="columncodigo" msprop:Generator_ColumnPropNameInRow="codigo" msprop:Generator_ColumnPropNameInTable="codigoColumn" msprop:Generator_UserColumnName="codigo" minOccurs="0">
