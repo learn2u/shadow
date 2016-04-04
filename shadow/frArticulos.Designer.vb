@@ -23,7 +23,7 @@ Partial Class frArticulos
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frArticulos))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.txCodigo1 = New System.Windows.Forms.TextBox()
@@ -33,10 +33,6 @@ Partial Class frArticulos
         Me.dgArticulos = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.pnLotes = New System.Windows.Forms.Panel()
-        Me.txCorte = New System.Windows.Forms.TextBox()
-        Me.txBakLote = New System.Windows.Forms.TextBox()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.txFiltroLotes = New System.Windows.Forms.TextBox()
         Me.btGrabarLote = New System.Windows.Forms.Button()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.txUbicLote = New System.Windows.Forms.TextBox()
@@ -135,6 +131,9 @@ Partial Class frArticulos
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.txFiltroLotes = New System.Windows.Forms.TextBox()
+        Me.txBakLote = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -235,7 +234,6 @@ Partial Class frArticulos
         'pnLotes
         '
         Me.pnLotes.BackColor = System.Drawing.Color.LightGoldenrodYellow
-        Me.pnLotes.Controls.Add(Me.txCorte)
         Me.pnLotes.Controls.Add(Me.txBakLote)
         Me.pnLotes.Controls.Add(Me.Label22)
         Me.pnLotes.Controls.Add(Me.txFiltroLotes)
@@ -259,42 +257,6 @@ Partial Class frArticulos
         Me.pnLotes.Size = New System.Drawing.Size(830, 415)
         Me.pnLotes.TabIndex = 147
         Me.pnLotes.Visible = False
-        '
-        'txCorte
-        '
-        Me.txCorte.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.txCorte.ForeColor = System.Drawing.Color.White
-        Me.txCorte.Location = New System.Drawing.Point(602, 371)
-        Me.txCorte.Name = "txCorte"
-        Me.txCorte.Size = New System.Drawing.Size(62, 20)
-        Me.txCorte.TabIndex = 141
-        Me.txCorte.Text = "0"
-        Me.txCorte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txCorte.Visible = False
-        '
-        'txBakLote
-        '
-        Me.txBakLote.Location = New System.Drawing.Point(391, 375)
-        Me.txBakLote.Name = "txBakLote"
-        Me.txBakLote.Size = New System.Drawing.Size(100, 20)
-        Me.txBakLote.TabIndex = 140
-        Me.txBakLote.Visible = False
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(129, 54)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(42, 13)
-        Me.Label22.TabIndex = 139
-        Me.Label22.Text = "LOTES"
-        '
-        'txFiltroLotes
-        '
-        Me.txFiltroLotes.Location = New System.Drawing.Point(178, 47)
-        Me.txFiltroLotes.Name = "txFiltroLotes"
-        Me.txFiltroLotes.Size = New System.Drawing.Size(570, 20)
-        Me.txFiltroLotes.TabIndex = 138
         '
         'btGrabarLote
         '
@@ -447,10 +409,10 @@ Partial Class frArticulos
         '
         'stock
         '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        DataGridViewCellStyle1.Format = "N2"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.stock.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.stock.DefaultCellStyle = DataGridViewCellStyle3
         Me.stock.HeaderText = "STOCK"
         Me.stock.Name = "stock"
         Me.stock.Width = 75
@@ -1226,6 +1188,30 @@ Partial Class frArticulos
         Me.Label1.TabIndex = 46
         Me.Label1.Text = "DESCRIPCION:"
         '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(129, 54)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(42, 13)
+        Me.Label22.TabIndex = 139
+        Me.Label22.Text = "LOTES"
+        '
+        'txFiltroLotes
+        '
+        Me.txFiltroLotes.Location = New System.Drawing.Point(178, 47)
+        Me.txFiltroLotes.Name = "txFiltroLotes"
+        Me.txFiltroLotes.Size = New System.Drawing.Size(570, 20)
+        Me.txFiltroLotes.TabIndex = 138
+        '
+        'txBakLote
+        '
+        Me.txBakLote.Location = New System.Drawing.Point(496, 373)
+        Me.txBakLote.Name = "txBakLote"
+        Me.txBakLote.Size = New System.Drawing.Size(100, 20)
+        Me.txBakLote.TabIndex = 140
+        Me.txBakLote.Visible = False
+        '
         'frArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1371,5 +1357,4 @@ Partial Class frArticulos
     Friend WithEvents Label22 As Label
     Friend WithEvents txFiltroLotes As TextBox
     Friend WithEvents txBakLote As TextBox
-    Friend WithEvents txCorte As TextBox
 End Class

@@ -889,8 +889,4 @@ Public Class frVerArticulos
 
         End If
     End Sub
-
-    Private Sub dgArticulos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgArticulos.CellContentClick
-
-    End Sub
 End Class

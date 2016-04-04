@@ -922,7 +922,6 @@ Public Class frArticulos
         txLoteLote.Visible = True
         txStockLote.Visible = True
         txUbicLote.Visible = True
-        txCorte.Visible = True
 
         btGrabarLote.Visible = True
 
@@ -939,7 +938,7 @@ Public Class frArticulos
         txLoteLote.Visible = False
         txStockLote.Visible = False
         txUbicLote.Visible = False
-        txCorte.Visible = False
+
         btGrabarLote.Visible = False
     End Sub
 
@@ -1007,7 +1006,6 @@ Public Class frArticulos
         txLoteLote.Text = ""
         txStockLote.Text = 0
         txUbicLote.Text = ""
-        txCorte.Text = 0
 
     End Sub
 
@@ -1145,28 +1143,5 @@ Public Class frArticulos
 
         rdrLin.Close()
         conexionmy.Close()
-    End Sub
-
-    Private Sub txStockLote_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txStockLote.KeyPress
-        If e.KeyChar.ToString() = "." Then
-            e.KeyChar = ","
-        End If
-    End Sub
-
-    Private Sub txCorte_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txCorte.KeyPress
-
-        If e.KeyChar.ToString() = "." Then
-            e.KeyChar = ","
-        End If
-    End Sub
-
-    Private Sub txCorte_KeyDown(sender As Object, e As KeyEventArgs) Handles txCorte.KeyDown
-        If e.KeyCode = Keys.Return Then
-            txStockLote.Text = CDbl(txStockLote.Text - txCorte.Text)
-        End If
-    End Sub
-
-    Private Sub dgLotes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgLotes.CellContentClick
-
     End Sub
 End Class
