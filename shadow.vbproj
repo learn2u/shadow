@@ -102,6 +102,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dsPresupuesto.Designer.vb" />
     <Compile Include="Envios.vb" />
     <Compile Include="Form2.Designer.vb">
       <DependentUpon>Form2.vb</DependentUpon>
@@ -338,8 +339,20 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="rpPedido.rdlc" />
+    <EmbeddedResource Include="rpPresupuesto.rdlc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="dsPresupuesto.xsc">
+      <DependentUpon>dsPresupuesto.xsd</DependentUpon>
+    </None>
+    <None Include="dsPresupuesto.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsPresupuesto.xss">
+      <DependentUpon>dsPresupuesto.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
