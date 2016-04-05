@@ -117,16 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btBuscar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAASdJREFUSEvd
-        lNsNwjAMRTsCo7ABjMAIbACjsAFsAhvAJrAB+KBeyUR14lT94khXShu/4jyGgK3pbLqb3qMY84+52axN
-        V5OCRsIG2y5weJoU5GY6mqgYMeaf5rFNJ/HBXybfhrIlfGPTlUSV4bgaRb9VbQnzSkK7qlCRAjHGWZt7
-        Me1NU5R+IQTBiFWAvnffrzoPkwoJkRGbSPVNBwc+2LPiEAwQy9SyM9WDb1OIT9BLKoFvUS9qETFCtKnN
-        4zZBapP9Mnva1OWni8bN5CS1wEY3X8e7CtfdX/9aRcz5ZwXfTFE/SRBn+2DajGLsn28fXE95Exz8ixkJ
-        GwX3b1YqCdAGToZOCWLMP7VPlWteSifJoCP+v0lOpsWIkixKmaT6Rs2FtozBh/UHAlGi8I8ZHOkAAAAA
-        SUVORK5CYII=
-</value>
-  </data>
 </root>

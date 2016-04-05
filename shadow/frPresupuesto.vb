@@ -11,6 +11,10 @@ Public Class frPresupuestos
     Public Shared flagEdit As String = "N"
     Public Shared newLinea As String = "N"
     Public Shared editNumber As String = "N"
+    Public Shared numero_impresion As Integer
+    Public Shared codigo_cliente_impresion As Integer
+
+
 
     Private Sub frPresupuestos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -30,6 +34,7 @@ Public Class frPresupuestos
 
         'GroupBox5.Visible = False
         btBuscar.Visible = False
+
 
 
 
@@ -350,7 +355,7 @@ Public Class frPresupuestos
         cmdGuardar.Enabled = False
         cmdCancelar.Enabled = False
         cmdDelete.Enabled = False
-        cmdImprimir.Enabled = False
+        'cmdImprimir.Enabled = False
         cmdPDF.Enabled = False
         cmdMail.Enabled = False
         cmdPedido.Enabled = False
@@ -2294,6 +2299,21 @@ Public Class frPresupuestos
         End If
 
 
+    End Sub
+
+    Private Sub cmdImprimir_Click(sender As Object, e As EventArgs) Handles cmdImprimir.Click
+        numero_impresion = CInt(txtNumpres.Text)
+        codigo_cliente_impresion = CInt(txNumcli.Text)
+        tabPresupuestos.SelectedIndex = 2
+
+        'TODO: esta línea de código carga datos en la tabla 'dsPresupuesto.clientes' Puede moverla o quitarla según sea necesario.
+        Me.clientesTableAdapter.Fill(Me.dsPresupuesto.clientes, codigo_cliente_impresion)
+        'TODO: esta línea de código carga datos en la tabla 'dsPresupuesto.presupuesto_cab' Puede moverla o quitarla según sea necesario.
+        Me.presupuesto_cabTableAdapter.Fill(Me.dsPresupuesto.presupuesto_cab, numero_impresion)
+        'TODO: esta línea de código carga datos en la tabla 'dsPresupuesto.presupuesto_linea' Puede moverla o quitarla según sea necesario.
+        Me.presupuesto_lineaTableAdapter.Fill(Me.dsPresupuesto.presupuesto_linea, numero_impresion)
+
+        Me.ReportViewer1.RefreshReport()
     End Sub
 End Class
 
