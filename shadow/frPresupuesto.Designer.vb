@@ -1277,7 +1277,7 @@ Partial Class frPresupuestos
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(397, 66)
+        Me.Label4.Location = New System.Drawing.Point(385, 28)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(78, 13)
         Me.Label4.TabIndex = 7
